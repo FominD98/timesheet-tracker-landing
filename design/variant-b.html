@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<meta charset="utf-8">
+<title>Variant B · Calm Fluent</title>
+<style>
+:root{
+  --text:#1b1b1b; --text2:#5f5f5f; --text3:#8a8a8a; --stroke:rgba(0,0,0,.0578); --stroke2:rgba(0,0,0,.1);
+  --card:rgba(255,255,255,.72); --layer:rgba(255,255,255,.5); --accent:#005fb8; --accentL:#e5f0fa;
+  --ok:#0f7b0f; --okBg:#dff6dd; --warn:#9d5d00; --warnBg:#fff4ce; --sub:rgba(0,0,0,.0373);
+  --font:'Segoe UI Variable Text','Segoe UI Variable','Segoe UI',system-ui,sans-serif;
+  --disp:'Segoe UI Variable Display','Segoe UI Variable','Segoe UI',sans-serif;
+  --ic:'Segoe Fluent Icons','Segoe MDL2 Assets';
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);color:var(--text);background:#111;font-size:14px;-webkit-font-smoothing:antialiased}
+.scene{position:relative;width:1440px;height:900px;overflow:hidden}
+.scene+.scene{margin-top:24px}
+.single .scene+.scene{margin-top:0}
+.ic{font-family:var(--ic);font-style:normal;font-size:16px;line-height:1;display:inline-block}
+/* Windows 11 'Bloom'-like wallpaper */
+.wall{position:absolute;inset:0;background:radial-gradient(700px 500px at 96% 104%,#1f6fe5 0%,#5e9cf5 35%,transparent 70%),radial-gradient(800px 600px at 0% 0%,#a9c8f7 0%,transparent 60%),radial-gradient(1200px 800px at 70% 60%,#9ec3ff 0%,#5a96f0 30%,#cfe0f8 62%,#e9eef8 100%)}
+.wall:before{content:"";position:absolute;inset:0;background:radial-gradient(500px 340px at 68% 60%,rgba(255,255,255,.7),transparent 70%),radial-gradient(900px 500px at 20% 10%,rgba(255,255,255,.6),transparent 70%)}
+.taskbar{position:absolute;left:0;right:0;bottom:0;height:48px;background:rgba(238,240,246,.86);backdrop-filter:blur(30px) saturate(1.5);border-top:1px solid rgba(0,0,0,.06);display:flex;align-items:center;justify-content:center;gap:4px}
+.taskbar .ti{width:40px;height:40px;border-radius:4px;display:flex;align-items:center;justify-content:center;position:relative}
+.taskbar .ti.on{background:rgba(255,255,255,.65)}
+.taskbar .ti.on:after{content:"";position:absolute;bottom:2px;width:16px;height:3px;border-radius:2px;background:var(--accent)}
+.taskbar .ti b{width:24px;height:24px;border-radius:5px;display:block}
+.tray{position:absolute;right:12px;top:0;height:48px;display:flex;align-items:center;gap:12px;font-size:12px}
+.tray .clock{text-align:right;line-height:1.35}
+.trayic{width:20px;height:20px;border-radius:5px;background:#005fb8;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px}
+/* window = Mica */
+.win{position:absolute;left:80px;top:24px;width:1280px;height:800px;border-radius:8px;overflow:hidden;background:linear-gradient(135deg,#eaeef6 0%,#eef0f5 40%,#ece9f1 100%);border:1px solid rgba(0,0,0,.14);box-shadow:0 32px 64px rgba(0,0,0,.28),0 2px 21px rgba(0,0,0,.22)}
+.titlebar{position:absolute;left:0;right:0;top:0;height:48px;display:flex;align-items:center;padding-left:16px;gap:12px;font-size:12px}
+.appic{width:18px;height:18px;border-radius:4px;background:linear-gradient(135deg,#0a7ae6,#005fb8);display:flex;align-items:center;justify-content:center}
+.search{position:absolute;left:50%;transform:translateX(-50%);top:8px;width:420px;height:32px;border-radius:4px;background:rgba(255,255,255,.7);border:1px solid var(--stroke);border-bottom-color:rgba(0,0,0,.25);display:flex;align-items:center;padding:0 10px;color:var(--text3);font-size:13px;gap:8px}
+.search kbd{margin-left:auto;font:11px var(--font);color:var(--text3);border:1px solid var(--stroke2);border-radius:3px;padding:1px 5px}
+.caps{margin-left:auto;display:flex;height:48px}
+.caps span{width:46px;display:flex;align-items:center;justify-content:center;font-family:var(--ic);font-size:10px}
+.nav{position:absolute;left:0;top:48px;bottom:0;width:240px;padding:4px 4px}
+.ni{height:36px;margin:2px 0;border-radius:4px;display:flex;align-items:center;gap:14px;padding:0 14px;font-size:14px;position:relative}
+.ni.sel{background:rgba(0,0,0,.0373)}
+.ni.sel:before{content:"";position:absolute;left:0;top:9px;width:3px;height:18px;border-radius:2px;background:var(--accent)}
+.ni .cnt{margin-left:auto;font-size:11px;font-weight:600;background:var(--accent);color:#fff;border-radius:8px;padding:1px 6px}
+.ni .cnt.w{background:#9d5d00}
+.navfoot{position:absolute;bottom:6px;left:4px;right:4px}
+.navsum{margin:16px 10px 0;padding:12px;border-radius:6px;background:rgba(255,255,255,.55);border:1px solid var(--stroke);font-size:12px;color:var(--text2)}
+.content{position:absolute;left:240px;top:48px;right:0;bottom:0;background:var(--layer);border-top-left-radius:8px;border-top:1px solid var(--stroke);border-left:1px solid var(--stroke);padding:24px 36px}
+.h1{font-family:var(--disp);font-size:28px;font-weight:600;letter-spacing:-.2px}
+.cap{font-size:12px;color:var(--text2)}
+.btn{height:32px;padding:0 12px;border-radius:4px;border:1px solid var(--stroke2);border-bottom-color:rgba(0,0,0,.2);background:rgba(255,255,255,.7);display:inline-flex;align-items:center;gap:8px;font-size:14px;white-space:nowrap}
+.btn.acc{background:var(--accent);color:#fff;border-color:rgba(255,255,255,.08);border-bottom-color:rgba(0,0,0,.4);font-weight:600}
+.btn.sub{border-color:transparent;background:transparent}
+.cardx{background:var(--card);border:1px solid var(--stroke);border-radius:8px}
+.row{display:flex;align-items:center;height:46px;padding:0 16px;gap:14px;border-radius:6px;background:var(--card);border:1px solid var(--stroke);margin-top:3px}
+.cb{width:20px;height:20px;border-radius:4px;border:1px solid rgba(0,0,0,.45);background:rgba(255,255,255,.6);flex:none;display:flex;align-items:center;justify-content:center}
+.cb.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.sq{width:10px;height:10px;border-radius:2px;flex:none}
+.key{font-weight:600;color:var(--accent);font-size:13px;width:78px}
+.ttl{width:170px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wl{flex:1;color:var(--text2);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dur{width:64px;text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+.mbar{width:90px;height:4px;border-radius:2px;background:rgba(0,0,0,.08)}
+.mbar i{display:block;height:100%;border-radius:2px}
+.tag{font-size:12px;padding:2px 8px;border-radius:4px;background:rgba(0,0,0,.05);color:var(--text2);white-space:nowrap}
+.tag.ai{background:#f1ecfb;color:#6b3fbf}
+.sect{display:flex;align-items:center;gap:10px;margin-top:18px;font-size:14px;font-weight:600}
+.sect span{font-weight:400;color:var(--text2);font-size:13px}
+.combo{height:32px;width:250px;border-radius:4px;border:1px solid var(--stroke2);border-bottom-color:rgba(0,0,0,.3);background:rgba(255,255,255,.75);display:flex;align-items:center;padding:0 10px;gap:8px;font-size:13px}
+.combo .ic{margin-left:auto;font-size:10px;color:var(--text2)}
+.strip{position:relative;height:44px;border-radius:6px;background:rgba(0,0,0,.035);overflow:hidden}
+.strip i{position:absolute;top:6px;bottom:6px;border-radius:3px}
+.hatch{background:repeating-linear-gradient(135deg,rgba(157,93,0,.55) 0 3px,rgba(157,93,0,.15) 3px 7px)!important}
+.ticks{position:relative;height:18px;font-size:11px;color:var(--text3)}
+.ticks span{position:absolute;transform:translateX(-50%)}
+.infobar{display:flex;align-items:center;gap:12px;padding:0 8px 0 16px;height:48px;border-radius:4px;border:1px solid var(--stroke);font-size:14px}
+.infobar.warn{background:var(--warnBg)}
+.infobar.info{background:rgba(246,246,246,.6)}
+.infobar .bi{width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:700;flex:none}
+/* week grid */
+table{border-collapse:separate;border-spacing:0;width:100%}
+th{font-size:12px;font-weight:600;color:var(--text2);text-align:right;padding:8px 12px;border-bottom:1px solid var(--stroke2)}
+th:first-child,td:first-child{text-align:left}
+td{padding:0 12px;height:46px;border-bottom:1px solid var(--stroke);text-align:right;font-variant-numeric:tabular-nums;font-size:14px}
+td.z{color:#c0c0c0}
+td.tot{font-weight:600}
+tr.today td:nth-child(6){background:rgba(0,95,184,.05)}
+tfoot td{font-weight:600;border-bottom:0;height:42px}
+.cell-ai{color:#6b3fbf}
+/* flyout */
+.fly{position:absolute;right:12px;bottom:60px;width:360px;border-radius:8px;background:rgba(243,244,248,.88);backdrop-filter:blur(60px) saturate(1.4);border:1px solid rgba(0,0,0,.1);box-shadow:0 8px 32px rgba(0,0,0,.2);overflow:hidden}
+.menu{position:absolute;width:256px;border-radius:8px;background:rgba(249,249,251,.92);backdrop-filter:blur(60px);border:1px solid rgba(0,0,0,.1);box-shadow:0 8px 16px rgba(0,0,0,.14);padding:4px}
+.mi{height:32px;border-radius:4px;display:flex;align-items:center;gap:12px;padding:0 10px;font-size:14px}
+.mi.h{background:rgba(0,0,0,.04)}
+.mi kbd{margin-left:auto;font:12px var(--font);color:var(--text3)}
+.msep{height:1px;background:var(--stroke2);margin:4px -4px}
+.toggle{width:40px;height:20px;border-radius:10px;background:var(--accent);position:relative;flex:none}
+.toggle:after{content:"";position:absolute;right:4px;top:4px;width:12px;height:12px;border-radius:50%;background:#fff}
+.note{position:absolute;font:600 12px var(--font);color:rgba(0,30,80,.55)}
+</style>
+</head>
+<body>
+
+<!-- TODAY -->
+<section class="scene" id="today">
+  <div class="wall"></div>
+  <div class="win">
+    <div class="titlebar"><span class="ic" style="font-size:12px;color:var(--text2)">&#xE72B;</span><span class="appic"><svg width="11" height="11" viewBox="0 0 24 24"><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z" fill="#fff"/></svg></span>Time Tracker &amp; Timesheet
+      <div class="search"><span class="ic" style="font-size:13px">&#xE721;</span>Search tasks, apps, worklogs<kbd>Ctrl+E</kbd></div>
+      <div class="caps"><span>&#xE921;</span><span>&#xE922;</span><span>&#xE8BB;</span></div></div>
+    <div class="nav" data-sel="Today"></div>
+    <div class="content">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div><div class="h1">Friday, October 16</div><div class="cap" style="margin-top:2px;display:flex;align-items:center;gap:6px"><span style="width:8px;height:8px;border-radius:50%;background:#0f7b0f;display:inline-block"></span>Recording · data stays on this PC</div></div>
+        <div style="margin-left:auto;display:flex;gap:4px;align-items:center">
+          <span class="btn sub"><span class="ic" style="font-size:12px">&#xE76B;</span></span><span class="btn sub" style="color:var(--text3)"><span class="ic" style="font-size:12px">&#xE76C;</span></span>
+          <span class="btn sub"><span class="ic">&#xE787;</span>Today</span>
+          <span style="width:1px;height:20px;background:var(--stroke2);margin:0 6px"></span>
+          <span class="btn sub"><span class="ic">&#xE896;</span>CSV</span>
+          <span class="btn sub"><span class="ic">&#xE712;</span></span>
+          <span class="btn acc" style="height:34px;padding:0 16px"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z" fill="#fff"/></svg>Sort with AI</span>
+        </div>
+      </div>
+
+      <div class="cardx" style="margin-top:18px;padding:16px 18px 10px">
+        <div style="display:flex;align-items:baseline;gap:24px">
+          <div><span style="font-family:var(--disp);font-size:28px;font-weight:600;font-variant-numeric:tabular-nums">8h 10m</span><span class="cap" style="margin-left:8px">of 8h norm</span></div>
+          <div class="cap" style="display:flex;gap:18px;margin-left:auto">
+            <span><span class="sq" style="display:inline-block;background:var(--accent);margin-right:6px"></span>On tasks 5h 00m</span>
+            <span><span class="sq hatch" style="display:inline-block;margin-right:6px"></span>Not sorted 3h 10m</span>
+            <span><span class="sq" style="display:inline-block;background:#c8c8c8;margin-right:6px"></span>Not work 45m</span>
+            <span style="color:var(--text)">Week 30h 45m / 40h</span>
+          </div>
+        </div>
+        <div class="strip" id="stripB" style="margin-top:12px"></div>
+        <div class="ticks" id="ticksB"></div>
+      </div>
+
+      <div class="infobar warn" style="margin-top:14px"><span class="bi" style="background:#9d5d00">!</span><b style="font-weight:600">4 blocks are not sorted</b><span style="color:var(--text2)">3h 10m. AI suggests a task for each; nothing is sent until you confirm.</span><span class="btn" style="margin-left:auto">Sort with AI</span><span class="ic" style="font-size:11px;padding:0 8px;color:var(--text2)">&#xE8BB;</span></div>
+
+      <div class="sect">On tasks <span>5h 00m · 3 tasks</span><span style="margin-left:auto;font-size:12px">Assigned by rules</span></div>
+      <div id="tasksB"></div>
+      <div class="sect">Not sorted <span>3h 10m · 4 blocks</span></div>
+      <div id="unB"></div>
+    </div>
+  </div>
+  <div class="taskbar" data-on="1"></div>
+</section>
+
+<!-- WEEK -->
+<section class="scene" id="week">
+  <div class="wall"></div>
+  <div class="win">
+    <div class="titlebar"><span class="ic" style="font-size:12px;color:var(--text2)">&#xE72B;</span><span class="appic"><svg width="11" height="11" viewBox="0 0 24 24"><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z" fill="#fff"/></svg></span>Time Tracker &amp; Timesheet
+      <div class="search"><span class="ic" style="font-size:13px">&#xE721;</span>Search tasks, apps, worklogs<kbd>Ctrl+E</kbd></div>
+      <div class="caps"><span>&#xE921;</span><span>&#xE922;</span><span>&#xE8BB;</span></div></div>
+    <div class="nav" data-sel="Week"></div>
+    <div class="content">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div><div class="cap">Week 42 · October 12 – 16</div><div class="h1">Your week is ready</div></div>
+        <div style="margin-left:auto;display:flex;gap:8px;align-items:center">
+          <span class="btn"><span class="ic">&#xE896;</span>Save CSV</span>
+          <span class="btn acc" style="height:34px;padding:0 16px;opacity:.45"><span class="ic" style="font-size:14px">&#xE724;</span>Send 38h 20m to Jira</span>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px">
+        <div class="cardx" style="padding:12px 16px"><div class="cap">To log</div><div style="font-family:var(--disp);font-size:24px;font-weight:600">38h 20m</div><div class="mbar" style="width:100%;margin-top:8px"><i style="width:96%;background:var(--accent)"></i></div></div>
+        <div class="cardx" style="padding:12px 16px"><div class="cap">Worklogs</div><div style="font-family:var(--disp);font-size:24px;font-weight:600">14</div><div class="cap" style="margin-top:4px">7 tasks · 3 projects</div></div>
+        <div class="cardx" style="padding:12px 16px"><div class="cap">Sorted by AI</div><div style="font-family:var(--disp);font-size:24px;font-weight:600;color:#6b3fbf">11h 20m</div><div class="cap" style="margin-top:4px">confidence 76–88%</div></div>
+        <div class="cardx" style="padding:12px 16px"><div class="cap">Confirmed without edits</div><div style="font-family:var(--disp);font-size:24px;font-weight:600;color:var(--ok)">92%</div><div class="cap" style="margin-top:4px">goal 70%</div></div>
+      </div>
+      <div class="infobar warn" style="margin-top:14px"><span class="bi" style="background:#9d5d00">!</span><b style="font-weight:600">1 block needs you</b><span style="color:var(--text2)">Fri 17:40–18:20 · Slack DMs, Chrome tabs · 40m</span>
+        <span class="combo" style="margin-left:auto;width:230px"><span class="sq" style="background:#0369a1"></span>CASE-1510 Release notes<span class="ic">&#xE70D;</span></span><span class="btn">Not work</span></div>
+      <div class="cardx" style="margin-top:14px;padding:4px 8px 0">
+        <table>
+          <thead><tr><th style="width:330px">Task</th><th>Mon 12</th><th>Tue 13</th><th>Wed 14</th><th>Thu 15</th><th style="color:var(--accent)">Fri 16</th><th>Total</th><th style="width:96px;text-align:left">Source</th></tr></thead>
+          <tbody id="gridB"></tbody>
+          <tfoot><tr><td>Total</td><td>7h 40m</td><td>7h 55m</td><td>7h 30m</td><td>7h 40m</td><td>7h 35m</td><td>38h 20m</td><td></td></tr></tfoot>
+        </table>
+      </div>
+      <div class="cap" style="margin-top:10px;display:flex;gap:16px"><span>Jira Cloud · acme.atlassian.net · signed in as d.fomin</span><span style="margin-left:auto">Only titles and durations went to AI. No screenshots.</span></div>
+    </div>
+  </div>
+  <div class="taskbar" data-on="1"></div>
+</section>
+
+<!-- TRAY -->
+<section class="scene" id="tray">
+  <div class="wall"></div>
+  <div class="note" style="left:796px;bottom:380px">Right-click: context menu</div>
+  <div class="menu" style="right:390px;bottom:150px">
+    <div class="mi h"><span class="ic">&#xE8A7;</span>Open</div>
+    <div class="mi"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z" fill="#005fb8"/></svg>Sort today with AI</div>
+    <div class="mi"><span class="ic">&#xE787;</span>Review the week</div>
+    <div class="msep"></div>
+    <div class="mi"><span class="ic">&#xE769;</span>Pause recording<span class="ic" style="margin-left:auto;font-size:10px">&#xE76C;</span></div>
+    <div class="mi"><span class="ic">&#xE713;</span>Settings</div>
+    <div class="msep"></div>
+    <div class="mi"><span class="ic">&#xE7E8;</span>Exit</div>
+  </div>
+  <div class="note" style="right:20px;bottom:420px">Left-click: flyout</div>
+  <div class="fly">
+    <div style="padding:16px 16px 14px">
+      <div style="display:flex;align-items:center;gap:10px"><span class="appic" style="width:20px;height:20px"><svg width="12" height="12" viewBox="0 0 24 24"><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z" fill="#fff"/></svg></span><b style="font-weight:600">Today</b><span class="cap">Fri, Oct 16</span>
+        <span style="margin-left:auto;display:flex;align-items:center;gap:8px;font-size:13px">Recording<span class="toggle"></span></span></div>
+      <div style="display:flex;align-items:baseline;gap:8px;margin-top:14px"><span style="font-family:var(--disp);font-size:32px;font-weight:600">8h 10m</span><span class="cap">of 8h</span></div>
+      <div class="strip" id="stripB2" style="height:28px;margin-top:8px"></div>
+      <div style="margin-top:12px;display:flex;flex-direction:column;gap:2px" id="flyB"></div>
+    </div>
+    <div style="background:rgba(0,0,0,.035);border-top:1px solid var(--stroke);padding:12px 16px;display:flex;gap:8px;align-items:center">
+      <span class="cap">Jira · acme.atlassian.net</span>
+      <span class="btn" style="margin-left:auto">Open</span>
+      <span class="btn acc"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z" fill="#fff"/></svg>Sort with AI</span>
+    </div>
+  </div>
+  <div class="taskbar" data-on="0"></div>
+</section>
+
+<script>
+const P={auth:{k:'CASE-1423',t:'Auth API refactor',c:'#2563eb'},review:{k:'CASE-1388',t:'Code review',c:'#c2410c'},meet:{k:'TEAM-12',t:'Meetings',c:'#7c3aed'},onboard:{k:'CASE-1501',t:'Onboarding flow',c:'#c026d3'},ops:{k:'OPS-77',t:'Incident follow-up',c:'#0f766e'},notes:{k:'CASE-1510',t:'Release notes',c:'#0369a1'}};
+const hm=m=>`${Math.floor(m/60)}h ${String(m%60).padStart(2,'0')}m`;
+const NAV=[['Today','&#xE80F;'],['Week','&#xE787;','1'],['Tasks','&#xE8FD;'],['Rules','&#xE71C;']];
+document.querySelectorAll('.nav').forEach(n=>{const s=n.dataset.sel;
+ n.innerHTML=NAV.map(([t,g,c])=>`<div class="ni ${t==s?'sel':''}"><span class="ic">${g}</span>${t}${c?`<span class="cnt w">${c}</span>`:''}</div>`).join('')+
+ `<div class="navsum"><div style="display:flex;justify-content:space-between;color:var(--text)"><span>This week</span><b style="font-weight:600">30h 45m</b></div><div class="mbar" style="width:100%;margin-top:8px"><i style="width:77%;background:var(--accent)"></i></div><div style="margin-top:8px">9h 15m left to 40h</div></div>`+
+ `<div class="navfoot"><div class="ni"><span class="ic">&#xE896;</span>Export</div><div class="ni"><span class="ic">&#xE713;</span>Settings</div></div>`;});
+document.querySelectorAll('.taskbar').forEach(t=>{const on=+t.dataset.on;
+ t.innerHTML=`<div class="ti"><svg width="22" height="22" viewBox="0 0 24 24"><rect x="2" y="2" width="9.5" height="9.5" rx="1.5" fill="#0078d4"/><rect x="12.5" y="2" width="9.5" height="9.5" rx="1.5" fill="#0078d4"/><rect x="2" y="12.5" width="9.5" height="9.5" rx="1.5" fill="#0078d4"/><rect x="12.5" y="12.5" width="9.5" height="9.5" rx="1.5" fill="#0078d4"/></svg></div>`+
+ ['#ffb900','#0c7cd5','#2f80ed','#6264a7','#f24e1e'].map(c=>`<div class="ti"><b style="background:${c}"></b></div>`).join('')+
+ `<div class="ti ${on?'on':''}"><b style="background:linear-gradient(135deg,#0a7ae6,#005fb8)"></b></div>`+
+ `<div class="tray"><span class="ic" style="font-size:10px">&#xE70E;</span><span class="trayic"><svg width="11" height="11" viewBox="0 0 24 24"><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z" fill="#fff"/></svg></span><span class="ic">&#xE701;</span><span class="ic">&#xE767;</span><div class="clock">17:55<br>16.10.2026</div></div>`;});
+const work=[[9,10.5,P.auth],[10.5,10.75,P.meet],[10.75,12.25,P.review],[12.25,13,null],[13,13.75,'away'],[13.75,15.5,P.auth],[15.5,16.25,null],[16.25,17.67,null],[17.67,17.92,null]];
+function strip(el,ticks){const x=h=>(h-8.75)/(18.75-8.75)*100;let s='';
+ work.forEach(([a,b,p])=>{s+=`<i class="${p===null?'hatch':''}" style="left:calc(${x(a)}% + 1px);width:calc(${x(b)-x(a)}% - 2px);background:${p=='away'?'#d4d4d4':p?p.c:''}"></i>`});
+ s+=`<i style="left:${x(17.92)}%;width:2px;top:0;bottom:0;background:#1b1b1b;border-radius:1px"></i>`;el.innerHTML=s;
+ if(ticks){let t='';for(let h=9;h<=18;h++)t+=`<span style="left:${x(h)}%;top:3px">${h}:00</span>`;ticks.innerHTML=t;}}
+strip(document.getElementById('stripB'),document.getElementById('ticksB'));strip(document.getElementById('stripB2'));
+const tasks=[[P.auth,195,'Token refresh refactor, integration tests','git branch'],[P.review,90,'Reviewed PRs #412, #418 in billing','key in title'],[P.meet,15,'Daily standup','calendar']];
+document.getElementById('tasksB').innerHTML=tasks.map(([p,m,w,by])=>`<div class="row"><span class="cb on"><span class="ic" style="font-size:12px">&#xE73E;</span></span><span class="sq" style="background:${p.c}"></span><span class="key">${p.k}</span><span class="ttl">${p.t}</span><span class="wl">${w}</span><span class="tag">${by}</span><span class="mbar"><i style="width:${m/195*100}%;background:${p.c}"></i></span><span class="dur">${hm(m)}</span><span class="ic" style="font-size:12px;color:var(--text2)">&#xE70D;</span></div>`).join('');
+const un=[['12:15','Figma','Onboarding v3 — screens',45],['15:30','Slack','#incident-billing · Grafana alerts',45],['16:15','Confluence','Release 4.2 — notes draft',85],['17:40','Slack','DMs · Chrome tabs',15]];
+document.getElementById('unB').innerHTML=un.map(([t,a,w,m])=>`<div class="row"><span class="cb"></span><span class="sq hatch"></span><span style="width:44px;color:var(--text2);font-size:13px;font-variant-numeric:tabular-nums">${t}</span><span style="width:96px;font-weight:600">${a}</span><span class="wl">${w}</span><span class="combo"><span style="color:var(--text3)">Pick a task…</span><span class="ic">&#xE70D;</span></span><span class="btn sub" style="color:var(--text2)">Not work</span><span class="dur">${hm(m)}</span></div>`).join('');
+const grid=[[P.auth,[215,210,180,225,150],'Rule'],[P.review,[90,60,75,75,60],'Rule'],[P.meet,[60,45,60,60,15],'Calendar'],[P.onboard,[95,40,135,20,45],'AI 88%'],[P.ops,[0,120,0,25,45],'AI 81%'],[P.notes,[0,0,0,55,100],'AI 76%'],[null,[0,0,0,0,40],'Needs you']];
+document.getElementById('gridB').innerHTML=grid.map(([p,d,src])=>{const tot=d.reduce((a,b)=>a+b,0);const ai=src.startsWith('AI');
+ return `<tr class="today"><td><span style="display:flex;align-items:center;gap:10px">${p?`<span class="sq" style="background:${p.c}"></span><span class="key">${p.k}</span>${p.t}`:'<span class="sq hatch"></span><span style="color:var(--warn);font-weight:600">Not sorted</span><span style="color:var(--text2)">Fri 17:40</span>'}</span></td>${d.map(v=>`<td class="${v?'':'z'} ${ai&&v?'cell-ai':''}">${v?Math.floor(v/60)+':'+String(v%60).padStart(2,'0'):'–'}</td>`).join('')}<td class="tot">${hm(tot)}</td><td style="text-align:left"><span class="tag ${ai?'ai':''}" style="${src=='Needs you'?'background:var(--warnBg);color:var(--warn)':''}">${src}</span></td></tr>`}).join('');
+document.getElementById('flyB').innerHTML=[[P.auth,195],[P.review,90],[P.meet,15]].map(([p,m])=>`<div style="display:flex;align-items:center;gap:10px;height:30px;font-size:13px"><span class="sq" style="background:${p.c}"></span><span class="key" style="width:74px">${p.k}</span><span style="flex:1">${p.t}</span><span style="font-variant-numeric:tabular-nums">${hm(m)}</span></div>`).join('')+
+ `<div style="display:flex;align-items:center;gap:10px;height:30px;font-size:13px"><span class="sq hatch"></span><span style="flex:1;color:var(--warn);font-weight:600">Not sorted · 4 blocks</span><span style="font-variant-numeric:tabular-nums;color:var(--warn)">3h 10m</span></div>`;
+const s=new URLSearchParams(location.search).get('s');if(s){document.body.classList.add('single');document.querySelectorAll('.scene').forEach(e=>{if(e.id!=s)e.remove()});}
+</script>
+</body>
+</html>

@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<meta charset="utf-8">
+<title>Variant A · Aurora Glass</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=block" rel="stylesheet">
+<style>
+:root{
+  --ink:#15171c; --ink2:#3b3f4a; --muted:#737887; --line:rgba(22,24,40,.08);
+  --card:rgba(255,255,255,.78); --accent:#4f46e5; --ok:#16a34a; --okBg:#dcfce7; --warn:#d97706; --warnBg:#fef3c7;
+  --ai:linear-gradient(110deg,#6366f1 0%,#a855f7 35%,#ec4899 65%,#f59e0b 100%);
+  --font:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',Consolas,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);color:var(--ink);background:#111;-webkit-font-smoothing:antialiased}
+.scene{position:relative;width:1440px;height:900px;overflow:hidden}
+.scene+.scene{margin-top:24px}
+body.single .scene+.scene{margin-top:0}
+/* desktop */
+.wall{position:absolute;inset:0;background:#eceef8;overflow:hidden}
+.wall .blobs{position:absolute;inset:-200px;filter:blur(90px)}
+.wall .blobs i{position:absolute;border-radius:50%}
+.taskbar{position:absolute;left:0;right:0;bottom:0;height:48px;background:rgba(243,243,248,.82);backdrop-filter:blur(30px) saturate(1.6);border-top:1px solid rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;gap:6px}
+.taskbar .ti{width:40px;height:40px;border-radius:6px;display:flex;align-items:center;justify-content:center;position:relative}
+.taskbar .ti.on{background:rgba(255,255,255,.7)}
+.taskbar .ti.on:after{content:"";position:absolute;bottom:2px;width:16px;height:3px;border-radius:2px;background:var(--accent)}
+.taskbar .ti b{width:24px;height:24px;border-radius:6px;display:block}
+.tray{position:absolute;right:12px;top:0;height:48px;display:flex;align-items:center;gap:14px;font-size:12px;color:#222}
+.tray .clock{text-align:right;line-height:1.3}
+.tray .appdot{width:22px;height:22px;border-radius:6px;background:var(--ai);display:flex;align-items:center;justify-content:center;position:relative}
+.tray .appdot:after{content:"";position:absolute;right:-2px;bottom:-2px;width:8px;height:8px;border-radius:50%;background:#16a34a;border:2px solid #f3f3f8}
+/* window */
+.win{position:absolute;left:80px;top:24px;width:1280px;height:800px;border-radius:14px;overflow:hidden;background:rgba(247,247,252,.80);backdrop-filter:blur(40px) saturate(1.6);border:1px solid rgba(255,255,255,.7);box-shadow:0 40px 120px rgba(30,30,80,.28),0 8px 24px rgba(30,30,80,.12)}
+.titlebar{position:absolute;left:0;right:0;top:0;height:40px;display:flex;align-items:center;padding-left:16px;gap:9px;font-size:12.5px;font-weight:500;color:var(--ink2)}
+.logo{width:20px;height:20px;border-radius:6px;background:var(--ai);display:flex;align-items:center;justify-content:center}
+.caption{margin-left:auto;display:flex;height:40px}
+.caption span{width:46px;display:flex;align-items:center;justify-content:center;color:var(--ink2)}
+.rail{position:absolute;left:0;top:40px;bottom:0;width:76px;display:flex;flex-direction:column;align-items:center;padding-top:6px;gap:4px}
+.rail .it{width:62px;height:56px;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:11px;font-weight:500;color:var(--ink2);position:relative}
+.rail .it.sel{background:rgba(79,70,229,.10);color:var(--accent)}
+.rail .it.sel:before{content:"";position:absolute;left:0;top:16px;width:3px;height:24px;border-radius:2px;background:var(--accent)}
+.rail .sp{flex:1}
+.rail .it .badge{position:absolute;top:5px;right:8px;min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:var(--warn);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.surface{position:absolute;left:76px;top:40px;right:0;bottom:0;background:rgba(255,255,255,.45);border-top-left-radius:14px;border-top:1px solid var(--line);border-left:1px solid var(--line);padding:22px 26px}
+svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:0 1px 2px rgba(20,20,50,.04),0 8px 24px rgba(20,20,50,.05)}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:3px 8px;border-radius:999px;font-weight:700;font-size:11.5px;white-space:nowrap}
+.chip:before{content:"";width:6px;height:6px;border-radius:2px;background:currentColor;transform:rotate(45deg)}
+.num{font-variant-numeric:tabular-nums}
+.pill-ok{display:inline-flex;align-items:center;gap:8px;padding:6px 13px;border-radius:999px;background:rgba(22,163,74,.10);color:var(--ok);font-weight:600;font-size:12.5px}
+.pill-ok i{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px rgba(22,163,74,.15)}
+.btn-ai{height:48px;border-radius:13px;background:var(--ai);color:#fff;font-weight:700;font-size:15.5px;display:flex;align-items:center;justify-content:center;gap:9px;box-shadow:0 10px 24px rgba(168,85,247,.35),inset 0 1px 0 rgba(255,255,255,.35)}
+.btn{height:40px;padding:0 18px;border-radius:11px;border:1px solid var(--line);background:#fff;font-weight:600;font-size:13.5px;display:inline-flex;align-items:center;gap:8px}
+.btn-p{height:46px;padding:0 24px;border-radius:12px;background:var(--accent);color:#fff;font-weight:700;font-size:15px;display:inline-flex;align-items:center;gap:9px;box-shadow:0 10px 26px rgba(79,70,229,.38)}
+/* today */
+.hdr{display:flex;align-items:center;height:44px}
+.hdr h1{font-size:30px;font-weight:800;letter-spacing:-1px}
+.hdr .date{font-size:26px;color:var(--ink2);margin-left:10px;letter-spacing:-.6px;font-weight:400}
+.navbtns{display:flex;gap:4px;margin-left:14px}
+.navbtns span{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--ink2)}
+.navbtns span:hover{background:#fff}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr) 330px;gap:14px;margin-top:16px}
+.kpi{height:92px;padding:15px 18px;position:relative}
+.kpi .l{font-size:12.5px;color:var(--muted);font-weight:500}
+.kpi .v{font-size:30px;font-weight:700;letter-spacing:-1px;margin-top:4px}
+.kpi .bar{position:absolute;left:18px;right:18px;bottom:14px;height:5px;border-radius:3px;background:#eceef3;overflow:hidden}
+.kpi .bar i{display:block;height:100%;background:var(--ai);border-radius:3px}
+.kpi .sub{font-size:11.5px;color:var(--muted);margin-top:2px}
+.main{display:grid;grid-template-columns:1fr 330px;gap:14px;margin-top:14px;height:542px}
+.tl{padding:16px 20px;position:relative}
+.tlgrid{position:relative;height:196px}
+.lane-l{position:absolute;left:0;font-size:11.5px;font-weight:600;color:var(--muted)}
+.hour{position:absolute;top:0;font-size:11px;color:var(--muted);font-weight:500;transform:translateX(-50%)}
+.vline{position:absolute;top:22px;width:1px;height:170px;background:var(--line)}
+.app{position:absolute;top:36px;height:28px;border-radius:7px;color:#fff;font-size:11px;font-weight:600;padding-left:7px;display:flex;align-items:center;white-space:nowrap;overflow:hidden;opacity:.9}
+.blk{position:absolute;top:80px;height:92px;border-radius:11px;padding:8px 9px;overflow:hidden}
+.blk .k{font-weight:700;font-size:12px;white-space:nowrap}
+.blk .t{font-size:11.5px;font-weight:500;color:var(--ink2);margin-top:3px;white-space:nowrap}
+.blk.un{background:repeating-linear-gradient(135deg,#eef0f4 0 7px,#e3e6ed 7px 14px);color:var(--muted);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:11.5px;border:1px solid rgba(0,0,0,.03)}
+.blk.away{border:1px dashed #d4d7de;color:#a0a4ae;display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:600}
+.now{position:absolute;top:22px;width:2px;height:170px;background:var(--accent);box-shadow:0 0 12px rgba(79,70,229,.6);border-radius:1px}
+.nowtag{position:absolute;top:-2px;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:11px;font-weight:700;border-radius:6px;padding:3px 7px}
+.sep{height:1px;background:var(--line);margin:12px 0 10px}
+.feedh{display:flex;align-items:baseline;gap:10px;font-weight:700;font-size:14px}
+.feedh span{font-size:11.5px;color:var(--muted);font-weight:500}
+.feed{margin-top:6px}
+.fr{display:flex;align-items:center;gap:12px;height:36px;border-bottom:1px solid var(--line);font-size:13px}
+.fr:last-child{border-bottom:0}
+.fr .tm{width:40px;color:var(--muted);font-size:11.5px}
+.fr .dot{width:9px;height:9px;border-radius:50%}
+.fr .an{width:90px;font-weight:600}
+.fr .w{flex:1;font-family:var(--mono);font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fr .ar{color:#b0b4c0}
+.fr .to{width:190px;display:flex;align-items:center;gap:8px}
+.fr .via{color:var(--muted);font-size:11.5px}
+.unchip{padding:3px 9px;border-radius:999px;background:#eef0f4;color:var(--muted);font-weight:600;font-size:11.5px}
+/* AI panel */
+.aip{position:relative;border-radius:16px;padding:20px;background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(248,246,255,.92));border:1px solid rgba(168,85,247,.25);box-shadow:0 10px 30px rgba(99,102,241,.10)}
+.aip-h{display:flex;align-items:center;gap:10px}
+.aip-ic{width:32px;height:32px;border-radius:9px;background:var(--ai);display:flex;align-items:center;justify-content:center}
+.aip-h b{font-size:16px;letter-spacing:-.3px;display:block}
+.aip-h small{font-size:11.5px;color:var(--muted);font-weight:500}
+.left-l{font-size:12.5px;color:var(--muted);font-weight:500;margin-top:20px}
+.left-v{font-size:46px;font-weight:800;letter-spacing:-2px;line-height:1.1}
+.left-s{font-size:13.5px;color:var(--ink2)}
+.qrow{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px dashed rgba(22,24,40,.1);font-size:12.5px}
+.qrow:last-child{border-bottom:0}
+.qrow .an{font-weight:600;width:76px}
+.qrow .w{flex:1;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.qrow .d{font-weight:600;color:var(--ink2)}
+.priv{margin-top:14px;padding:11px 12px;border-radius:11px;background:rgba(79,70,229,.06);font-size:12px;color:var(--ink2);line-height:1.45;display:flex;gap:9px}
+/* week */
+.wk-h{display:flex;justify-content:space-between;align-items:flex-end}
+.wk-h .s{font-size:13.5px;color:var(--muted);font-weight:600}
+.wk-h h1{font-size:36px;font-weight:800;letter-spacing:-1.3px;margin-top:2px}
+.grad{background:var(--ai);-webkit-background-clip:text;color:transparent}
+.wk-tot{text-align:right}
+.wk-tot .v{font-size:44px;font-weight:800;letter-spacing:-1.8px;line-height:1.05}
+.days{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:16px}
+.day{padding:11px 14px}
+.day .r{display:flex;justify-content:space-between;font-size:13px;font-weight:600}
+.day .r span:last-child{color:var(--ink2)}
+.day .b{margin-top:10px;height:6px;border-radius:3px;background:#eceef3;overflow:hidden;display:flex}
+.day .b i{display:block;height:100%}
+.day.sel{background:rgba(79,70,229,.08);border-color:rgba(79,70,229,.3)}
+.wkgrid{display:grid;grid-template-columns:1fr 300px;gap:14px;margin-top:14px}
+.rows{display:flex;flex-direction:column;gap:8px}
+.row{height:56px;display:flex;align-items:center;padding:0 16px;border-radius:13px;font-size:13px}
+.row .a{width:250px;display:flex;align-items:center;gap:9px}
+.row .a b{font-weight:600;white-space:nowrap}
+.row .txt{flex:1;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-right:10px}
+.row .h{width:96px;white-space:nowrap;text-align:right;font-weight:700;font-size:15px;padding-right:16px}
+.row .st{width:86px;display:flex;align-items:center;gap:7px;font-size:11.5px;font-weight:700}
+.tick{width:22px;height:22px;border-radius:50%;background:var(--ok);display:flex;align-items:center;justify-content:center}
+.row.pick{background:var(--warnBg);border:1px solid rgba(217,119,6,.35)}
+.opt{padding:5px 11px;border-radius:999px;font-size:12px;font-weight:600;background:rgba(255,255,255,.65);border:1px solid rgba(217,119,6,.3);color:var(--ink2);white-space:nowrap}
+.opt.hi{background:#fff;border-color:var(--accent);color:var(--accent)}
+.side{display:flex;flex-direction:column;gap:12px}
+.side .card{padding:16px 18px}
+.bottom{position:absolute;left:26px;right:26px;bottom:20px;height:70px;display:flex;align-items:center;padding:0 12px 0 20px;gap:14px}
+.prog{width:160px;height:7px;border-radius:4px;background:#eceef3;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--ok)}
+/* tray flyout */
+.fly{position:absolute;right:12px;bottom:60px;width:372px;border-radius:14px;background:rgba(250,250,253,.84);backdrop-filter:blur(40px) saturate(1.7);border:1px solid rgba(255,255,255,.75);box-shadow:0 30px 80px rgba(30,30,80,.28),0 6px 18px rgba(30,30,80,.12);padding:18px;overflow:hidden}
+.toast{position:absolute;right:12px;bottom:566px;width:372px;padding:14px 16px;border-radius:12px;background:rgba(250,250,253,.8);backdrop-filter:blur(30px);border:1px solid rgba(255,255,255,.7);box-shadow:0 14px 40px rgba(30,30,80,.18);font-size:12.5px;display:flex;gap:12px}
+.label{position:absolute;left:24px;top:18px;font:600 12px var(--font);color:rgba(20,20,40,.55);letter-spacing:.4px;text-transform:uppercase}
+</style>
+</head>
+<body>
+
+<!-- ============ TODAY ============ -->
+<section class="scene" id="today">
+  <div class="wall"><div class="blobs">
+    <i style="left:150px;top:60px;width:900px;height:700px;background:#c7c9ff"></i>
+    <i style="left:1100px;top:40px;width:800px;height:650px;background:#ffd2e6"></i>
+    <i style="left:650px;top:640px;width:1000px;height:600px;background:#ffe2c4"></i>
+    <i style="left:-60px;top:700px;width:600px;height:500px;background:#c9f0ea"></i>
+  </div></div>
+  <div class="win">
+    <div class="titlebar"><div class="logo"><svg width="12" height="12" viewBox="0 0 24 24"><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z" fill="#fff"/></svg></div>Time Tracker &amp; Timesheet<span style="color:var(--muted);font-weight:400"> · AI for Jira</span>
+      <div class="caption"><span>&#x2014;</span><span>&#x2610;</span><span>&#x2715;</span></div></div>
+    <nav class="rail" data-sel="Today" data-badge="4"></nav>
+    <div class="surface">
+      <div class="hdr">
+        <h1>Today</h1><span class="date">· Fri, Oct 16</span>
+        <div class="navbtns"><span><svg class="i" viewBox="0 0 24 24" style="width:16px"><path d="M15 6l-6 6 6 6"/></svg></span><span style="opacity:.35"><svg class="i" viewBox="0 0 24 24" style="width:16px"><path d="M9 6l6 6-6 6"/></svg></span></div>
+        <span class="pill-ok" style="margin-left:auto"><i></i>Capturing · stored on this PC</span>
+      </div>
+      <div class="kpis">
+        <div class="card kpi"><div class="l">Tracked</div><div class="v num">8h 10m</div><div class="sub">since 9:00 · 45m away</div></div>
+        <div class="card kpi"><div class="l">Auto-assigned</div><div class="v num">5h 00m</div><div class="sub">git branch · title · calendar</div></div>
+        <div class="card kpi"><div class="l">Unassigned</div><div class="v num" style="color:var(--warn)">3h 10m</div><div class="sub">4 blocks</div></div>
+        <div class="card kpi"><div class="l">Matched to Jira</div><div class="v num">61%</div><div class="bar"><i style="width:61%"></i></div></div>
+        <div class="card kpi" style="display:flex;align-items:center;gap:14px">
+          <svg width="60" height="60" viewBox="0 0 60 60"><circle cx="30" cy="30" r="25" fill="none" stroke="#eceef3" stroke-width="7"/><circle cx="30" cy="30" r="25" fill="none" stroke="url(#gA)" stroke-width="7" stroke-linecap="round" stroke-dasharray="157" stroke-dashoffset="0" transform="rotate(-90 30 30)"/><defs><linearGradient id="gA" x1="0" x2="1"><stop offset="0" stop-color="#6366f1"/><stop offset=".5" stop-color="#a855f7"/><stop offset="1" stop-color="#ec4899"/></linearGradient></defs><text x="30" y="35" text-anchor="middle" font-size="13" font-weight="700" fill="#15171c" font-family="Inter">102%</text></svg>
+          <div><div class="l">Day norm · 8h</div><div style="font-size:15px;font-weight:700;margin-top:3px">Norm reached</div><div class="sub">Week: 30h 45m / 40h</div></div>
+        </div>
+      </div>
+      <div class="main">
+        <div class="card tl">
+          <div class="tlgrid" id="tlA"></div>
+          <div class="sep"></div>
+          <div class="feedh">Live capture <span>window · title · domain · idle — no screenshots</span><span style="margin-left:auto;color:var(--accent);font-weight:600">Rules · 3</span></div>
+          <div class="feed" id="feedA"></div>
+        </div>
+        <div class="aip">
+          <div class="aip-h"><div class="aip-ic"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z" fill="#fff"/><path d="M19 2l.8 2.2L22 5l-2.2.8L19 8l-.8-2.2L16 5l2.2-.8z" fill="#fff" opacity=".7"/></svg></div><div><b>AI timesheet</b><small>Matches what rules couldn't</small></div></div>
+          <div class="left-l">Left to sort today</div>
+          <div class="left-v num">3h 10m</div>
+          <div class="left-s">4 blocks need a task</div>
+          <div style="margin-top:14px" id="qA"></div>
+          <div class="btn-ai" style="margin-top:16px"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z" fill="#fff"/></svg>Sort my day</div>
+          <div class="priv"><svg class="i" viewBox="0 0 24 24" style="width:16px;flex:none;color:var(--accent)"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg><span>Sends only app names, window titles and durations. Raw events never leave this PC.</span></div>
+          <div style="display:flex;justify-content:space-between;margin-top:14px;font-size:12px;color:var(--muted)"><span>Then: review → confirm → Jira</span><span>~0.3¢</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="taskbar" data-active="1"></div>
+</section>
+
+<!-- ============ WEEK ============ -->
+<section class="scene" id="week">
+  <div class="wall"><div class="blobs">
+    <i style="left:250px;top:20px;width:900px;height:700px;background:#c7c9ff"></i>
+    <i style="left:1050px;top:80px;width:800px;height:650px;background:#ffd2e6"></i>
+    <i style="left:700px;top:620px;width:1000px;height:600px;background:#ffe2c4"></i>
+    <i style="left:-60px;top:680px;width:600px;height:500px;background:#c9f0ea"></i>
+  </div></div>
+  <div class="win">
+    <div class="titlebar"><div class="logo"><svg width="12" height="12" viewBox="0 0 24 24"><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z" fill="#fff"/></svg></div>Time Tracker &amp; Timesheet<span style="color:var(--muted);font-weight:400"> · AI for Jira</span>
+      <div class="caption"><span>&#x2014;</span><span>&#x2610;</span><span>&#x2715;</span></div></div>
+    <nav class="rail" data-sel="Week" data-badge="1"></nav>
+    <div class="surface">
+      <div class="wk-h">
+        <div><div class="s">Week 42 · Oct 12 – 16</div><h1>Your week is ready</h1></div>
+        <div class="wk-tot"><div class="s" style="font-size:13.5px;color:var(--muted);font-weight:600">To log</div><div class="v num grad">38h 20m</div></div>
+      </div>
+      <div class="days" id="daysA"></div>
+      <div class="wkgrid">
+        <div class="rows" id="rowsA"></div>
+        <div class="side">
+          <div class="card"><div style="font-weight:700;font-size:14px">By project</div>
+            <div style="display:flex;align-items:center;gap:16px;margin-top:10px"><div id="donutA"></div><div id="legA" style="display:flex;flex-direction:column;gap:6px"></div></div>
+            <div style="margin-top:10px;font-size:12px;color:var(--muted)">14 worklogs · Jira Cloud · acme.atlassian.net</div></div>
+          <div class="card" style="display:flex;align-items:center;justify-content:space-between"><div><div style="font-size:12px;color:var(--muted);font-weight:600">Confirmed without edits</div><div style="font-size:32px;font-weight:800;letter-spacing:-1px;color:var(--ok)">92%</div></div>
+            <svg width="90" height="36" viewBox="0 0 90 36"><polyline points="0,28 18,24 36,26 54,14 72,10 90,6" fill="none" stroke="#16a34a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="90" cy="6" r="3" fill="#16a34a"/></svg></div>
+          <div class="card" style="font-size:12.5px;color:var(--ink2);line-height:1.5"><b style="color:var(--ink)">Private by design</b><br>Only titles and durations went to AI. No screenshots, ever.</div>
+        </div>
+      </div>
+      <div class="card bottom">
+        <span style="font-size:15px;font-weight:600" class="num">6 of 7 ready</span><span class="prog"><i style="width:86%"></i></span>
+        <span style="font-size:12.5px;color:var(--warn);font-weight:600">1 needs you · Fri 17:40</span>
+        <span class="btn" style="margin-left:auto"><svg class="i" viewBox="0 0 24 24" style="width:16px"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Export CSV</span>
+        <span class="btn-p" style="background:#a5a8c8;box-shadow:none">Confirm 38h 20m → Jira</span>
+      </div>
+    </div>
+  </div>
+  <div class="taskbar" data-active="1"></div>
+</section>
+
+<!-- ============ TRAY ============ -->
+<section class="scene" id="tray">
+  <div class="wall"><div class="blobs">
+    <i style="left:100px;top:60px;width:900px;height:700px;background:#c7c9ff"></i>
+    <i style="left:1000px;top:120px;width:800px;height:650px;background:#ffd2e6"></i>
+    <i style="left:600px;top:600px;width:1000px;height:600px;background:#ffe2c4"></i>
+    <i style="left:-60px;top:680px;width:600px;height:500px;background:#c9f0ea"></i>
+  </div></div>
+  <div style="position:absolute;left:120px;top:300px;font-family:var(--font)">
+    <div style="font-size:15px;font-weight:600;color:rgba(20,20,40,.45)">Fri, 17:55</div>
+    <div style="font-size:54px;font-weight:800;letter-spacing:-2px;color:rgba(20,20,40,.82);line-height:1.05;margin-top:6px">Your day is<br><span class="grad">already written.</span></div>
+    <div style="font-size:16px;color:rgba(20,20,40,.55);margin-top:14px;max-width:440px;line-height:1.5">Tray flyout: one look at the day, one click to sort it. Opens on left-click of the tray icon.</div>
+  </div>
+  <div class="toast"><div class="logo" style="width:28px;height:28px;border-radius:8px;flex:none"><svg width="15" height="15" viewBox="0 0 24 24"><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z" fill="#fff"/></svg></div>
+    <div><b style="font-size:13px">Day norm reached · 8h 10m</b><div style="color:var(--ink2);margin-top:3px;line-height:1.4">3h 10m still unsorted. Sort it now while you remember?</div>
+      <div style="display:flex;gap:8px;margin-top:10px"><span class="btn" style="height:30px;font-size:12px;padding:0 12px;background:var(--accent);color:#fff;border:0">Sort my day</span><span class="btn" style="height:30px;font-size:12px;padding:0 12px">Later</span></div></div></div>
+  <div class="fly">
+    <div style="display:flex;align-items:center;gap:10px">
+      <div class="logo" style="width:26px;height:26px;border-radius:8px"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z" fill="#fff"/></svg></div>
+      <div style="font-weight:700;font-size:14px">Today · Fri, Oct 16</div>
+      <span class="pill-ok" style="margin-left:auto;padding:4px 10px;font-size:11.5px"><i style="width:7px;height:7px"></i>Recording</span>
+    </div>
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-top:16px">
+      <div><div style="font-size:12px;color:var(--muted);font-weight:500">Tracked</div><div style="font-size:34px;font-weight:800;letter-spacing:-1.4px" class="num">8h 10m</div></div>
+      <div style="text-align:right"><div style="font-size:12px;color:var(--muted);font-weight:500">Unsorted</div><div style="font-size:22px;font-weight:700;color:var(--warn);letter-spacing:-.6px" class="num">3h 10m</div></div>
+    </div>
+    <div id="miniA" style="position:relative;height:30px;margin-top:12px;border-radius:8px;overflow:hidden;background:#eceef3"></div>
+    <div style="display:flex;justify-content:space-between;font-size:10.5px;color:var(--muted);margin-top:5px"><span>9:00</span><span>12:00</span><span>15:00</span><span>18:00</span></div>
+    <div style="margin-top:14px;display:flex;flex-direction:column;gap:7px" id="topA"></div>
+    <div class="btn-ai" style="margin-top:16px;height:44px;font-size:14.5px"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z" fill="#fff"/></svg>Sort my day</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px">
+      <span class="btn" style="justify-content:center;height:36px;font-size:12.5px;padding:0">Open</span>
+      <span class="btn" style="justify-content:center;height:36px;font-size:12.5px;padding:0">Pause 1h</span>
+      <span class="btn" style="justify-content:center;height:36px;font-size:12.5px;padding:0">Settings</span>
+    </div>
+    <div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted);display:flex;justify-content:space-between"><span>Jira Cloud · acme.atlassian.net</span><span style="color:var(--ok);font-weight:600">● connected</span></div>
+  </div>
+  <div class="taskbar" data-active="0"></div>
+</section>
+
+<script>
+const P={auth:{k:'CASE-1423',t:'Auth API refactor',fg:'#4f46e5',bg:'#e0e3ff'},review:{k:'CASE-1388',t:'Code review',fg:'#c2410c',bg:'#fde8c8'},meet:{k:'TEAM-12',t:'Daily standup',fg:'#7c3aed',bg:'#ede4ff'},onboard:{k:'CASE-1501',t:'Onboarding flow',fg:'#db2777',bg:'#fde2ee'},ops:{k:'OPS-77',t:'Incident follow-up',fg:'#0f766e',bg:'#d3f4ec'},notes:{k:'CASE-1510',t:'Release notes',fg:'#0369a1',bg:'#d9edfd'}};
+const chip=(p)=>`<span class="chip" style="background:${p.bg};color:${p.fg}">${p.k}</span>`;
+const ICON={Today:'<path d="M4 6h16v14H4zM4 10h16M9 3v4M15 3v4"/>',Week:'<path d="M4 5h16v15H4zM4 9h16M9 9v11M14 9v11"/>',Tasks:'<path d="M3 7h7l2 2h9v10H3z"/>',Rules:'<path d="M5 7h9M5 12h14M5 17h7M17 5l2 2-2 2"/>',Export:'<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>',Settings:'<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/>'};
+document.querySelectorAll('.rail').forEach(r=>{const s=r.dataset.sel,b=r.dataset.badge;
+  const it=(n)=>`<div class="it ${n==s?'sel':''}"><svg class="i" viewBox="0 0 24 24">${ICON[n]}</svg>${n}${n=='Week'&&b?`<span class="badge">${b}</span>`:''}</div>`;
+  r.innerHTML=['Today','Week','Tasks','Rules'].map(it).join('')+'<div class="sp"></div>'+['Export','Settings'].map(it).join('')+'<div style="height:10px"></div>';});
+document.querySelectorAll('.taskbar').forEach(t=>{const a=+t.dataset.active;
+  const cols=[['#0078d4',0],['#f3f3f3',0],['#ffb900',0],['#0c7cd5',0],['#2f80ed',0],['#6264a7',0],['#f24e1e',0],['var(--ai)',a]];
+  t.innerHTML=`<div class="ti"><svg width="22" height="22" viewBox="0 0 24 24"><rect x="2" y="2" width="9.5" height="9.5" rx="1.5" fill="#0078d4"/><rect x="12.5" y="2" width="9.5" height="9.5" rx="1.5" fill="#0078d4"/><rect x="2" y="12.5" width="9.5" height="9.5" rx="1.5" fill="#0078d4"/><rect x="12.5" y="12.5" width="9.5" height="9.5" rx="1.5" fill="#0078d4"/></svg></div>`+
+   cols.slice(2).map(([c,on],i)=>`<div class="ti ${on?'on':''}"><b style="background:${c}"></b></div>`).join('')+
+   `<div class="tray"><span>&#x2303;</span><span class="appdot"><svg width="12" height="12" viewBox="0 0 24 24"><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z" fill="#fff"/></svg></span><span>ENG</span><span>&#x1F50A;&#xFE0E;</span><div class="clock">17:55<br>16.10.2026</div></div>`;});
+// timeline
+const H0=9,H1=18.5,LX=58,W=780-40-LX,pph=W/(H1-H0),hx=h=>LX+(h-H0)*pph;
+const apps=[[9,10.5,'VS Code','#2f80ed'],[10.5,10.75,'Teams','#6264a7'],[10.75,12.25,'Chrome · GitHub','#e7a400'],[12.25,13,'Figma','#f24e1e'],[13.75,15.5,'VS Code','#2f80ed'],[15.5,15.83,'Slack','#2eb67d'],[15.83,16.25,'Grafana','#f46800'],[16.25,17.67,'Confluence','#1868db'],[17.67,17.83,'Slack','#2eb67d'],[17.83,17.92,'Chrome','#e7a400']];
+const work=[[9,10.5,P.auth],[10.5,10.75,P.meet],[10.75,12.25,P.review],[12.25,13,null],[13.75,15.5,P.auth],[15.5,16.25,null],[16.25,17.67,null],[17.67,17.92,null]];
+function timeline(el){let h='';for(let i=9;i<=18;i++)h+=`<div class="hour" style="left:${hx(i)}px">${i}:00</div><div class="vline" style="left:${hx(i)}px"></div>`;
+ h+=`<div class="lane-l" style="top:43px">Activity</div><div class="lane-l" style="top:118px">Work</div>`;
+ apps.forEach(([a,b,n,c])=>{const w=(b-a)*pph-2;h+=`<div class="app" style="left:${hx(a)+1}px;width:${w}px;background:${c}">${w>60?n:''}</div>`});
+ h+=`<div class="blk away" style="left:${hx(13)+2}px;width:${.75*pph-4}px">Away</div>`;
+ work.forEach(([a,b,p])=>{const w=(b-a)*pph-4;h+=p?`<div class="blk" style="left:${hx(a)+2}px;width:${w}px;background:${p.bg};border-left:3px solid ${p.fg}"><div class="k" style="color:${p.fg}">${w>40?p.k:''}</div>${w>70?`<div class="t">${p.t}</div>`:''}</div>`:`<div class="blk un" style="left:${hx(a)+2}px;width:${w}px">${w>80?'Unassigned':'?'}</div>`});
+ const n=17.92;h+=`<div class="now" style="left:${hx(n)}px"></div><div class="nowtag" style="left:${hx(n)}px">17:55</div>`;el.innerHTML=h;}
+timeline(document.getElementById('tlA'));
+const feed=[['17:40','Slack','#2eb67d','DMs · Chrome tabs — mixed',null],['16:15','Confluence','#1868db','Release 4.2 — notes draft',null],['15:30','Slack','#2eb67d','#incident-billing · Grafana alerts',null],['13:45','VS Code','#2f80ed','auth-service · feature/CASE-1423-token-refresh',P.auth,'git branch'],['13:00','Away','#9ca3af','Screen locked · 45 min','idle'],['12:15','Figma','#f24e1e','Onboarding v3 — screens',null],['10:45','Chrome','#e7a400','github.com/acme/billing/pull/412 · CASE-1388',P.review,'key in title']];
+document.getElementById('feedA').innerHTML=feed.map(([t,a,c,w,p,via])=>`<div class="fr"><span class="tm num">${t}</span><span class="dot" style="background:${c}"></span><span class="an">${a}</span><span class="w">${w}</span><span class="ar">→</span><span class="to">${p=='idle'?'<span class="via">Lunch · not logged</span>':p?chip(p)+`<span class="via">${via}</span>`:'<span class="unchip">? Unassigned</span>'}</span></div>`).join('');
+document.getElementById('qA').innerHTML=[['Figma','Onboarding v3 — screens','45m','#f24e1e'],['Slack','#incident-billing · Grafana','45m','#2eb67d'],['Confluence','Release 4.2 — notes draft','1h 25m','#1868db'],['Slack','DMs · Chrome tabs','15m','#2eb67d']].map(([a,w,d,c])=>`<div class="qrow"><span class="dot" style="width:8px;height:8px;border-radius:50%;background:${c}"></span><span class="an">${a}</span><span class="w">${w}</span><span class="d num">${d}</span></div>`).join('');
+// week
+const days=[['Mon',460,[[P.auth,.45],[P.review,.2],[P.meet,.12],[P.onboard,.23]]],['Tue',475,[[P.auth,.5],[P.ops,.25],[P.meet,.1],[P.review,.15]]],['Wed',450,[[P.auth,.4],[P.onboard,.3],[P.meet,.12],[P.review,.18]]],['Thu',460,[[P.auth,.35],[P.review,.2],[P.onboard,.2],[P.ops,.15],[P.meet,.1]]],['Fri',455,[[P.auth,.35],[P.review,.2],[P.onboard,.1],[P.ops,.1],[P.notes,.25]]]];
+const hm=m=>`${Math.floor(m/60)}h ${String(m%60).padStart(2,'0')}m`;
+document.getElementById('daysA').innerHTML=days.map(([d,m,parts])=>`<div class="card day ${d=='Fri'?'sel':''}"><div class="r"><span>${d}</span><span class="num">${hm(m)}</span></div><div class="b" style="width:${m/480*100}%">${parts.map(([p,f])=>`<i style="width:${f*100}%;background:${p.fg}"></i>`).join('')}</div></div>`).join('');
+const rows=[[P.auth,980,'Token refresh refactor, integration tests for auth-service','auto'],[P.review,375,'Reviewed PRs #412, #418, #421 in billing','auto'],[P.meet,270,'Daily standups, sprint planning, 1:1','auto'],[P.onboard,305,'Updated onboarding screens with design team','AI 88%'],[P.ops,190,'Billing incident post-mortem, alert tuning','AI 81%'],[P.notes,140,'Drafted release 4.2 notes in Confluence','AI 76%']];
+const tick='<span class="tick"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
+document.getElementById('rowsA').innerHTML=rows.map(([p,m,t,c])=>`<div class="card row"><span class="a">${chip(p)}<b>${p.t}</b></span><span class="txt">${t}</span><span class="h num">${hm(m)}</span><span class="st">${tick}<span style="color:${c=='auto'?'var(--muted)':'#9333ea'}">${c}</span></span></div>`).join('')+
+ `<div class="row pick"><span class="a"><b style="color:var(--warn)">Unclear · Fri 17:40</b></span><span class="txt" style="display:flex;gap:6px"><span class="opt hi">CASE-1510 Release notes</span><span class="opt">OPS-77</span><span class="opt">Not work</span></span><span class="h num">0h 40m</span><span class="st" style="color:var(--warn)">Pick one</span></div>`;
+// donut
+(function(){const parts=rows.map(r=>[r[1],r[0].fg]).concat([[40,'#d97706']]);const tot=parts.reduce((a,b)=>a+b[0],0);const R=48,L=2*Math.PI*R;let acc=0,s='';
+ parts.forEach(([v,c])=>{const len=v/tot*L;s+=`<circle cx="60" cy="60" r="${R}" fill="none" stroke="${c}" stroke-width="16" stroke-dasharray="${Math.max(0,len-2.5)} ${L}" stroke-dashoffset="${-acc}"/>`;acc+=len});
+ document.getElementById('donutA').innerHTML=`<svg width="120" height="120" viewBox="0 0 120 120"><g transform="rotate(-90 60 60)">${s}</g><text x="60" y="58" text-anchor="middle" font-size="17" font-weight="800" fill="#15171c" font-family="Inter">38h</text><text x="60" y="74" text-anchor="middle" font-size="10" fill="#737887" font-family="Inter">7 tasks</text></svg>`;
+ document.getElementById('legA').innerHTML=rows.map(r=>`<span style="display:flex;align-items:center;gap:7px;font-size:11.5px;font-weight:600;color:var(--ink2)"><i style="width:9px;height:9px;border-radius:3px;background:${r[0].fg}"></i>${r[0].k}</span>`).join('');})();
+// tray
+(function(){const el=document.getElementById('miniA');const x=h=>(h-9)/(18.5-9)*100;let s='';
+ work.forEach(([a,b,p])=>{s+=`<i style="position:absolute;top:0;bottom:0;left:${x(a)}%;width:calc(${x(b)-x(a)}% - 2px);background:${p?p.fg:'repeating-linear-gradient(135deg,#d97706 0 4px,#f5b54a 4px 8px)'};opacity:${p?.85:.7}"></i>`});
+ s+=`<i style="position:absolute;top:-2px;bottom:-2px;left:${x(17.92)}%;width:2px;background:#15171c"></i>`;el.innerHTML=s;
+ document.getElementById('topA').innerHTML=[[P.auth,195],[P.review,90],[P.meet,15]].map(([p,m])=>`<div style="display:flex;align-items:center;gap:8px;font-size:12.5px">${chip(p)}<span style="flex:1;color:var(--ink2)">${p.t}</span><b class="num">${hm(m)}</b></div>`).join('')+`<div style="display:flex;align-items:center;gap:8px;font-size:12.5px"><span class="unchip">? 4 blocks</span><span style="flex:1;color:var(--ink2)">Waiting for AI</span><b class="num" style="color:var(--warn)">3h 10m</b></div>`;})();
+// ?s=today|week|tray shows one scene
+const s=new URLSearchParams(location.search).get('s');if(s){document.body.classList.add('single');document.querySelectorAll('.scene').forEach(e=>{if(e.id!=s)e.remove()});}
+</script>
+</body>
+</html>
