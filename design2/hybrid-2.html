@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>H2 · Sheet → dashboard · Design 2 · D + A hybrid</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#14161c; --ink2:#3b3f4a; --muted:#767b89; --line:rgba(22,24,40,.08);
+  --card:rgba(255,255,255,.72); --accent:#4f46e5; --ok:#16a34a; --warn:#d97706; --warnBg:#fff4dc;
+  --ai:linear-gradient(110deg,#6366f1 0%,#a855f7 35%,#ec4899 65%,#f59e0b 100%);
+  --font:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',Consolas,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#0c0d12}
+body{font-family:var(--font);color:var(--ink);-webkit-font-smoothing:antialiased;font-feature-settings:'cv11','ss03'}
+.num{font-variant-numeric:tabular-nums}
+svg.i{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- viewer chrome (hidden in ?s= screenshot mode) ---------- */
+.viewer{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+.viewport{position:relative;width:1440px;height:900px;transform-origin:center center;border-radius:14px;overflow:hidden;box-shadow:0 40px 120px rgba(0,0,0,.5)}
+.ctl{display:flex;gap:6px;align-items:center;padding:6px;border-radius:14px;background:rgba(255,255,255,.07);color:#cfd2dc;font:500 13px var(--font);position:relative;z-index:5}
+.ctl b{color:#fff;font-weight:700;padding:0 10px 0 6px}
+.ctl button{all:unset;cursor:pointer;padding:7px 12px;border-radius:9px;color:#cfd2dc}
+.ctl button.on{background:rgba(255,255,255,.14);color:#fff}
+.ctl a{color:#9aa0ff;text-decoration:none;padding:0 8px}
+body.shot .viewer{position:static;display:block}
+body.shot .viewport{transform:none!important;border-radius:0;box-shadow:none}
+body.shot .ctl{display:none}
+
+.scene{position:absolute;inset:0;overflow:hidden;display:none}
+.scene.show{display:block}
+
+/* ---------- desktop ---------- */
+.wall{position:absolute;inset:0;background:#eceef8;overflow:hidden}
+.wall .blobs{position:absolute;inset:-220px;filter:blur(90px)}
+.wall .blobs i{position:absolute;border-radius:50%}
+.taskbar{position:absolute;left:0;right:0;bottom:0;height:48px;background:rgba(243,243,248,.82);backdrop-filter:blur(30px) saturate(1.6);border-top:1px solid rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;gap:6px;z-index:60}
+.taskbar .ti{width:40px;height:40px;border-radius:6px;display:flex;align-items:center;justify-content:center;position:relative}
+.taskbar .ti.on{background:rgba(255,255,255,.7)}
+.taskbar .ti.on:after{content:"";position:absolute;bottom:2px;width:16px;height:3px;border-radius:2px;background:var(--accent)}
+.taskbar .ti b{width:24px;height:24px;border-radius:6px;display:block}
+.tray{position:absolute;right:12px;top:0;height:48px;display:flex;align-items:center;gap:14px;font-size:12px;color:#222;font-family:'Segoe UI',var(--font)}
+.tray .clock{text-align:right;line-height:1.3}
+.tray .tico{width:30px;height:30px;border-radius:6px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.tray .tico.on{background:rgba(255,255,255,.8)}
+
+/* ---------- window ---------- */
+.win{position:absolute;left:80px;top:24px;width:1280px;height:800px;border-radius:16px;overflow:hidden;background:rgba(249,249,252,.80);backdrop-filter:blur(40px) saturate(1.6);border:1px solid rgba(255,255,255,.78);box-shadow:0 40px 120px rgba(30,30,80,.26),0 8px 24px rgba(30,30,80,.10);z-index:10}
+.tint{position:absolute;inset:0;pointer-events:none;background:radial-gradient(700px 420px at 12% 0%,rgba(129,140,248,.16),transparent 70%),radial-gradient(700px 500px at 100% 100%,rgba(244,114,182,.12),transparent 70%),radial-gradient(600px 400px at 60% 50%,rgba(251,191,36,.06),transparent 70%)}
+.rim{position:absolute;inset:0;border-radius:inherit;padding:1.5px;pointer-events:none;z-index:90;opacity:0;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.sheen{position:absolute;inset:-40%;pointer-events:none;z-index:89;opacity:0;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.55) 49%,rgba(255,255,255,.0) 58%);mix-blend-mode:soft-light}
+.layer{position:absolute;left:0;top:0;width:1280px;height:800px}
+.fx{position:absolute;inset:0;pointer-events:none;z-index:80}
+.fx>*{position:absolute;left:0;top:0;margin:0!important;transform-origin:0 0;will-change:transform,opacity}
+
+/* titlebar */
+.tb{position:absolute;left:0;right:0;top:0;height:52px;display:flex;align-items:center;padding-left:16px;gap:10px;z-index:40}
+.logo{width:22px;height:22px;border-radius:7px;background:var(--ai);display:flex;align-items:center;justify-content:center;flex:none;box-shadow:0 2px 6px rgba(168,85,247,.35)}
+.appname{font-size:12.5px;font-weight:600;color:var(--ink2);white-space:nowrap}
+.appname span{color:var(--muted);font-weight:400}
+.rec{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:#15803d;background:rgba(22,163,74,.09);padding:4px 10px 4px 8px;border-radius:999px;white-space:nowrap}
+.rec i{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 3px rgba(22,163,74,.18)}
+.seg{position:absolute;left:50%;transform:translateX(-50%);top:10px;height:34px;padding:3px;border-radius:11px;background:rgba(22,24,40,.055);display:flex}
+.seg span{height:28px;padding:0 16px;border-radius:8px;display:flex;align-items:center;gap:6px;font-weight:600;font-size:13px;color:var(--ink2);cursor:pointer}
+.seg span.on{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(20,20,50,.12)}
+.seg .dot{width:6px;height:6px;border-radius:50%;background:var(--warn)}
+.tbr{margin-left:auto;display:flex;align-items:center;gap:6px;align-self:stretch}
+.caps{display:flex;height:40px;align-self:flex-start;color:var(--ink2)}
+.caps span{width:46px;display:flex;align-items:center;justify-content:center;font-size:12px}
+/* Simple / Details toggle */
+.tg{position:relative;display:flex;height:32px;padding:3px;border-radius:10px;background:rgba(22,24,40,.055);cursor:pointer;user-select:none}
+.tg span{position:relative;z-index:1;height:26px;padding:0 12px;display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--ink2);white-space:nowrap}
+.tg .thumb{position:absolute;top:3px;left:3px;height:26px;border-radius:8px;background:#fff;box-shadow:0 1px 3px rgba(20,20,50,.14)}
+.tg kbd{font:600 10.5px var(--mono);color:var(--muted);background:rgba(22,24,40,.06);border-radius:4px;padding:1px 4px}
+
+/* ---------- D: simple ---------- */
+.d-col{position:absolute;left:0;right:0;display:flex;flex-direction:column;align-items:center}
+.d-date{font-size:15px;font-weight:600;color:var(--muted);letter-spacing:-.1px}
+.d-ring{position:relative;flex:none}
+.d-ring svg{display:block;overflow:visible}
+.d-mid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.d-big{font-size:58px;font-weight:800;letter-spacing:-2.8px;line-height:1;color:var(--ink);white-space:nowrap}
+.d-sub{font-size:14px;font-weight:600;color:var(--muted);margin-top:8px;white-space:nowrap}
+.d-line{font-size:22px;font-weight:600;letter-spacing:-.5px;text-align:center;color:var(--ink);line-height:1.45}
+.d-warn{font-weight:800;color:var(--warn);display:inline-block}
+.tk{display:inline-flex;align-items:center;gap:.27em;padding:0 .45em 0 .36em;border-radius:999px;font-weight:700;font-size:.818em;line-height:1.556em;vertical-align:.05em}
+.tk i{width:.44em;height:.44em;border-radius:50%}
+.cta{height:66px;padding:0 40px;border-radius:21px;background:#17181d;color:#fff;display:flex;align-items:center;justify-content:center;gap:12px;font-size:19px;font-weight:700;letter-spacing:-.3px;position:relative;box-shadow:0 18px 40px rgba(23,24,29,.25),inset 0 1px 0 rgba(255,255,255,.12);white-space:nowrap;cursor:pointer}
+.cta:before{content:"";position:absolute;inset:-4px;border-radius:25px;background:var(--ai);z-index:-1;filter:blur(16px);opacity:.6}
+.cta small{font-size:12px;font-weight:600;color:rgba(255,255,255,.5);padding:2px 7px;border-radius:6px;background:rgba(255,255,255,.1)}
+.d-hint{font-size:13px;color:var(--muted);font-weight:500;text-align:center}
+.peek{display:inline-flex;align-items:center;gap:10px;height:34px;padding:0 14px;border-radius:999px;background:rgba(255,255,255,.6);box-shadow:0 0 0 1px var(--line);font-size:12.5px;font-weight:600;color:var(--ink2);cursor:pointer;white-space:nowrap}
+.peek .ms{display:flex;gap:2px;width:120px;height:8px;border-radius:4px;overflow:hidden}
+.peek .ms i{display:block;height:100%}
+
+/* ---------- A: details ---------- */
+.rail{position:absolute;left:0;top:52px;bottom:0;width:76px;display:flex;flex-direction:column;align-items:center;padding-top:4px;gap:4px}
+.rail .it{width:62px;height:54px;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:11px;font-weight:500;color:var(--ink2);position:relative}
+.rail .it.sel{background:rgba(79,70,229,.10);color:var(--accent)}
+.rail .it.sel:before{content:"";position:absolute;left:0;top:15px;width:3px;height:24px;border-radius:2px;background:var(--accent)}
+.rail .sp{flex:1}
+.rail .badge{position:absolute;top:5px;right:9px;min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:var(--warn);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.surface{position:absolute;left:76px;top:52px;right:0;bottom:0;background:rgba(255,255,255,.42);border-top-left-radius:14px;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:0 1px 2px rgba(20,20,50,.04),0 8px 24px rgba(20,20,50,.05)}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:3px 8px;border-radius:999px;font-weight:700;font-size:11.5px;white-space:nowrap}
+.chip:before{content:"";width:6px;height:6px;border-radius:2px;background:currentColor;transform:rotate(45deg)}
+.a-hdr{display:flex;align-items:center;height:40px}
+.a-h1{font-size:28px;font-weight:800;letter-spacing:-1px}
+.a-date{font-size:24px;color:var(--ink2);margin-left:10px;letter-spacing:-.6px;font-weight:400}
+.navb{display:flex;gap:2px;margin-left:12px;color:var(--ink2)}
+.navb span{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center}
+.pill-ok{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:rgba(22,163,74,.10);color:#15803d;font-weight:600;font-size:12px;white-space:nowrap}
+.pill-ok i{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px rgba(22,163,74,.15)}
+.kpi{height:94px;padding:15px 18px;position:relative;overflow:hidden}
+.kl{font-size:12.5px;color:var(--muted);font-weight:500;white-space:nowrap}
+.kv{font-size:30px;font-weight:700;letter-spacing:-1.1px;margin-top:3px;white-space:nowrap;line-height:1.15;color:var(--ink)}
+.ks{font-size:11.5px;color:var(--muted);margin-top:1px;white-space:nowrap}
+.kbar{position:absolute;left:18px;right:18px;bottom:14px;height:5px;border-radius:3px;background:#eceef3;overflow:hidden}
+.kbar i{display:block;height:100%;background:var(--ai);border-radius:3px}
+.hero{display:flex;align-items:center;gap:16px}
+.hero-v{font-size:32px;font-weight:800;letter-spacing:-1.3px;line-height:1.05;white-space:nowrap;color:var(--ink)}
+.hero-s{font-size:12px;font-weight:600;color:var(--muted);white-space:nowrap;margin-top:4px}
+/* timeline */
+.tl{padding:16px 20px;position:relative}
+.tlgrid{position:relative;height:190px}
+.tlgrid>.g{position:absolute;inset:0}
+.tlgrid>.g.wk{top:76px;height:92px;bottom:auto}
+.lane-l{position:absolute;left:0;font-size:11.5px;font-weight:600;color:var(--muted)}
+.hour{position:absolute;top:0;font-size:11px;color:var(--muted);font-weight:500;transform:translateX(-50%)}
+.vline{position:absolute;top:22px;width:1px;height:164px;background:var(--line)}
+.app{position:absolute;top:34px;height:26px;border-radius:7px;color:#fff;font-size:11px;font-weight:600;padding-left:7px;display:flex;align-items:center;white-space:nowrap;overflow:hidden;opacity:.92;transform-origin:left center}
+.blk{position:absolute;top:0;height:92px;border-radius:11px;padding:8px 9px;overflow:hidden;transform-origin:left center}
+.blk .k{font-weight:700;font-size:12px;white-space:nowrap}
+.blk .t{font-size:11.5px;font-weight:500;color:var(--ink2);margin-top:3px;white-space:nowrap}
+.blk.un{background:repeating-linear-gradient(135deg,#fff3dd 0 7px,#fde7bf 7px 14px);color:#b45309;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11.5px;box-shadow:inset 0 0 0 1px rgba(217,119,6,.25)}
+.blk.away{border:1px dashed #d4d7de;color:#a0a4ae;display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:600}
+.now{position:absolute;top:22px;width:2px;height:164px;background:var(--accent);box-shadow:0 0 12px rgba(79,70,229,.6);border-radius:1px}
+.nowtag{position:absolute;top:-2px;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:11px;font-weight:700;border-radius:6px;padding:3px 7px}
+.sep{height:1px;background:var(--line);margin:12px 0 8px}
+.feedh{display:flex;align-items:baseline;gap:10px;font-weight:700;font-size:14px}
+.feedh span{font-size:11.5px;color:var(--muted);font-weight:500}
+.fr{display:flex;align-items:center;gap:12px;height:35px;border-bottom:1px solid var(--line);font-size:13px}
+.fr:last-child{border-bottom:0}
+.fr .tm{width:38px;color:var(--muted);font-size:11.5px;flex:none}
+.fr .dot{width:9px;height:9px;border-radius:50%;flex:none}
+.fr .an{width:86px;font-weight:600;flex:none}
+.fr .w{flex:1;font-family:var(--mono);font-size:11.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fr .ar{color:#b0b4c0}
+.fr .to{width:180px;display:flex;align-items:center;gap:8px;flex:none}
+.fr .via{color:var(--muted);font-size:11.5px;white-space:nowrap}
+.unchip{padding:3px 9px;border-radius:999px;background:#fff1d6;color:#b45309;font-weight:600;font-size:11.5px;white-space:nowrap}
+/* AI panel */
+.aip{position:relative;border-radius:16px;padding:20px;background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(248,246,255,.9));border:1px solid rgba(168,85,247,.25);box-shadow:0 10px 30px rgba(99,102,241,.10)}
+.aip-h{display:flex;align-items:center;gap:10px}
+.aip-ic{width:32px;height:32px;border-radius:9px;background:var(--ai);display:flex;align-items:center;justify-content:center}
+.aip-h b{font-size:16px;letter-spacing:-.3px;display:block}
+.aip-h small{font-size:11.5px;color:var(--muted);font-weight:500}
+.left-l{font-size:12.5px;color:var(--muted);font-weight:500;margin-top:18px}
+.left-v{font-size:46px;font-weight:800;letter-spacing:-2px;line-height:1.1;color:var(--warn);white-space:nowrap;display:inline-block}
+.left-s{font-size:13.5px;color:var(--ink2)}
+.qrow{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px dashed rgba(22,24,40,.1);font-size:12.5px}
+.qrow:last-child{border-bottom:0}
+.qrow .an{font-weight:600;width:76px}
+.qrow .w{flex:1;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.qrow .d{font-weight:600;color:var(--ink2);white-space:nowrap}
+.btn-ai{height:52px;border-radius:15px;background:var(--ai);color:#fff;font-weight:700;font-size:15.5px;display:flex;align-items:center;justify-content:center;gap:9px;box-shadow:0 10px 24px rgba(168,85,247,.35),inset 0 1px 0 rgba(255,255,255,.35);white-space:nowrap;cursor:pointer}
+.priv{padding:11px 12px;border-radius:11px;background:rgba(79,70,229,.06);font-size:12px;color:var(--ink2);line-height:1.45;display:flex;gap:9px}
+.btn{height:40px;padding:0 16px;border-radius:11px;border:1px solid var(--line);background:#fff;font-weight:600;font-size:13px;display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+.btn-p{height:46px;padding:0 24px;border-radius:13px;background:#17181d;color:#fff;font-weight:700;font-size:15px;display:inline-flex;align-items:center;justify-content:center;gap:9px;box-shadow:0 10px 26px rgba(23,24,29,.25);white-space:nowrap}
+
+/* ---------- week · simple (D) ---------- */
+.w-h{font-size:46px;font-weight:800;letter-spacing:-2px;text-align:center;line-height:1.05}
+.w-sub{font-size:15.5px;color:var(--ink2);text-align:center;font-weight:500}
+.w-tot{display:inline-block;font-weight:800;color:var(--ink);white-space:nowrap}
+.drow{display:flex;gap:30px}
+.dd{display:flex;flex-direction:column;align-items:center;gap:7px;font-size:12.5px;font-weight:700;color:var(--ink2)}
+.stack{height:20px;border-radius:10px;overflow:hidden;display:flex;gap:3px}
+.stack i{display:block;height:100%}
+.sents{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sn{background:rgba(255,255,255,.78);border-radius:16px;padding:11px 16px;display:flex;gap:12px;align-items:center;box-shadow:0 1px 2px rgba(20,20,50,.04),0 0 0 1px var(--line)}
+.sn .h{font-size:17px;font-weight:800;letter-spacing:-.5px;width:78px;flex:none;white-space:nowrap}
+.sn .t{font-size:13.5px;font-weight:700;white-space:nowrap}
+.sn .t em{font-style:normal;color:var(--muted);font-weight:600;font-size:12px;margin-left:4px}
+.sn .w{font-size:12.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:280px}
+.okc{margin-left:auto;width:24px;height:24px;border-radius:50%;background:#e3f6ea;color:var(--ok);display:flex;align-items:center;justify-content:center;flex:none}
+.sn.q{grid-column:span 2;background:var(--warnBg);box-shadow:0 0 0 1.5px rgba(217,119,6,.35)}
+.qb{height:34px;padding:0 14px;border-radius:11px;background:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;gap:7px;box-shadow:0 0 0 1px rgba(22,24,40,.1);white-space:nowrap}
+.qb.sel{box-shadow:0 0 0 2px #17181d}
+.qb i{width:8px;height:8px;border-radius:50%}
+
+/* ---------- week · details (A) ---------- */
+.wk-s{font-size:13.5px;color:var(--muted);font-weight:600}
+.wk-h1{font-size:34px;font-weight:800;letter-spacing:-1.3px;margin-top:2px}
+.grad{background:var(--ai);-webkit-background-clip:text;background-clip:text;color:transparent}
+.wk-v{font-size:44px;font-weight:800;letter-spacing:-1.8px;line-height:1.05;white-space:nowrap;display:inline-block}
+.days{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.day{padding:10px 14px;display:flex;align-items:center;gap:12px}
+.day .dn{font-size:13px;font-weight:700}
+.day .dh{font-size:12.5px;color:var(--ink2);font-weight:600}
+.day.sel{background:rgba(79,70,229,.08);border-color:rgba(79,70,229,.3)}
+.rows{display:flex;flex-direction:column;gap:8px}
+.row{height:54px;display:flex;align-items:center;padding:0 16px;border-radius:13px;font-size:13px}
+.row .a{width:250px;display:flex;align-items:center;gap:9px;flex:none}
+.row .a b{font-weight:600;white-space:nowrap}
+.row .txt{flex:1;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-right:10px}
+.row .h{width:90px;white-space:nowrap;text-align:right;font-weight:700;font-size:15px;padding-right:16px;flex:none}
+.row .st{width:76px;display:flex;align-items:center;gap:7px;font-size:11.5px;font-weight:700;flex:none}
+.tick{width:22px;height:22px;border-radius:50%;background:var(--ok);display:flex;align-items:center;justify-content:center;flex:none}
+.row.pick{background:var(--warnBg);border:1px solid rgba(217,119,6,.35)}
+.opt{padding:5px 11px;border-radius:999px;font-size:12px;font-weight:600;background:rgba(255,255,255,.7);border:1px solid rgba(217,119,6,.3);color:var(--ink2);white-space:nowrap}
+.opt.hi{background:#fff;border-color:#17181d;color:var(--ink);box-shadow:0 0 0 1px #17181d}
+.wbar{display:flex;align-items:center;padding:0 12px 0 20px;gap:14px;height:68px}
+.prog{width:150px;height:7px;border-radius:4px;background:#eceef3;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--ok)}
+.confirm{height:48px;padding:0 24px;border-radius:14px;background:#17181d;color:#fff;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;gap:10px;white-space:nowrap;position:relative;box-shadow:0 12px 28px rgba(23,24,29,.25)}
+.confirm:before{content:"";position:absolute;inset:-3px;border-radius:17px;background:var(--ai);z-index:-1;filter:blur(12px);opacity:.45}
+.confirm small{font-size:11.5px;font-weight:600;color:rgba(255,255,255,.55)}
+
+/* ---------- tray flyout ---------- */
+.fly{position:absolute;right:12px;bottom:60px;width:360px;border-radius:18px;background:rgba(250,250,253,.86);backdrop-filter:blur(40px) saturate(1.7);border:1px solid rgba(255,255,255,.8);box-shadow:0 30px 80px rgba(30,30,80,.28),0 6px 18px rgba(30,30,80,.12);padding:18px;overflow:hidden;z-index:30}
+.toast{position:absolute;right:12px;width:360px;padding:14px 16px;border-radius:14px;background:rgba(250,250,253,.84);backdrop-filter:blur(30px);border:1px solid rgba(255,255,255,.7);box-shadow:0 14px 40px rgba(30,30,80,.18);font-size:12.5px;display:flex;gap:12px;z-index:30}
+.pitch{position:absolute;left:120px;top:290px}
+.pitch .k{font-size:15px;font-weight:600;color:rgba(20,20,40,.45)}
+.pitch .h{font-size:54px;font-weight:800;letter-spacing:-2.2px;color:rgba(20,20,40,.86);line-height:1.04;margin-top:8px}
+.pitch .p{font-size:16px;color:rgba(20,20,40,.55);margin-top:16px;max-width:460px;line-height:1.5}
+
+/* ---------- compact list / question (H3, H4) ---------- */
+.cl{margin-top:14px;padding:6px 14px;border-radius:16px;background:rgba(255,255,255,.75);box-shadow:0 0 0 1px var(--line)}
+.cr{display:flex;align-items:center;gap:9px;height:30px;font-size:13px;border-bottom:1px dashed var(--line)}
+.cr:last-child{border-bottom:0}
+.cr i{width:8px;height:8px;border-radius:50%;flex:none}
+.cr b{flex:1;font-weight:600}
+.cr .num{font-weight:700}
+.cr .okc{margin-left:4px}
+.cq{margin-top:10px;padding:11px 14px;border-radius:16px;background:var(--warnBg);box-shadow:0 0 0 1.5px rgba(217,119,6,.35)}
+.cq .qb{height:28px;padding:0 10px;font-size:12px;border-radius:9px}
+/* flying clones: the ::before glow would paint inside the clone's stacking context */
+.fx .cta:before,.fx .confirm:before{display:none}
+.fx .cta,.fx .confirm{box-shadow:0 18px 40px rgba(23,24,29,.22),0 0 28px rgba(168,85,247,.28),0 0 44px rgba(236,72,153,.16)}
+
+/* ---- variant ---- */
+.sheet{position:absolute;left:250px;top:706px;width:780px;height:120px;border-radius:22px;background:rgba(255,255,255,.96);backdrop-filter:blur(30px) saturate(1.5);box-shadow:0 -10px 40px rgba(30,30,80,.08),0 0 0 1px rgba(22,24,40,.07)}
+.grab{width:44px;height:5px;border-radius:3px;background:rgba(22,24,40,.16);margin:10px auto 0;cursor:pointer}
+.drawer{cursor:pointer}
+
+</style>
+</head>
+<body>
+<div class="viewer">
+  <div class="viewport"></div>
+  <div class="ctl"><b>H2 · Sheet → dashboard</b><button data-v="today">Today</button><button data-v="week">Week</button><button data-v="tray">Tray</button><button data-v="mode">Details ⇢</button><a href="index.html">All hybrids</a></div>
+</div>
+<script>
+/* ===== Shared kit for the D + A hybrids: data, builders, morph engine, viewer ===== */
+const K = {};
+const P = K.P = {
+  auth:   {k:'CASE-1423', t:'Auth API refactor',  c:'#5b5bf0', fg:'#4f46e5', bg:'#e3e4ff'},
+  review: {k:'CASE-1388', t:'Code review',        c:'#f08a3c', fg:'#c2410c', bg:'#fde8cf'},
+  meet:   {k:'TEAM-12',   t:'Meetings',           c:'#a66cf0', fg:'#7c3aed', bg:'#ede4ff'},
+  onboard:{k:'CASE-1501', t:'Onboarding flow',    c:'#f0609e', fg:'#db2777', bg:'#fde2ee'},
+  ops:    {k:'OPS-77',    t:'Incident follow-up', c:'#23b39a', fg:'#0f766e', bg:'#d3f4ec'},
+  notes:  {k:'CASE-1510', t:'Release notes',      c:'#3aa0e8', fg:'#0369a1', bg:'#d9edfd'},
+};
+const WARN = '#d97706';
+const hm = K.hm = m => `${Math.floor(m/60)}h ${String(m%60).padStart(2,'0')}m`;
+const STAR = (s=18, f='#fff') => `<svg width="${s}" height="${s}" viewBox="0 0 24 24"><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z" fill="${f}"/></svg>`;
+const STARG = (s=20) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24"><defs><linearGradient id="sg${s}" x1="0" x2="1"><stop offset="0" stop-color="#a5b4fc"/><stop offset=".5" stop-color="#f0abfc"/><stop offset="1" stop-color="#fcd34d"/></linearGradient></defs><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z" fill="url(#sg${s})"/></svg>`;
+const TICK = (c='currentColor', s=13) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="${c}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const ICO = {
+  today:'<path d="M4 6h16v14H4zM4 10h16M9 3v4M15 3v4"/>', week:'<path d="M4 5h16v15H4zM4 9h16M9 9v11M14 9v11"/>',
+  tasks:'<path d="M3 7h7l2 2h9v10H3z"/>', rules:'<path d="M5 7h9M5 12h14M5 17h7M17 5l2 2-2 2"/>',
+  export:'<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>', settings:'<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/>',
+  lock:'<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/>', left:'<path d="M15 6l-6 6 6 6"/>', right:'<path d="M9 6l6 6-6 6"/>',
+  expand:'<path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7"/>', collapse:'<path d="M4 14h6v6M20 10h-6V4M10 14l-7 7M14 10l7-7"/>',
+  sliders:'<path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/>', dot:'<circle cx="12" cy="12" r="4"/>',
+  pane:'<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M10 4v16"/>',
+};
+const ic = (n, s=18, st='') => `<svg class="i" viewBox="0 0 24 24" style="width:${s}px;height:${s}px;${st}">${ICO[n]}</svg>`;
+const chip = p => `<span class="chip" style="background:${p.bg};color:${p.fg}">${p.k}</span>`;
+const dot = (c, s=8) => `<i style="display:inline-block;width:${s}px;height:${s}px;border-radius:50%;background:${c};flex:none"></i>`;
+
+/* ---------- data ---------- */
+const DAY = [[195,P.auth.c],[90,P.review.c],[15,P.meet.c],[190,WARN,1]];
+const DAYTOT = 490;
+const APPS = [[9,10.5,'VS Code','#2f80ed'],[10.5,10.75,'Teams','#6264a7'],[10.75,12.25,'Chrome · GitHub','#e7a400'],[12.25,13,'Figma','#f24e1e'],[13.75,15.5,'VS Code','#2f80ed'],[15.5,15.83,'Slack','#2eb67d'],[15.83,16.25,'Grafana','#f46800'],[16.25,17.67,'Confluence','#1868db'],[17.67,17.83,'Slack','#2eb67d'],[17.83,17.92,'Chrome','#e7a400']];
+const WORK = [[9,10.5,P.auth],[10.5,10.75,P.meet],[10.75,12.25,P.review],[12.25,13,null],[13.75,15.5,P.auth],[15.5,16.25,null],[16.25,17.67,null],[17.67,17.92,null]];
+const FEED = [['17:40','Slack','#2eb67d','DMs · Chrome tabs — mixed',null],['16:15','Confluence','#1868db','Release 4.2 — notes draft',null],['15:30','Slack','#2eb67d','#incident-billing · Grafana alerts',null],['13:45','VS Code','#2f80ed','auth-service · feature/CASE-1423-token-refresh',P.auth,'git branch'],['13:00','Away','#9ca3af','Screen locked · 45 min','idle'],['12:15','Figma','#f24e1e','Onboarding v3 — screens',null],['10:45','Chrome','#e7a400','github.com/acme/billing/pull/412 · CASE-1388',P.review,'key in title']];
+const QUEUE = [['Figma','Onboarding v3 — screens','45m','#f24e1e'],['Slack','#incident-billing · Grafana','45m','#2eb67d'],['Confluence','Release 4.2 — notes draft','1h 25m','#1868db'],['Slack','DMs · Chrome tabs','15m','#2eb67d']];
+const WDAYS = [['Mon',460],['Tue',475],['Wed',450],['Thu',460],['Fri',455]];
+const WMIX = {Mon:[[215,P.auth.c],[90,P.review.c],[60,P.meet.c],[95,P.onboard.c]],Tue:[[210,P.auth.c],[60,P.review.c],[45,P.meet.c],[40,P.onboard.c],[120,P.ops.c]],Wed:[[180,P.auth.c],[75,P.review.c],[60,P.meet.c],[135,P.onboard.c]],Thu:[[225,P.auth.c],[75,P.review.c],[60,P.meet.c],[20,P.onboard.c],[25,P.ops.c],[55,P.notes.c]],Fri:[[150,P.auth.c],[60,P.review.c],[15,P.meet.c],[45,P.onboard.c],[45,P.ops.c],[100,P.notes.c],[40,WARN,1]]};
+const WROWS = [[P.auth,980,'Token refresh refactor, integration tests for auth-service','auto'],[P.review,360,'Reviewed PRs #412, #418, #421 in billing','auto'],[P.onboard,335,'Onboarding screens with the design team','AI 88%'],[P.meet,240,'Standups, sprint planning, 1:1','auto'],[P.ops,190,'Billing incident post-mortem, alert tuning','AI 81%'],[P.notes,155,'Release 4.2 notes in Confluence','AI 76%']];
+K.data = {DAY, DAYTOT, WDAYS, WMIX, WROWS, QUEUE};
+
+/* ---------- builders ---------- */
+// ring: one arc per task, unsorted time as a dotted run
+K.ring = (size, sw, parts=DAY, total=DAYTOT, track='rgba(22,24,40,.07)') => {
+  const c = size/2, R = c - sw/2 - 1, gap = sw*0.9/R; let a0 = -Math.PI/2;
+  let s = `<circle cx="${c}" cy="${c}" r="${R}" fill="none" stroke="${track}" stroke-width="${sw}"/>`;
+  const pt = a => `${(c+R*Math.cos(a)).toFixed(2)} ${(c+R*Math.sin(a)).toFixed(2)}`;
+  parts.forEach(([v,col,dots]) => { const span = v/total*2*Math.PI, a1 = a0+span;
+    if (dots) { const n = Math.max(2, Math.floor(span*R/(sw*0.85))); for (let k=0;k<n;k++){ const a = a0+gap/2+(span-gap)*k/(n-1); s += `<circle cx="${(c+R*Math.cos(a)).toFixed(2)}" cy="${(c+R*Math.sin(a)).toFixed(2)}" r="${(sw*0.24).toFixed(2)}" fill="${col}"/>`; } }
+    else { const b0 = a0+gap/2, b1 = Math.max(b0+0.001, a1-gap/2); s += `<path d="M ${pt(b0)} A ${R} ${R} 0 ${b1-b0>Math.PI?1:0} 1 ${pt(b1)}" fill="none" stroke="${col}" stroke-width="${sw}" stroke-linecap="round"/>`; }
+    a0 = a1; });
+  return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">${s}</svg>`;
+};
+
+K.wall = (seed=0) => { const o = [[150,60],[1100,40],[650,640],[-60,700]].map(([x,y],i)=>[x+(seed*37*(i+1))%120-60,y+(seed*53*(i+1))%80-40]);
+  const c = ['#c7c9ff','#ffd2e6','#ffe2c4','#c9f0ea'], wh = [[900,700],[800,650],[1000,600],[600,500]];
+  return `<div class="wall"><div class="blobs">${o.map(([x,y],i)=>`<i style="left:${x}px;top:${y}px;width:${wh[i][0]}px;height:${wh[i][1]}px;background:${c[i]}"></i>`).join('')}</div></div>`; };
+
+K.taskbar = (active=1) => `<div class="taskbar">
+  <div class="ti"><svg width="22" height="22" viewBox="0 0 24 24"><rect x="2" y="2" width="9.5" height="9.5" rx="1.5" fill="#0078d4"/><rect x="12.5" y="2" width="9.5" height="9.5" rx="1.5" fill="#0078d4"/><rect x="2" y="12.5" width="9.5" height="9.5" rx="1.5" fill="#0078d4"/><rect x="12.5" y="12.5" width="9.5" height="9.5" rx="1.5" fill="#0078d4"/></svg></div>
+  ${['#ffb900','#0c7cd5','#2f80ed','#6264a7','#f24e1e'].map(c=>`<div class="ti"><b style="background:${c}"></b></div>`).join('')}
+  <div class="ti ${active?'on':''}" data-go="today"><b style="background:var(--ai);display:flex;align-items:center;justify-content:center">${STAR(13)}</b></div>
+  <div class="tray"><span>&#x2303;</span><span class="tico ${active===2?'on':''}" data-go="tray" title="Tray">${K.ring(20,3.2,DAY,DAYTOT,'rgba(0,0,0,.1)')}</span><span>ENG</span><span>&#x1F50A;&#xFE0E;</span><div class="clock">17:55<br>16.10.2026</div></div></div>`;
+
+K.toggle = (mode='today') => `<div class="tg" data-toggle><span class="thumb"></span><span data-opt="0">Simple</span><span data-opt="1">${ic('sliders',14)}Details <kbd>D</kbd></span></div>`;
+K.caps = () => `<div class="caps"><span>&#x2014;</span><span>&#x2610;</span><span>&#x2715;</span></div>`;
+K.seg = (on) => `<div class="seg" data-anim="seg"><span class="${on=='today'?'on':''}" data-go="today">Today</span><span class="${on=='week'?'on':''}" data-go="week">Week${on=='today'?'<i class="dot"></i>':''}</span></div>`;
+K.titlebar = (on, extra='') => `<div class="tb"><div class="logo">${STAR(12)}</div><span class="rec"><i></i>Recording</span>${K.seg(on)}<div class="tbr">${extra}${K.toggle()}${K.caps()}</div></div>`;
+
+K.rail = (sel, badge) => { const it = n => `<div class="it ${n==sel?'sel':''}" ${n=='today'||n=='week'?`data-go="${n}"`:''}>${ic(n,19)}${n[0].toUpperCase()+n.slice(1)}${n=='week'&&badge?`<span class="badge">${badge}</span>`:''}</div>`;
+  return `<nav class="rail" data-in="left" data-at=".16" data-dur=".45">${['today','week','tasks','rules'].map(it).join('')}<div class="sp"></div>${['export','settings'].map(it).join('')}<div style="height:10px"></div></nav>`; };
+
+/* D · simple day. o: {ring, sw, big, line, cta, gap, peek} */
+K.dToday = (o={}) => { const r = o.ring||300, sw = o.sw||22, h4 = o.h4;
+  return `<div class="d-date" ${h4?'data-share="date"':'data-out="recede" data-at="0" data-dur=".3"'} style="${o.date?`font-size:${o.date}px`:''}">Friday, October 16</div>
+  <div class="d-ring" style="width:${r}px;height:${r}px;margin-top:${o.g1??14}px"><div data-share="ring" style="width:${r}px;height:${r}px;filter:drop-shadow(0 14px 30px rgba(91,91,240,.18))">${K.ring(r,sw)}</div>
+    <div class="d-mid"><div class="d-big num" data-share="total" style="${o.big?`font-size:${o.big}px;letter-spacing:${-o.big*.048}px`:''}">8h 10m</div><div class="d-sub" data-share="norm" style="${o.sub?`font-size:${o.sub}px`:''}">of 8h · norm reached</div></div></div>
+  <div class="d-line" ${h4?'data-share="line"':'data-out="recede" data-at=".02" data-dur=".3"'} style="margin-top:${o.g2??22}px;${o.line?`font-size:${o.line}px;letter-spacing:${-o.line*.022}px`:''}">Mostly <span class="tk" style="background:${P.auth.bg};color:${P.auth.fg}"><i style="background:${P.auth.c}"></i>Auth API refactor</span> and <span class="tk" style="background:${P.review.bg};color:${P.review.fg}"><i style="background:${P.review.c}"></i>Code review</span><br><span class="d-warn num" ${h4?'':'data-share="left"'}>3h 10m</span> still need a task.</div>
+  <div class="cta" data-share="cta" style="margin-top:${o.g3??30}px;${o.ctaStyle||''}">${STARG(20)}Sort my day<small>Enter</small></div>
+  <div class="d-hint" ${o.enter?'data-in="fade" data-at=".55" data-dur=".3"':'data-out="fade" data-at="0" data-dur=".22"'} style="margin-top:${o.g4??14}px;${o.hintStyle||''}">AI suggests, you confirm. Only window titles and durations leave this PC.</div>`; };
+
+K.peek = (label='Show details', at='0') => `<div class="peek" data-toggle data-out="recede" data-at="${at}" data-dur=".25"><span class="ms">${[[195,P.auth.c],[15,P.meet.c],[90,P.review.c],[190,WARN]].map(([v,c])=>`<i style="flex:${v};background:${c}"></i>`).join('')}</span>9 blocks · 6 apps · 45m away<span style="color:var(--accent)">${label} ›</span></div>`;
+
+/* A · KPI row with hero ring tile */
+K.hero = (w) => `<div class="card kpi hero" data-in="pop" data-at=".18" data-dur=".4" style="${w?`width:${w}px`:''}"><div data-share="ring" style="width:64px;height:64px;flex:none">${K.ring(64,8)}</div><div><div class="kl" data-in="fade" data-at=".62" data-dur=".25">Tracked · Fri, Oct 16</div><div class="hero-v num" data-share="total">8h 10m</div><div class="hero-s" data-share="norm">of 8h · norm reached</div></div></div>`;
+K.kpis = (list) => list.map((k,i)=>({
+  auto:`<div class="card kpi"><div class="kl">Auto-assigned</div><div class="kv num">5h 00m</div><div class="ks">git branch · title · calendar</div></div>`,
+  un:`<div class="card kpi"><div class="kl">Unassigned</div><div class="kv num" style="color:var(--warn)">3h 10m</div><div class="ks">4 blocks</div></div>`,
+  match:`<div class="card kpi"><div class="kl">Matched to Jira</div><div class="kv num">61%</div><div class="kbar"><i style="width:61%"></i></div></div>`,
+  week:`<div class="card kpi"><div class="kl">This week</div><div class="kv num">30h 45m</div><div class="ks">of 40h · on track</div></div>`,
+}[k])).join('');
+
+/* A · timeline (+ live capture). W = inner width */
+K.timeline = (W, o={}) => { const H0=9, H1=18.5, LX=58, pw=W-LX-8, pph=pw/(H1-H0), hx=h=>LX+(h-H0)*pph, at=o.at??.38;
+  let hours='', apps='', work='';
+  for (let i=9;i<=18;i++) hours += `<div class="hour" style="left:${hx(i)}px">${i}:00</div><div class="vline" style="left:${hx(i)}px"></div>`;
+  hours += `<div class="lane-l" style="top:40px">Activity</div><div class="lane-l" style="top:114px">Work</div>`;
+  APPS.forEach(([a,b,n,c])=>{ const w=(b-a)*pph-2; apps += `<div class="app" style="left:${hx(a)+1}px;width:${w}px;background:${c}">${w>64?n:''}</div>`; });
+  work += `<div class="blk away" style="left:${hx(13)+2}px;width:${.75*pph-4}px">${.75*pph>50?'Away':''}</div>`;
+  WORK.forEach(([a,b,p])=>{ const w=(b-a)*pph-4; work += p?`<div class="blk" style="left:${hx(a)+2}px;width:${w}px;background:${p.bg};box-shadow:inset 3px 0 0 ${p.fg}"><div class="k" style="color:${p.fg}">${w>44?p.k:''}</div>${w>74?`<div class="t">${p.t}</div>`:''}</div>`:`<div class="blk un" style="left:${hx(a)+2}px;width:${w}px">${w>84?'Unassigned':'?'}</div>`; });
+  const n=17.92;
+  return `<div class="tlgrid" style="width:${W}px">
+    <div class="g" data-in="fade" data-at="${at}" data-dur=".3">${hours}</div>
+    <div class="g" data-stg="in,growx,${at+.06},.018,.3">${apps}</div>
+    <div class="g wk" ${o.shareWork?'data-share="strip"':`data-stg="in,growx,${at+.1},.022,.32"`}>${work}</div>
+    <div class="g" data-in="fade" data-at="${at+.32}" data-dur=".2"><div class="now" style="left:${hx(n)}px"></div><div class="nowtag" style="left:${hx(n)}px">17:55</div></div></div>`; };
+K.feed = (n=7, at=.5, o={}) => `<div class="sep" data-in="fade" data-at="${at}"></div>
+  <div class="feedh" data-in="up" data-at="${at}" data-dur=".3">Live capture <span>window · title · domain · idle — no screenshots</span><span style="margin-left:auto;color:var(--accent);font-weight:600">Rules · 3</span></div>
+  <div data-stg="in,up,${at+.03},.025,.3" style="margin-top:4px">${FEED.slice(0,n).map(([t,a,c,w,p,via])=>`<div class="fr"><span class="tm num">${t}</span><span class="dot" style="background:${c}"></span><span class="an">${a}</span><span class="w">${w}</span><span class="ar">→</span><span class="to" style="${o.toW?`width:${o.toW}px`:''}">${p=='idle'?'<span class="via">Lunch · not logged</span>':p?chip(p)+`<span class="via">${via}</span>`:'<span class="unchip">? Unassigned</span>'}</span></div>`).join('')}</div>`;
+
+/* A · AI panel. The big "3h 10m" and the button are shared with D's sentence and CTA */
+K.aiPanel = (o={}) => { const at=o.at??.3;
+  return `<div class="aip" data-in="${o.kind||'right'}" data-at="${at}" data-dur=".45" style="${o.style||''}">
+  <div class="aip-h" data-in="fade" data-at="${at+.1}"><div class="aip-ic">${STAR(18)}</div><div><b>AI timesheet</b><small>Matches what rules couldn't</small></div></div>
+  <div class="left-l" data-in="fade" data-at="${at+.12}">Left to sort today</div>
+  <div class="left-v num" data-share="left">3h 10m</div>
+  <div class="left-s" data-in="fade" data-at="${at+.14}">4 blocks need a task</div>
+  <div data-stg="in,up,${at+.16},.035,.3" style="margin-top:12px">${QUEUE.map(([a,w,d,c])=>`<div class="qrow">${dot(c)}<span class="an">${a}</span><span class="w">${w}</span><span class="d num">${d}</span></div>`).join('')}</div>
+  <div class="btn-ai" data-share="cta" style="margin-top:16px">${STAR(18)}Sort my day</div>
+  <div class="priv" data-in="up" data-at="${at+.3}" style="margin-top:12px">${ic('lock',16,'flex:none;color:var(--accent)')}<span>Sends only app names, window titles and durations. Raw events never leave this PC.</span></div>
+  ${o.foot===false?'':`<div data-in="fade" data-at="${at+.34}" style="display:flex;justify-content:space-between;margin-top:12px;font-size:12px;color:var(--muted)"><span>Then: review → confirm → Jira</span><span>~0.3¢</span></div>`}
+  ${o.week===false?'':`<div data-in="up" data-at="${at+.38}" style="position:absolute;left:20px;right:20px;bottom:20px;padding-top:14px;border-top:1px solid var(--line)"><div style="display:flex;justify-content:space-between;font-size:12.5px"><b>Week 42</b><span class="num" style="color:var(--ink2);font-weight:600">30h 45m <span style="color:var(--muted);font-weight:500">/ 40h</span></span></div>
+    <div style="display:flex;gap:4px;margin-top:9px">${WDAYS.map(([d,m],i)=>`<div style="flex:1"><div style="height:30px;border-radius:7px;background:#eceef3;position:relative;overflow:hidden"><i style="position:absolute;left:0;right:0;bottom:0;height:${i<4?Math.round(m/480*100):100}%;background:${i<4?'linear-gradient(180deg,#a5b4fc,#6366f1)':'var(--ai)'};opacity:${i<4?.85:1}"></i></div><div style="font-size:10.5px;color:var(--muted);text-align:center;margin-top:4px;font-weight:600">${d}</div></div>`).join('')}</div></div>`}</div>`; };
+
+K.todayHdr = (at=.24, extra='') => `<div class="a-hdr" data-in="down" data-at="${at}" data-dur=".35"><span class="a-h1">Today</span><span class="a-date">· Fri, Oct 16</span><span class="navb"><span>${ic('left',16)}</span><span style="opacity:.35">${ic('right',16)}</span></span>${extra}<span class="pill-ok" style="margin-left:auto"><i></i>Capturing · stored on this PC</span></div>`;
+
+/* ---------- week builders ---------- */
+const sentence = ([p,m,w]) => `<div class="sn"><span class="h num">${hm(m)}</span><span style="min-width:0"><div class="t">${dot(p.c)} <span style="margin-left:4px">${p.t}</span><em>${p.k}</em></div><div class="w">${w}</div></span><span class="okc">${TICK()}</span></div>`;
+K.weekSimple = (o={}) => { const ring = o.ring||76, W = o.w||900;
+  return `<div class="w-h" data-out="recede" data-at="0" data-dur=".3" style="${o.h?`font-size:${o.h}px`:''}">Your week is ready</div>
+  <div class="w-sub" style="margin-top:8px"><span class="w-tot num" data-share="wtotal">38h 20m</span> <span data-out="fade" data-at="0" data-dur=".2">across 6 tasks · Oct 12 – 16 · one quick question</span></div>
+  <div class="drow" style="margin-top:${o.g1??22}px;gap:${o.dgap??30}px">${WDAYS.map(([d,m],i)=>`<div class="dd"><div data-share="day${i}" style="width:${ring}px;height:${ring}px">${K.ring(ring,ring>60?8:6,WMIX[d],m)}</div><span data-out="fade" data-at="0" data-dur=".2">${d} · ${hm(m).replace(/h /,':').replace('m','')}</span></div>`).join('')}</div>
+  <div class="stack" data-out="recede" data-at=".02" data-dur=".28" style="width:${W}px;margin-top:${o.g2??22}px">${WROWS.map(([p,m])=>`<i style="flex:${m};background:${p.c}"></i>`).join('')}<i style="flex:40;background:repeating-linear-gradient(90deg,${WARN} 0 3px,transparent 3px 6px)"></i></div>
+  <div class="sents" data-out="recede" data-at=".04" data-dur=".3" style="width:${W}px;margin-top:16px;${o.cols==1?'grid-template-columns:1fr':''}">${WROWS.slice(0,o.rows||6).map(sentence).join('')}
+    <div class="sn q"><span class="h num" style="color:var(--warn)">0h 40m</span><span><div class="t">Fri 17:40 — what was this?</div><div class="w">Slack DMs and Chrome tabs, mixed</div></span><span style="margin-left:auto;display:flex;gap:8px"><span class="qb sel"><i style="background:${P.notes.c}"></i>Release notes</span><span class="qb"><i style="background:${P.ops.c}"></i>Incident</span><span class="qb">Not work</span></span></div></div>
+  <div class="confirm" data-share="wcta" style="margin-top:20px;height:58px;font-size:17px;padding:0 34px;border-radius:18px">Confirm 38h 20m → Jira<small>after 1 answer</small></div>
+  <div class="d-hint" data-out="fade" data-at="0" data-dur=".2" style="margin-top:10px">or save as CSV · goes to acme.atlassian.net</div>`; };
+
+K.weekHead = (at=.22) => `<div style="display:flex;justify-content:space-between;align-items:flex-end">
+  <div data-in="down" data-at="${at}" data-dur=".35"><div class="wk-s">Week 42 · Oct 12 – 16</div><div class="wk-h1">Your week is ready</div></div>
+  <div style="text-align:right"><div class="wk-s" data-in="fade" data-at="${at+.1}">To log</div><div class="wk-v num grad" data-share="wtotal">38h 20m</div></div></div>`;
+K.weekDays = (at=.26) => `<div class="days" data-stg="in,pop,${at},.035,.35" style="margin-top:14px">${WDAYS.map(([d,m],i)=>`<div class="card day ${d=='Fri'?'sel':''}"><div data-share="day${i}" style="width:34px;height:34px;flex:none">${K.ring(34,5,WMIX[d],m)}</div><div><div class="dn">${d}</div><div class="dh num">${hm(m)}</div></div></div>`).join('')}</div>`;
+K.weekRows = (at=.34, o={}) => `<div class="rows" data-stg="in,up,${at},.03,.32">${WROWS.map(([p,m,t,c])=>`<div class="card row"><span class="a" style="${o.aw?`width:${o.aw}px`:''}">${chip(p)}<b>${p.t}</b></span><span class="txt">${t}</span><span class="h num">${hm(m)}</span><span class="st">${`<span class="tick">${TICK('#fff')}</span>`}<span style="color:${c=='auto'?'var(--muted)':'#9333ea'}">${c}</span></span></div>`).join('')}
+  <div class="row pick"><span class="a" style="${o.aw?`width:${o.aw}px`:''}"><b style="color:var(--warn)">Unclear · Fri 17:40</b></span><span class="txt" style="display:flex;gap:6px"><span class="opt hi">CASE-1510 Release notes</span><span class="opt">OPS-77</span><span class="opt">Not work</span></span><span class="h num">0h 40m</span><span class="st" style="color:var(--warn)">Pick one</span></div></div>`;
+K.donut = (size=120) => { const parts = WROWS.map(r=>[r[1],r[0].c]).concat([[40,WARN]]), tot = parts.reduce((a,b)=>a+b[0],0), c=size/2, R=size*.4, L=2*Math.PI*R; let acc=0, s='';
+  parts.forEach(([v,col])=>{ const len=v/tot*L; s+=`<circle cx="${c}" cy="${c}" r="${R}" fill="none" stroke="${col}" stroke-width="${size*.13}" stroke-dasharray="${Math.max(0,len-2.5)} ${L}" stroke-dashoffset="${-acc}"/>`; acc+=len; });
+  return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}"><g transform="rotate(-90 ${c} ${c})">${s}</g><text x="${c}" y="${c-2}" text-anchor="middle" font-size="17" font-weight="800" fill="#14161c" font-family="Inter">38h</text><text x="${c}" y="${c+14}" text-anchor="middle" font-size="10" fill="#767b89" font-family="Inter">7 tasks</text></svg>`; };
+K.weekSide = (at=.34) => `<div style="display:flex;flex-direction:column;gap:12px" data-stg="in,right,${at},.05,.4">
+  <div class="card" style="padding:16px 18px"><div style="font-weight:700;font-size:14px">By project</div><div style="display:flex;align-items:center;gap:16px;margin-top:10px">${K.donut()}<div style="display:flex;flex-direction:column;gap:6px">${WROWS.map(r=>`<span style="display:flex;align-items:center;gap:7px;font-size:11.5px;font-weight:600;color:var(--ink2)"><i style="width:9px;height:9px;border-radius:3px;background:${r[0].c}"></i>${r[0].k}</span>`).join('')}</div></div><div style="margin-top:10px;font-size:12px;color:var(--muted)">14 worklogs · Jira Cloud · acme.atlassian.net</div></div>
+  <div class="card" style="padding:16px 18px;display:flex;align-items:center;justify-content:space-between"><div><div style="font-size:12px;color:var(--muted);font-weight:600">Confirmed without edits</div><div style="font-size:32px;font-weight:800;letter-spacing:-1px;color:var(--ok)">92%</div></div><svg width="90" height="36" viewBox="0 0 90 36"><polyline points="0,28 18,24 36,26 54,14 72,10 90,6" fill="none" stroke="#16a34a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="90" cy="6" r="3" fill="#16a34a"/></svg></div>
+  <div class="card" style="padding:16px 18px;font-size:12.5px;color:var(--ink2);line-height:1.5;display:flex;gap:10px">${ic('lock',16,'flex:none;color:var(--accent);margin-top:2px')}<span><b style="color:var(--ink)">Private by design</b><br>Only titles and durations went to AI. No screenshots, ever.</span></div></div>`;
+K.weekBar = (at=.45, style='') => `<div class="card wbar" style="${style}"><span data-in="fade" data-at="${at}" style="display:flex;align-items:center;gap:14px"><span style="font-size:15px;font-weight:600" class="num">6 of 7 ready</span><span class="prog"><i style="width:86%"></i></span><span style="font-size:12.5px;color:var(--warn);font-weight:600">1 needs you · Fri 17:40</span></span>
+  <span class="btn" data-in="fade" data-at="${at+.05}" style="margin-left:auto">${ic('export',16)}Export CSV</span>
+  <div class="confirm" data-share="wcta">Confirm 38h 20m → Jira<small>after 1 answer</small></div></div>`;
+
+/* ---------- tray flyout (hybrid: D ring + A glass) ---------- */
+K.trayFly = (o={}) => `<div class="fly" style="${o.style||''}">
+  <div style="display:flex;align-items:center;gap:10px"><div class="logo" style="width:26px;height:26px;border-radius:8px">${STAR(14)}</div><div style="font-weight:700;font-size:14px">Today · Fri, Oct 16</div><span class="rec" style="margin-left:auto"><i></i>Recording</span></div>
+  <div style="display:flex;align-items:center;gap:18px;margin-top:16px">
+    <div class="d-ring" style="width:132px;height:132px">${K.ring(132,12)}<div class="d-mid"><div class="d-big num" style="font-size:28px;letter-spacing:-1.2px">8h 10m</div><div class="d-sub" style="font-size:11px;margin-top:4px">of 8h</div></div></div>
+    <div style="flex:1;display:flex;flex-direction:column;gap:7px">${[[P.auth,195],[P.review,90],[P.meet,15]].map(([p,m])=>`<div style="display:flex;align-items:center;gap:7px;font-size:12.5px">${dot(p.c)}<span style="flex:1;color:var(--ink2);white-space:nowrap">${p.t}</span><b class="num">${hm(m).replace(' 00m','h')}</b></div>`).join('')}<div style="display:flex;align-items:center;gap:7px;font-size:12.5px;margin-top:2px;padding-top:7px;border-top:1px dashed var(--line)">${dot(WARN)}<span style="flex:1;color:var(--warn);font-weight:600">To sort</span><b class="num" style="color:var(--warn)">3h 10m</b></div></div></div>
+  ${o.strip===false?'':`<div style="position:relative;height:10px;margin-top:16px;border-radius:5px;overflow:hidden;background:#eceef3">${WORK.map(([a,b,p])=>{const x=h=>(h-9)/(18.5-9)*100;return `<i style="position:absolute;top:0;bottom:0;left:${x(a)}%;width:calc(${x(b)-x(a)}% - 2px);background:${p?p.c:`repeating-linear-gradient(90deg,${WARN} 0 3px,transparent 3px 6px)`}"></i>`}).join('')}</div><div style="display:flex;justify-content:space-between;font-size:10.5px;color:var(--muted);margin-top:5px"><span>9:00</span><span>12:00</span><span>15:00</span><span>18:00</span></div>`}
+  <div class="cta" style="margin-top:16px;height:52px;font-size:16px;border-radius:16px;padding:0">${STARG(18)}Sort my day</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px">${(o.btns||['Open','Details','Pause 1h']).map((b,i)=>`<span class="btn" ${i==0?'data-go="today"':''} style="justify-content:center;height:36px;font-size:12.5px;padding:0;cursor:pointer">${b}</span>`).join('')}</div>
+  <div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted);display:flex;justify-content:space-between"><span>Jira Cloud · acme.atlassian.net</span><span style="color:var(--ok);font-weight:600">● connected</span></div></div>`;
+K.toast = (bottom) => `<div class="toast" style="bottom:${bottom}px"><div class="logo" style="width:28px;height:28px;border-radius:8px">${STAR(15)}</div><div><b style="font-size:13px">Day norm reached · 8h 10m</b><div style="color:var(--ink2);margin-top:3px;line-height:1.4">3h 10m still unsorted. Sort it now while you remember?</div><div style="display:flex;gap:8px;margin-top:10px"><span class="btn" style="height:30px;font-size:12px;padding:0 12px;background:#17181d;color:#fff;border:0">Sort my day</span><span class="btn" style="height:30px;font-size:12px;padding:0 12px">Later</span></div></div></div>`;
+
+/* ===================== morph engine ===================== */
+const clamp = (x,a=0,b=1) => Math.min(b, Math.max(a, x));
+const lerp = (a,b,t) => a+(b-a)*t;
+const E = K.ease = {
+  out: t => 1-Math.pow(1-t,3), out5: t => 1-Math.pow(1-t,5),
+  inout: t => t<.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2,
+  // connected-animation curve: gentle start, decisive middle, ~4% overshoot settle (cubic-bezier(.6,0,.12,1.12))
+  spring: (() => { const x1=.6,y1=0,x2=.12,y2=1.12; const B=(a,b,t)=>3*a*(1-t)*(1-t)*t+3*b*(1-t)*t*t+t*t*t;
+    return t => { if (t<=0) return 0; if (t>=1) return 1; let lo=0, hi=1, u=t; for (let i=0;i<24;i++){ u=(lo+hi)/2; if (B(x1,x2,u)<t) lo=u; else hi=u; } return B(y1,y2,u); }; })(),
+};
+const seg = K.seg01 = (p,a,d) => clamp((p-a)/d);
+K.lerp = lerp; K.clamp = clamp;
+
+function fxStyle(el, kind, e) { // e: 0 hidden -> 1 settled
+  let o = e, t = '', f = '';
+  switch (kind) {
+    case 'up': t = `translateY(${(1-e)*26}px)`; break;
+    case 'down': t = `translateY(${-(1-e)*18}px)`; break;
+    case 'left': t = `translateX(${-(1-e)*56}px)`; break;
+    case 'right': t = `translateX(${(1-e)*72}px)`; break;
+    case 'pop': t = `translateY(${(1-e)*18}px) scale(${.92+.08*e})`; break;
+    case 'blur': t = `translateY(${(1-e)*18}px) scale(${1.03-.03*e})`; f = `blur(${(1-e)*12}px)`; break;
+    case 'recede': t = `translateY(${-(1-e)*16}px) scale(${.94+.06*e})`; f = `blur(${(1-e)*8}px)`; break;
+    case 'sink': t = `translateY(${(1-e)*30}px) scale(${.96+.04*e})`; f = `blur(${(1-e)*6}px)`; break;
+    case 'growx': t = `scaleX(${.001+.999*e})`; o = Math.min(1, e*2.5); break;
+    case 'fade': break;
+  }
+  el.style.opacity = o >= 1 ? '' : o.toFixed(3);
+  if (kind !== 'fade') el.style.transform = e >= 1 ? '' : t;
+  el.style.filter = (f && e < 1 && e > 0) ? f : '';
+}
+
+class Morph {
+  constructor(scene, opt) {
+    this.scene = scene; this.opt = opt; this.p = 0; this.win = scene.querySelector('.win');
+    this.Ls = scene.querySelector('.L-s'); this.Ld = scene.querySelector('.L-d'); this.fx = scene.querySelector('.fx');
+    this.rim = scene.querySelector('.rim'); this.sheen = scene.querySelector('.sheen'); this.tint = scene.querySelector('.tint');
+    this.blobs = scene.querySelector('.blobs');
+    scene.querySelectorAll('[data-stg]').forEach(g => { const [dir,kind,at,step,dur] = g.dataset.stg.split(',');
+      [...g.children].forEach((c,i) => { c.dataset[dir] = kind; c.dataset.at = (+at + i*(+step)).toFixed(3); if (dur) c.dataset.dur = dur; }); });
+    this.ins = [...scene.querySelectorAll('[data-in]')];
+    this.outs = [...scene.querySelectorAll('[data-out]')];
+    this.measured = false;
+  }
+  rel(el) { const r = el.getBoundingClientRect(), w = this.win.getBoundingClientRect(), k = w.width / this.win.offsetWidth;
+    return {x:(r.left-w.left)/k, y:(r.top-w.top)/k, w:r.width/k, h:r.height/k}; }
+  measure() {
+    // measure every shared element at rest (no transforms applied yet)
+    [...this.ins, ...this.outs].forEach(el => { el.style.transform = ''; el.style.opacity = ''; el.style.filter = ''; });
+    if (this.opt.reset) this.opt.reset(this);
+    this.pairs = [];
+    this.fx.innerHTML = '';
+    [...this.scene.querySelectorAll('[data-share]')].filter(a => !this.Ld.contains(a)).forEach(a => {
+      const key = a.dataset.share, b = this.Ld.querySelector(`[data-share="${key}"]`); if (!b) return;
+      const ra = this.rel(a), rb = this.rel(b);
+      const mk = (el, r) => { const c = el.cloneNode(true); c.removeAttribute('data-share'); const cs = getComputedStyle(el);
+        ['fontFamily','fontSize','fontWeight','color','letterSpacing','lineHeight','textAlign','whiteSpace','fontVariantNumeric'].forEach(k => c.style[k] = cs[k]);
+        c.style.width = (r.w+2)+'px'; c.style.height = r.h+'px'; c.style.display = cs.display === 'inline' ? 'inline-block' : cs.display; c.style.opacity = 0; this.fx.appendChild(c); return c; };
+      const cfg = (this.opt.share||{})[key] || {};
+      this.pairs.push({key, a, b, ra, rb, ca: mk(a, ra), cb: mk(b, rb), mode: cfg.mode || (Math.abs(ra.w/ra.h - rb.w/rb.h) < .25 ? 'u' : 'xy'), at: cfg.at ?? .04, dur: cfg.dur ?? .7, arc: cfg.arc ?? 0, fade: cfg.fade || [.18, .5], ride: cfg.ride ?? this.opt.ride ?? 0});
+    });
+    // toggle thumb positions
+    this.tg = this.scene.querySelector('.tg');
+    if (this.tg) { const o = [...this.tg.querySelectorAll('[data-opt]')].map(s => ({x:s.offsetLeft, w:s.offsetWidth})); this.tgo = o; this.thumb = this.tg.querySelector('.thumb'); }
+    this.measured = true;
+  }
+  set(p) {
+    if (!this.measured) this.measure();
+    this.p = p; this.ty = 0;
+    if (this.opt.pre) this.opt.pre(p, this);
+    const mid = p > 0 && p < 1;
+    // shared elements: connected-animation style flight with a crossfade
+    this.pairs.forEach(s => {
+      const e = E.spring(seg(p, s.at, s.dur)), lin = seg(p, s.at, s.dur);
+      s.a.style.opacity = p <= 0 ? '' : 0; s.b.style.opacity = p >= 1 ? '' : 0;
+      if (!mid) { s.ca.style.opacity = 0; s.cb.style.opacity = 0; return; }
+      const r = {x:lerp(s.ra.x,s.rb.x,e), y:lerp(s.ra.y,s.rb.y + s.ride*this.ty,e) - s.arc*Math.sin(Math.PI*clamp(e)), w:lerp(s.ra.w,s.rb.w,e), h:lerp(s.ra.h,s.rb.h,e)};
+      const place = (c, r0) => { if (s.mode === 'u') { const k = r.w/r0.w; c.style.transform = `translate(${r.x + (r.w - r0.w*k)/2}px,${r.y + (r.h - r0.h*k)/2}px) scale(${k})`; }
+        else c.style.transform = `translate(${r.x}px,${r.y}px) scale(${r.w/r0.w},${r.h/r0.h})`; };
+      place(s.ca, s.ra); place(s.cb, s.rb);
+      const x = E.inout(seg(e, s.fade[0], s.fade[1]-s.fade[0]));
+      s.ca.style.opacity = (1-x).toFixed(3); s.cb.style.opacity = x.toFixed(3);
+    });
+    // entering (details) and leaving (simple) elements
+    this.ins.forEach(el => fxStyle(el, el.dataset.in, E.out(seg(p, +(el.dataset.at||.3), +(el.dataset.dur||.35)))));
+    this.outs.forEach(el => fxStyle(el, el.dataset.out, 1 - E.out(seg(p, +(el.dataset.at||0), +(el.dataset.dur||.3)))));
+    this.Ls.style.visibility = p >= 1 ? 'hidden' : ''; this.Ld.style.visibility = p <= 0 ? 'hidden' : '';
+    this.Ls.style.pointerEvents = p < .5 ? '' : 'none'; this.Ld.style.pointerEvents = p >= .5 ? '' : 'none';
+    // ambient magic: gradient rim, light sweep, aurora drift
+    const bell = Math.sin(Math.PI*p);
+    if (this.rim) { this.rim.style.opacity = (Math.pow(bell, 1.4)*.95).toFixed(3); this.rim.style.background = `conic-gradient(from ${(-60+p*300).toFixed(1)}deg,#6366f1,#a855f7,#ec4899,#f59e0b,#6366f1)`; }
+    if (this.sheen) { const s = seg(p, .12, .6); this.sheen.style.opacity = (Math.sin(Math.PI*s)*.9).toFixed(3); this.sheen.style.transform = `translateX(${lerp(-45,45,E.inout(s))}%)`; }
+    if (this.tint) this.tint.style.opacity = (.55 + .45*E.inout(p)).toFixed(3);
+    if (this.blobs) this.blobs.style.transform = `translate(${-30*E.inout(p)}px,${16*E.inout(p)}px) scale(${1+.05*E.inout(p)})`;
+    if (this.thumb && this.tgo) { const e = E.spring(seg(p,.0,.6)), [a,b] = this.tgo; this.thumb.style.left = lerp(a.x,b.x,e)+'px'; this.thumb.style.width = lerp(a.w,b.w,e)+'px';
+      this.tg.querySelectorAll('[data-opt]').forEach((s,i) => s.style.color = (i ? p >= .5 : p < .5) ? 'var(--ink)' : ''); }
+    if (this.opt.hook) this.opt.hook(p, this);
+  }
+  go(to, ms) {
+    cancelAnimationFrame(this.raf); const from = this.p, d = (ms || this.opt.ms || 1300) * Math.abs(to-from) * (to < from ? .85 : 1); if (!d) return;
+    const t0 = performance.now(); const tick = now => { const t = clamp((now-t0)/d); this.set(lerp(from, to, t)); if (t < 1) this.raf = requestAnimationFrame(tick); };
+    this.raf = requestAnimationFrame(tick);
+  }
+}
+K.Morph = Morph;
+
+/* ===================== scenes + viewer ===================== */
+// cfg: {name, today:{chrome, simple, details, hook, share, win, ms}, week:{...}, tray:html, css}
+K.boot = (cfg) => {
+  const q = new URLSearchParams(location.search), sParam = q.get('s'), tParam = q.get('t');
+  const shot = !!sParam; if (shot) document.body.classList.add('shot');
+  const vp = document.querySelector('.viewport');
+  const mk = (id, sc) => `<section class="scene" id="${id}">${K.wall(id=='week'?1:id=='tray'?2:0)}
+    <div class="win" style="${sc.win||''}"><div class="tint"></div>
+      <div class="layer L-s" style="${sc.ls||''}">${sc.simple}</div>${sc.mid||''}
+      <div class="layer L-d" style="${sc.ld||''}">${sc.details}</div>
+      <div class="chrome">${sc.chrome}</div><div class="fx"></div><div class="sheen"></div><div class="rim"></div></div>
+    ${sc.outside||''}${K.taskbar(1)}</section>`;
+  vp.innerHTML = mk('today', cfg.today) + mk('week', cfg.week) + `<section class="scene" id="tray">${K.wall(2)}${cfg.tray}${K.taskbar(2)}</section>`;
+  const M = {today: new Morph(document.getElementById('today'), cfg.today), week: new Morph(document.getElementById('week'), cfg.week)};
+  let cur = 'today', mode = 0;
+  const show = (id, p) => { document.querySelectorAll('.scene').forEach(s => s.classList.toggle('show', s.id == id)); cur = id;
+    if (M[id]) M[id].set(p ?? mode);
+    document.querySelectorAll('.ctl [data-v]').forEach(b => b.classList.toggle('on', b.dataset.v == id)); };
+  const toggle = () => { const m = M[cur]; if (!m) return; mode = mode ? 0 : 1; m.go(mode); document.querySelectorAll('.ctl [data-v=mode]').forEach(b=>b.textContent = mode ? 'Back to simple' : 'Details ⇢'); };
+  K.api = {M, show, toggle};
+  const fit = () => { if (shot) return; const k = Math.min((innerWidth-40)/1440, (innerHeight-90)/900, 1); vp.style.transform = `scale(${k})`; vp.style.margin = `${(900*k-900)/2}px ${(1440*k-1440)/2}px`; };
+  addEventListener('resize', fit); fit();
+  document.addEventListener('click', e => { const g = e.target.closest('[data-go]'), t = e.target.closest('[data-toggle]'), v = e.target.closest('.ctl [data-v]');
+    if (v) { if (v.dataset.v == 'mode') toggle(); else show(v.dataset.v); return; }
+    if (t) { if (cur == 'tray') show('today'); toggle(); return; }
+    if (g) show(g.dataset.go); });
+  document.addEventListener('keydown', e => { if (e.key == 'd' || e.key == 'D') toggle(); if (e.key == 'Escape' && mode) toggle(); if (e.key == 'w' || e.key == 'W') show(cur=='week'?'today':'week'); });
+  const fl = Promise.all(['400','500','600','700','800'].map(w => document.fonts.load(`${w} 16px Inter`)).concat([document.fonts.load('500 12px "JetBrains Mono"')]));
+  Promise.race([fl, new Promise(r => setTimeout(r, 4000))]).then(() => requestAnimationFrame(() => {
+    const map = {simple:['today',0], details:['today',1], transition:['today', tParam ? +tParam : .5], week:['week',0], 'week-details':['week',1], 'week-transition':['week', tParam ? +tParam : .5], tray:['tray']};
+    const [id, p] = map[sParam] || ['today', 0]; if (p !== undefined && p >= .5) mode = 1;
+    document.querySelectorAll('.scene').forEach(s => s.classList.add('show'));
+    Object.values(M).forEach(m => m.measure());
+    show(id, p);
+    if (!shot && q.get('auto')) setInterval(toggle, 2600);
+    document.body.dataset.ready = [...document.fonts].filter(f=>f.status=='loaded').map(f=>f.family+f.weight).join(',');
+  }));
+};
+
+/* ---- variant ---- */
+/* H2 · Sheet → dashboard. D's "Details" drawer is pulled up; it grows into the glass panel that holds A.
+   The simple screen recedes behind it (iOS-style card stack), the drawer's day strip inflates into the Work lane. */
+const S0 = {x:250, y:706, w:780, h:120, r:22}, S1 = {x:10, y:56, w:1260, h:734, r:18};
+const sheetHook = (p, m) => {
+  const E = K.ease, q = E.spring(K.seg01(p, 0, .8)), L = K.lerp, r = {x:L(S0.x,S1.x,q), y:L(S0.y,S1.y,q), w:L(S0.w,S1.w,q), h:L(S0.h,S1.h,q), r:L(S0.r,S1.r,q)};
+  const sh = m.scene.querySelector('.sheet');
+  Object.assign(sh.style, {left:r.x+'px', top:r.y+'px', width:r.w+'px', height:r.h+'px', borderRadius:r.r+'px'});
+  const g = E.inout(K.seg01(p, .1, .6));
+  sh.style.background = `rgba(255,255,255,${(.96 - .5*g).toFixed(3)})`;
+  sh.style.boxShadow = `0 ${-10 + 40*g}px ${40 + 40*g}px rgba(30,30,80,${(.08 + .06*g).toFixed(3)}), 0 0 0 1px rgba(255,255,255,${(.5*g).toFixed(2)}), 0 0 0 1px rgba(22,24,40,${(.07*(1-g)).toFixed(3)})`;
+  // simple screen recedes behind the rising sheet
+  const b = E.out(K.seg01(p, 0, .55));
+  m.Ls.style.transform = `translateY(${-18*b}px) scale(${1 - .06*b})`; m.Ls.style.filter = b > 0 && b < 1 ? `blur(${5*b}px)` : (b >= 1 ? 'blur(5px)' : '');
+  m.Ls.style.opacity = (1 - .9*E.out(K.seg01(p, .05, .45))).toFixed(3);
+  // details ride up with the sheet (parallax) and are clipped to it
+  const ty = (r.y - S1.y) * .35; m.ty = ty;
+  m.Ld.style.transform = `translateY(${ty}px)`;
+  m.Ld.style.clipPath = `inset(${r.y - ty}px ${1280 - r.x - r.w}px ${800 - (r.y - ty) - r.h}px ${r.x}px round ${r.r}px)`;
+  const grab = sh.querySelector('.grab'); grab.style.width = L(44, 64, q) + 'px';
+};
+const sheet = (label, sub, strip) => `<div class="sheet"><div class="grab" data-toggle></div></div>
+  <div class="drawer" data-toggle style="position:absolute;left:${S0.x}px;top:${S0.y}px;width:${S0.w}px;padding:22px 24px 0">
+    <div style="display:flex;align-items:center;font-size:13px;font-weight:700" data-out="fade" data-at="0" data-dur=".18"><span>${label}</span><span style="color:var(--muted);font-weight:500;margin-left:10px">${sub}</span><span style="margin-left:auto;color:var(--muted);font-weight:600;display:flex;align-items:center;gap:6px">Pull up or press <kbd style="font:600 11px var(--mono);background:rgba(22,24,40,.06);border-radius:5px;padding:1px 6px">D</kbd></span></div>
+    ${strip}</div>`;
+const strip = (() => { const x = h => (h-9)/(18.5-9)*100;
+  return `<div data-share="strip" style="position:relative;height:26px;margin-top:12px;border-radius:9px;background:rgba(22,24,40,.04)">${[[9,10.5,K.P.auth],[10.5,10.75,K.P.meet],[10.75,12.25,K.P.review],[12.25,13,0],[13.75,15.5,K.P.auth],[15.5,16.25,0],[16.25,17.67,0],[17.67,17.92,0]].map(([a,b,p])=>`<i style="position:absolute;top:0;bottom:0;left:calc(${x(a)}% + 2px);width:calc(${x(b)-x(a)}% - 4px);border-radius:6px;background:${p?p.bg:'repeating-linear-gradient(135deg,#fff3dd 0 5px,#fde7bf 5px 10px)'};box-shadow:inset ${p?`3px 0 0 ${p.fg}`:'0 0 0 1px rgba(217,119,6,.3)'}"></i>`).join('')}</div>`; })();
+const wstrip = `<div style="display:flex;gap:3px;height:26px;margin-top:12px;border-radius:9px;overflow:hidden" data-out="fade" data-at="0" data-dur=".2">${K.data.WROWS.map(([p,m])=>`<i style="flex:${m};background:${p.c};opacity:.85"></i>`).join('')}<i style="flex:40;background:repeating-linear-gradient(90deg,#d97706 0 3px,transparent 3px 6px)"></i></div>`;
+const at = (x, html) => html; // readability helper
+
+K.boot({
+  today: {
+    chrome: K.titlebar('today'),
+    simple: `<div class="d-col" style="top:66px">${K.dToday({g3:26})}</div>`,
+    mid: sheet('Details', '9 blocks · 6 apps · 45m away', strip),
+    details: `<div style="position:absolute;left:${S1.x}px;top:${S1.y}px;width:${S1.w}px;height:${S1.h}px;padding:26px 20px 20px">
+      <div style="display:flex;align-items:center;gap:16px;height:60px">
+        <div data-share="ring" style="width:60px;height:60px;flex:none">${K.ring(60,8)}</div>
+        <div><div class="hero-v num" data-share="total" style="font-size:30px">8h 10m</div><div class="hero-s" data-share="norm">of 8h · norm reached</div></div>
+        <div data-in="fade" data-at=".62" style="margin-left:18px;padding-left:18px;border-left:1px solid var(--line)"><div class="a-h1" style="font-size:22px;letter-spacing:-.6px">Today</div><div style="font-size:12.5px;color:var(--muted);font-weight:500">Fri, Oct 16 · since 9:00</div></div>
+        <span class="pill-ok" data-in="fade" data-at=".6" style="margin-left:auto"><i></i>Capturing · stored on this PC</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 330px;gap:14px;margin-top:14px;height:614px">
+        <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px" data-stg="in,pop,.3,.04,.4">${K.kpis(['auto','un','match','week'])}</div>
+          <div class="card tl" data-in="fade" data-at=".24" data-dur=".3" style="flex:1">${K.timeline(834, {at:.36, shareWork:1})}${K.feed(6, .46)}</div>
+        </div>
+        ${K.aiPanel({at:.26, kind:'up'})}
+      </div></div>`,
+    share: {ring:{at:.04, dur:.86, fade:[.5,.85], arc:-30}, total:{at:.06, dur:.84, fade:[.5,.85]}, norm:{at:.08, dur:.84, fade:[.4,.8]}, left:{at:.12, dur:.84, fade:[.55,.9]}, cta:{at:.14, dur:.84, fade:[.08,.4]}, strip:{at:0, dur:.8, mode:'xy', fade:[.25,.7]}},
+    pre: sheetHook, ride: 1, ms: 1350,
+  },
+  week: {
+    chrome: K.titlebar('week'),
+    simple: `<div class="d-col" style="top:60px">${K.weekSimple({g1:16, g2:16})}</div>`,
+    mid: sheet('Details', '14 worklogs · 6 tasks · AI matched 3', wstrip),
+    details: `<div style="position:absolute;left:${S1.x}px;top:${S1.y}px;width:${S1.w}px;height:${S1.h}px;padding:30px 20px 20px">
+      ${K.weekHead(.3)}${K.weekDays(.34)}
+      <div style="display:grid;grid-template-columns:1fr 300px;gap:14px;margin-top:14px">${K.weekRows(.4)}${K.weekSide(.42)}</div>
+      <div data-in="up" data-at=".44" data-dur=".4" style="position:absolute;left:20px;right:20px;bottom:20px">${K.weekBar(.52)}</div></div>`,
+    share: {wtotal:{at:.04, dur:.84, fade:[.3,.8]}, wcta:{at:.1, dur:.86, fade:[.15,.5]}, day0:{at:.04, dur:.8}, day1:{at:.06, dur:.8}, day2:{at:.08, dur:.8}, day3:{at:.1, dur:.8}, day4:{at:.12, dur:.8}},
+    pre: sheetHook, ride: 1, ms: 1350,
+  },
+  tray: `<div class="pitch"><div class="k">H2 · Sheet → dashboard · tray</div><div class="h">Pull up<br><span class="grad">for the details.</span></div><div class="p">The flyout keeps the same grammar: answer first, a day strip you can pull up into the full dashboard.</div></div>
+    ${K.toast(640)}${K.trayFly({btns:['Open','Pull up ↑','Pause 1h']})}`,
+});
+
+</script>
+</body>
+</html>
