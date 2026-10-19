@@ -1,9 +1,10 @@
 <!doctype html>
 <html lang="ru">
 <head>
-<meta name="robots" content="noindex,nofollow">
 <meta charset="utf-8">
-<title>AI Timesheet · 4 направления дизайна</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Time Tracker &amp; Timesheet · 7 направлений дизайна</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--ink:#15171c;--ink2:#474b57;--muted:#7a7f8c;--line:#e7e8ee;--accent:#4f46e5;--ai:linear-gradient(110deg,#6366f1,#a855f7 35%,#ec4899 65%,#f59e0b)}
@@ -16,7 +17,18 @@ h1 span{background:var(--ai);-webkit-background-clip:text;color:transparent}
 .lead{font-size:17px;color:var(--ink2);margin-top:8px;max-width:900px}
 nav.toc{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
 nav.toc a{padding:8px 14px;border-radius:999px;background:#fff;border:1px solid var(--line);text-decoration:none;color:var(--ink);font-weight:600;font-size:14px}
-.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:28px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:14px}
+.group{margin-top:32px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.group h3{font-size:18px;font-weight:800;letter-spacing:-.3px}
+.group span{font-size:14px;color:var(--muted)}
+.new{display:inline-block;font-size:10px;font-weight:800;color:#fff;background:var(--ai);border-radius:5px;padding:1px 6px;margin-left:4px;vertical-align:1px;letter-spacing:0;text-transform:none}
+.rank{counter-reset:r;list-style:none;padding:0!important}
+.rank li{counter-increment:r;display:flex;gap:12px;align-items:baseline;margin-top:10px!important}
+.rank li:before{content:counter(r);flex:none;width:26px;height:26px;border-radius:8px;background:#111;color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}
+.note{margin-top:24px;padding:18px 22px;border-radius:16px;background:#fff;border:1px dashed #c7c9d6;font-size:14.5px;color:var(--ink2)}
+.note b{color:var(--ink)}
+@media (max-width:1100px){.grid4,.grid3,.cols,.shots,.concepts{grid-template-columns:1fr}table.cmp{display:block;overflow-x:auto}}
 .tile{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;text-decoration:none;color:inherit;display:block}
 .tile img{width:100%;display:block;aspect-ratio:16/10;object-fit:cover;border-bottom:1px solid var(--line)}
 .tile div{padding:14px 16px}
@@ -24,6 +36,8 @@ nav.toc a{padding:8px 14px;border-radius:999px;background:#fff;border:1px solid 
 .tile p{font-size:13px;color:var(--ink2);margin-top:4px}
 table.cmp{width:100%;border-collapse:collapse;margin-top:28px;background:#fff;border-radius:16px;overflow:hidden;border:1px solid var(--line)}
 .cmp th,.cmp td{padding:11px 14px;border-bottom:1px solid var(--line);text-align:left;font-size:14px;vertical-align:top}
+table.cmp{table-layout:fixed}
+.cmp th:first-child{width:230px}
 .cmp th{background:#fafafc;font-size:12.5px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.3px}
 .dots{letter-spacing:2px;color:var(--accent);font-size:15px;white-space:nowrap}
 .dots i{color:#d5d6de;font-style:normal}
@@ -56,29 +70,40 @@ section.v{margin-top:64px;padding-top:24px;border-top:1px solid var(--line)}
 </head>
 <body>
 <div class="wrap">
-  <h1>Time Tracker &amp; Timesheet · <span>4 направления дизайна</span></h1>
-  <p class="lead">Одни и те же данные (пятница 16.10, 8h 10m, 4 неразобранных блока; неделя 42, 38h 20m) в четырёх визуальных языках. На каждый вариант: экран «Сегодня», «Your week is ready» и трей; HTML-макеты 1280×800 на рабочем столе, PNG и концепты Nano Banana (gemini-3-pro-image). Ниже — плюсы, минусы и цена реализации на WinUI 3.</p>
-  <nav class="toc"><a href="#a">A · Aurora Glass</a><a href="#b">B · Calm Fluent</a><a href="#c">C · Midnight Focus</a><a href="#d">D · One Button</a><a href="#reco">Рекомендация</a></nav>
+  <h1>Time Tracker &amp; Timesheet · <span>7 направлений дизайна</span></h1>
+  <p class="lead">Одни и те же данные: пятница 16.10, 8h 10m, 4 неразобранных блока; неделя 42, 38h 20m. На каждый вариант: экран «Сегодня», неделя и трей; HTML-макеты 1280×800 на рабочем столе, скриншоты и концепты Nano Banana (gemini-3-pro-image).</p>
+  <div class="note"><b>Почему вариантов стало семь.</b> A–D — по сути одна модель взаимодействия (дашборд + список блоков) в четырёх стилях. Поэтому добавлены три <b>других способа работы</b>: E — день как календарь, по которому блоки раскладывают руками или принимают у AI; F — AI рассказывает день и задаёт вопросы, ответить можно фразой; G — главный интерфейс живёт во флайауте над треем, окно вторично. Рассматривал и отбросил: «сначала доска Jira» (время падает на карточки задач) — это E, повёрнутый боком, и он хуже показывает «когда»; «лента скриншотов», как у Rewind, — противоречит обещанию «без скриншотов»; «сначала табель» — уже есть в B.</div>
+  <nav class="toc"><a href="#a">A · Aurora Glass</a><a href="#b">B · Calm Fluent</a><a href="#c">C · Midnight Focus</a><a href="#d">D · One Button</a><a href="#e">E · Calendar Canvas</a><a href="#f">F · Day Story</a><a href="#g">G · Tray-first</a><a href="#reco">Рекомендация</a></nav>
 
+  <div class="group"><h3>Новые модели взаимодействия</h3><span>E–G: другой способ работы, а не только другой стиль</span></div>
+  <div class="grid3">
+    <a class="tile" href="#e"><img src="shots/e-today.png" alt="Вариант E, экран «Сегодня»"><div><b>E · Calendar Canvas</b><p>День как календарь: слева захваченная активность, колонки — задачи Jira. AI ставит пунктирные блоки, вы принимаете их или перетаскиваете свои.</p></div></a>
+    <a class="tile" href="#f"><img src="shots/f-today.png" alt="Вариант F, экран «Сегодня»"><div><b>F · Day Story</b><p>AI рассказывает день и спрашивает только о непонятном. Ответ кнопкой или фразой: «Slack после обеда — это OPS-77».</p></div></a>
+    <a class="tile" href="#g"><img src="shots/g-tray.png" alt="Вариант G, три состояния флайаута"><div><b>G · Tray-first Widget</b><p>Всё приложение — флайаут 380×560 над треем: кольцо дня, живая карточка, «Sort &amp; send». Окно нужно для пятницы и настроек.</p></div></a>
+  </div>
+  <div class="group"><h3>Визуальные стили</h3><span>A–D: одна модель «дашборд + список»</span></div>
   <div class="grid4">
-    <a class="tile" href="#a"><img src="shots/a-today.png" alt=""><div><b>A · Aurora Glass</b><p>Стиль промо-видео, доведённый до приложения: стекло, пастель, KPI, лента дня, AI-панель.</p></div></a>
-    <a class="tile" href="#b"><img src="shots/b-today.png" alt=""><div><b>B · Calm Fluent</b><p>Родной Windows 11: Mica, Segoe UI Variable, NavigationView, неделя как таблица Tempo.</p></div></a>
-    <a class="tile" href="#c"><img src="shots/c-today.png" alt=""><div><b>C · Midnight Focus</b><p>Тёмный, клавиатурный: очередь разбора по одному, тепловая карта недели, палитра в трее.</p></div></a>
-    <a class="tile" href="#d"><img src="shots/d-today.png" alt=""><div><b>D · One Button</b><p>Одно кольцо, одно предложение, одна кнопка. Детали выдвигаются снизу.</p></div></a>
+    <a class="tile" href="#a"><img src="shots/a-today.png" alt="Вариант A"><div><b>A · Aurora Glass</b><p>Стиль промо-видео, доведённый до приложения: стекло, пастель, KPI, лента дня, AI-панель.</p></div></a>
+    <a class="tile" href="#b"><img src="shots/b-today.png" alt="Вариант B"><div><b>B · Calm Fluent</b><p>Родной Windows 11: Mica, Segoe UI Variable, NavigationView, неделя как таблица Tempo.</p></div></a>
+    <a class="tile" href="#c"><img src="shots/c-today.png" alt="Вариант C"><div><b>C · Midnight Focus</b><p>Тёмный, клавиатурный: очередь разбора по одному, тепловая карта недели, палитра в трее.</p></div></a>
+    <a class="tile" href="#d"><img src="shots/d-today.png" alt="Вариант D"><div><b>D · One Button</b><p>Одно кольцо, одно предложение, одна кнопка. Детали выдвигаются снизу.</p></div></a>
   </div>
 
   <table class="cmp">
-    <thead><tr><th>Критерий</th><th>A · Aurora Glass</th><th>B · Calm Fluent</th><th>C · Midnight Focus</th><th>D · One Button</th></tr></thead>
+    <thead><tr><th>Критерий (1–5)</th><th>A · Aurora</th><th>B · Fluent</th><th>C · Midnight</th><th>D · One Button</th><th>E · Calendar<span class="new">new</span></th><th>F · Day Story<span class="new">new</span></th><th>G · Tray-first<span class="new">new</span></th></tr></thead>
     <tbody>
-      <tr><td>Вау-эффект</td><td class="dots">●●●●<i>●</i></td><td class="dots">●●<i>●●●</i></td><td class="dots">●●●●●</td><td class="dots">●●●●<i>●</i></td></tr>
-      <tr><td>Понятно с первого взгляда</td><td class="dots">●●●<i>●●</i></td><td class="dots">●●●●<i>●</i></td><td class="dots">●●●<i>●●</i></td><td class="dots">●●●●●</td></tr>
-      <tr><td>Скорость разбора дня/недели</td><td class="dots">●●●<i>●●</i></td><td class="dots">●●●<i>●●</i></td><td class="dots">●●●●●</td><td class="dots">●●●●<i>●</i></td></tr>
-      <tr><td>«Родной» для Windows</td><td class="dots">●●●<i>●●</i></td><td class="dots">●●●●●</td><td class="dots">●●●<i>●●</i></td><td class="dots">●●●<i>●●</i></td></tr>
-      <tr><td>Совпадает с промо-видео и Store</td><td class="dots">●●●●●</td><td class="dots">●●<i>●●●</i></td><td class="dots">●●●<i>●●</i></td><td class="dots">●●●<i>●●</i></td></tr>
-      <tr><td>Дёшево сделать (WinUI 3)</td><td class="dots">●●●<i>●●</i></td><td class="dots">●●●●●</td><td class="dots">●●<i>●●●</i></td><td class="dots">●●●●<i>●</i></td></tr>
-      <tr><td>Объём</td><td><b>M–L</b> · ~2–3 нед.</td><td><b>S–M</b> · ~1 нед.</td><td><b>L</b> · ~3 нед.</td><td><b>M</b> · ~1.5–2 нед.</td></tr>
+      <tr><td>Вау-эффект</td><td class="dots">●●●●<i>●</i></td><td class="dots">●●<i>●●●</i></td><td class="dots">●●●●●</td><td class="dots">●●●●<i>●</i></td><td class="dots">●●●●<i>●</i></td><td class="dots">●●●●<i>●</i></td><td class="dots">●●●●●</td></tr>
+      <tr><td>Понятно с первого взгляда</td><td class="dots">●●●<i>●●</i></td><td class="dots">●●●●<i>●</i></td><td class="dots">●●●<i>●●</i></td><td class="dots">●●●●●</td><td class="dots">●●●●<i>●</i></td><td class="dots">●●●●●</td><td class="dots">●●●●<i>●</i></td></tr>
+      <tr><td>Скорость пятничного разбора</td><td class="dots">●●●<i>●●</i></td><td class="dots">●●●<i>●●</i></td><td class="dots">●●●●●</td><td class="dots">●●●●<i>●</i></td><td class="dots">●●●<i>●●</i></td><td class="dots">●●●●<i>●</i></td><td class="dots">●●●●●</td></tr>
+      <tr><td>Скриншоты Store и промо-видео</td><td class="dots">●●●●●</td><td class="dots">●●<i>●●●</i></td><td class="dots">●●●<i>●●</i></td><td class="dots">●●●<i>●●</i></td><td class="dots">●●●●<i>●</i></td><td class="dots">●●●●<i>●</i></td><td class="dots">●●●●<i>●</i></td></tr>
+      <tr><td>Дёшево сделать на WinUI 3</td><td class="dots">●●●<i>●●</i></td><td class="dots">●●●●●</td><td class="dots">●●<i>●●●</i></td><td class="dots">●●●●<i>●</i></td><td class="dots">●●<i>●●●</i></td><td class="dots">●●●<i>●●</i></td><td class="dots">●●●●<i>●</i></td></tr>
+      <tr><td>Доступность и тёмная тема</td><td class="dots">●●<i>●●●</i></td><td class="dots">●●●●●</td><td class="dots">●●●<i>●●</i></td><td class="dots">●●●<i>●●</i></td><td class="dots">●●●<i>●●</i></td><td class="dots">●●●●●</td><td class="dots">●●●●<i>●</i></td></tr>
+      <tr><td>Сумма</td><td><b>20</b> / 30</td><td><b>21</b> / 30</td><td><b>21</b> / 30</td><td><b>23</b> / 30</td><td><b>20</b> / 30</td><td><b>25</b> / 30</td><td><b>26</b> / 30</td></tr>
+      <tr><td>Объём</td><td><b>M–L</b> · ~2–3 нед.</td><td><b>S–M</b> · ~1 нед.</td><td><b>L</b> · ~3 нед.</td><td><b>M</b> · ~1.5–2 нед.</td><td><b>L</b> · ~3–4 нед.</td><td><b>M–L</b> · ~2–3 нед. + разбор команд LLM</td><td><b>M</b> · ~2 нед. + небольшое окно</td></tr>
+      <tr><td>Место в итоге</td><td>3</td><td>7</td><td>4</td><td>6</td><td>5</td><td>2</td><td><b>1</b></td></tr>
     </tbody>
   </table>
+  <p class="cap" style="margin-top:8px">Оценки A–D пересчитаны под новый набор критериев. «Скорость пятничного разбора» — сколько действий нужно, чтобы проверить день и неделю и отправить. «Дёшево сделать»: 5 — почти всё на стандартных контролах. Место в итоге учитывает не только сумму, но и то, насколько вариант подходит пассивному трекеру (см. рекомендацию).</p>
 
   <!-- A -->
   <section class="v" id="a">
@@ -145,15 +170,76 @@ section.v{margin-top:64px;padding-top:24px;border-top:1px solid var(--line)}
     </div>
   </section>
 
+  <!-- E -->
+  <section class="v" id="e">
+    <div class="vh"><h2>E · Calendar Canvas</h2><span class="tag">Google Calendar / Notion Calendar / Timely</span><a class="open" href="variant-e.html">Открыть HTML-макет →</a></div>
+    <p class="desc">День — вертикальный календарь 9:00–18:00. Первая колонка — то, что записалось на этом ПК: приложение, заголовок окна, источник совпадения. Остальные колонки — задачи Jira, у каждой сумма за день. Сплошные блоки уже залогированы (git branch, ключ в заголовке, календарь). Пунктирные — предложения AI с процентом, кнопкой «Accept» и подсказкой «почему». Неразобранный блок перетаскивают мышью на задачу, колонка подсвечивается. Сверху одна полоса: «AI pencilled in 3 blocks · Accept all 3». Неделя — обычная календарная сетка Пн–Пт с прогрессом нормы по дням и одним оставшимся вопросом. Трей: тот же календарь в миниатюре и уведомление «Accept all».</p>
+    <div class="shots"><div><img src="shots/e-today.png" alt=""><div class="cap">Сегодня: активность → колонки задач, пунктир AI, перетаскивание</div></div><div class="side"><div><img src="shots/e-week.png" alt=""><div class="cap">Неделя: календарная сетка</div></div><div><img src="shots/e-tray.png" alt=""><div class="cap">Трей: мини-календарь и уведомление</div></div></div></div>
+    <div class="concepts"><div><img src="concepts/e-1.png" alt=""><div class="cap">Nano Banana: «Сегодня», доведённый до концепта</div></div><div></div></div>
+    <div class="cols">
+      <div class="box pro"><h3>Плюсы</h3><ul><li>Календарь умеют читать все: видно и «что», и «когда».</li><li>Пунктир «AI предлагает» очень нагляден и хорошо смотрится в ролике: блоки «встают» на место.</li><li>Удобнее всех для правок: сдвинуть, разрезать, перетащить на другую задачу.</li><li>Хорош для скриншота Store: сразу видно, что делает продукт.</li></ul></div>
+      <div class="box con"><h3>Минусы</h3><ul><li>Перетаскивание — самый медленный способ разбора; быстрым его делает только «Accept all».</li><li>Больше 6–7 колонок задач не помещается, нужен скролл или группировка.</li><li>Блоки по 15 минут почти нечитаемы.</li><li>Больше всего своего кода; для клавиатуры и экранного диктора нужен отдельный путь (список).</li></ul></div>
+      <div class="box"><h3>WinUI 3: что нативно, что рисовать <span class="size">L</span></h3><dl class="eff">
+        <dt>Нативно</dt><dd>CalendarView в боковой панели, SelectorBar Day/Week, ScrollViewer, TeachingTip для «почему», drag-and-drop через CanDrag/AllowDrop, AppNotification с кнопками.</dd>
+        <dt>Свой код</dt><dd>Вся сетка дня: свой Panel (MeasureOverride/ArrangeOverride), раскладывающий блоки по времени и колонкам; пунктирные рамки (StrokeDashArray); ресайз блока за край; линия «сейчас»; неделя — тот же Panel на 5 колонок. Дублирующий список и AutomationPeer для Narrator и клавиатуры.</dd>
+        <dt>Трей</dt><dd>H.NotifyIcon (уже в проекте) + безрамочное окно-флайаут.</dd></dl></div>
+    </div>
+  </section>
+
+  <!-- F -->
+  <section class="v" id="f">
+    <div class="vh"><h2>F · Day Story</h2><span class="tag">AI-разговор + карточки-вопросы</span><a class="open" href="variant-f.html">Открыть HTML-макет →</a></div>
+    <p class="desc">AI пересказывает день одной фразой («8h 10m, mostly CASE-1423. Five hours matched on their own — I need you for 4 moments») и идёт по хронологии. Принятые главы сворачиваются в строку с галочкой, обед помечен «не логируется». Вопрос — одна большая карточка: что было на экране, к какой задаче AI это относит и с какой уверенностью, черновик ворклога, кнопки «Log 1h 25m / Another task / Split / Not work» (Enter / 2 / S / 0). Исправить можно фразой: «Slack after lunch was the billing incident → OPS-77». AI отвечает «Done» и сохраняет правило (с Undo). Справа «чек» черновиков ворклогов растёт по мере ответов; отправить можно в любой момент. Неделя — дайджест: абзац про неделю, пять карточек дней, один вопрос, три цифры и «Looks right — send 38h 20m». Трей: Windows-уведомление с кнопками и полем ответа.</p>
+    <div class="shots"><div><img src="shots/f-today.png" alt=""><div class="cap">Сегодня: история дня, правка фразой, карточка-вопрос, чек ворклогов</div></div><div class="side"><div><img src="shots/f-week.png" alt=""><div class="cap">Неделя: дайджест</div></div><div><img src="shots/f-tray.png" alt=""><div class="cap">Трей: ответ прямо из уведомления</div></div></div></div>
+    <div class="concepts"><div><img src="concepts/f-1.png" alt=""><div class="cap">Nano Banana: история дня, доведённая до концепта</div></div><div></div></div>
+    <div class="cols">
+      <div class="box pro"><h3>Плюсы</h3><ul><li>Самый понятный для новичка и не-разработчика: читаешь и отвечаешь, интерфейса почти нет.</li><li>AI выглядит помощником, а не кнопкой. Лучшая история для Store и ролика.</li><li>Правка фразой закрывает редкие случаи («обед был час», «раздели Figma пополам»), для которых иначе нужны отдельные экраны.</li><li>Текст и кнопки — лучший вариант для экранного диктора; тёмная тема без проблем.</li><li>Уведомление с полем ответа — стандартная возможность Windows: можно вообще не открывать приложение.</li></ul></div>
+      <div class="box con"><h3>Минусы</h3><ul><li>Прозу читать медленнее, чем пробежать таблицу; опытным нужна кнопка «Open as table».</li><li>Правке фразой нужен надёжный разбор команд и Undo; каждая ошибка бьёт по доверию.</li><li>Механика вопросов похожа на C. Отличие — контекст всего дня и правки текстом.</li><li>Тексты AI нужно держать короткими и локализовать.</li></ul></div>
+      <div class="box"><h3>WinUI 3: что нативно, что рисовать <span class="size">M–L</span></h3><dl class="eff">
+        <dt>Нативно</dt><dd>ItemsRepeater с DataTemplateSelector (глава / сообщение / вопрос), RichTextBlock с InlineUIContainer для чипов задач, TextBox для команд, KeyboardAccelerators, SelectorBar для дней. Уведомление: AppNotificationBuilder с кнопками и AddTextBox.</dd>
+        <dt>Свой код</dt><dd>Градиентная рамка карточки (Border + LinearGradientBrush), «чек» с зубчатым краем (Path), анимация сворачивания главы. Главная работа не в UI: фраза → действие (move / split / not work / rule), подтверждение и Undo.</dd>
+        <dt>Трей</dt><dd>Уведомления вместо флайаута; меню H.NotifyIcon остаётся.</dd></dl></div>
+    </div>
+  </section>
+
+  <!-- G -->
+  <section class="v" id="g">
+    <div class="vh"><h2>G · Tray-first Widget</h2><span class="tag">виджеты Windows 11 / Raycast / мини-плеер Arc</span><a class="open" href="variant-g.html">Открыть HTML-макет →</a></div>
+    <p class="desc">Приложение пассивное, поэтому главный экран — флайаут 380×560 над треем, а не окно. Иконка в трее — кольцо дня: оно заполняется и получает оранжевую точку, когда нужен ответ. Три состояния флайаута. <b>Recording</b>: кольцо (сплошное — сопоставлено, пунктир — догадка AI), живая карточка «VS Code · feature/CASE-1423 → CASE-1423, 2:10:04», задачи дня. <b>Needs you</b>: список AI «Figma → CASE-1501 88%» с переключателями и одна кнопка «Sort &amp; send 8h 10m» — она отправляет уверенное и спрашивает об остальном. <b>Sent</b>: полное градиентное кольцо, разбивка по задачам, неделя 38h 20m / 40h, Undo 10 секунд. В пятницу флайаут показывает неделю: кольца дней и «Send week». Небольшое окно — табель недели, правила, настройки. Сцены показаны в светлой и тёмной теме.</p>
+    <div class="shots"><div><img src="shots/g-today.png" alt=""><div class="cap">Флайаут «Needs you» поверх работы (светлая тема)</div></div><div class="side"><div><img src="shots/g-tray.png" alt=""><div class="cap">Три состояния: Recording, Needs you, Sent (тёмная тема)</div></div><div><img src="shots/g-week.png" alt=""><div class="cap">Пятница: флайаут недели и небольшое окно</div></div></div></div>
+    <div class="concepts"><div><img src="concepts/g-1.png" alt=""><div class="cap">Nano Banana: три состояния, презентационный кадр</div></div><div><img src="concepts/g-2.png" alt=""><div class="cap">Nano Banana: кадр для Store — виджет над треем ноутбука</div></div></div>
+    <div class="cols">
+      <div class="box pro"><h3>Плюсы</h3><ul><li>Соответствует природе продукта: он записывает сам, и в большинство дней окно не нужно.</li><li>Самый короткий путь: клик по кольцу → «Sort &amp; send» → обратно к работе.</li><li>Кольцо в трее видно весь день: сколько набрано и нужен ли ответ.</li><li>Сильный кадр для Store и ролика: «the whole app, one click away».</li><li>Маленькая поверхность: проще сделать красиво и в светлой, и в тёмной теме, проще с доступностью.</li></ul></div>
+      <div class="box con"><h3>Минусы</h3><ul><li>В 380 px помещается только «принять / выбрать задачу». Для сложных правок нужно окно.</li><li>Окно всё равно придётся рисовать (неделя, правила, настройки): G не заменяет A/B/C/F, а дополняет их.</li><li>Флайауты у трея в Windows капризны: позиция, несколько мониторов, автоскрытие панели задач.</li><li>Кто не смотрит в трей, может потерять приложение: нужен онбординг «закрепите иконку».</li></ul></div>
+      <div class="box"><h3>WinUI 3: что нативно, что рисовать <span class="size">M</span></h3><dl class="eff">
+        <dt>Нативно</dt><dd>H.NotifyIcon.WinUI уже в проекте (TrayHost с MenuFlyout): левый клик открывает флайаут, правый — прежнее меню. Окно без рамки: AppWindow + OverlappedPresenter без заголовка, DesktopAcrylicBackdrop. ToggleButton/CheckBox в списке, AppNotification для «Needs you».</dd>
+        <dt>Свой код</dt><dd>Позиция у трея (Shell_NotifyIconGetRect, рабочая область монитора), скрытие при потере фокуса; кольцо — Path + ArcSegment с StrokeDashArray; иконка трея с кольцом генерируется в коде по прогрессу; анимация появления снизу.</dd>
+        <dt>Окно</dt><dd>Небольшое: табель недели на Grid/ItemsRepeater и SelectorBar Today/Week/Rules/Settings, близко к B.</dd></dl></div>
+    </div>
+  </section>
+
   <div class="reco" id="reco">
-    <h2>Рекомендация</h2>
-    <p>Взять <b>A</b> за основу: оно совпадает с роликом и будущими скриншотами Store. Из других вариантов добавить:</p>
+    <h2>Итог и рекомендация</h2>
+    <p><b>Честный рейтинг.</b> Сумма баллов в таблице — ориентир. Место учитывает ещё и то, насколько вариант подходит пассивному трекеру.</p>
+    <ol class="rank">
+      <li><span><b>G · Tray-first</b> — 26/30. Лучше всех подходит продукту: он записывает сам, а от человека нужно 10 секунд в день. Но это оболочка, а не весь продукт: окно всё равно нужно.</span></li>
+      <li><span><b>F · Day Story</b> — 25/30. Самый понятный и доступный, лучше всех «продаёт» AI. Риск — правки фразой: без надёжного разбора команд и Undo их не выпускать.</span></li>
+      <li><span><b>A · Aurora Glass</b> — 20/30. Совпадает с роликом и Store. Но экран плотный, а модель «дашборд» обычная.</span></li>
+      <li><span><b>C · Midnight Focus</b> — 21/30. Механика «по одному, Enter / 2 / 0» — самая быстрая для разработчиков. Ниже A из-за темы «только тёмная» и того, что клавиатуре надо учиться.</span></li>
+      <li><span><b>E · Calendar Canvas</b> — 20/30. Самый наглядный для правок и эффектный в ролике, но самый дорогой, а перетаскивание — медленный путь. Это режим редактирования, а не главный экран.</span></li>
+      <li><span><b>D · One Button</b> — 23/30. Понятный и недорогой, но прячет детали, а кольцо на неполном дне выглядит странно. Его лучшие идеи (кольцо, одна кнопка) уже вошли в G.</span></li>
+      <li><span><b>B · Calm Fluent</b> — 21/30. Самый дешёвый и доступный, но без вау-эффекта. Это техническая основа, а не направление.</span></li>
+    </ol>
+    <p style="margin-top:16px"><b>Рекомендация — гибрид «G снаружи, F внутри, A по стилю»:</b></p>
     <ul>
-      <li>из <b>C</b> — очередь разбора «по одному» с клавишами 1/2/3/Enter и «Accept all ≥ 80%» как режим после «Sort my day», и строку «почему AI так решил»;</li>
-      <li>из <b>D</b> — кольцо нормы в трее и иконке трея и одну главную кнопку на экране;</li>
-      <li>из <b>B</b> — под стеклом использовать нативные контролы (InfoBar, ComboBox, CommandBar), чтобы тёмная тема и доступность работали сами.</li>
+      <li><b>G</b> — основной ежедневный интерфейс: кольцо в трее, флайаут Recording / Needs you / Sent, «Sort &amp; send»; в пятницу — флайаут недели.</li>
+      <li><b>F</b> — экран разбора в окне: пересказ дня, карточка-вопрос с клавишами из C (Enter / 2 / S / 0, «Accept all ≥ 80%»), чек ворклогов справа. Правки фразой — вторым этапом, после кнопок.</li>
+      <li><b>A</b> — визуальный язык окна и Store (стекло, пастель, градиент только на AI), чтобы совпадать с роликом. Тёмная тема — по образцу тёмного флайаута G.</li>
+      <li><b>E</b> — позже, как вкладка «Calendar» для ручных правок (сдвинуть, разрезать, перетащить). В первый релиз не брать.</li>
+      <li><b>B</b> — техническая база: стандартные контролы и ThemeResource под стеклом, чтобы контраст, Narrator и тёмная тема работали сами.</li>
     </ul>
-    <p style="color:var(--muted);font-size:13px;margin-top:12px">Концепты Nano Banana — это настроение, а не спецификация: модель местами искажает мелкий текст (CASS-1388 вместо CASE-1388, «Expert»). Источник правды — HTML-макеты.</p>
+    <p>Что проверить первым и дешевле всего: заменить меню трея (TrayHost) на флайаут G в состоянии «Needs you». Это примерно неделя работы, и сразу появляется кадр для Store.</p>
+    <p style="color:var(--muted);font-size:13px;margin-top:12px">Концепты Nano Banana — настроение, а не спецификация: модель местами искажает мелкий текст (CASE-2423, «Inzident» на e-1; «Working drunks» и повторяющиеся строки на g-1). Источник правды — HTML-макеты.</p>
   </div>
 </div>
 </body>
