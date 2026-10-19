@@ -66,7 +66,7 @@
 				<li>No page contents and no full URLs. Only the domain of the browser tab is kept.</li>
 			</ul>
 			<h3>When you click “Sort my day”</h3>
-			<p>Matching Jira keys in window titles, URLs and git branch names happens locally, without AI. Only when you click <strong>Sort my day</strong> does the app send the blocks it could not match to the AI service selected in the app’s settings. For each block it sends:</p>
+			<p>Matching Jira keys in window titles, URLs and git branch names happens locally, without AI. Only when you click <strong>Sort my day</strong> does the app send the blocks it could not match to our AI server, which forwards them to OpenAI to get suggestions. Our server does not log window titles, and OpenAI does not use API data to train its models. For each block it sends:</p>
 			<ul>
 				<li>the window title, with emails, long numbers and similar identifiers masked;</li>
 				<li>the app name and the domain (not the full address);</li>
