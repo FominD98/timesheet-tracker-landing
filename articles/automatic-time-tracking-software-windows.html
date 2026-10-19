@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Automatic Time Tracking Software for Windows (2026)</title>
+	<meta name="description" content="How automatic time tracking works on Windows, how raw activity becomes a timesheet, a privacy checklist, and a fair comparison of desktop auto-trackers.">
+	<link rel="canonical" href="https://timesheet-tracker.com/articles/automatic-time-tracking-software-windows.html">
+	<meta name="robots" content="index, follow, max-image-preview:large">
+	<meta name="author" content="AI Timesheet team">
+	<meta name="theme-color" content="#f5f6fb">
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+	<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+	<meta property="og:type" content="article">
+	<meta property="og:site_name" content="Timesheet Tracker">
+	<meta property="og:title" content="Automatic Time Tracking Software for Windows (2026)">
+	<meta property="og:description" content="How automatic time tracking works on Windows, how raw activity becomes a timesheet, a privacy checklist, and a fair comparison of desktop auto-trackers.">
+	<meta property="og:url" content="https://timesheet-tracker.com/articles/automatic-time-tracking-software-windows.html">
+	<meta property="og:image" content="https://timesheet-tracker.com/og-image.png">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="article:published_time" content="2026-10-19">
+	<meta name="twitter:card" content="summary_large_image">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap">
+	<link rel="stylesheet" href="/css/landing.css">
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Article",
+		"headline": "Automatic time tracking software for Windows: how it works and how to choose",
+		"description": "How automatic time tracking works on Windows, how raw activity becomes a timesheet, a privacy checklist, and a fair comparison of desktop auto-trackers.",
+		"datePublished": "2026-10-19",
+		"dateModified": "2026-10-19",
+		"inLanguage": "en",
+		"mainEntityOfPage": "https://timesheet-tracker.com/articles/automatic-time-tracking-software-windows.html",
+		"image": "https://timesheet-tracker.com/og-image.png",
+		"author": {"@type": "Organization", "name": "AI Timesheet team", "url": "https://timesheet-tracker.com/"},
+		"publisher": {"@type": "Organization", "name": "Timesheet Tracker", "url": "https://timesheet-tracker.com/", "logo": {"@type": "ImageObject", "url": "https://timesheet-tracker.com/apple-touch-icon.png"}}
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		"itemListElement": [
+			{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://timesheet-tracker.com/"},
+			{"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://timesheet-tracker.com/articles/"},
+			{"@type": "ListItem", "position": 3, "name": "Automatic time tracking", "item": "https://timesheet-tracker.com/articles/automatic-time-tracking-software-windows.html"}
+		]
+	}
+	</script>
+	<script src="/js/landing.js" defer></script>
+</head>
+<body>
+	<a class="skip" href="#main">Skip to content</a>
+	<header class="site-header">
+		<nav class="wrap nav" aria-label="Main">
+			<a class="brand" href="/"><img src="/favicon.svg" width="30" height="30" alt="">Timesheet Tracker</a>
+			<ul class="nav-links">
+				<li><a href="/#how">How it works</a></li>
+				<li><a href="/#features">Features</a></li>
+				<li><a href="/#privacy">Privacy</a></li>
+				<li><a href="/#compare">Compare</a></li>
+				<li><a href="/articles/">Guides</a></li>
+			</ul>
+			<div class="nav-cta">
+				<a class="btn btn-primary btn-sm" href="#waitlist">Join the waitlist</a>
+				<button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false"><span></span></button>
+			</div>
+		</nav>
+	</header>
+
+	<main id="main">
+		<section class="page-hero">
+			<div class="aurora" aria-hidden="true"></div>
+			<div class="wrap">
+				<ol class="crumbs">
+					<li><a href="/">Home</a></li>
+					<li><a href="/articles/">Guides</a></li>
+					<li>Automatic time tracking</li>
+				</ol>
+				<h1>Automatic time tracking software for Windows: how it works and how to choose</h1>
+				<p class="dek">What a passive tracker actually records on your PC, how that raw activity becomes a timesheet, and the privacy questions to ask before you install one.</p>
+				<div class="byline">
+					<img src="/favicon.svg" width="28" height="28" alt="">
+					<span>By <b>AI Timesheet team</b></span>
+					<span>·</span>
+					<time datetime="2026-10-19">October 19, 2026</time>
+					<span>·</span>
+					<span>8 min read</span>
+				</div>
+			</div>
+		</section>
+
+		<div class="article-layout">
+			<article class="prose">
+				<div class="tldr">
+					<b>Short answer</b>
+					<ul>
+						<li>Automatic time tracking records which app and window you were in, minute by minute, so you don't have to remember to start a timer.</li>
+						<li>On Windows this comes down to a few well-known signals: the foreground window, its title and process, the browser tab, idle time, and lock/unlock events.</li>
+						<li>The raw log is not a timesheet. Rules, Jira-key matching and (optionally) AI turn it into entries you review and confirm.</li>
+						<li>Before installing anything, check where data is stored, what leaves your machine, and who else can see it.</li>
+					</ul>
+				</div>
+
+				<h2 id="automatic-vs-timers">Automatic tracking vs. timers</h2>
+				<p>A timer-based tool asks you to press Start when you begin a task and Stop when you switch. It produces clean data on the days you remember, and holes on the days you don't. Anyone who has reconstructed a Friday afternoon from Slack history and commit timestamps knows how that ends.</p>
+				<p>Automatic (passive) tracking flips the order. The app runs in the background and records what you were doing, without asking. You decide <em>afterwards</em> what that activity was for. Capture is complete by default; the work moves from "remember to click" to "review and label."</p>
+				<p>That trade matters most for people who switch context a lot: developers bouncing between an IDE, pull requests and Jira, support engineers juggling tickets, consultants billing several clients in one day. For someone who spends four hours straight in one document, a timer is fine.</p>
+
+				<h2 id="how-it-works-on-windows">How passive tracking works on Windows</h2>
+				<p>There is no magic here. Most desktop auto-trackers rely on the same handful of documented Windows mechanisms.</p>
+				<h3>Foreground window and title</h3>
+				<p>Windows exposes the window you are currently using through the Win32 function <code>GetForegroundWindow</code>. A tracker either polls it every second or two, or subscribes to foreground-change events, then reads the window's title. Titles are surprisingly informative. A VS Code window might be titled <code>auth-service · feature/CASE-1423-token-refresh</code>, which already tells you the repository and the branch.</p>
+				<h3>Process name</h3>
+				<p>From the window handle, the tracker can look up the owning process, for example <code>Code.exe</code>, <code>OUTLOOK.EXE</code> or <code>chrome.exe</code>. The process name is the stable "app" label; the title is the volatile detail.</p>
+				<h3>Browser tab: title and domain</h3>
+				<p>For browsers, the window title is the active tab's page title. Getting the address is harder. Trackers typically use one of two routes: Windows UI Automation, which can read the address bar the same way a screen reader does, or a browser extension that reports the active tab. Either way, a good tracker can reduce <code>github.com/acme/billing/pull/412</code> to just the domain, <code>github.com</code>, if you prefer not to keep full URLs.</p>
+				<h3>Idle detection</h3>
+				<p><code>GetLastInputInfo</code> returns the time of the last keyboard or mouse input. It does not reveal <em>what</em> you typed, only <em>when</em>. If nothing has happened for, say, five minutes, the tracker marks that stretch as idle so a lunch break doesn't count as forty minutes in Outlook.</p>
+				<h3>Session lock and unlock</h3>
+				<p>Apps can register for session notifications and receive an event when you press <kbd>Win</kbd>+<kbd>L</kbd> and when you sign back in. That gives clean boundaries for meetings in another room, breaks and the end of the day.</p>
+				<div class="callout">
+					<p><b>What these signals don't include.</b> None of the mechanisms above require screenshots or keystroke logging. A tracker that does capture those has chosen to, and you should know why.</p>
+				</div>
+
+				<h2 id="from-activity-to-timesheet">From raw activity to a timesheet</h2>
+				<p>A day of passive tracking looks like hundreds of small blocks: 4 minutes in Teams, 11 in VS Code, 2 in Chrome on <code>jira.example.com</code>, back to VS Code. Nobody wants to submit that. Three layers turn it into something useful.</p>
+				<ol>
+					<li><b>Rules.</b> "Anything in <code>Figma.exe</code> goes to Design," "Calendar time in Teams goes to Meetings." Predictable and transparent, but they need maintenance and break when your work changes.</li>
+					<li><b>Keyword and Jira-key matching.</b> Issue keys like <code>CASE-1423</code> show up everywhere: branch names, PR titles, Jira tab titles, commit messages in your git client. A simple pattern match (letters, a dash, digits) can attach a large share of a developer's day to the right issue with no guesswork and no AI at all.</li>
+					<li><b>AI classification.</b> For blocks with no key, such as a Slack thread, a design doc or a meeting, a language model can suggest which task they most likely belong to, based on titles and context around them. It is a suggestion, not a verdict; you still confirm.</li>
+				</ol>
+				<p>The last step is always a human review. Our guide on how to <a href="/articles/fill-timesheet-in-10-minutes.html">fill your timesheet in 10 minutes</a> covers that habit in detail, and <a href="/articles/how-to-log-time-in-jira.html">how to log time in Jira</a> explains where the confirmed entries end up.</p>
+
+				<h2 id="privacy-checklist">Privacy checklist for choosing a tracker</h2>
+				<p>An auto-tracker sees a lot of your day. Run through this list before installing one, and look for answers in the vendor's documentation rather than the marketing page.</p>
+				<ul>
+					<li><b>Where is data stored?</b> On your device, in the vendor's cloud, or both? Local-first means the activity log stays on your PC unless you choose to send something.</li>
+					<li><b>What leaves the device, and when?</b> Continuous sync, a daily upload, or only when you click a specific button?</li>
+					<li><b>Screenshots?</b> Is screen capture on, off, or configurable, and by whom?</li>
+					<li><b>Keystrokes?</b> Counting input activity for idle detection is different from recording what you typed. Ask which one it is.</li>
+					<li><b>Full URLs or just domains?</b> Full URLs can contain document names, customer IDs and search terms.</li>
+					<li><b>Who can see the data?</b> Is there an employer or admin dashboard? Can a manager view individual timelines?</li>
+					<li><b>Export and delete.</b> Can you export everything and delete it permanently, including from backups in the cloud?</li>
+					<li><b>Offline mode.</b> Does tracking work without a network connection, and does it work without any account at all?</li>
+					<li><b>AI processing.</b> If AI is involved, what exactly is sent, to whom, and can you switch it off?</li>
+				</ul>
+				<p>For reference, here is how we answer these for our own app on the <a href="/#privacy">Timesheet Tracker privacy page</a>.</p>
+
+				<h2 id="monitoring-vs-personal">Employee monitoring vs. personal time tracking</h2>
+				<p>These two categories use similar technology and very different intentions, and they often show up in the same search results.</p>
+				<p><b>Employee monitoring</b> software is installed for the employer. Data flows to a central dashboard, admins configure what is captured, and features like screenshots, productivity scores and activity alerts are common. The person being tracked is the subject, not the user.</p>
+				<p><b>Personal time tracking</b> is installed by you, for you. The goal is an accurate timesheet with less effort. You control the data, you decide what gets submitted, and nobody sees your raw timeline unless you share it.</p>
+				<div class="callout warn">
+					<p>If a tool's pricing page talks about "team visibility," "productivity scores" or "screenshots every N minutes," it is built for monitoring, whatever the homepage says. That isn't wrong in itself, but it is a different product from the one you want for your own timesheet.</p>
+				</div>
+
+				<h2 id="comparison">Comparison: desktop auto-trackers on Windows</h2>
+				<p>The table below reflects our reading of vendor sites as of October 2026. Plans and features change often, so verify current details before you decide. Where we weren't sure, we wrote "check vendor."</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Tool</th>
+							<th>Capture approach</th>
+							<th>Where data lives</th>
+							<th>Jira worklogs</th>
+							<th>Pricing note</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Timesheet Tracker</td>
+							<td>Automatic: active app, window title, browser tab domain, idle/lock</td>
+							<td>Locally on your PC</td>
+							<td>Yes: Jira Cloud and Server/Data Center, after you confirm the day</td>
+							<td>Free during early access; Microsoft Store release coming</td>
+						</tr>
+						<tr>
+							<td>Memtime</td>
+							<td>Automatic, local-first activity timeline</td>
+							<td>Locally, by vendor's description</td>
+							<td>Via integrations; check vendor</td>
+							<td>Roughly $14–30/mo per user; not in the Microsoft Store</td>
+						</tr>
+						<tr>
+							<td>Timely</td>
+							<td>Automatic "Memory" tracking with AI-drafted entries</td>
+							<td>Cloud</td>
+							<td>Check vendor</td>
+							<td>Roughly $11–28/mo per user</td>
+						</tr>
+						<tr>
+							<td>Rize</td>
+							<td>Automatic, focused on focus and productivity, AI categorization</td>
+							<td>Cloud; check vendor</td>
+							<td>Check vendor</td>
+							<td>Paid subscription; check vendor</td>
+						</tr>
+						<tr>
+							<td>ManicTime</td>
+							<td>Automatic, long-standing Windows timeline tracker</td>
+							<td>Local, with an optional server</td>
+							<td>Check vendor</td>
+							<td>Free and paid editions; check vendor</td>
+						</tr>
+						<tr>
+							<td>RescueTime</td>
+							<td>Automatic, productivity analytics</td>
+							<td>Cloud</td>
+							<td>Check vendor</td>
+							<td>Check vendor</td>
+						</tr>
+						<tr>
+							<td>Toggl Track</td>
+							<td>Manual timer first; desktop app adds timeline/auto-tracker features</td>
+							<td>Cloud (timeline data; check vendor)</td>
+							<td>Check vendor</td>
+							<td>Free tier and paid plans; check vendor</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>A rough way to read it: if you want insight into how you spend attention, RescueTime and Rize lean that way. If you bill clients from a shared team workspace, Timely and Toggl Track are built around that. If your end product is Jira worklogs and you want the raw activity to stay on your machine, look at local-first tools such as Memtime, ManicTime or our own <a href="/">automatic time tracker for Jira</a>. If Tempo is part of your setup, see our <a href="/articles/tempo-timesheets-alternatives.html">Tempo Timesheets alternatives</a> roundup too.</p>
+				<h3>Where Timesheet Tracker fits</h3>
+				<p>Timesheet Tracker is a tray app for individuals. It finds Jira keys in titles, URLs and git branch names locally, without AI. For the rest of the day there is a "Sort my day" button: AI assigns remaining blocks to Jira tasks and drafts one worklog text per task. You change a task or mark a block as not work, confirm the day, and worklogs go to Jira without duplicates, or out as CSV. Only when you click that button are masked window titles, app names, domains and durations sent; never full URLs, page content, screenshots, keystrokes or your Jira token. There is also a "No AI" mode. Tempo and Excel export are planned, not shipped.</p>
+
+				<h2 id="setup-that-works">How to set it up so it's actually useful</h2>
+				<p>Most people who abandon automatic tracking do so in the first week, because the first day's timeline looks messy. A little setup fixes most of that.</p>
+				<ol>
+					<li><b>Run a one-week trial on real work.</b> Don't judge from day one. You need a few normal days to see which blocks are matched well and which aren't.</li>
+					<li><b>Name things by Jira key.</b> Put the key in branch names, such as <code>feature/ABC-123-retry-webhooks</code>, and in PR titles. The tracker then sees <code>ABC-123</code> in your IDE title, your git client and the pull request tab, and most coding time sorts itself.</li>
+					<li><b>Keep Jira tabs open while you work.</b> A tab titled "[ABC-123] Retry failed webhooks" is a strong signal for the minutes around it.</li>
+					<li><b>Review daily for one minute in week one.</b> Fix the handful of wrong assignments while the day is still fresh. This is also when you'll notice blocks that should be marked as not work.</li>
+					<li><b>Then switch to a weekly review.</b> Once matching is reliable, a single pass on Friday is usually enough.</li>
+					<li><b>Decide your privacy defaults up front.</b> Domains instead of URLs, AI on or off, which apps to ignore. Changing them later is fine, but deciding early avoids second-guessing.</li>
+				</ol>
+				<p>If you want to see how far AI can take the labeling step, read <a href="/articles/ai-timesheet.html">AI timesheet: can AI fill your timesheet?</a></p>
+
+				<section class="article-cta" id="waitlist">
+					<h2>Let your timesheet fill itself</h2>
+					<p>Timesheet Tracker records your day locally, matches Jira keys for you, and sends worklogs only after you confirm. It's free during early access and coming soon to the Microsoft Store.</p>
+					<form class="waitlist" data-waitlist novalidate>
+						<div class="wl-row">
+							<label class="sr-only" for="wl-email">Email</label>
+							<input id="wl-email" type="email" name="email" placeholder="you@company.com" autocomplete="email" required>
+							<input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+							<button class="btn btn-primary" type="submit"><span class="spinner" aria-hidden="true"></span><span class="lbl">Join the waitlist</span></button>
+						</div>
+						<p class="wl-msg" role="status" aria-live="polite"></p>
+						<div class="wl-done">
+							<span class="tick"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+							<div><b>You're on the list.</b><span>We'll email you once, when Timesheet Tracker is live in the Microsoft Store.</span></div>
+						</div>
+					</form>
+				</section>
+
+				<aside class="related">
+					<h2>Related guides</h2>
+					<ul>
+						<li><a href="/articles/how-to-log-time-in-jira.html">How to log time in Jira</a></li>
+						<li><a href="/articles/tempo-timesheets-alternatives.html">Tempo Timesheets alternatives</a></li>
+						<li><a href="/articles/fill-timesheet-in-10-minutes.html">How to fill your timesheet in 10 minutes</a></li>
+						<li><a href="/articles/ai-timesheet.html">AI timesheet: can AI fill your timesheet?</a></li>
+					</ul>
+				</aside>
+			</article>
+
+			<aside class="toc" aria-label="On this page">
+				<b>On this page</b>
+				<ol>
+					<li><a href="#automatic-vs-timers">Automatic tracking vs. timers</a></li>
+					<li><a href="#how-it-works-on-windows">How passive tracking works on Windows</a></li>
+					<li><a href="#from-activity-to-timesheet">From raw activity to a timesheet</a></li>
+					<li><a href="#privacy-checklist">Privacy checklist</a></li>
+					<li><a href="#monitoring-vs-personal">Monitoring vs. personal tracking</a></li>
+					<li><a href="#comparison">Comparison table</a></li>
+					<li><a href="#setup-that-works">Setup that actually works</a></li>
+				</ol>
+				<div class="toc-cta">
+					<b style="margin:0;color:var(--ink);font-size:15px;letter-spacing:-.01em;text-transform:none">Timesheet Tracker</b>
+					<p>The timesheet that fills itself. Coming soon to the Microsoft Store.</p>
+					<a class="btn btn-primary btn-sm" href="#waitlist">Join the waitlist</a>
+				</div>
+			</aside>
+		</div>
+	</main>
+
+	<footer class="site-footer">
+		<div class="wrap">
+			<div class="foot-grid">
+				<div class="foot-about">
+					<a class="brand" href="/"><img src="/favicon.svg" width="30" height="30" alt="">Timesheet Tracker</a>
+					<p>Automatic time tracking and an AI timesheet for Jira, on Windows. Local-first. No screenshots.</p>
+				</div>
+				<div>
+					<h4>Product</h4>
+					<ul>
+						<li><a href="/#how">How it works</a></li>
+						<li><a href="/#privacy">Privacy by design</a></li>
+						<li><a href="/#compare">Comparison</a></li>
+						<li><a href="/#faq">FAQ</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4>Guides</h4>
+					<ul>
+						<li><a href="/articles/how-to-log-time-in-jira.html">Log time in Jira</a></li>
+						<li><a href="/articles/automatic-time-tracking-software-windows.html">Automatic time tracking</a></li>
+						<li><a href="/articles/tempo-timesheets-alternatives.html">Tempo alternatives</a></li>
+						<li><a href="/articles/fill-timesheet-in-10-minutes.html">Timesheet in 10 minutes</a></li>
+						<li><a href="/articles/ai-timesheet.html">AI timesheet</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4>Company</h4>
+					<ul>
+						<li><a href="mailto:help@timesheet-tracker.com">help@timesheet-tracker.com</a></li>
+						<li><a href="/privacy.html">Privacy policy</a></li>
+						<li><a href="/terms.html">Terms</a></li>
+						<li><a href="/ru/">Русская версия</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="foot-bottom">
+				<span>© <span data-year>2026</span> Timesheet Tracker. Jira is a trademark of Atlassian. Not affiliated with Atlassian or Microsoft.</span>
+				<span>Made for people who log their own time.</span>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>

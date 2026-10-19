@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>AI Time Tracker &amp; Timesheet for Jira | Timesheet Tracker</title>
+	<meta name="description" content="Automatic time tracking for Windows. Records your day locally, matches it to Jira and drafts your worklogs. No screenshots. Join the waitlist.">
+	<link rel="canonical" href="https://timesheet-tracker.com/">
+	<link rel="alternate" hreflang="en" href="https://timesheet-tracker.com/">
+	<link rel="alternate" hreflang="ru" href="https://timesheet-tracker.com/ru/">
+	<link rel="alternate" hreflang="x-default" href="https://timesheet-tracker.com/">
+	<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+	<meta name="theme-color" content="#f5f6fb">
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+	<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="Timesheet Tracker">
+	<meta property="og:title" content="Timesheet Tracker — the timesheet that fills itself">
+	<meta property="og:description" content="AI time tracker and timesheet for Jira on Windows. Local-first, no screenshots. An hour of Friday → 10 seconds.">
+	<meta property="og:url" content="https://timesheet-tracker.com/">
+	<meta property="og:image" content="https://timesheet-tracker.com/og-image.png">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="og:locale" content="en_US">
+	<meta property="og:locale:alternate" content="ru_RU">
+	<meta name="twitter:card" content="summary_large_image">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap">
+	<link rel="stylesheet" href="/css/landing.css">
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "SoftwareApplication",
+		"name": "Time Tracker & Timesheet - AI for Jira",
+		"alternateName": "Timesheet Tracker",
+		"applicationCategory": "BusinessApplication",
+		"applicationSubCategory": "Time tracking",
+		"operatingSystem": "Windows",
+		"url": "https://timesheet-tracker.com/",
+		"image": "https://timesheet-tracker.com/og-image.png",
+		"description": "Windows tray app that records your workday locally (active app, window title, browser domain, idle), finds Jira keys automatically, lets AI sort the rest on request and drafts one worklog per task. You review and confirm; worklogs go to Jira Cloud or Jira Server/Data Center, or to CSV.",
+		"featureList": [
+			"Passive, local capture of active app, window title, browser tab domain and idle/lock time",
+			"Jira keys detected in window titles, URLs and git branches locally, without AI",
+			"Sort my day: AI assigns remaining time blocks to Jira tasks and drafts worklog text",
+			"Review screen: change the task or mark a block as not work",
+			"Worklogs to Jira Cloud and Jira Server/Data Center without duplicates",
+			"CSV export",
+			"No-AI mode",
+			"No screenshots, no keystroke logging, no manager reports"
+		],
+		"offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD", "description": "Free during early access"},
+		"publisher": {"@type": "Organization", "name": "Timesheet Tracker", "url": "https://timesheet-tracker.com/"}
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		"name": "Timesheet Tracker",
+		"url": "https://timesheet-tracker.com/",
+		"logo": "https://timesheet-tracker.com/apple-touch-icon.png",
+		"contactPoint": {"@type": "ContactPoint", "email": "help@timesheet-tracker.com", "contactType": "customer support", "availableLanguage": ["English", "Russian"]}
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		"mainEntity": [
+			{"@type": "Question", "name": "Is Timesheet Tracker an employee monitoring tool?", "acceptedAnswer": {"@type": "Answer", "text": "No. It is built for the person who logs the time. There are no screenshots, no keystroke logging, no manager dashboards and no team reports. Your activity stays on your PC, and only the worklogs you confirm are sent to Jira."}},
+			{"@type": "Question", "name": "What data leaves my computer?", "acceptedAnswer": {"@type": "Answer", "text": "Nothing, until you act. When you click Sort my day, masked window titles, app names, domains and durations of the unassigned blocks are sent to the AI. Full URLs, page content, screenshots, keystrokes and your Jira token are never sent. When you confirm the day, the worklogs you approved go to your Jira."}},
+			{"@type": "Question", "name": "Can I use it without AI?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. In No-AI mode nothing is sent to an AI provider. Jira keys in window titles, URLs and git branches are still matched locally, and you assign the remaining blocks yourself in the review screen."}},
+			{"@type": "Question", "name": "Which Jira versions does it support?", "acceptedAnswer": {"@type": "Answer", "text": "Jira Cloud and Jira Server / Data Center. Worklogs are written with your own account, and re-sending a day does not create duplicates."}},
+			{"@type": "Question", "name": "How does it know which Jira task I worked on?", "acceptedAnswer": {"@type": "Answer", "text": "Most of the day is matched without AI: Jira keys such as ABC-123 appear in window titles, browser tabs, pull request names and git branch names like feature/ABC-123-login. AI only handles the leftovers, and you confirm every assignment before anything is logged."}},
+			{"@type": "Question", "name": "Does it work with Tempo or Excel?", "acceptedAnswer": {"@type": "Answer", "text": "Today it writes native Jira worklogs and exports CSV. Direct Tempo support and Excel (XLSX) export are planned."}},
+			{"@type": "Question", "name": "How much does it cost?", "acceptedAnswer": {"@type": "Answer", "text": "Timesheet Tracker is free during early access. If paid plans appear later, they will be announced in advance and early users will hear first."}},
+			{"@type": "Question", "name": "When can I download it?", "acceptedAnswer": {"@type": "Answer", "text": "The app is almost ready and is coming to the Microsoft Store. Join the waitlist and we will send you one email when it is live."}},
+			{"@type": "Question", "name": "Is there a Mac or Linux version?", "acceptedAnswer": {"@type": "Answer", "text": "Not yet. Timesheet Tracker is a Windows app. Tell us at help@timesheet-tracker.com if you need another platform."}}
+		]
+	}
+	</script>
+	<script src="/js/landing.js" defer></script>
+</head>
+<body>
+	<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+		<symbol id="spark" viewBox="0 0 24 24"><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z"/><path d="M19 2l.8 2.2L22 5l-2.2.8L19 8l-.8-2.2L16 5l2.2-.8z" opacity=".7"/></symbol>
+		<symbol id="i-today" viewBox="0 0 24 24"><path d="M4 6h16v14H4zM4 10h16M9 3v4M15 3v4"/></symbol>
+		<symbol id="i-week" viewBox="0 0 24 24"><path d="M4 5h16v15H4zM4 9h16M9 9v11M14 9v11"/></symbol>
+		<symbol id="i-projects" viewBox="0 0 24 24"><path d="M3 7h7l2 2h9v10H3z"/></symbol>
+		<symbol id="i-rules" viewBox="0 0 24 24"><path d="M5 7h9M5 12h14M5 17h7M17 5l2 2-2 2"/></symbol>
+		<symbol id="i-export" viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></symbol>
+		<symbol id="i-settings" viewBox="0 0 24 24"><path d="M12 9a3 3 0 100 6 3 3 0 000-6zM12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></symbol>
+		<symbol id="chk" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+		<symbol id="jira" viewBox="0 0 32 32"><path d="M16 3l7 7-7 7-7-7z" fill="#fff"/><path d="M16 15l7 7-7 7-7-7z" fill="#fff" opacity=".75"/></symbol>
+		<symbol id="winctl" viewBox="0 0 36 12"><path d="M1 6h9M15 1.5h9v9h-9zM29 1.5l6 9M35 1.5l-6 9"/></symbol>
+	</svg>
+
+	<a class="skip" href="#main">Skip to content</a>
+	<header class="site-header">
+		<nav class="wrap nav" aria-label="Main">
+			<a class="brand" href="/"><img src="/favicon.svg" width="30" height="30" alt="">Timesheet Tracker</a>
+			<ul class="nav-links">
+				<li><a href="#how">How it works</a></li>
+				<li><a href="#features">Features</a></li>
+				<li><a href="#privacy">Privacy</a></li>
+				<li><a href="#compare">Compare</a></li>
+				<li><a href="#faq">FAQ</a></li>
+				<li><a href="/articles/">Guides</a></li>
+			</ul>
+			<div class="nav-cta">
+				<a class="lang-switch" href="/ru/" hreflang="ru" lang="ru" title="Русская версия">RU</a>
+				<a class="btn btn-primary btn-sm" href="#join">Join the waitlist</a>
+				<button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false"><span></span></button>
+			</div>
+		</nav>
+	</header>
+
+	<main id="main">
+		<!-- ============ HERO ============ -->
+		<section class="hero">
+			<div class="aurora" aria-hidden="true"></div>
+			<div class="wrap hero-inner">
+				<span class="store-badge"><span class="ms" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Coming soon to Microsoft Store <span class="soon">Early access</span></span>
+				<h1>AI time tracker &amp; timesheet for Jira <span class="grad">that fills itself.</span></h1>
+				<p class="lede">Automatic time tracking for Windows. Timesheet Tracker quietly records your day, finds Jira keys on its own and drafts your worklogs. You review, click once, and <strong>an hour of Friday becomes 10 seconds.</strong></p>
+
+				<form class="waitlist" data-waitlist novalidate>
+					<p class="waitlist-note">The app is almost ready — leave your email and we'll write when it's live.</p>
+					<div class="wl-row">
+						<label class="sr-only" for="wl-email-top">Email</label>
+						<input id="wl-email-top" type="email" name="email" placeholder="you@company.com" autocomplete="email" required>
+						<input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+						<button class="btn btn-primary" type="submit"><span class="spinner" aria-hidden="true"></span><span class="lbl">Join the waitlist</span></button>
+					</div>
+					<p class="wl-msg" role="status" aria-live="polite"></p>
+					<div class="wl-done">
+						<span class="tick"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+						<div><b>You're on the list.</b><span>We'll email you once, when Timesheet Tracker is live in the Microsoft Store.</span></div>
+					</div>
+				</form>
+
+				<ul class="trust">
+					<li>Stored on your PC</li>
+					<li>No screenshots</li>
+					<li>Jira Cloud &amp; Data Center</li>
+					<li>Free in early access</li>
+				</ul>
+			</div>
+
+			<div class="hero-stage">
+				<div class="mock mock-crop" role="img" aria-label="Timesheet Tracker Today view: KPI tiles, activity and work timeline, live capture list matched to Jira keys, and the AI timesheet panel with the Sort my day button">
+					<div class="win" data-demo aria-hidden="true">
+						<div class="win-bar"><img class="ico" src="/favicon.svg" width="18" height="18" alt=""><span class="t">Timesheet Tracker</span><span class="ctl"><i><svg viewBox="0 0 12 12"><path d="M1 6h10"/></svg></i><i><svg viewBox="0 0 12 12"><path d="M1.5 1.5h9v9h-9z"/></svg></i><i><svg viewBox="0 0 12 12"><path d="M1.5 1.5l9 9M10.5 1.5l-9 9"/></svg></i></span></div>
+						<div class="win-body">
+							<div class="rail">
+								<span class="rail-i on"><svg><use href="#i-today"/></svg>Today</span>
+								<span class="rail-i"><svg><use href="#i-week"/></svg>Week</span>
+								<span class="rail-i"><svg><use href="#i-projects"/></svg>Projects</span>
+								<span class="rail-i"><svg><use href="#i-rules"/></svg>Rules</span>
+								<span class="sp"></span>
+								<span class="rail-i"><svg><use href="#i-export"/></svg>Export</span>
+								<span class="rail-i"><svg><use href="#i-settings"/></svg>Settings</span>
+							</div>
+							<div class="surface today">
+								<div class="today-head"><h3>Today</h3><span class="date">· Fri, Oct 16</span><span class="capturing">Capturing · stored on this PC</span></div>
+								<div class="today-main">
+									<div class="kpis">
+										<div class="m-card kpi"><div class="l">Tracked</div><div class="v"><span class="a">8h 35m</span><span class="b">8h 35m</span></div></div>
+										<div class="m-card kpi"><div class="l">Auto-assigned</div><div class="v"><span class="a">5h 00m</span><span class="b">7h 55m</span></div></div>
+										<div class="m-card kpi"><div class="l">Unassigned</div><div class="v warn"><span class="a">3h 35m</span><span class="b">0h 40m</span></div></div>
+										<div class="m-card kpi"><div class="l">Matched to Jira</div><div class="v"><span class="a">58%</span><span class="b">92%</span></div><div class="bar"><i></i></div></div>
+									</div>
+									<div class="m-card tl">
+										<div class="tl-lines"><i style="--h:0"></i><i style="--h:1"></i><i style="--h:2"></i><i style="--h:3"></i><i style="--h:4"></i><i style="--h:5"></i><i style="--h:6"></i><i style="--h:7"></i><i style="--h:8"></i><i style="--h:9"></i></div>
+										<div class="tl-grid">
+											<span></span>
+											<div class="tl-track tl-hours"><span style="--h:0">9:00</span><span style="--h:1">10:00</span><span style="--h:2">11:00</span><span style="--h:3">12:00</span><span style="--h:4">13:00</span><span style="--h:5">14:00</span><span style="--h:6">15:00</span><span style="--h:7">16:00</span><span style="--h:8">17:00</span><span style="--h:9">18:00</span></div>
+											<span class="tl-lab">Activity</span>
+											<div class="tl-track tl-apps">
+												<span class="seg app-seg" style="--a:0;--b:1.5;--c:#2f80ed;--i:0">VS Code</span>
+												<span class="seg app-seg" style="--a:1.5;--b:1.75;--c:#6264a7;--i:1"></span>
+												<span class="seg app-seg" style="--a:1.75;--b:3.25;--c:#e7a400;--i:2">Chrome · GitHub</span>
+												<span class="seg app-seg" style="--a:3.25;--b:4;--c:#f24e1e;--i:3">Figma</span>
+												<span class="seg app-seg" style="--a:4.75;--b:6.5;--c:#2f80ed;--i:4">VS Code</span>
+												<span class="seg app-seg" style="--a:6.5;--b:6.83;--c:#2eb67d;--i:5"></span>
+												<span class="seg app-seg" style="--a:6.83;--b:7.25;--c:#f46800;--i:6"></span>
+												<span class="seg app-seg" style="--a:7.25;--b:8.67;--c:#1868db;--i:7">Confluence</span>
+												<span class="seg app-seg" style="--a:8.67;--b:8.92;--c:#2eb67d;--i:8"></span>
+												<span class="seg app-seg" style="--a:8.92;--b:9.33;--c:#e7a400;--i:9"></span>
+											</div>
+											<span class="tl-lab">Work</span>
+											<div class="tl-track tl-work">
+												<span class="seg blk p-auth" style="--a:0;--b:1.5;--i:0"><span class="face"><span class="k">CASE-1423</span><span class="n">Auth API refactor</span></span></span>
+												<span class="seg blk p-meet" style="--a:1.5;--b:1.75;--i:1"><span class="face"></span></span>
+												<span class="seg blk p-review" style="--a:1.75;--b:3.25;--i:2"><span class="face"><span class="k">CASE-1388</span><span class="n">Code review</span></span></span>
+												<span class="seg blk ai p-onboard" style="--a:3.25;--b:4;--i:3;--d:.15s"><span class="face"><span class="k">CASE-1501</span><span class="n">Onboarding</span></span><span class="unas">?</span><span class="shine"></span></span>
+												<span class="seg away" style="--a:4;--b:4.75;--i:4">Away</span>
+												<span class="seg blk p-auth" style="--a:4.75;--b:6.5;--i:5"><span class="face"><span class="k">CASE-1423</span><span class="n">Auth API refactor</span></span></span>
+												<span class="seg blk ai p-ops" style="--a:6.5;--b:7.25;--i:6;--d:.5s"><span class="face"><span class="k">OPS-77</span><span class="n">Incident</span></span><span class="unas">?</span><span class="shine"></span></span>
+												<span class="seg blk ai p-notes" style="--a:7.25;--b:8.67;--i:7;--d:.85s"><span class="face"><span class="k">CASE-1510 <svg><use href="#spark"/></svg></span><span class="n">Release notes</span></span><span class="unas">Unassigned</span><span class="shine"></span></span>
+												<span class="seg blk pick" style="--a:8.67;--b:9.33;--i:8;--d:1.2s"><span class="face"><span class="k">Pick</span><span class="n">3 options</span></span><span class="unas">?</span><span class="shine"></span></span>
+												<span class="now" style="--t:9.33"><b>18:20</b></span>
+											</div>
+										</div>
+										<div class="feed-head"><b>Live capture</b><span>window · title · domain · idle — no screenshots</span></div>
+										<div class="feed">
+											<div class="feed-row" style="--c:#2f80ed;--i:2"><span class="dot"></span><span class="app">VS Code</span><span class="what">auth-service · feature/CASE-1423-token-refresh</span><span class="arr">→</span><span class="to"><span><span class="chip p-auth">CASE-1423</span><span class="via">git branch</span></span></span></div>
+											<div class="feed-row" style="--c:#e7a400;--i:3"><span class="dot"></span><span class="app">Chrome</span><span class="what">github.com/acme/billing/pull/412 · CASE-1388</span><span class="arr">→</span><span class="to"><span><span class="chip p-review">CASE-1388</span><span class="via">key in title</span></span></span></div>
+											<div class="feed-row ai" style="--c:#f24e1e;--i:4;--d:.15s"><span class="dot"></span><span class="app">Figma</span><span class="what">Onboarding v3 — screens</span><span class="arr">→</span><span class="to"><span class="before"><span class="chip grey">? Unassigned</span></span><span class="after"><span class="chip p-onboard">CASE-1501</span><span class="ai-tag"><svg><use href="#spark"/></svg>AI</span></span></span></div>
+											<div class="feed-row" style="--c:#9ca3af;--i:5"><span class="dot"></span><span class="app">Away</span><span class="what">Screen locked · 45 min</span><span class="arr">→</span><span class="to"><span class="muted-t">Lunch · not logged</span></span></div>
+											<div class="feed-row ai" style="--c:#2eb67d;--i:6;--d:.5s"><span class="dot"></span><span class="app">Slack</span><span class="what">#incident-billing · Grafana alerts</span><span class="arr">→</span><span class="to"><span class="before"><span class="chip grey">? Unassigned</span></span><span class="after"><span class="chip p-ops">OPS-77</span><span class="ai-tag"><svg><use href="#spark"/></svg>AI</span></span></span></div>
+											<div class="feed-row ai" style="--c:#1868db;--i:7;--d:.85s"><span class="dot"></span><span class="app">Confluence</span><span class="what">Release 4.2 — notes draft</span><span class="arr">→</span><span class="to"><span class="before"><span class="chip grey">? Unassigned</span></span><span class="after"><span class="chip p-notes">CASE-1510</span><span class="ai-tag"><svg><use href="#spark"/></svg>AI</span></span></span></div>
+											<div class="feed-row ai" style="--c:#2eb67d;--i:8;--d:1.2s"><span class="dot"></span><span class="app">Slack</span><span class="what">DMs, Chrome tabs — mixed</span><span class="arr">→</span><span class="to"><span class="before"><span class="chip grey">? Unassigned</span></span><span class="after"><span class="chip warn">Needs you · 3 options</span></span></span></div>
+										</div>
+									</div>
+								</div>
+								<div class="aip">
+									<div class="aip-in">
+										<div class="aip-h"><span class="ic"><svg><use href="#spark"/></svg></span><div><b>AI timesheet</b><small>Matches what rules couldn't</small></div></div>
+										<div class="aip-idle">
+											<div class="l">Left to sort today</div>
+											<div class="big">3h 35m</div>
+											<div class="s">4 blocks need a task</div>
+											<div class="note">Sends only masked window titles, app names, domains and durations. Raw events never leave this PC.</div>
+											<button class="sort-btn" type="button" tabindex="-1" data-busy="Reading 4 blocks · titles only…"><span><svg><use href="#spark"/></svg>Sort my day</span></button>
+										</div>
+										<div class="aip-res">
+											<div class="sug"><div class="top"><span class="chip p-onboard">CASE-1501</span><span class="conf">88%</span></div><p>Updated onboarding screens with design team</p><small>45m</small></div>
+											<div class="sug"><div class="top"><span class="chip p-ops">OPS-77</span><span class="conf">81%</span></div><p>Billing incident follow-up, alert tuning</p><small>45m</small></div>
+											<div class="sug"><div class="top"><span class="chip p-notes">CASE-1510</span><span class="conf mid">76%</span></div><p>Drafted release 4.2 notes</p><small>1h 25m</small></div>
+											<div class="sug need"><div class="top"><b>Needs you</b><span class="conf">3 options</span></div><p>Slack and Chrome tabs, mixed. Decide in review.</p><small>40m</small></div>
+										</div>
+										<div class="aip-foot"><span class="g">✓ 3 matched</span><span style="color:var(--muted)">·</span><span class="y">1 needs you</span></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="hero-caption"><span class="pill-dark"><span class="cap-a">Captures your day. Locally. Jira keys found automatically.</span><span class="cap-b"><svg width="16" height="16" fill="#fff" aria-hidden="true"><use href="#spark"/></svg> AI sorts what rules couldn't</span></span></div>
+			</div>
+		</section>
+
+		<!-- ============ FRIDAY ============ -->
+		<section class="friday" aria-labelledby="friday-h">
+			<div class="wrap">
+				<h2 id="friday-h" class="clock reveal">Friday, 17<span class="colon">:</span>42.</h2>
+				<p class="empty reveal" style="--rd:.1s">Your timesheet is still empty.</p>
+				<div class="pains">
+					<div class="pain reveal" style="--rd:.05s"><b>You don't remember Tuesday.</b>Five days of tickets, reviews, calls and “quick questions” have to be rebuilt from memory, chat history and browser tabs.</div>
+					<div class="pain reveal" style="--rd:.15s"><b>Jira wants a worklog per task.</b>Open the issue, log work, type a description, pick the date. Repeat for every task, every day of the week.</div>
+					<div class="pain reveal" style="--rd:.25s"><b>Timers don't survive real work.</b>You forget to start them, forget to stop them, and switch tasks twenty times before lunch.</div>
+				</div>
+				<p class="whatif reveal"><span class="grad">What if it filled itself?</span></p>
+			</div>
+		</section>
+
+		<!-- ============ HOW ============ -->
+		<section class="section" id="how" aria-labelledby="how-h">
+			<div class="wrap">
+				<div class="section-head reveal">
+					<span class="kicker">How it works</span>
+					<h2 id="how-h">Capture. Sort. Confirm.</h2>
+					<p>No timers to start, no ticket numbers to remember. Three steps, and only the last one needs you.</p>
+				</div>
+				<div class="steps">
+					<article class="step reveal">
+						<span class="num">1</span>
+						<h3>It captures your day, quietly</h3>
+						<p>From the Windows tray, the app records the active app, window title, browser tab domain and idle or lock time. Everything is stored on your PC.</p>
+						<div class="viz" aria-hidden="true">
+							<div class="viz-row" style="--c:#2f80ed"><span class="dot"></span><b>VS Code</b><span class="m">feature/CASE-1423-token-refresh</span><span class="chip p-auth">CASE-1423</span></div>
+							<div class="viz-row" style="--c:#e7a400"><span class="dot"></span><b>Chrome</b><span class="m">pull/412 · CASE-1388</span><span class="chip p-review">CASE-1388</span></div>
+							<div class="viz-row" style="--c:#9ca3af"><span class="dot"></span><b>Away</b><span class="m">Screen locked · 45 min</span><span class="chip grey">not logged</span></div>
+							<div class="viz-row" style="--c:#f24e1e"><span class="dot"></span><b>Figma</b><span class="m">Onboarding v3 — screens</span><span class="chip grey">?</span></div>
+						</div>
+					</article>
+					<article class="step reveal" style="--rd:.1s">
+						<span class="num">2</span>
+						<h3>One button: “Sort my day”</h3>
+						<p>Jira keys in titles, URLs and git branches are matched locally, without AI. For the leftovers, AI picks the task and drafts one worklog text per task.</p>
+						<div class="viz" aria-hidden="true">
+							<div class="viz-ai">
+								<span class="sort-btn"><span><svg><use href="#spark"/></svg>Sort my day</span></span>
+								<div class="chips"><span class="chip p-onboard" style="--i:0">CASE-1501 · 88%</span><span class="chip p-ops" style="--i:1">OPS-77 · 81%</span><span class="chip p-notes" style="--i:2">CASE-1510 · 76%</span></div>
+							</div>
+						</div>
+					</article>
+					<article class="step reveal" style="--rd:.2s">
+						<span class="num">3</span>
+						<h3>You review. One click to Jira.</h3>
+						<p>Change a task or mark a block as not work, then confirm. Worklogs go to Jira Cloud or Server/Data Center — without duplicates — or to a CSV file.</p>
+						<div class="viz" aria-hidden="true">
+							<div class="viz-jira">
+								<div class="flow"><span class="chip p-auth" style="--i:0">CASE-1423</span><span class="chip p-review" style="--i:1">CASE-1388</span><span class="chip p-ops" style="--i:2">OPS-77</span></div>
+								<span class="tile j"><svg width="34" height="34"><use href="#jira"/></svg></span>
+								<span class="tile ok"><svg width="30" height="30" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><use href="#chk"/></svg></span>
+							</div>
+						</div>
+					</article>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============ WEEK SHOWCASE ============ -->
+		<section class="section" id="review" aria-labelledby="review-h" style="padding-top:20px">
+			<div class="wrap showcase">
+				<div class="section-head reveal" style="margin-bottom:8px">
+					<span class="kicker">Friday</span>
+					<h2 id="review-h">Review, don't remember.</h2>
+					<p>By Friday your week is already sorted. Skim it, fix the one block the app wasn't sure about, and send 38 hours to Jira in one click.</p>
+				</div>
+				<div class="mock-holder reveal" data-inview>
+					<div class="mock mock-crop" role="img" aria-label="Week view: Your week is ready, 38h 20m to log across seven Jira tasks, a donut chart by project, and a Confirm 38h 20m to Jira button">
+						<div class="win" aria-hidden="true">
+							<div class="win-bar"><img class="ico" src="/favicon.svg" width="18" height="18" alt=""><span class="t">Timesheet Tracker</span><span class="ctl"><i><svg viewBox="0 0 12 12"><path d="M1 6h10"/></svg></i><i><svg viewBox="0 0 12 12"><path d="M1.5 1.5h9v9h-9z"/></svg></i><i><svg viewBox="0 0 12 12"><path d="M1.5 1.5l9 9M10.5 1.5l-9 9"/></svg></i></span></div>
+							<div class="win-body">
+								<div class="rail">
+									<span class="rail-i"><svg><use href="#i-today"/></svg>Today</span>
+									<span class="rail-i on"><svg><use href="#i-week"/></svg>Week</span>
+									<span class="rail-i"><svg><use href="#i-projects"/></svg>Projects</span>
+									<span class="rail-i"><svg><use href="#i-rules"/></svg>Rules</span>
+									<span class="sp"></span>
+									<span class="rail-i"><svg><use href="#i-export"/></svg>Export</span>
+									<span class="rail-i"><svg><use href="#i-settings"/></svg>Settings</span>
+								</div>
+								<div class="surface week">
+									<div class="week-head">
+										<div><small>Week 42 · Oct 12 – 16</small><h3>Your week is ready</h3></div>
+										<div class="tolog"><small>To log</small><strong class="grad">38h 20m</strong></div>
+									</div>
+									<div class="days">
+										<div class="m-card day"><div class="r">Mon<span>7h 40m</span></div><div class="bar"><i style="--p:96%"></i></div></div>
+										<div class="m-card day"><div class="r">Tue<span>7h 55m</span></div><div class="bar"><i style="--p:99%"></i></div></div>
+										<div class="m-card day"><div class="r">Wed<span>7h 30m</span></div><div class="bar"><i style="--p:94%"></i></div></div>
+										<div class="m-card day"><div class="r">Thu<span>7h 40m</span></div><div class="bar"><i style="--p:96%"></i></div></div>
+										<div class="m-card day on"><div class="r">Fri<span>7h 35m</span></div><div class="bar"><i style="--p:95%"></i></div></div>
+									</div>
+									<div class="rows">
+										<div class="m-card wrow"><span class="who"><span class="chip p-auth">CASE-1423</span><b>Auth API refactor</b></span><span class="txt">Token refresh refactor, integration tests for auth-service</span><span class="hm">16h 20m</span><span class="st"><span class="tick"><svg><use href="#chk"/></svg></span>auto</span></div>
+										<div class="m-card wrow"><span class="who"><span class="chip p-review">CASE-1388</span><b>Code review</b></span><span class="txt">Reviewed PRs #412, #418, #421 in billing</span><span class="hm">6h 15m</span><span class="st"><span class="tick"><svg><use href="#chk"/></svg></span>auto</span></div>
+										<div class="m-card wrow"><span class="who"><span class="chip p-meet">Meetings</span><b>Daily standup</b></span><span class="txt">Daily standups, sprint planning, 1:1</span><span class="hm">4h 30m</span><span class="st"><span class="tick"><svg><use href="#chk"/></svg></span>auto</span></div>
+										<div class="m-card wrow"><span class="who"><span class="chip p-onboard">CASE-1501</span><b>Onboarding flow</b></span><span class="txt">Updated onboarding screens with design team</span><span class="hm">5h 05m</span><span class="st ai"><span class="tick"><svg><use href="#chk"/></svg></span>AI 88%</span></div>
+										<div class="m-card wrow"><span class="who"><span class="chip p-ops">OPS-77</span><b>Incident follow-up</b></span><span class="txt">Billing incident post-mortem, alert tuning</span><span class="hm">3h 10m</span><span class="st ai"><span class="tick"><svg><use href="#chk"/></svg></span>AI 81%</span></div>
+										<div class="m-card wrow"><span class="who"><span class="chip p-notes">CASE-1510</span><b>Release notes</b></span><span class="txt">Drafted release 4.2 notes in Confluence</span><span class="hm">2h 20m</span><span class="st ai"><span class="tick"><svg><use href="#chk"/></svg></span>AI 76%</span></div>
+										<div class="m-card wrow"><span class="who"><span class="chip p-notes">CASE-1510</span><b>Release notes</b></span><span class="txt">Final edits, release 4.2 notes</span><span class="hm">0h 40m</span><span class="st"><span class="tick"><svg><use href="#chk"/></svg></span>you</span></div>
+									</div>
+									<div class="side">
+										<div class="m-card">
+											<h4>By project</h4>
+											<div class="donut-wrap">
+												<svg class="donut" viewBox="0 0 180 180"><circle cx="90" cy="90" r="70" fill="none" stroke="#eef0f4" stroke-width="22"/><circle cx="90" cy="90" r="70" fill="none" stroke="#4f46e5" stroke-width="22" stroke-dasharray="184.4 440" stroke-dashoffset="0"/><circle cx="90" cy="90" r="70" fill="none" stroke="#c2410c" stroke-width="22" stroke-dasharray="68.7 440" stroke-dashoffset="-187.4"/><circle cx="90" cy="90" r="70" fill="none" stroke="#7c3aed" stroke-width="22" stroke-dasharray="48.6 440" stroke-dashoffset="-259.1"/><circle cx="90" cy="90" r="70" fill="none" stroke="#db2777" stroke-width="22" stroke-dasharray="55.3 440" stroke-dashoffset="-310.7"/><circle cx="90" cy="90" r="70" fill="none" stroke="#0f766e" stroke-width="22" stroke-dasharray="33.3 440" stroke-dashoffset="-369"/><circle cx="90" cy="90" r="70" fill="none" stroke="#0369a1" stroke-width="22" stroke-dasharray="31.4 440" stroke-dashoffset="-405.3"/></svg>
+												<div class="legend"><span class="p-auth">CASE-1423</span><span class="p-review">CASE-1388</span><span class="p-meet">Meetings</span><span class="p-onboard">CASE-1501</span><span class="p-ops">OPS-77</span><span class="p-notes">CASE-1510</span></div>
+											</div>
+											<div class="meta">14 worklogs · Jira Cloud</div>
+										</div>
+										<div class="m-card"><div class="lab">Confirmed without edits</div><div class="pct">92%</div></div>
+										<div class="m-card priv"><b>Private by design</b><br>Only masked titles and durations went to AI. No screenshots, ever.</div>
+									</div>
+									<div class="m-card week-foot"><span class="ready">7 of 7 ready</span><span class="pbar"></span><span class="exp">Export CSV</span><span class="confirm">Confirm 38h 20m → Jira</span></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="logged" aria-hidden="true">
+						<div class="ring"><svg viewBox="0 0 104 104" width="104" height="104"><circle cx="52" cy="52" r="46" fill="none" stroke="#eceef6" stroke-width="6"/><circle class="p" cx="52" cy="52" r="46" fill="none" stroke="#16a34a" stroke-width="6" stroke-linecap="round"/></svg><span class="sq"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><use href="#chk"/></svg></span></div>
+						<div><b>38h 20m logged</b><span>14 worklogs · Jira Cloud · no duplicates</span></div>
+					</div>
+				</div>
+				<div class="points">
+					<div class="point reveal"><h3><span class="ic-s"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h7"/></svg></span>One worklog per task</h3><p>Each task gets one clear line per day — written from what you actually did, not a generic “development”.</p></div>
+					<div class="point reveal" style="--rd:.1s"><h3><span class="ic-s"><svg viewBox="0 0 24 24"><path d="M12 8v5M12 16.5v.5M10.3 3.9L2.6 17.5A2 2 0 004.3 20.5h15.4a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/></svg></span>Only real doubts reach you</h3><p>Blocks the app can't decide are flagged with two or three likely options. Everything else is pre-filled.</p></div>
+					<div class="point reveal" style="--rd:.2s"><h3><span class="ic-s"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0114-5.3M20 12a8 8 0 01-14 5.3M18 3v4h-4M6 21v-4h4"/></svg></span>Safe to send twice</h3><p>Already-logged days are recognised, so re-sending never doubles your hours in Jira.</p></div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============ FEATURES ============ -->
+		<section class="section" id="features" aria-labelledby="features-h" style="padding-top:40px">
+			<div class="wrap">
+				<div class="section-head reveal">
+					<span class="kicker">Features</span>
+					<h2 id="features-h">Automatic time tracking that speaks Jira</h2>
+					<p>Built for developers, analysts, consultants and agencies who have to log time in Jira — and would rather not think about it.</p>
+				</div>
+				<div class="features">
+					<article class="feature reveal"><span class="ic-s"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.5.5l3-3a5 5 0 00-7-7l-1.7 1.7M14 11a5 5 0 00-7.5-.5l-3 3a5 5 0 007 7l1.7-1.7"/></svg></span><h3>Jira keys found locally, no AI</h3><p>Issue keys are picked up from window titles, browser tabs, pull requests and git branch names — instantly, on your PC.</p><div class="ex"><code>feature/CASE-1423-token</code><code>/browse/OPS-77</code><code>[CASE-1388] Review</code></div></article>
+					<article class="feature reveal" style="--rd:.06s"><span class="ic-s ic-ai"><svg viewBox="0 0 24 24" style="fill:currentColor;stroke:none"><use href="#spark"/></svg></span><h3>“Sort my day” with AI</h3><p>One click assigns the blocks rules couldn't place — Figma files, Slack threads, Confluence pages — with a confidence score for each.</p></article>
+					<article class="feature reveal" style="--rd:.12s"><span class="ic-s"><svg viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V9zM14 3v6h6M8 13h8M8 17h5"/></svg></span><h3>Worklog text, drafted</h3><p>One short, specific description per task, built from what you touched: “Reviewed PRs #412, #418 in billing”.</p></article>
+					<article class="feature reveal"><span class="ic-s"><svg viewBox="0 0 24 24"><path d="M9 11l3 3 8-8M20 12v7a2 2 0 01-2 2H6a2 2 0 01-2-2V5a2 2 0 012-2h9"/></svg></span><h3>You stay in control</h3><p>Nothing is logged until you confirm. Change the task, split a block or mark it as “not work” in the review screen.</p></article>
+					<article class="feature reveal" style="--rd:.06s"><span class="ic-s"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></svg></span><h3>Jira Cloud and Data Center</h3><p>Worklogs are written with your own account to Jira Cloud or Jira Server / Data Center. No duplicates when you re-send.</p></article>
+					<article class="feature reveal" style="--rd:.12s"><span class="ic-s"><svg viewBox="0 0 24 24"><path d="M12 7v5l3 2M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></span><h3>Idle and lock aware</h3><p>Lunch, a locked screen or a walk away from the keyboard is marked as away — it never sneaks into your timesheet.</p></article>
+					<article class="feature reveal"><span class="ic-s"><svg viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></span><h3>CSV export <span class="soon-tag">Excel &amp; Tempo soon</span></h3><p>Need it in a spreadsheet or another system? Export the confirmed week to CSV. XLSX and direct Tempo support are planned.</p></article>
+					<article class="feature reveal" style="--rd:.06s"><span class="ic-s"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg></span><h3>No-AI mode</h3><p>Prefer nothing leaves your PC? Turn AI off. Keys and rules still match locally; you place the rest by hand.</p></article>
+					<article class="feature reveal" style="--rd:.12s"><span class="ic-s"><svg viewBox="0 0 24 24"><path d="M3 5h18v11H3zM8 20h8M12 16v4"/></svg></span><h3>Lives in the tray</h3><p>A native Windows app that starts with your PC and stays out of the way. No browser tab to keep open, no timer to remember.</p></article>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============ PRIVACY ============ -->
+		<section class="section privacy-sec" id="privacy" aria-labelledby="privacy-h">
+			<div class="wrap">
+				<div class="section-head reveal">
+					<span class="kicker">Privacy by design</span>
+					<h2 id="privacy-h">No screenshots. <span class="grad">No surveillance.</span></h2>
+					<p>Your activity log is yours. It lives on your PC, and the AI only sees a masked summary — and only when you press the button.</p>
+				</div>
+				<div class="priv-grid">
+					<div class="priv-col reveal">
+						<h3><span class="ic-s ic-ok"><svg viewBox="0 0 24 24"><path d="M3 5h18v11H3zM8 20h8M12 16v4"/></svg></span>Stays on your PC</h3>
+						<p class="sub">Recorded locally, never uploaded.</p>
+						<ul><li>Active app and window titles</li><li>Browser tab domains</li><li>Idle and screen-lock time</li><li>Your rules, history and review edits</li><li>Your Jira connection settings</li></ul>
+					</div>
+					<div class="priv-col ai-col reveal" style="--rd:.08s">
+						<h3><span class="ic-s ic-ai"><svg viewBox="0 0 24 24" style="fill:currentColor;stroke:none"><use href="#spark"/></svg></span>Sent only on “Sort my day”</h3>
+						<p class="sub">For the blocks rules couldn't match.</p>
+						<ul><li>Window titles, with emails and numbers masked</li><li>App names</li><li>Domains, not full addresses</li><li>Durations of each block</li></ul>
+					</div>
+					<div class="priv-col never reveal" style="--rd:.16s">
+						<h3><span class="ic-s ic-no"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7zM9 9l6 6M15 9l-6 6"/></svg></span>Never sent, never taken</h3>
+						<p class="sub">Not collected — so it can't leak.</p>
+						<ul><li>Full URLs and page content</li><li>Screenshots or screen recordings</li><li>Keystrokes</li><li>Your Jira token</li></ul>
+					</div>
+				</div>
+				<p class="not-for reveal"><span><b>Built for the person who logs the time.</b></span><span>No manager dashboards</span><span>No employee monitoring</span><span>No team reports</span></p>
+			</div>
+		</section>
+
+		<!-- ============ COMPARE ============ -->
+		<section class="section" id="compare" aria-labelledby="compare-h">
+			<div class="wrap">
+				<div class="section-head reveal">
+					<span class="kicker">Compare</span>
+					<h2 id="compare-h">How it compares</h2>
+					<p>Most trackers either ask you to run timers or collect everything in the cloud. Timesheet Tracker does the remembering locally and writes straight to Jira.</p>
+				</div>
+				<div class="table-wrap reveal">
+					<table class="cmp">
+						<thead>
+							<tr>
+								<th scope="col"><span class="sr-only">Feature</span></th>
+								<th scope="col" class="us">Timesheet Tracker</th>
+								<th scope="col">Memtime</th>
+								<th scope="col">Timely</th>
+								<th scope="col">Tempo Timesheets<small>Jira add-on</small></th>
+								<th scope="col">Toggl Track</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row">Captures your day automatically</th>
+								<td class="us"><span class="cy">Yes</span><small>Apps, titles, domains, idle</small></td>
+								<td><span class="cy">Yes</span></td>
+								<td><span class="cy">Yes</span></td>
+								<td><span class="cp">Partly</span><small>Suggestions from Jira and calendar activity</small></td>
+								<td><span class="cp">Partly</span><small>Timer first; desktop timeline optional</small></td>
+							</tr>
+							<tr>
+								<th scope="row">Puts time on Jira tasks for you</th>
+								<td class="us"><span class="cy">Yes</span><small>Keys locally + AI, you confirm</small></td>
+								<td><span class="cp">Manual</span><small>You assign blocks to tasks</small></td>
+								<td><span class="cy">Yes</span><small>AI suggestions</small></td>
+								<td><span class="cp">Partly</span><small>Suggestions you accept</small></td>
+								<td><span class="cn">No</span><small>You start a timer per task</small></td>
+							</tr>
+							<tr>
+								<th scope="row">Drafts the worklog text</th>
+								<td class="us"><span class="cy">Yes</span><small>One line per task per day</small></td>
+								<td><span class="cn">—</span></td>
+								<td><span class="cp">Partly</span></td>
+								<td><span class="cn">—</span></td>
+								<td><span class="cn">—</span></td>
+							</tr>
+							<tr>
+								<th scope="row">Native Jira worklogs</th>
+								<td class="us"><span class="cy">Yes</span><small>Cloud + Server / Data Center</small></td>
+								<td><span class="cy">Yes</span><small>Via connector</small></td>
+								<td><span class="cp">Integration</span><small>Check plan</small></td>
+								<td><span class="cy">Yes</span><small>Inside Jira</small></td>
+								<td><span class="cp">Integration</span><small>Via extension / integrations</small></td>
+							</tr>
+							<tr>
+								<th scope="row">Where your activity data lives</th>
+								<td class="us"><b>On your PC</b><small>AI sees a masked summary, on click</small></td>
+								<td>On your PC</td>
+								<td>Vendor cloud</td>
+								<td>Jira / Tempo cloud</td>
+								<td>Vendor cloud</td>
+							</tr>
+							<tr>
+								<th scope="row">Built for</th>
+								<td class="us">Individuals who log to Jira</td>
+								<td>Individuals and teams</td>
+								<td>Teams and agencies</td>
+								<td>Jira teams and admins</td>
+								<td>Freelancers and teams</td>
+							</tr>
+							<tr>
+								<th scope="row">Price</th>
+								<td class="us"><b>Free in early access</b></td>
+								<td>≈ $14–30 / user / mo</td>
+								<td>≈ $11–28 / user / mo</td>
+								<td>Per user, Atlassian Marketplace</td>
+								<td>Free plan; paid tiers</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<p class="footnote">Competitor details are based on public vendor information as of October 2026 and may change — check each vendor for current features and pricing. Looking at more options? Read our <a href="/articles/tempo-timesheets-alternatives.html">Tempo Timesheets alternatives</a> and <a href="/articles/automatic-time-tracking-software-windows.html">automatic time tracking software for Windows</a> guides.</p>
+			</div>
+		</section>
+
+		<!-- ============ FAQ ============ -->
+		<section class="section" id="faq" aria-labelledby="faq-h" style="padding-top:40px">
+			<div class="wrap">
+				<div class="section-head reveal">
+					<span class="kicker">FAQ</span>
+					<h2 id="faq-h">Questions, answered</h2>
+				</div>
+				<div class="faq">
+					<details><summary>Is Timesheet Tracker an employee monitoring tool?</summary><div class="a"><p>No. It is built for the person who logs the time. There are no screenshots, no keystroke logging, no manager dashboards and no team reports. Your activity stays on your PC, and only the worklogs you confirm are sent to Jira.</p></div></details>
+					<details><summary>What data leaves my computer?</summary><div class="a"><p>Nothing, until you act. When you click <b>Sort my day</b>, masked window titles, app names, domains and durations of the unassigned blocks are sent to the AI. Full URLs, page content, screenshots, keystrokes and your Jira token are never sent. When you confirm the day, the worklogs you approved go to your Jira. Details are in the <a href="/privacy.html">privacy policy</a>.</p></div></details>
+					<details><summary>Can I use it without AI?</summary><div class="a"><p>Yes. In No-AI mode nothing is sent to an AI provider. Jira keys in window titles, URLs and git branches are still matched locally, and you assign the remaining blocks yourself in the review screen.</p></div></details>
+					<details><summary>Which Jira versions does it support?</summary><div class="a"><p>Jira Cloud and Jira Server / Data Center. Worklogs are written with your own account, and re-sending a day does not create duplicates. New to worklogs? See <a href="/articles/how-to-log-time-in-jira.html">how to log time in Jira</a>.</p></div></details>
+					<details><summary>How does it know which Jira task I worked on?</summary><div class="a"><p>Most of the day is matched without AI: Jira keys such as <code>ABC-123</code> appear in window titles, browser tabs, pull request names and git branch names like <code>feature/ABC-123-login</code>. AI only handles the leftovers, and you confirm every assignment before anything is logged.</p></div></details>
+					<details><summary>Does it work with Tempo or Excel?</summary><div class="a"><p>Today it writes native Jira worklogs and exports CSV. Direct Tempo support and Excel (XLSX) export are planned.</p></div></details>
+					<details><summary>How much does it cost?</summary><div class="a"><p>Timesheet Tracker is free during early access. If paid plans appear later, they will be announced in advance and early users will hear first.</p></div></details>
+					<details><summary>When can I download it?</summary><div class="a"><p>The app is almost ready and is coming to the Microsoft Store. <a href="#join">Join the waitlist</a> and we will send you one email when it is live.</p></div></details>
+					<details><summary>Is there a Mac or Linux version?</summary><div class="a"><p>Not yet. Timesheet Tracker is a Windows app. Tell us at <a href="mailto:help@timesheet-tracker.com">help@timesheet-tracker.com</a> if you need another platform.</p></div></details>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============ GUIDES ============ -->
+		<section class="section" aria-labelledby="guides-h" style="padding-top:20px">
+			<div class="wrap">
+				<div class="section-head reveal">
+					<span class="kicker">Guides</span>
+					<h2 id="guides-h">Get your Friday back</h2>
+				</div>
+				<div class="guides">
+					<a class="guide-card reveal" href="/articles/how-to-log-time-in-jira.html"><small>Jira</small><b>How to log time in Jira</b><span>Worklogs in Cloud and Data Center, time formats, smart commits and the API.</span><span class="more">Read the guide →</span></a>
+					<a class="guide-card reveal" style="--rd:.08s" href="/articles/fill-timesheet-in-10-minutes.html"><small>Method</small><b>Fill your weekly timesheet in 10 minutes</b><span>A timed routine for Friday, with worklog templates that managers actually read.</span><span class="more">Read the guide →</span></a>
+					<a class="guide-card reveal" style="--rd:.16s" href="/articles/ai-timesheet.html"><small>AI</small><b>Can AI fill your timesheet?</b><span>How an AI timesheet works, what data it really needs, and where it can go wrong.</span><span class="more">Read the guide →</span></a>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============ FINAL CTA ============ -->
+		<section class="cta-final" id="join" aria-labelledby="join-h">
+			<div class="aurora" aria-hidden="true"></div>
+			<div class="wrap inner">
+				<img class="app-ico reveal" src="/favicon.svg" width="76" height="76" alt="Timesheet Tracker icon">
+				<h2 id="join-h" class="big reveal">An hour of Friday<br><span class="grad">→ 10 seconds.</span></h2>
+				<p class="sub reveal">Timesheet Tracker is almost ready for the Microsoft Store. Leave your email — we'll write once, when it's live. Free during early access.</p>
+				<form class="waitlist reveal" data-waitlist novalidate>
+					<div class="wl-row">
+						<label class="sr-only" for="wl-email-bottom">Email</label>
+						<input id="wl-email-bottom" type="email" name="email" placeholder="you@company.com" autocomplete="email" required>
+						<input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+						<button class="btn btn-primary" type="submit"><span class="spinner" aria-hidden="true"></span><span class="lbl">Join the waitlist</span></button>
+					</div>
+					<p class="wl-msg" role="status" aria-live="polite"></p>
+					<div class="wl-done">
+						<span class="tick"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+						<div><b>You're on the list.</b><span>We'll email you once, when Timesheet Tracker is live in the Microsoft Store.</span></div>
+					</div>
+				</form>
+				<ul class="trust reveal">
+					<li>Local-first</li>
+					<li>No screenshots</li>
+					<li>Your data, your call — AI or No-AI</li>
+				</ul>
+			</div>
+		</section>
+	</main>
+
+	<footer class="site-footer">
+		<div class="wrap">
+			<div class="foot-grid">
+				<div class="foot-about">
+					<a class="brand" href="/"><img src="/favicon.svg" width="30" height="30" alt="">Timesheet Tracker</a>
+					<p>Automatic time tracking and an AI timesheet for Jira, on Windows. Local-first. No screenshots. Listed in the Microsoft Store as “Time Tracker &amp; Timesheet - AI for Jira”.</p>
+				</div>
+				<div>
+					<h4>Product</h4>
+					<ul>
+						<li><a href="#how">How it works</a></li>
+						<li><a href="#privacy">Privacy by design</a></li>
+						<li><a href="#compare">Comparison</a></li>
+						<li><a href="#faq">FAQ</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4>Guides</h4>
+					<ul>
+						<li><a href="/articles/how-to-log-time-in-jira.html">Log time in Jira</a></li>
+						<li><a href="/articles/automatic-time-tracking-software-windows.html">Automatic time tracking</a></li>
+						<li><a href="/articles/tempo-timesheets-alternatives.html">Tempo alternatives</a></li>
+						<li><a href="/articles/fill-timesheet-in-10-minutes.html">Timesheet in 10 minutes</a></li>
+						<li><a href="/articles/ai-timesheet.html">AI timesheet</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4>Company</h4>
+					<ul>
+						<li><a href="mailto:help@timesheet-tracker.com">help@timesheet-tracker.com</a></li>
+						<li><a href="/privacy.html">Privacy policy</a></li>
+						<li><a href="/terms.html">Terms</a></li>
+						<li><a href="/ru/" hreflang="ru" lang="ru">Русская версия</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="foot-bottom">
+				<span>© <span data-year>2026</span> Timesheet Tracker. Jira is a trademark of Atlassian. Not affiliated with Atlassian or Microsoft.</span>
+				<span>Made for people who log their own time.</span>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>

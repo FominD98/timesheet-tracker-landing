@@ -1,0 +1,33 @@
+# Timesheet Tracker
+
+> Timesheet Tracker is a Windows desktop app (Microsoft Store title: "Time Tracker & Timesheet - AI for Jira") that fills your Jira timesheet for you. It runs in the tray, passively records your working day on your own PC, finds Jira issue keys automatically, lets AI sort the rest when you ask, and drafts one worklog per task. You review and confirm; the worklogs go to Jira Cloud or Jira Server/Data Center, or to a CSV file.
+
+Key facts:
+- Platform: Windows. Coming soon to the Microsoft Store; a waitlist is open on https://timesheet-tracker.com/
+- Price: free during early access. No paid plans announced.
+- Who it is for: individuals who must log time in Jira (developers, analysts, consultants, agencies). Not an employee-monitoring tool: no screenshots, no keystroke logging, no manager dashboards or team reports.
+- Capture: active app, window title, browser tab domain, idle and screen-lock time. Stored locally on the user's PC.
+- Matching without AI: Jira keys like ABC-123 are found locally in window titles, URLs and git branch names (e.g. feature/ABC-123-login).
+- "Sort my day": one button; AI assigns the remaining time blocks to Jira tasks with a confidence score and drafts one worklog text per task. Only then are masked window titles, app names, domains and durations sent. Full URLs, page content, screenshots, keystrokes and the Jira token are never sent.
+- No-AI mode: nothing is sent to an AI provider; unmatched blocks are assigned manually.
+- Output: native Jira worklogs (Jira Cloud, Jira Server / Data Center) without duplicates on re-send; CSV export. Planned: Tempo integration, Excel (XLSX) export.
+- Contact: help@timesheet-tracker.com
+
+## Main pages
+
+- [Home (English)](https://timesheet-tracker.com/): product overview, how it works, privacy, comparison, FAQ, waitlist
+- [Home (Russian)](https://timesheet-tracker.com/ru/): тайм-трекер и автоматический учёт рабочего времени для Jira
+- [Privacy policy](https://timesheet-tracker.com/privacy.html): what the app records, what is sent to AI and when
+- [Terms of use](https://timesheet-tracker.com/terms.html)
+
+## Guides
+
+- [How to log time in Jira](https://timesheet-tracker.com/articles/how-to-log-time-in-jira.html): enabling time tracking, Log work in Cloud and Data Center, time formats, smart commits, the worklog REST API, common mistakes
+- [How to fill your weekly timesheet in 10 minutes](https://timesheet-tracker.com/articles/fill-timesheet-in-10-minutes.html): a timed Friday method with a worked example and checklist
+- [AI timesheet: can AI fill your timesheet?](https://timesheet-tracker.com/articles/ai-timesheet.html): how an AI timesheet pipeline works, what data it needs, risks and mitigations
+- [Automatic time tracking software for Windows](https://timesheet-tracker.com/articles/automatic-time-tracking-software-windows.html): how passive tracking works, privacy checklist, comparison of desktop auto-trackers
+- [Tempo Timesheets alternatives](https://timesheet-tracker.com/articles/tempo-timesheets-alternatives.html): Jira add-ons vs desktop auto-trackers vs general trackers
+
+## Comparison summary
+
+Compared with Memtime (local desktop auto-tracker, manual assignment to tasks), Timely (cloud AI time tracker), Tempo Timesheets (Jira add-on ledger with suggestions) and Toggl Track (timer-first tracker), Timesheet Tracker focuses on one job: reconstructing an individual's day locally and turning it into confirmed Jira worklogs with minimal typing.
