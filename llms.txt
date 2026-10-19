@@ -16,7 +16,6 @@ Key facts:
 ## Main pages
 
 - [Home (English)](https://timesheet-tracker.com/): product overview, how it works, privacy, comparison, FAQ, waitlist
-- [Home (Russian)](https://timesheet-tracker.com/ru/): тайм-трекер и автоматический учёт рабочего времени для Jira
 - [Privacy policy](https://timesheet-tracker.com/privacy.html): what the app records, what is sent to AI and when
 - [Terms of use](https://timesheet-tracker.com/terms.html)
 

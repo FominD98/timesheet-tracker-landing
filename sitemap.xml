@@ -4,14 +4,6 @@
 		<loc>https://timesheet-tracker.com/</loc>
 		<lastmod>2026-10-19</lastmod>
 		<xhtml:link rel="alternate" hreflang="en" href="https://timesheet-tracker.com/"/>
-		<xhtml:link rel="alternate" hreflang="ru" href="https://timesheet-tracker.com/ru/"/>
-		<xhtml:link rel="alternate" hreflang="x-default" href="https://timesheet-tracker.com/"/>
-	</url>
-	<url>
-		<loc>https://timesheet-tracker.com/ru/</loc>
-		<lastmod>2026-10-19</lastmod>
-		<xhtml:link rel="alternate" hreflang="en" href="https://timesheet-tracker.com/"/>
-		<xhtml:link rel="alternate" hreflang="ru" href="https://timesheet-tracker.com/ru/"/>
 		<xhtml:link rel="alternate" hreflang="x-default" href="https://timesheet-tracker.com/"/>
 	</url>
 	<url><loc>https://timesheet-tracker.com/articles/</loc><lastmod>2026-10-19</lastmod></url>
