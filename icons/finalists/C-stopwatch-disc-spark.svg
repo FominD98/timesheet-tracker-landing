@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- C. Stopwatch Disc + AI spark: solid white stopwatch face (max mass at 16 px), gradient check, AI sparkle in the corner. -->
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6366f1"/><stop offset=".38" stop-color="#a855f7"/>
+      <stop offset=".7" stop-color="#ec4899"/><stop offset="1" stop-color="#f59e0b"/>
+    </linearGradient>
+    <radialGradient id="sheen" cx=".28" cy=".18" r=".75">
+      <stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ck" gradientUnits="userSpaceOnUse" x1="21" y1="26" x2="44" y2="44">
+      <stop offset="0" stop-color="#6366f1"/><stop offset=".45" stop-color="#a855f7"/><stop offset=".75" stop-color="#ec4899"/><stop offset="1" stop-color="#f59e0b"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#g)"/>
+  <rect width="64" height="64" rx="14" fill="url(#sheen)"/>
+  <rect x="28" y="8.5" width="8" height="5" rx="2" fill="#fff"/>
+  <rect x="30" y="11" width="4" height="6" fill="#fff"/>
+  <circle cx="32" cy="36" r="20" fill="#fff"/>
+  <path d="M22.5 36.5l7 7 12.5-14" fill="none" stroke="url(#ck)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M52.5 5.5Q53.46 10.54 58.5 11.5Q53.46 12.46 52.5 17.5Q51.54 12.46 46.5 11.5Q51.54 10.54 52.5 5.5Z" fill="#fff"/>
+</svg>
