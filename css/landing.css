@@ -3338,7 +3338,7 @@ p {
 		align-items: stretch;
 		gap: 0;
 		padding: 10px 16px 18px;
-		background: rgba(246, 247, 252, 0.97);
+		background: #f6f6fb;
 		-webkit-backdrop-filter: blur(18px);
 		backdrop-filter: blur(18px);
 		border-bottom: 1px solid var(--line);
@@ -3358,7 +3358,7 @@ p {
 		visibility: visible;
 	}
 	.nav-open .site-header {
-		background: rgba(246, 247, 252, 0.97);
+		background: #f6f6fb;
 	}
 	.nav-toggle {
 		display: inline-flex;
@@ -3685,4 +3685,8 @@ h3,
 		top: -96px;
 		opacity: 0.25;
 	}
+}
+
+.tt .m-d .cta small {
+	display: none;
 }
