@@ -377,9 +377,18 @@ const WAITLIST_ENDPOINT = 'https://waitlist.danielformind.workers.dev/subscribe'
 		snap = null;
 	};
 	const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+	// in-page links smooth-scroll through the scenes: let them land, only the morph follows
+	let navigating = false;
+	document.addEventListener('click', (e) => {
+		const a = e.target.closest('a[href*="#"]');
+		if (a && a.pathname === location.pathname) {
+			cancelSnap();
+			navigating = true;
+		}
+	});
 	const carryTo = (y) => {
 		cancelSnap();
-		if (dragging) return;
+		if (dragging || navigating) return;
 		const y0 = window.scrollY, dy = y - y0;
 		if (Math.abs(dy) < 2) return;
 		const d = clamp(Math.abs(dy) * 1.1, 420, 1000), t0 = performance.now();
@@ -398,6 +407,7 @@ const WAITLIST_ENDPOINT = 'https://waitlist.danielformind.workers.dev/subscribe'
 		if (snap && Math.sign(e.deltaY) !== snap.dir) cancelSnap();
 	}, {passive: true});
 	['touchstart', 'keydown', 'mousedown'].forEach((ev) => window.addEventListener(ev, cancelSnap, {passive: true}));
+	window.addEventListener('wheel', () => (navigating = false), {passive: true});
 	window.addEventListener('pointerdown', (e) => {
 		if (e.clientX >= document.documentElement.clientWidth) dragging = true;
 	}, {passive: true});
@@ -447,6 +457,7 @@ const WAITLIST_ENDPOINT = 'https://waitlist.danielformind.workers.dev/subscribe'
 	};
 	// scroll came to rest between the ends: settle on the committed end
 	const onIdle = () => {
+		if (navigating) return void (navigating = false);
 		if (!scrub() || snap || dragging) return;
 		stages.forEach((st) => {
 			if (!st.vis || st.target === undefined) return;
