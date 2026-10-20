@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- R2 Mint tile: emerald-to-teal (free colour in the niche, reads as done/green), white segmented ring + heavy check. -->
+  <defs>
+    <linearGradient id="m" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#34d399"/><stop offset=".45" stop-color="#10b981"/><stop offset="1" stop-color="#0d9488"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#m)"/>
+  <path d="M37.32 11.17A21.5 21.5 0 0 1 52.83 26.68" fill="none" stroke="#fff" stroke-width="8.5" stroke-linecap="round"/>
+  <path d="M52.83 37.32A21.5 21.5 0 0 1 37.32 52.83" fill="none" stroke="#fff" stroke-width="8.5" stroke-linecap="round"/>
+  <path d="M26.68 52.83A21.5 21.5 0 0 1 11.17 37.32" fill="none" stroke="#fff" stroke-width="8.5" stroke-linecap="round"/>
+  <path d="M11.17 26.68A21.5 21.5 0 0 1 26.68 11.17" fill="none" stroke="#fff" stroke-width="8.5" stroke-linecap="round"/>
+  <path d="M23.00 31.96l6.46 6.46 11.54 -12.92" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

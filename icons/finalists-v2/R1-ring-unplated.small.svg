@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- R1 Segmented day ring, unplated: the app's own day ring (task palette) as a round silhouette among square tiles; white centre + dark check so it reads on light and dark; soft shadow lifts it off light backgrounds. -->
+  <circle cx="32" cy="32" r="16.2" fill="#fff"/>
+  <path d="M39.47 10.25A23 23 0 0 1 54.94 33.61" fill="none" stroke="#5b5bf0" stroke-width="12" stroke-linecap="round"/>
+  <path d="M49.12 47.36A23 23 0 0 1 29.08 54.81" fill="none" stroke="#f08a3c" stroke-width="12" stroke-linecap="round"/>
+  <path d="M15.68 48.21A23 23 0 0 1 9.06 30.39" fill="none" stroke="#f0609e" stroke-width="12" stroke-linecap="round"/>
+  <path d="M14.88 16.64A23 23 0 0 1 24.53 10.25" fill="none" stroke="#23b39a" stroke-width="12" stroke-linecap="round"/>
+  <path d="M23.50 31.94l6.10 6.10 10.90 -12.21" fill="none" stroke="#1e1b4b" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

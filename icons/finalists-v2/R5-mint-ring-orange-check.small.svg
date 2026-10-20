@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- R5 Wildcard: unplated mint ring with an orange check breaking out of it at the top-right - a non-square, non-circle silhouette in the two colours nobody in the niche uses together. -->
+  <defs>
+    <linearGradient id="rg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2dd4bf"/><stop offset="1" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="cg" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#fb923c"/><stop offset="1" stop-color="#f97316"/>
+    </linearGradient>
+  </defs>
+  <path d="M48.73 27.82A21 21 0 1 1 32.65 14.32" fill="none" stroke="url(#rg)" stroke-width="12" stroke-linecap="round"/>
+  <path d="M15.5 34.5l10 10 28-31" fill="none" stroke="url(#cg)" stroke-width="10.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

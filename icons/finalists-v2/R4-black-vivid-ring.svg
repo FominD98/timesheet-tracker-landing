@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- R4 Pure black + vivid ring: true black tile (not navy, unlike the Jira app), Activity-rings style segmented ring in the app palette, white check; 1 px light rim for the dark Store theme. -->
+  <defs>
+    <filter id="gl" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2"/></filter>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#000"/>
+  <rect x=".5" y=".5" width="63" height="63" rx="13.5" fill="none" stroke="#fff" stroke-opacity=".22"/>
+  <g filter="url(#gl)" opacity=".55">
+  <path d="M38.46 11.49A21.5 21.5 0 0 1 53.39 34.15" fill="none" stroke="#6e6bff" stroke-width="10.5" stroke-linecap="round"/>
+  <path d="M48.29 46.03A21.5 21.5 0 0 1 28.61 53.23" fill="none" stroke="#ff8a3d" stroke-width="10.5" stroke-linecap="round"/>
+  <path d="M17.05 47.45A21.5 21.5 0 0 1 10.61 29.85" fill="none" stroke="#ff5fa2" stroke-width="10.5" stroke-linecap="round"/>
+  <path d="M15.71 17.97A21.5 21.5 0 0 1 25.54 11.49" fill="none" stroke="#2fd9a9" stroke-width="10.5" stroke-linecap="round"/>
+  </g>
+  <path d="M38.46 11.49A21.5 21.5 0 0 1 53.39 34.15" fill="none" stroke="#6e6bff" stroke-width="10.5" stroke-linecap="round"/>
+  <path d="M48.29 46.03A21.5 21.5 0 0 1 28.61 53.23" fill="none" stroke="#ff8a3d" stroke-width="10.5" stroke-linecap="round"/>
+  <path d="M17.05 47.45A21.5 21.5 0 0 1 10.61 29.85" fill="none" stroke="#ff5fa2" stroke-width="10.5" stroke-linecap="round"/>
+  <path d="M15.71 17.97A21.5 21.5 0 0 1 25.54 11.49" fill="none" stroke="#2fd9a9" stroke-width="10.5" stroke-linecap="round"/>
+  <path d="M24.00 31.91l5.74 5.74 10.26 -11.49" fill="none" stroke="#fff" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

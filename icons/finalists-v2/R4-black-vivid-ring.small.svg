@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- R4 Pure black + vivid ring: true black tile (not navy, unlike the Jira app), Activity-rings style segmented ring in the app palette, white check; 1 px light rim for the dark Store theme. -->
+  <rect width="64" height="64" rx="14" fill="#000"/>
+  <path d="M39.01 12.21A21 21 0 0 1 52.97 33.16" fill="none" stroke="#6e6bff" stroke-width="11" stroke-linecap="round"/>
+  <path d="M47.56 46.1A21 21 0 0 1 29.65 52.87" fill="none" stroke="#ff8a3d" stroke-width="11" stroke-linecap="round"/>
+  <path d="M17.04 46.74A21 21 0 0 1 11.03 30.84" fill="none" stroke="#ff5fa2" stroke-width="11" stroke-linecap="round"/>
+  <path d="M16.44 17.9A21 21 0 0 1 24.99 12.21" fill="none" stroke="#2fd9a9" stroke-width="11" stroke-linecap="round"/>
+  <path d="M23.50 31.94l6.10 6.10 10.90 -12.21" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

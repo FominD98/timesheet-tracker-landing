@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- R3 Lime tile: lime-to-yellow with a black heavy segmented ring and check - maximum value contrast and energy. -->
+  <defs>
+    <linearGradient id="l" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e6ff6e"/><stop offset=".5" stop-color="#d4f53c"/><stop offset="1" stop-color="#facc15"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#l)"/>
+  <rect x=".5" y=".5" width="63" height="63" rx="13.5" fill="none" stroke="#000" stroke-opacity=".12"/>
+  <path d="M37.56 11.23A21.5 21.5 0 0 1 52.77 26.44" fill="none" stroke="#111" stroke-width="9" stroke-linecap="round"/>
+  <path d="M52.77 37.56A21.5 21.5 0 0 1 37.56 52.77" fill="none" stroke="#111" stroke-width="9" stroke-linecap="round"/>
+  <path d="M26.44 52.77A21.5 21.5 0 0 1 11.23 37.56" fill="none" stroke="#111" stroke-width="9" stroke-linecap="round"/>
+  <path d="M11.23 26.44A21.5 21.5 0 0 1 26.44 11.23" fill="none" stroke="#111" stroke-width="9" stroke-linecap="round"/>
+  <path d="M23.00 31.96l6.46 6.46 11.54 -12.92" fill="none" stroke="#111" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
