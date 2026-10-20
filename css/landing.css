@@ -1267,6 +1267,15 @@ p {
 .is-logged .logged {
 	opacity: 1;
 	transform: translate(-50%, 0);
+	transition-delay: 0.9s;
+}
+
+.is-logged .ring circle.p {
+	transition-delay: 1.15s;
+}
+
+.is-logged .ring .sq {
+	transition-delay: 1.9s;
 }
 
 .ring {

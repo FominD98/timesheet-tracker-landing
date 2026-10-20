@@ -361,34 +361,104 @@ const WAITLIST_ENDPOINT = 'https://waitlist.danielformind.workers.dev/subscribe'
 		st.btns.forEach((b) => b.setAttribute('aria-pressed', String(+b.dataset.mode === on)));
 	};
 	const range = (st) => st.track.offsetHeight - (innerHeight - HEAD);
+	const stageS = (st) => clamp((HEAD - st.track.getBoundingClientRect().top) / Math.max(1, range(st)));
+	// scroll positions (fraction of the sticky run) where each end state rests
+	const REST = {today: [0.06, 0.74], week: [0.04, 0.66]};
+	const restY = (st, on) => window.scrollY + st.track.getBoundingClientRect().top - HEAD + REST[st.name][on] * range(st);
+
+	/* Snap ("подкрутка"): a small push into the scene commits the whole transition.
+	   The morph plays by time with the prototype curve, and the page is carried to the
+	   matching rest position; any user input against it cancels the carry. */
+	const SNAP_T = 0.08; // share of the run between the two rest positions
+	let snap = null; // {raf} while the page is being carried
+	let dragging = false; // scrollbar drag: never move the page under the user's pointer
+	const cancelSnap = () => {
+		if (snap) cancelAnimationFrame(snap.raf);
+		snap = null;
+	};
+	const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+	const carryTo = (y) => {
+		cancelSnap();
+		if (dragging) return;
+		const y0 = window.scrollY, dy = y - y0;
+		if (Math.abs(dy) < 2) return;
+		const d = clamp(Math.abs(dy) * 1.1, 420, 1000), t0 = performance.now();
+		const s = {raf: 0, dir: Math.sign(dy)};
+		const tick = (now) => {
+			const t = clamp((now - t0) / d);
+			window.scrollTo({top: y0 + dy * ease(t), behavior: 'instant'});
+			if (t < 1 && snap === s) s.raf = requestAnimationFrame(tick);
+			else if (snap === s) snap = null;
+		};
+		snap = s;
+		s.raf = requestAnimationFrame(tick);
+	};
+	// wheel/trackpad inertia in the carry's direction rides along; against it, the user wins
+	window.addEventListener('wheel', (e) => {
+		if (snap && Math.sign(e.deltaY) !== snap.dir) cancelSnap();
+	}, {passive: true});
+	['touchstart', 'keydown', 'mousedown'].forEach((ev) => window.addEventListener(ev, cancelSnap, {passive: true}));
+	window.addEventListener('pointerdown', (e) => {
+		if (e.clientX >= document.documentElement.clientWidth) dragging = true;
+	}, {passive: true});
+	window.addEventListener('pointerup', () => {
+		if (dragging) {
+			dragging = false;
+			onIdle();
+		}
+	}, {passive: true});
+
+	const commit = (st, on, carry) => {
+		st.target = on;
+		st.m.go(on);
+		setMode(st, on);
+		st.el.classList.toggle('is-logged', !!on);
+		st.el.classList.add('is-moving');
+		if (carry) carryTo(restY(st, on));
+	};
 	const updateStage = (st) => {
 		const top = st.track.getBoundingClientRect().top;
-		const s = clamp((HEAD - top) / Math.max(1, range(st)));
-		const p = st.map(s);
+		const s = stageS(st);
+		const raw = st.map(s);
 		if (!st.m.measured) {
 			// measure the shared elements on the untilted window
 			st.frame.style.transform = '';
 			st.m.measure();
 		}
-		st.m.set(p);
-		setMode(st, p);
-		st.el.classList.toggle('is-logged', s > 0.84);
-		st.el.classList.toggle('is-moving', p > 0.02);
+		if (st.target === undefined) {
+			st.target = raw >= 0.5 ? 1 : 0;
+			st.m.set(st.target);
+			setMode(st, st.target);
+			st.el.classList.toggle('is-logged', !!st.target);
+		} else {
+			const dir = s - (st.s ?? s);
+			const [r0, r1] = REST[st.name];
+			// a small push past the rest position commits the transition; direction-aware, so our own
+			// carry (which only moves toward the target) never flips it back
+			if (st.target === 0 && s > r0 + SNAP_T * (r1 - r0) && dir > 0) commit(st, 1, s < r1);
+			else if (st.target === 1 && s < r1 - SNAP_T * (r1 - r0) && dir < 0) commit(st, 0, s > r0);
+		}
+		st.s = s;
+		if (raw > 0.02) st.el.classList.add('is-moving');
 		// the window rises and un-tilts as it arrives under the header
 		const rise = out3(clamp((innerHeight - top) / (innerHeight - HEAD)));
 		st.frame.style.transform = rise >= 1 ? '' : `perspective(2000px) rotateX(${((1 - rise) * 10).toFixed(2)}deg) scale(${(0.94 + 0.06 * rise).toFixed(4)})`;
 		st.floats.forEach(({f, d}) => (f.style.transform = `translate3d(0,${((0.5 - s) * d * 140 + (1 - rise) * d * 60).toFixed(1)}px,0)`));
 	};
-	const scrollToMode = (st, on) => {
-		const r = st.track.getBoundingClientRect();
-		const s = st.name === 'today' ? (on ? 0.74 : 0.04) : on ? 0.66 : 0.03;
-		window.scrollTo({top: window.scrollY + r.top - HEAD + s * range(st), behavior: 'smooth'});
+	// scroll came to rest between the ends: settle on the committed end
+	const onIdle = () => {
+		if (!scrub() || snap || dragging) return;
+		stages.forEach((st) => {
+			if (!st.vis || st.target === undefined) return;
+			const s = stageS(st), [r0, r1] = REST[st.name];
+			if (s > r0 + 0.005 && s < r1 - 0.005) carryTo(restY(st, st.target));
+		});
 	};
 
 	stages.forEach((st) => {
 		// without scroll-scrubbing (reduced motion, ?p, small screens) a click plays the transition
 		const pick = (on) => {
-			if (scrub()) scrollToMode(st, on);
+			if (scrub()) commit(st, on, true);
 			else {
 				st.m.go(on);
 				setMode(st, on);
@@ -433,7 +503,10 @@ const WAITLIST_ENDPOINT = 'https://waitlist.danielformind.workers.dev/subscribe'
 		if (scrub()) stages.forEach((st) => st.vis && updateStage(st));
 		parallax();
 	};
+	let idleT = 0;
 	const onScroll = () => {
+		clearTimeout(idleT);
+		idleT = setTimeout(onIdle, 120);
 		if (!ticking) {
 			ticking = true;
 			requestAnimationFrame(frame);
