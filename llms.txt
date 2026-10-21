@@ -4,7 +4,7 @@
 
 Key facts:
 - Platform: Windows. Coming soon to the Microsoft Store; a waitlist is open on https://timesheet-tracker.com/
-- Price: free during early access. No paid plans announced.
+- Price: free download from the Microsoft Store with a 14-day free trial of Pro (no card). Then Pro is $9.99/month or $79/year (yearly is the default, about $6.58/month, 34% less). No free-forever tier. Without a subscription the app keeps recording and shows your day (7-day history, CSV export for today); sending worklogs to Jira and AI sorting need Pro.
 - Who it is for: individuals who must log time in Jira (developers, analysts, consultants, agencies). Not an employee-monitoring tool: no screenshots, no keystroke logging, no manager dashboards or team reports.
 - Capture: active app, window title, browser tab domain, idle and screen-lock time. Stored locally on the user's PC.
 - Matching without AI: Jira keys like ABC-123 are found locally in window titles, URLs and git branch names (e.g. feature/ABC-123-login).

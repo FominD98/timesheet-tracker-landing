@@ -49,7 +49,11 @@
 			"No-AI mode",
 			"No screenshots, no keystroke logging, no manager reports"
 		],
-		"offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD", "description": "Free during early access"},
+		"offers": [
+			{"@type": "Offer", "name": "Free download", "price": "0", "priceCurrency": "USD", "description": "Free download from the Microsoft Store with a 14-day free trial of Pro, no card required. Without a subscription the app keeps recording and shows your day (7-day history, CSV for today)."},
+			{"@type": "Offer", "name": "Pro, monthly", "price": "9.99", "priceCurrency": "USD", "description": "Pro subscription billed monthly: sending worklogs to Jira and AI sorting.", "priceSpecification": {"@type": "UnitPriceSpecification", "price": "9.99", "priceCurrency": "USD", "unitCode": "MON", "billingDuration": "P1M"}},
+			{"@type": "Offer", "name": "Pro, yearly", "price": "79", "priceCurrency": "USD", "description": "Pro subscription billed yearly (about $6.58 a month, 34% less than monthly): sending worklogs to Jira and AI sorting.", "priceSpecification": {"@type": "UnitPriceSpecification", "price": "79", "priceCurrency": "USD", "unitCode": "ANN", "billingDuration": "P1Y"}}
+		],
 		"publisher": {"@type": "Organization", "name": "Timesheet Tracker", "url": "https://timesheet-tracker.com/"}
 	}
 	</script>
@@ -74,7 +78,7 @@
 			{"@type": "Question", "name": "Which Jira versions does it support?", "acceptedAnswer": {"@type": "Answer", "text": "Jira Cloud and Jira Server / Data Center. Worklogs are written with your own account, and re-sending a day does not create duplicates."}},
 			{"@type": "Question", "name": "How does it know which Jira task I worked on?", "acceptedAnswer": {"@type": "Answer", "text": "Most of the day is matched without AI: Jira keys such as ABC-123 appear in window titles, browser tabs, pull request names and git branch names like feature/ABC-123-login. AI only handles the leftovers, and you confirm every assignment before anything is logged."}},
 			{"@type": "Question", "name": "Does it work with Tempo or Excel?", "acceptedAnswer": {"@type": "Answer", "text": "Today it writes native Jira worklogs and exports CSV. Direct Tempo support and Excel (XLSX) export are planned."}},
-			{"@type": "Question", "name": "How much does it cost?", "acceptedAnswer": {"@type": "Answer", "text": "Timesheet Tracker is free during early access. If paid plans appear later, they will be announced in advance and early users will hear first."}},
+			{"@type": "Question", "name": "How much does it cost?", "acceptedAnswer": {"@type": "Answer", "text": "Timesheet Tracker is a free download from the Microsoft Store and starts with a 14-day free trial of Pro, no card required. After that, Pro is $9.99 a month or $79 a year (about $6.58 a month, 34% less); yearly is the default. Without a subscription the app keeps recording and shows your day, with 7 days of history and CSV export for today. Sending worklogs to Jira and AI sorting need Pro."}},
 			{"@type": "Question", "name": "When can I download it?", "acceptedAnswer": {"@type": "Answer", "text": "The app is almost ready and is coming to the Microsoft Store. Join the waitlist and we will send you one email when it is live."}},
 			{"@type": "Question", "name": "Is there a Mac or Linux version?", "acceptedAnswer": {"@type": "Answer", "text": "Not yet. Timesheet Tracker is a Windows app. Tell us at help@timesheet-tracker.com if you need another platform."}}
 		]
@@ -94,7 +98,7 @@
 	<a class="skip" href="#main">Skip to content</a>
 	<header class="site-header">
 		<nav class="wrap nav" aria-label="Main">
-			<a class="brand" href="/"><img src="/favicon.svg" width="30" height="30" alt=""><span>Timesheet Tracker</span></a>
+			<a class="brand" href="/"><img src="/img/mark.svg" width="30" height="30" alt=""><span>Timesheet Tracker</span></a>
 			<ul class="nav-links">
 				<li><a href="#how">How it works</a></li>
 				<li><a href="#features">Features</a></li>
@@ -143,7 +147,7 @@
 					<li>Stored on your PC</li>
 					<li>No screenshots</li>
 					<li>Jira Cloud &amp; Data Center</li>
-					<li>Free in early access</li>
+					<li>14-day free trial</li>
 				</ul>
 			</div>
 
@@ -192,7 +196,7 @@
 <div class="feedh" data-in="up" data-at="0.5" data-dur=".3">Live capture <span>window · title · domain · idle — no screenshots</span><span style="margin-left:auto;color:var(--accent);font-weight:600">Rules · 3</span></div>
 <div data-stg="in,up,0.53,.025,.3" style="margin-top:4px"><div class="fr"><span class="tm num">17:40</span><span class="dot" style="background:#2eb67d"></span><span class="an">Slack</span><span class="w">DMs · Chrome tabs — mixed</span><span class="ar">→</span><span class="to" style=""><span class="unchip">? Unassigned</span></span></div><div class="fr"><span class="tm num">16:15</span><span class="dot" style="background:#1868db"></span><span class="an">Confluence</span><span class="w">Release 4.2 — notes draft</span><span class="ar">→</span><span class="to" style=""><span class="unchip">? Unassigned</span></span></div><div class="fr"><span class="tm num">15:30</span><span class="dot" style="background:#2eb67d"></span><span class="an">Slack</span><span class="w">#incident-billing · Grafana alerts</span><span class="ar">→</span><span class="to" style=""><span class="unchip">? Unassigned</span></span></div><div class="fr"><span class="tm num">13:45</span><span class="dot" style="background:#2f80ed"></span><span class="an">VS Code</span><span class="w">auth-service · feature/CASE-1423-token-refresh</span><span class="ar">→</span><span class="to" style=""><span class="chip" style="background:#e3e4ff;color:#4f46e5">CASE-1423</span><span class="via">git branch</span></span></div><div class="fr"><span class="tm num">13:00</span><span class="dot" style="background:#9ca3af"></span><span class="an">Away</span><span class="w">Screen locked · 45 min</span><span class="ar">→</span><span class="to" style=""><span class="via">Lunch · not logged</span></span></div><div class="fr"><span class="tm num">12:15</span><span class="dot" style="background:#f24e1e"></span><span class="an">Figma</span><span class="w">Onboarding v3 — screens</span><span class="ar">→</span><span class="to" style=""><span class="unchip">? Unassigned</span></span></div><div class="fr"><span class="tm num">10:45</span><span class="dot" style="background:#e7a400"></span><span class="an">Chrome</span><span class="w">github.com/acme/billing/pull/412 · CASE-1388</span><span class="ar">→</span><span class="to" style=""><span class="chip" style="background:#fde8cf;color:#c2410c">CASE-1388</span><span class="via">key in title</span></span></div></div></div>
 </div></div>
-<div class="chrome"><div class="tb"><div class="logo"><svg width="12" height="12" viewBox="0 0 24 24"><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z" fill="#fff"/></svg></div><span class="appname">Time Tracker &amp; Timesheet</span><span class="rec"><i></i>Recording</span><div class="seg" data-anim="seg"><span class="on" data-go="today">Today</span><span class="" data-go="week">Week<i class="dot"></i></span></div><div class="tbr"><div class="tg" data-toggle><span class="thumb"></span><span data-opt="0">Simple</span><span data-opt="1"><svg class="i" viewBox="0 0 24 24" style="width:14px;height:14px;"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>Details <kbd>D</kbd></span></div><div class="caps"><span>&#x2014;</span><span>&#x2610;</span><span>&#x2715;</span></div></div></div></div><div class="fx"></div><div class="sheen"></div><div class="rim"></div></div>
+<div class="chrome"><div class="tb"><div class="logo"><img src="/img/mark.svg" width="22" height="22" alt=""></div><span class="appname">Time Tracker &amp; Timesheet</span><span class="rec"><i></i>Recording</span><div class="seg" data-anim="seg"><span class="on" data-go="today">Today</span><span class="" data-go="week">Week<i class="dot"></i></span></div><div class="tbr"><div class="tg" data-toggle><span class="thumb"></span><span data-opt="0">Simple</span><span data-opt="1"><svg class="i" viewBox="0 0 24 24" style="width:14px;height:14px;"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>Details <kbd>D</kbd></span></div><div class="caps"><span>&#x2014;</span><span>&#x2610;</span><span>&#x2715;</span></div></div></div></div><div class="fx"></div><div class="sheen"></div><div class="rim"></div></div>
 <!-- /H4:today-desk -->
 								</div>
 							</div>
@@ -204,7 +208,7 @@
 					<div class="tt-mob-in" aria-hidden="true">
 <!-- H4:today-mob -->
 <div class="m-app">
-<div class="m-bar"><div class="logo"><svg width="12" height="12" viewBox="0 0 24 24"><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z" fill="#fff"/></svg></div><span class="appname">Time Tracker &amp; Timesheet</span><span class="rec"><i></i>Recording</span></div>
+<div class="m-bar"><div class="logo"><img src="/img/mark.svg" width="22" height="22" alt=""></div><span class="appname">Time Tracker &amp; Timesheet</span><span class="rec"><i></i>Recording</span></div>
 <div class="m-d"><div class="d-date" style="font-size:14px">Friday, October 16</div>
 <div class="d-ring" style="width:232px;height:232px;margin-top:12px"><div style="width:232px;height:232px;filter:drop-shadow(0 14px 30px rgba(91,91,240,.18))"><svg width="232" height="232" viewBox="0 0 232 232"><circle cx="116" cy="116" r="106" fill="none" stroke="rgba(22,24,40,.07)" stroke-width="18"/><path d="M 124.09 10.31 A 106 106 0 0 1 185.70 195.86" fill="none" stroke="#5b5bf0" stroke-width="18" stroke-linecap="round"/><path d="M 172.73 205.54 A 106 106 0 0 1 71.19 212.06" fill="none" stroke="#f08a3c" stroke-width="18" stroke-linecap="round"/><path d="M 57.08 204.12 A 106 106 0 0 1 53.65 201.72" fill="none" stroke="#a66cf0" stroke-width="18" stroke-linecap="round"/><circle cx="41.33" cy="191.23" r="4.32" fill="#d97706"/><circle cx="30.78" cy="179.04" r="4.32" fill="#d97706"/><circle cx="22.21" cy="165.39" r="4.32" fill="#d97706"/><circle cx="15.80" cy="150.59" r="4.32" fill="#d97706"/><circle cx="11.72" cy="135.00" r="4.32" fill="#d97706"/><circle cx="10.04" cy="118.96" r="4.32" fill="#d97706"/><circle cx="10.82" cy="102.86" r="4.32" fill="#d97706"/><circle cx="14.03" cy="87.06" r="4.32" fill="#d97706"/><circle cx="19.59" cy="71.93" r="4.32" fill="#d97706"/><circle cx="27.39" cy="57.82" r="4.32" fill="#d97706"/><circle cx="37.24" cy="45.06" r="4.32" fill="#d97706"/><circle cx="48.91" cy="33.94" r="4.32" fill="#d97706"/><circle cx="62.13" cy="24.71" r="4.32" fill="#d97706"/><circle cx="76.60" cy="17.60" r="4.32" fill="#d97706"/><circle cx="91.97" cy="12.76" r="4.32" fill="#d97706"/><circle cx="107.91" cy="10.31" r="4.32" fill="#d97706"/></svg></div>
 <div class="d-mid"><div class="d-big num" style="font-size:44px;letter-spacing:-2.112px">8h 10m</div><div class="d-sub" style="font-size:13px">of 8h · norm reached</div></div></div>
@@ -338,7 +342,7 @@
 <div class="card" style="padding:16px 18px;display:flex;align-items:center;justify-content:space-between;height:96px"><div><div style="font-size:12px;color:var(--muted);font-weight:600">Confirmed without edits</div><div style="font-size:32px;font-weight:800;letter-spacing:-1px;color:var(--ok)">92%</div></div><svg width="110" height="40" viewBox="0 0 110 40"><polyline points="0,32 22,27 44,29 66,16 88,11 110,6" fill="none" stroke="#16a34a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="110" cy="6" r="3" fill="#16a34a"/></svg></div>
 <div class="card" style="padding:16px 18px;font-size:12.5px;color:var(--ink2);line-height:1.5;height:96px"><b style="color:var(--ink)">Private by design</b><br>Only titles and durations went to AI. No screenshots, ever. Raw events stay on this PC.</div></div>
 </div></div>
-<div class="chrome"><div class="tb"><div class="logo"><svg width="12" height="12" viewBox="0 0 24 24"><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z" fill="#fff"/></svg></div><span class="appname">Time Tracker &amp; Timesheet</span><span class="rec"><i></i>Recording</span><div class="seg" data-anim="seg"><span class="" data-go="today">Today</span><span class="on" data-go="week">Week</span></div><div class="tbr"><div class="tg" data-toggle><span class="thumb"></span><span data-opt="0">Simple</span><span data-opt="1"><svg class="i" viewBox="0 0 24 24" style="width:14px;height:14px;"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>Details <kbd>D</kbd></span></div><div class="caps"><span>&#x2014;</span><span>&#x2610;</span><span>&#x2715;</span></div></div></div></div><div class="fx"></div><div class="sheen"></div><div class="rim"></div></div>
+<div class="chrome"><div class="tb"><div class="logo"><img src="/img/mark.svg" width="22" height="22" alt=""></div><span class="appname">Time Tracker &amp; Timesheet</span><span class="rec"><i></i>Recording</span><div class="seg" data-anim="seg"><span class="" data-go="today">Today</span><span class="on" data-go="week">Week</span></div><div class="tbr"><div class="tg" data-toggle><span class="thumb"></span><span data-opt="0">Simple</span><span data-opt="1"><svg class="i" viewBox="0 0 24 24" style="width:14px;height:14px;"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>Details <kbd>D</kbd></span></div><div class="caps"><span>&#x2014;</span><span>&#x2610;</span><span>&#x2715;</span></div></div></div></div><div class="fx"></div><div class="sheen"></div><div class="rim"></div></div>
 <!-- /H4:week-desk -->
 								</div>
 							</div>
@@ -353,7 +357,7 @@
 					<div class="tt-mob-in" aria-hidden="true">
 <!-- H4:week-mob -->
 <div class="m-app">
-<div class="m-bar"><div class="logo"><svg width="12" height="12" viewBox="0 0 24 24"><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z" fill="#fff"/></svg></div><span class="appname">Week 42 · Oct 12 – 16</span><span class="rec"><i></i>Ready</span></div>
+<div class="m-bar"><div class="logo"><img src="/img/mark.svg" width="22" height="22" alt=""></div><span class="appname">Week 42 · Oct 12 – 16</span><span class="rec"><i></i>Ready</span></div>
 <div class="m-wk">
 <div class="w-h">Your week is ready</div>
 <div class="m-wtot num">38h 20m</div>
@@ -505,7 +509,7 @@
 							</tr>
 							<tr>
 								<th scope="row">Price</th>
-								<td class="us" data-label="Timesheet Tracker"><b>Free in early access</b></td>
+								<td class="us" data-label="Timesheet Tracker"><b>$9.99/mo · $79/yr, 14-day trial</b></td>
 								<td data-label="Memtime">≈ $14–30 / user / mo</td>
 								<td data-label="Timely">≈ $11–28 / user / mo</td>
 								<td data-label="Tempo Timesheets">Per user, Atlassian Marketplace</td>
@@ -532,7 +536,7 @@
 					<details><summary>Which Jira versions does it support?</summary><div class="a"><p>Jira Cloud and Jira Server / Data Center. Worklogs are written with your own account, and re-sending a day does not create duplicates. New to worklogs? See <a href="/articles/how-to-log-time-in-jira.html">how to log time in Jira</a>.</p></div></details>
 					<details><summary>How does it know which Jira task I worked on?</summary><div class="a"><p>Most of the day is matched without AI: Jira keys such as <code>ABC-123</code> appear in window titles, browser tabs, pull request names and git branch names like <code>feature/ABC-123-login</code>. AI only handles the leftovers, and you confirm every assignment before anything is logged.</p></div></details>
 					<details><summary>Does it work with Tempo or Excel?</summary><div class="a"><p>Today it writes native Jira worklogs and exports CSV. Direct Tempo support and Excel (XLSX) export are planned.</p></div></details>
-					<details><summary>How much does it cost?</summary><div class="a"><p>Timesheet Tracker is free during early access. If paid plans appear later, they will be announced in advance and early users will hear first.</p></div></details>
+					<details><summary>How much does it cost?</summary><div class="a"><p>Timesheet Tracker is a free download from the Microsoft Store and starts with a 14-day free trial of Pro, no card required. After that, Pro is $9.99 a month or $79 a year (about $6.58 a month, 34% less); yearly is the default. Without a subscription the app keeps recording and shows your day, with 7 days of history and CSV export for today. Sending worklogs to Jira and AI sorting need Pro.</p></div></details>
 					<details><summary>When can I download it?</summary><div class="a"><p>The app is almost ready and is coming to the Microsoft Store. <a href="#join">Join the waitlist</a> and we will send you one email when it is live.</p></div></details>
 					<details><summary>Is there a Mac or Linux version?</summary><div class="a"><p>Not yet. Timesheet Tracker is a Windows app. Tell us at <a href="mailto:help@timesheet-tracker.com">help@timesheet-tracker.com</a> if you need another platform.</p></div></details>
 				</div>
@@ -558,9 +562,9 @@
 		<section class="cta-final" id="join" aria-labelledby="join-h">
 			<div class="aurora" aria-hidden="true"></div>
 			<div class="wrap inner">
-				<img class="app-ico reveal" src="/favicon.svg" width="76" height="76" alt="Timesheet Tracker icon">
+				<img class="app-ico reveal" src="/img/mark-256.webp" width="76" height="76" alt="Timesheet Tracker icon">
 				<h2 id="join-h" class="big reveal">An hour of Friday<br><span class="grad">→ 10 seconds.</span></h2>
-				<p class="sub reveal">Timesheet Tracker is almost ready for the Microsoft Store. Leave your email — we'll write once, when it's live. Free during early access.</p>
+				<p class="sub reveal">Timesheet Tracker is almost ready for the Microsoft Store. Leave your email — we'll write once, when it's live. Free download, 14-day free trial of Pro.</p>
 				<form class="waitlist reveal" data-waitlist novalidate>
 					<div class="wl-row">
 						<label class="sr-only" for="wl-email-bottom">Email</label>
@@ -587,7 +591,7 @@
 		<div class="wrap">
 			<div class="foot-grid">
 				<div class="foot-about">
-					<a class="brand" href="/"><img src="/favicon.svg" width="30" height="30" alt="">Timesheet Tracker</a>
+					<a class="brand" href="/"><img src="/img/mark.svg" width="30" height="30" alt="">Timesheet Tracker</a>
 					<p>Automatic time tracking and an AI timesheet for Jira, on Windows. Local-first. No screenshots. Listed in the Microsoft Store as “Time Tracker &amp; Timesheet - AI for Jira”.</p>
 				</div>
 				<div>
