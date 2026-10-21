@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Монетизация · Timesheet Tracker · план для владельца</title>
-<meta name="description" content="Внутренний разбор: Paddle, Microsoft Store, тарифы Free и Pro, план запуска.">
+<title>Монетизация · Timesheet Tracker · выбор цены</title>
+<meta name="description" content="Внутренний разбор: цены Pro, LTV, реклама, правила Microsoft Store и Paddle.">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="monetization.css">
 </head>
 <body>
-<a class="skip" href="#tldr">К содержанию</a>
+<a class="skip" href="#choose">К выбору цены</a>
 
 <div class="sky" aria-hidden="true"><i class="blob b1"></i><i class="blob b2"></i><i class="blob b3"></i><i class="blob b4"></i></div>
 
@@ -26,589 +26,291 @@
 
 <main>
 <section class="hero wrap">
-	<p class="kicker">Монетизация · разбор от 20.10.2026</p>
-	<h1>Как брать деньги и&nbsp;не&nbsp;уронить рейтинг: <span class="grad">Free навсегда + Pro через Paddle</span></h1>
-	<p class="lead">Предложение для решения, код приложения пока не меняем. Факты о политиках Microsoft Store и комиссиях Paddle проверены по официальным страницам на 20.10.2026, ссылки стоят рядом с каждым фактом.</p>
-	<div class="pills">
-		<span>Store Policies 7.20</span><span>Paddle Billing · MoR</span><span>Запуск D0 = 17.11.2026</span><span>12–16 вечеров работы</span>
-	</div>
+	<p class="kicker">Монетизация · обновлено 21.10.2026</p>
+	<h1>Free навсегда + Pro через Paddle. <span class="grad">Осталось выбрать цену.</span></h1>
+	<p class="lead">Рекомендуем <b>$9.99 в месяц или $79 в год</b>, для первых покупателей до 28.02.2027 — <b>$6.99 / $59</b> с закреплением. Это в 1.5–3 раза дешевле Memtime, Timely и Rize, а пользователь экономит около часа в неделю. По сравнению с прежними $4.99 / $35 базовый LTV на установку растёт в 2.4 раза.</p>
 	<nav class="toc" aria-label="Разделы">
-		<a href="#tldr"><b>01</b> Коротко</a>
-		<a href="#rules"><b>02</b> Правила и факты</a>
-		<a href="#options"><b>03</b> Варианты A–D</a>
-		<a href="#pricing"><b>04</b> Тарифы A</a>
-		<a href="#unit"><b>05</b> Экономика</a>
-		<a href="#ltv"><b>06</b> LTV</a>
-		<a href="#paywall"><b>07</b> Paywall и UX</a>
-		<a href="#plan"><b>08</b> План работ</a>
-		<a href="#ru"><b>09</b> RU и BY</a>
-		<a href="#decide"><b>10</b> Решения</a>
+		<a href="#choose"><b>01</b> Цена</a>
+		<a href="#free"><b>02</b> Free и Pro</a>
+		<a href="#ads"><b>03</b> LTV и реклама</a>
+		<a href="#rules"><b>04</b> Правила</a>
+		<a href="#decide"><b>05</b> Решения</a>
+		<a href="#more"><b>+</b> Подробности</a>
 	</nav>
 </section>
 
 <!-- 01 -->
-<section class="sec wrap" id="tldr">
-	<div class="sec-h"><span class="num">01</span><div><h2>Коротко: берём вариант A</h2><p class="sub">Free + Pro через Paddle, пробный период без карты, founder-цена с закреплением.</p></div></div>
-	<div class="dark">
-		<ol class="tl">
-			<li><i>1</i><div><b>Скачивание и Free — бесплатно навсегда.</b> Захват, полоса дня, ключи Jira, ручная разметка, <b>отправка в Jira</b>, CSV, плюс <b>5 AI-разборов в месяц</b>.</div></li>
-			<li><i>2</i><div><b>Pro — подписка через Paddle</b>: AI-разбор без лимита (fair use 20 в день) и всё, что появится сверх базы. Комиссия Microsoft при своей оплате — <b>0%</b>, Paddle — <b>5% + $0.50</b>.</div></li>
-			<li><i>3</i><div><b>Пробный период: 14 рабочих дней</b> полного Pro <b>без карты</b>, считаются только дни, когда приложение работало, максимум 30 календарных дней.</div></li>
-			<li><i>4</i><div><b>Founder-цена $4.99/мес или $35/год</b>, закреплена, пока подписка активна. С 28.02.2027 для новых — <b>$7.99 / $59</b>. Годовой план — по умолчанию (комиссия 6.4% против 15%).</div></li>
-			<li><i>5</i><div><b>Store IAP на старте не делаем</b>, но сервер сразу готов ко второму провайдеру. <b>RU и BY — только Free</b>, пересмотр на D+90. Цель к D+90: <b>≥ 4%</b> активированных платят, рейтинг <b>≥ 4.6</b>.</div></li>
-		</ol>
-	</div>
-	<div class="stats">
-		<div class="stat"><b class="grad">0%</b><span>комиссия Microsoft при своей оплате (не-игры)</span></div>
-		<div class="stat"><b>$35</b><span>founder-год, Paddle берёт $2.25 (6.4%)</span></div>
-		<div class="stat"><b>$0.41</b><span>AI на пользователя в месяц, худший случай</span></div>
-		<div class="stat"><b>12–16</b><span>вечеров до включения оплаты</span></div>
-	</div>
-</section>
+<section class="sec wrap" id="choose">
+	<div class="sec-h"><span class="num">01</span><div><h2>Выберите цену Pro</h2><p class="sub">Цифры для базового сценария: отток месячных 8%, продление годовых 50%, 60% платящих берут годовой план, 35% установок доходят до trial, 4% из них платят.</p></div></div>
 
-<!-- 02 -->
-<section class="sec wrap" id="rules">
-	<div class="sec-h"><span class="num">02</span><div><h2>Правила и факты</h2><p class="sub">Что разрешает Microsoft Store, сколько берут Store и Paddle, где оплата не работает.</p></div></div>
-
-	<div class="grid2">
-		<article class="card">
-			<div class="card-k">Microsoft Store Policies 7.20 · 10.8</div>
-			<h3>Своя оплата для не-игр разрешена</h3>
-			<ul class="facts">
-				<li><span class="ok">Да</span><div><b>10.8.1</b> Не-игра на ПК может использовать «secure third-party purchase API» <i>или</i> Store IAP. Обязательный Store IAP — только для игр.</div></li>
-				<li><span class="ok">Да</span><div><b>10.8.6</b> Подписки через свою оплату тоже можно. Нельзя урезать ценность уже купленного; при снятии с продажи обслуживаем до конца периода.</div></li>
-				<li><span class="ok">Нет</span><div><b>10.8.1</b> Параллельно предлагать Store IAP <b>не обязаны</b> — правило «either … or».</div></li>
-				<li><span class="ok">Да</span><div><b>10.8.2</b> После установки можно вести пользователя в браузер на оплату.</div></li>
-				<li><span class="ok">0%</span><div>Комиссия Microsoft при своей оплате — <b>0%, остаётся 100%</b>.</div></li>
-			</ul>
-			<p class="src">Источники: <a href="https://learn.microsoft.com/en-us/windows/apps/publish/store-policies" rel="noopener" target="_blank">Store Policies</a> · <a href="https://learn.microsoft.com/en-us/windows/apps/publish/get-started" rel="noopener" target="_blank">Get started (комиссии)</a></p>
+	<div class="tiers">
+		<article class="tier">
+			<div class="tier-top"><span class="tier-name">Дёшево</span></div>
+			<p class="tp">$4.99<small>/мес</small> · $35<small>/год</small></p>
+			<p class="tp-sub">прежняя founder-цена, без скидки на старте</p>
+			<dl class="kv">
+				<div><dt>Нам с платежа</dt><dd>$4.24 · $32.75</dd></div>
+				<div><dt>LTV платящего</dt><dd>$52.5</dd></div>
+				<div><dt>LTV на установку</dt><dd>$0.22 · <b>$0.74</b> · $2.33</dd></div>
+				<div><dt>Макс. CPI (LTV / 3)</dt><dd><b>$0.25</b></dd></div>
+			</dl>
+			<p class="risk"><b>Риск:</b> комиссия Paddle на месячном — 15%. Чтобы догнать «Рекомендуем», конверсия должна быть 9.6% вместо 4%, а поднять цену потом трудно.</p>
 		</article>
 
-		<article class="card">
-			<div class="card-k">Что обязаны раскрыть · 10.8.2, 10.8.4, 10.8.7</div>
-			<h3>6 требований при своей оплате</h3>
-			<ol class="steps">
-				<li><b>Назвать провайдера</b> в момент оплаты: «Payment processed by Paddle.com, our Merchant of Record».</li>
-				<li><b>Partner Center:</b> отметить, что используется third-party purchase API.</li>
-				<li><b>Листинг:</b> типы покупок и диапазон цен, ясные условия пробного периода. Строка во все <code>listing-*.md</code>: «Free. Optional Pro subscription: $4.99–7.99/month or $35–59/year, 14-day free trial, no card required».</li>
-				<li><b>PCI DSS</b> закрывает Paddle: карта вводится в его checkout, не в приложение.</li>
-				<li><b>Цены по FTC:</b> «founder −40%» честен, только если обычная цена объявлена и реально действует после акции.</li>
-				<li><b>Тип аккаунта (10.8.3, 10.14):</b> банковские данные в приложении не просим — Company-аккаунт не обязателен, если не выступаем как бизнес.</li>
-			</ol>
+		<article class="tier best">
+			<div class="tier-top"><span class="tier-name">Рекомендуем</span><span class="badge">Выбор</span></div>
+			<p class="tp">$9.99<small>/мес</small> · $79<small>/год</small></p>
+			<p class="tp-sub">годовой по умолчанию: ≈ $6.58/мес, −34%</p>
+			<div class="founder"><b>Founder до 28.02.2027:</b> $6.99 / $59, закреплена, пока подписка активна</div>
+			<dl class="kv">
+				<div><dt>Нам с платежа</dt><dd>$8.99 · $74.55</dd></div>
+				<div><dt>LTV платящего</dt><dd>$126.5 <small>founder $89.4</small></dd></div>
+				<div><dt>LTV на установку</dt><dd>$0.52 · <b>$1.77</b> · $5.30</dd></div>
+				<div><dt>Макс. CPI (LTV / 3)</dt><dd><b>$0.59</b> <small>founder $0.42</small></dd></div>
+			</dl>
+			<p class="risk"><b>Риск:</b> выше привычных $5 для инди-утилит. Проверяем A/B: $59 против $79 за год.</p>
 		</article>
 
-		<article class="card">
-			<div class="card-k">Store commerce</div>
-			<h3>15% и жёсткие пробные периоды</h3>
-			<ul class="dots">
-				<li>Комиссия <b>15%</b> для приложений (12% для игр).</li>
-				<li>Подписка — add-on на 1, 3, 6, 12 или 24 месяца.</li>
-				<li>Пробный период только <b>1 неделя или 1 месяц</b>, <b>нужен способ оплаты</b>, один раз на покупателя, после публикации не меняется.</li>
-				<li><span class="plus">+</span> покупка в один клик, Store сам считает налоги.</li>
-				<li><span class="minus">−</span> нет email покупателя, купонов, trial без карты; деньги только со Store-установок.</li>
-			</ul>
-			<p class="src">Источники: <a href="https://learn.microsoft.com/en-us/windows/uwp/monetize/enable-subscription-add-ons-for-your-app" rel="noopener" target="_blank">Subscription add-ons</a> · <a href="https://learn.microsoft.com/en-us/windows/uwp/monetize/in-app-purchases-and-trials" rel="noopener" target="_blank">In-app purchases and trials</a></p>
-		</article>
-
-		<article class="card">
-			<div class="card-k">Paddle Billing</div>
-			<h3>5% + $0.50, Paddle — продавец (MoR)</h3>
-			<ul class="dots">
-				<li><b>Merchant of Record:</b> сам считает и платит VAT и sales tax, разбирает chargeback, ведёт fraud-проверки. Нам не нужен EU OSS и регистрация в штатах США.</li>
-				<li>Без абонентской платы. Для чеков &lt; $10 можно просить индивидуальный тариф.</li>
-				<li>Подписки месяц/год, смена плана, пауза, customer portal, купоны, <b>региональные цены</b>, recovery-ссылки для брошенных корзин.</li>
-				<li><b>Лицензионных ключей нет</b> — права доступа ведём сами (webhook → наша база → токен).</li>
-				<li>Аккаунт уже проверен (livesubs): добавляем продукт и домен.</li>
-			</ul>
-			<p class="src">Источники: <a href="https://www.paddle.com/pricing" rel="noopener" target="_blank">Paddle pricing</a> · <a href="https://developer.paddle.com/concepts/subscriptions/trials/" rel="noopener" target="_blank">Trials</a> · <a href="https://developer.paddle.com/build/subscriptions/cardless-trials" rel="noopener" target="_blank">Cardless trials</a></p>
+		<article class="tier">
+			<div class="tier-top"><span class="tier-name">Премиум</span></div>
+			<p class="tp">$14.99<small>/мес</small> · $119<small>/год</small></p>
+			<p class="tp-sub">уровень Memtime Basic</p>
+			<dl class="kv">
+				<div><dt>Нам с платежа</dt><dd>$13.74 · $112.55</dd></div>
+				<div><dt>LTV платящего</dt><dd>$195.8</dd></div>
+				<div><dt>LTV на установку</dt><dd>$0.80 · <b>$2.74</b> · $8.09</dd></div>
+				<div><dt>Макс. CPI (LTV / 3)</dt><dd><b>$0.91</b></dd></div>
+			</dl>
+			<p class="risk"><b>Риск:</b> выгоднее «Рекомендуем», только если конверсия упадёт не ниже 2.6%, то есть не больше чем на 35%. Для неизвестного бренда без отзывов это маловероятно.</p>
 		</article>
 	</div>
+	<p class="foot">LTV на установку: консервативно · <b>база</b> · оптимистично. Пробный период во всех вариантах — 14 рабочих дней без карты, не больше 30 календарных.</p>
 
-	<div class="card wide fee">
-		<div class="fee-head">
-			<div><div class="card-k">Комиссия на наших чеках</div><h3>Фиксированные $0.50 съедают маленький чек</h3></div>
-			<div class="legend"><span><i class="sw sw-p"></i>Paddle 5% + $0.50</span><span><i class="sw sw-s"></i>Store 15%</span></div>
+	<div class="grid3 sp">
+		<div class="card">
+			<div class="card-k">A/B-тест цены в Paddle</div>
+			<p><b>$59 против $79</b> за год, первые 4–6 недель после включения оплаты, 50/50 по <code>install_id</code>.</p>
+			<p class="muted">$79 побеждает, если конверсия падает меньше чем на 25% (59 / 79 = 0.75). Меньше 30 оплат в ветке — данных мало, решаем по отказам на checkout.</p>
 		</div>
-		<div class="bars" role="img" aria-label="Комиссия в процентах: $4.99 — Paddle 15.0%, Store 15%; $7.99 — 11.3% и 15%; $35 — 6.4% и 15%; $59 — 5.8% и 15%">
-			<div class="bar-row"><span class="bl">$4.99 / мес</span><div class="bt"><div class="b p" style="--w:15" title="Paddle: $0.75 = 15.0%"><em>$0.75 · 15.0%</em></div><div class="b s" style="--w:15" title="Store: $0.75 = 15%"><em>$0.75 · 15%</em></div></div></div>
-			<div class="bar-row"><span class="bl">$7.99 / мес</span><div class="bt"><div class="b p" style="--w:11.3" title="Paddle: $0.90 = 11.3%"><em>$0.90 · 11.3%</em></div><div class="b s" style="--w:15" title="Store: $1.20 = 15%"><em>$1.20 · 15%</em></div></div></div>
-			<div class="bar-row"><span class="bl">$35 / год</span><div class="bt"><div class="b p" style="--w:6.4" title="Paddle: $2.25 = 6.4%"><em>$2.25 · 6.4%</em></div><div class="b s" style="--w:15" title="Store: $5.25 = 15%"><em>$5.25 · 15%</em></div></div></div>
-			<div class="bar-row"><span class="bl">$59 / год</span><div class="bt"><div class="b p" style="--w:5.8" title="Paddle: $3.45 = 5.8%"><em>$3.45 · 5.8%</em></div><div class="b s" style="--w:15" title="Store: $8.85 = 15%"><em>$8.85 · 15%</em></div></div></div>
+		<div class="card">
+			<div class="card-k">Почему не дешевле</div>
+			<p>Memtime стоит $14–30, Timely $11–28, Rize $10–40. Пользователь экономит ~1 час в неделю, это <b>$120–300 в месяц</b> по ставке $30–70 в час.</p>
+			<p class="muted">При $9.99 комиссия Paddle — 10% на месячном плане и 5.6% на годовом.</p>
 		</div>
-		<p class="note"><b>Вывод:</b> месячная подписка через Paddle не дешевле Store, выигрыш — на годовых. Поэтому в checkout годовой план по умолчанию, а месячный не дешевле $4.99. В livesubs фактическая доля Paddle была ~18% выручки против 15.4% у Store — из-за мелких пакетов.</p>
-		<div class="how"><b>Как считали</b><span>Paddle = 5% × чек + $0.50; доля = комиссия / чек. $4.99: $0.25 + $0.50 = $0.75 (15.0%). $7.99: $0.40 + $0.50 = $0.90 (11.3%). $35: $1.75 + $0.50 = $2.25 (6.4%). $59: $2.95 + $0.50 = $3.45 (5.8%). Store = 15% × чек.</span></div>
+		<div class="card">
+			<div class="card-k">Позже</div>
+			<p><b>Team $8 за место в месяц</b> для агентств: единый счёт и общие правила. Региональные цены Paddle −25…−45% для BR, PL, UA, MX, IN.</p>
+			<p class="muted">Делаем только после того, как появится спрос.</p>
+		</div>
 	</div>
 
-	<div class="card wide warnc">
-		<div class="card-k">Ограничение RU и BY</div>
-		<h3>В России и Беларуси не платит никто: ни Paddle, ни Store</h3>
-		<div class="grid3 mini">
-			<div><b>Paddle</b> блокирует покупателей из RU, BY, Крыма, ДНР, ЛНР, Херсонской и Запорожской областей, Ирана, Кубы, КНДР и др. Подписки из этих стран отменены в 2023 году. Продавец тоже не может быть из RU/BY.</div>
-			<div><b>Microsoft Store</b> приостановил продажи в RU в марте 2022 — в 2026 году это так и есть.</div>
-			<div><b>Для контекста:</b> Apple отключил оплату в RU в апреле 2026, Google — в 2022. Украина у Paddle поддерживается, кроме перечисленных регионов.</div>
+	<details class="card wide how-d">
+		<summary><span><span class="card-k">Как считали</span><b>Формулы и сравнение с прежними ценами</b></span><span class="chev" aria-hidden="true"></span></summary>
+		<div class="how">
+			<span>Нам с платежа = цена − (5% × цена + $0.50). Пример: $79 − ($3.95 + $0.50) = $74.55.</span>
+			<span>LTV месячного = (нам с платежа − AI $0.41) / отток. LTV годового = (нам с платежа − 12 × AI) / (1 − продление). LTV платящего = 0.6 × годовой + 0.4 × месячный.</span>
+			<span>LTV на установку = LTV платящего × доля установок, дошедших до trial × доля trial, перешедших в оплату. Сценарии: 25% × 2%, <b>35% × 4%</b>, 45% × 7%. Отток 10 / 8 / 6%, продление 40 / 50 / 60%, AI $0.41 / $0.41 / $0.14.</span>
+			<span>Паритет конверсии = LTV на установку «Рекомендуем» / (LTV платящего варианта × 35%). Для «Дёшево»: $1.77 / ($52.5 × 0.35) = 9.6%.</span>
 		</div>
-		<p class="src">Источники: <a href="https://www.paddle.com/help/legal/sanctions/impact-of-sanctions-on-russia-and-belarus" rel="noopener" target="_blank">Paddle: RU и BY</a> · <a href="https://www.paddle.com/help/start/intro-to-paddle/which-countries-are-supported-by-paddle" rel="noopener" target="_blank">страны Paddle</a> · <a href="https://developer.paddle.com/concepts/sell/supported-countries-locales/" rel="noopener" target="_blank">supported countries</a> · <a href="https://www.videogameschronicle.com/news/microsoft-is-suspending-all-sales-of-products-and-services-in-russia/" rel="noopener" target="_blank">Microsoft 03.2022</a> · <a href="https://dtf.ru/howto/4572318-oplata-microsoft-v-rossii-kak-prodlit-podpisku" rel="noopener" target="_blank">состояние 2026</a> · <a href="https://www.macrumors.com/2026/04/02/apple-turns-off-payments-in-russia/" rel="noopener" target="_blank">Apple 04.2026</a></p>
-	</div>
-
-	<details class="card wide alt">
-		<summary><span><span class="card-k">Альтернативы Paddle</span><b>Почему не Lemon Squeezy, Stripe или FastSpring</b></span><span class="chev" aria-hidden="true"></span></summary>
-		<div class="tbl"><table>
-			<thead><tr><th>Провайдер</th><th>Условия</th><th>Плюс</th><th>Минус</th></tr></thead>
+		<div class="tbl"><table class="scen">
+			<thead><tr><th>База</th><th>Было</th><th>Стало</th><th>Δ</th></tr></thead>
 			<tbody>
-				<tr><td><b>Lemon Squeezy</b></td><td>5% + $0.50 + надбавки, до ~8.5%; MoR</td><td>Встроенные лицензионные ключи</td><td>С 2024 у Stripe, переезд на Managed Payments, будущее тарифов неясно</td></tr>
-				<tr><td><b>Stripe Managed Payments</b></td><td>+3.5% к Stripe, ~6.4% внутри страны, 8–10% иностранные карты; MoR</td><td>Экосистема Stripe</td><td>Preview, продавцы из ~35 стран, дороже Paddle</td></tr>
-				<tr><td><b>Stripe Billing</b></td><td>2.9% + $0.30</td><td>Дешевле всех</td><td>Мы сами продавец: VAT OSS, налоги штатов, chargeback</td></tr>
-				<tr><td><b>FastSpring</b></td><td>~5.9% + $0.95 или 8.9%</td><td>Сильный B2B: счета, PO</td><td>На $4.99 выходит ~25%</td></tr>
+				<tr><td>Founder: цена</td><td>$4.99 / $35</td><td>$6.99 / $59</td><td>+40% / +69%</td></tr>
+				<tr><td>Founder: LTV платящего</td><td>$52.5</td><td>$89.4</td><td>+70%</td></tr>
+				<tr><td>Founder: LTV на установку</td><td>$0.74</td><td>$1.25</td><td>+69%</td></tr>
+				<tr><td>Обычная: цена</td><td>$7.99 / $59</td><td>$9.99 / $79</td><td>+25% / +34%</td></tr>
+				<tr><td>Обычная: LTV платящего</td><td>$94.2</td><td>$126.5</td><td>+34%</td></tr>
+				<tr class="base"><td>Обычная: LTV на установку</td><td>$1.32</td><td>$1.77</td><td>+34%</td></tr>
 			</tbody>
 		</table></div>
-		<p class="src">Сторонние обзоры, тарифы сверить: <a href="https://www.turbostarter.dev/blog/lemon-squeezy-vs-stripe" rel="noopener" target="_blank">LS vs Stripe</a> · <a href="https://www.paritydeals.com/lemon-squeezy-fee-calculator/" rel="noopener" target="_blank">LS fee calculator</a> · <a href="https://dodopayments.com/blogs/fastspring-pricing-explained" rel="noopener" target="_blank">FastSpring pricing</a> · <a href="https://www.vendr.com/marketplace/fastspring" rel="noopener" target="_blank">Vendr</a></p>
 	</details>
 </section>
 
-<!-- 03 -->
-<section class="sec wrap" id="options">
-	<div class="sec-h"><span class="num">03</span><div><h2>Четыре варианта</h2><p class="sub">Во всех вариантах базовые функции и отправка в Jira бесплатны. Разница — кто принимает платёж и что продаём.</p></div></div>
-
-	<div class="opts">
-		<article class="opt best">
-			<div class="opt-top"><span class="letter">A</span><span class="badge">Рекомендуем</span></div>
-			<h3>Paddle + reverse trial + founder-цена</h3>
-			<p class="price">$4.99<small>/мес</small> · $35<small>/год</small></p>
-			<p class="price-sub">после 28.02.2027: $7.99 / $59</p>
-			<ul>
-				<li class="plus">100% выручки минус Paddle, email покупателя, купоны</li>
-				<li class="plus">Один механизм для Store, сайта и прямой сборки</li>
-				<li class="plus">Готовый код из livesubs</li>
-				<li class="minus">Оплата в браузере — лишний шаг</li>
-				<li class="minus">Свой сервер прав доступа</li>
-			</ul>
-			<p class="eff">12–16 вечеров</p>
-		</article>
-		<article class="opt">
-			<div class="opt-top"><span class="letter">B</span></div>
-			<h3>Только Store (подписка add-on)</h3>
-			<p class="price">$5.99<small>/мес</small> · $47.99<small>/год</small></p>
-			<p class="price-sub">trial 1 месяц, с картой</p>
-			<ul>
-				<li class="plus">Проще всего по правилам, покупка в один клик</li>
-				<li class="plus">Issue #21 уже описан</li>
-				<li class="minus">15% комиссии, нет email и купонов</li>
-				<li class="minus">Founder-цену не закрепить, trial не изменить</li>
-			</ul>
-			<p class="eff">5–7 вечеров</p>
-		</article>
-		<article class="opt">
-			<div class="opt-top"><span class="letter">C</span><span class="badge soft">Этап 2</span></div>
-			<h3>Гибрид: Store IAP + Paddle + lifetime</h3>
-			<p class="price">как A <small>+ lifetime</small> $99</p>
-			<p class="price-sub">lifetime — первые 300 покупателей, только Paddle</p>
-			<ul>
-				<li class="plus">Максимум конверсии: две кнопки оплаты</li>
-				<li class="plus">Lifetime окупает 20+ лет AI</li>
-				<li class="minus">Две системы возвратов, риск двойной подписки</li>
-			</ul>
-			<p class="eff">16–20 вечеров</p>
-		</article>
-		<article class="opt">
-			<div class="opt-top"><span class="letter">D</span><span class="badge soft">Позже</span></div>
-			<h3>Щедрый Free + Team</h3>
-			<p class="price">$6<small>/место/мес</small> · $60<small>/год</small></p>
-			<p class="price-sub">от 3 мест; AI в Free без лимита</p>
-			<ul>
-				<li class="plus">Лучший рост установок и оценок</li>
-				<li class="minus">Командный продукт — 3–4× работы, B2B-продажи</li>
-				<li class="minus">Дрейф к «отчёту для начальника»</li>
-			</ul>
-			<p class="eff">25+ вечеров</p>
-		</article>
-	</div>
-
-	<div class="tbl card-tbl"><table class="cmp">
-		<thead><tr><th></th><th class="hl">A. Paddle + trial</th><th>B. Только Store</th><th>C. Гибрид + lifetime</th><th>D. Free + Team</th></tr></thead>
-		<tbody>
-			<tr><th>Бесплатно</th><td class="hl">База + Jira + CSV + 5 AI/мес</td><td>База + Jira + CSV + 5 AI/мес</td><td>База + Jira + CSV + 5 AI/мес</td><td>Всё, AI без лимита (модель проще)</td></tr>
-			<tr><th>Платно</th><td class="hl">Pro: AI без лимита, правила, история, XLSX/Tempo, BYOK</td><td>Pro + AI</td><td>Pro (Store или Paddle), lifetime</td><td>Team: общие правила, единый счёт, отчёт команды</td></tr>
-			<tr><th>Цена</th><td class="hl">$4.99 / $35 → $7.99 / $59</td><td>$5.99 / $47.99</td><td>как A + $99 lifetime</td><td>$6 / $60 за место</td></tr>
-			<tr><th>Пробный период</th><td class="hl">14 рабочих дней, без карты</td><td>1 мес, с картой</td><td>без карты (Paddle) / с картой (Store)</td><td>не нужен</td></tr>
-			<tr><th>Комиссия</th><td class="hl">6.4–15%</td><td>15%</td><td>6–15%</td><td>~6% (годовой) / 13% (мес)</td></tr>
-			<tr><th>Чистыми с платящего*</th><td class="hl">$4.24/мес · $32.75/год</td><td>$5.09/мес · $40.79/год</td><td>как A; lifetime $93.55</td><td>$5.20/мес · $56.50/год за место</td></tr>
-			<tr><th>Работа, вечеров</th><td class="hl"><b>12–16</b></td><td>5–7</td><td>16–20</td><td>25+</td></tr>
-			<tr><th>Деньги в первые 3 мес на 1 000 установок</th><td class="hl">~$345 сразу + $21/мес (14 платящих)</td><td>~$300 сразу + $18/мес (−15% комиссии, меньше стартов trial)</td><td>как A + $93.55 с каждого lifetime</td><td>$0 до запуска Team (25+ вечеров)</td></tr>
-			<tr><th>Главный риск</th><td class="hl">Брошенные checkout в браузере</td><td>15% и нет связи с покупателем</td><td>Двойная подписка, поддержка ×2</td><td>Год без денег, уход от позиционирования</td></tr>
-			<tr><th>Рейтинг и позиции в Store</th><td class="hl">цель ≥ 4.6: Jira и данные бесплатны, 5 AI/мес</td><td>≥ 4.6: та же база</td><td>≥ 4.6: та же база</td><td>максимум: AI без лимита, но AI для Free ~$0.41/польз./мес</td></tr>
-			<tr><th>RU и BY</th><td class="hl">Free</td><td>Free</td><td>Free</td><td>Free</td></tr>
-		</tbody>
-	</table></div>
-	<div class="how"><b>Как считали</b>
-		<span>* Чистыми = цена − комиссия, до затрат на AI. Paddle: цена − (5% × цена + $0.50); $4.99 → $4.24, $35 → $32.75, $99 → $93.55, $6 → $5.20, $60 → $56.50. Store: цена × 0.85; $5.99 → $5.09, $47.99 → $40.79.</span>
-		<span>Деньги за 3 месяца: 1 000 установок × 35% активированных × 4% = 14 платящих; 70% годовых × $35 ≈ $345 сразу, 30% месячных × $4.99 ≈ $21 в месяц (до комиссий). Для B — минус 15% комиссии.</span>
-	</div>
-</section>
-
-<!-- 04 -->
-<section class="sec wrap" id="pricing">
-	<div class="sec-h"><span class="num">04</span><div><h2>Тарифы варианта A</h2><p class="sub">Платим за экономию времени (AI и автоматизацию), а не за доступ к своим данным.</p></div></div>
-
+<!-- 02 -->
+<section class="sec wrap" id="free">
+	<div class="sec-h"><span class="num">02</span><div><h2>Что бесплатно, а что в Pro</h2><p class="sub">Берём деньги за сэкономленное время (AI и автоматизацию). Доступ к своим данным и отправка в Jira всегда бесплатны, иначе пострадает рейтинг.</p></div></div>
 	<div class="grid-pr">
 		<div class="tbl card-tbl"><table class="matrix">
 			<thead><tr><th>Функция</th><th>Free навсегда</th><th class="pro">Pro</th></tr></thead>
 			<tbody>
-				<tr><td>Захват, полоса дня, простой, «не работа»</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td></tr>
-				<tr><td>Ключи Jira из заголовков, ручная разметка</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td></tr>
-				<tr><td><b>Отправка ворклогов</b> в Jira Cloud, Server, DC</td><td><span class="y">✓</span> <small>ядро продукта</small></td><td><span class="y">✓</span></td></tr>
-				<tr><td>Экспорт CSV</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td></tr>
-				<tr><td><b>AI-разбор дня</b></td><td>5 в месяц</td><td><b>Без лимита</b> <small>fair use 20/день</small></td></tr>
-				<tr><td>AI-тексты ворклогов</td><td>в рамках тех же 5</td><td><span class="y">✓</span></td></tr>
-				<tr><td>История подтверждённых записей</td><td>текущая и прошлая неделя</td><td>без ограничений</td></tr>
-				<tr><td>Правила «Запомнить» (#7)</td><td>ручные, до 10</td><td>без лимита + подсказки из правок</td></tr>
-				<tr><td>XLSX, Tempo (#43), несколько Jira</td><td><span class="n">—</span></td><td><span class="y">✓</span> <small>когда появятся</small></td></tr>
-				<tr><td>BYOK и свой endpoint (#44)</td><td><span class="n">—</span></td><td><span class="y">✓</span></td></tr>
+				<tr><td>Захват, полоса дня, ключи Jira, ручная разметка</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td></tr>
+				<tr><td><b>Отправка ворклогов в Jira</b>, экспорт CSV</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td></tr>
+				<tr><td><b>AI-разбор дня</b> и AI-тексты ворклогов</td><td>5 в месяц</td><td><b>Без лимита</b> <small>до 20 в день</small></td></tr>
+				<tr><td>История подтверждённых записей</td><td>2 недели</td><td>вся</td></tr>
+				<tr><td>Правила «Запомнить»</td><td>до 10 ручных</td><td>без лимита + подсказки</td></tr>
+				<tr><td>XLSX, Tempo, несколько Jira, BYOK</td><td><span class="n">—</span></td><td><span class="y">✓</span> <small>когда появятся</small></td></tr>
 			</tbody>
 		</table></div>
-
-		<div class="side">
-			<div class="card price-card">
-				<div class="card-k">Founder до 28.02.2027</div>
-				<div class="pc-row"><div><b class="big">$35</b><span>в год · ≈ $2.92/мес</span><em class="tag">по умолчанию · −41%</em></div><div><b class="big">$4.99</b><span>в месяц</span><em class="tag gray">−38%</em></div></div>
-				<p>Закреплена, пока подписка активна. Отдельные <code>price_id</code>, не купон — чужим кодом не вытащить.</p>
-				<div class="after">Потом для новых: <b>$7.99/мес</b> или <b>$59/год</b> (≈ $4.92/мес, −38%). Обычная цена опубликована на <code>/pricing</code> с D0 — требование FTC.</div>
-			</div>
+		<div class="side one">
 			<div class="card">
 				<div class="card-k">Пробный период</div>
-				<p class="lg"><b>14 рабочих дней</b> полного Pro, <b>без карты</b>, не дольше <b>30 календарных дней</b>.</p>
-				<p>Считаются только дни, когда приложение работало: отпуск и выходные не тратят пробный период. Ведём на нашем сервере, Paddle не участвует.</p>
-				<p class="muted">Урок livesubs: trial с картой разбирали ради бесплатного объёма (45 из 49 стартов в день установки), конверсия ~14%.</p>
+				<p class="lg"><b>14 рабочих дней</b> Pro без карты, не больше 30 календарных.</p>
+				<p class="muted">Ведём на своём сервере, считаем только дни, когда приложение работало. В livesubs trial с картой давал ~14% оплат, и им злоупотребляли.</p>
 			</div>
 			<div class="card">
 				<div class="card-k">Ранние пользователи</div>
 				<p class="lg"><b>Pro бесплатно до 31.01.2027</b> и founder-цена без срока покупки.</p>
-				<p>Они ставят оценки на старте — то, что было бесплатно, не отнимаем без подарка.</p>
 			</div>
-			<div class="card">
-				<div class="card-k">Региональные цены</div>
-				<p><b>−25…−45%</b> для BR, PL, UA, MX, IN через <code>unit_price_overrides</code> Paddle. Включаем в январе. В livesubs уровни −25…−56%.</p>
+			<div class="card never">
+				<div class="card-k">Free-AI окупается</div>
+				<p>5 разборов стоят ≤ $0.09 на пользователя в месяц, после смены модели — меньше $0.02. При 20 000 MAU и конверсии 2% founder-подписки дают <b>$1 929</b> в месяц против <b>$1 764</b> на AI для Free. При $4.99 / $35 было $1 169 — в минус.</p>
 			</div>
 		</div>
 	</div>
 </section>
 
-<!-- 05 -->
-<section class="sec wrap" id="unit">
-	<div class="sec-h"><span class="num">05</span><div><h2>Юнит-экономика</h2><p class="sub">Все цифры — оценки. Проверяем на реальных данных в первые 3 недели после D0.</p></div></div>
+<!-- 03 -->
+<section class="sec wrap" id="ads">
+	<div class="sec-h"><span class="num">03</span><div><h2>LTV и реклама: сколько можем платить за установку</h2><p class="sub">Microsoft Store / Bing, Google Ads, позже Reddit и LinkedIn. Безубыточный предел цены установки (CPI) = LTV на установку / 3, агрессивный — / 2.</p></div></div>
 
-	<div class="grid3">
-		<div class="card">
-			<div class="card-k">Стоимость AI</div>
-			<p class="lg"><b>$0.41</b> на пользователя в месяц</p>
-			<p>Временная модель <code>gpt-5.4-mini</code>, ежедневный разбор: 7k токенов на вход, 3k на выход, 22 дня.</p>
-			<div class="meter"><span style="--w:8.2"></span></div>
-			<p class="muted">Это 8% от $4.99. После эвала модели $0.01–0.14, то есть 1–3%. Free (5 разборов): ~$0.09, после эвала &lt; $0.02.</p>
-		</div>
-		<div class="card math">
-			<div class="card-k">Paddle на $4.99 в месяц</div>
-			<div class="calc"><span>5% × $4.99</span><b>$0.25</b></div>
-			<div class="calc"><span>+ фиксированная</span><b>$0.50</b></div>
-			<div class="calc tot"><span>Комиссия</span><b>$0.75 · 15.0%</b></div>
-			<div class="calc"><span>Нам</span><b>$4.24</b></div>
-			<div class="calc"><span>− AI (худший случай)</span><b>$0.41</b></div>
-			<div class="calc net"><span>Вклад в месяц</span><b>$3.83</b></div>
-		</div>
-		<div class="card math">
-			<div class="card-k">Paddle на $35 в год</div>
-			<div class="calc"><span>5% × $35</span><b>$1.75</b></div>
-			<div class="calc"><span>+ фиксированная</span><b>$0.50</b></div>
-			<div class="calc tot"><span>Комиссия</span><b>$2.25 · 6.4%</b></div>
-			<div class="calc"><span>Нам</span><b>$32.75 · $2.73/мес</b></div>
-			<div class="calc"><span>− AI за год</span><b>$4.92</b></div>
-			<div class="calc net"><span>Вклад в год</span><b>$27.83</b></div>
-		</div>
-	</div>
-
-	<div class="card wide">
-		<div class="fee-head">
-			<div><div class="card-k">Сценарии выручки · оценка</div><h3>Сколько приносит каждый месяц</h3></div>
-		</div>
-		<div class="tbl"><table class="scen rev">
-			<thead><tr><th>MAU</th><th>Конверсия</th><th>Платящих</th><th>Чистыми / мес, founder</th><th>Чистыми / мес, обычная</th><th>AI для Free / мес<br><small>сейчас → после эвала</small></th></tr></thead>
-			<tbody>
-				<tr class="grp"><td rowspan="3"><b>1 000</b></td><td class="c">2%</td><td>20</td><td>$55</td><td>$99</td><td rowspan="3">~$88 → &lt; $20</td></tr>
-				<tr class="base"><td class="c">4%</td><td>40</td><td>$111</td><td>$198</td></tr>
-				<tr><td class="c">5%</td><td>50</td><td>$139</td><td>$248</td></tr>
-				<tr class="grp"><td rowspan="3"><b>5 000</b></td><td class="c">2%</td><td>100</td><td>$277</td><td>$496</td><td rowspan="3">~$441 → &lt; $100</td></tr>
-				<tr class="base"><td class="c">4%</td><td>200</td><td>$554</td><td>$992</td></tr>
-				<tr><td class="c">5%</td><td>250</td><td>$693</td><td>$1 240</td></tr>
-				<tr class="grp"><td rowspan="3"><b>20 000</b></td><td class="c">2%</td><td>400</td><td>$1 108</td><td>$1 984</td><td rowspan="3">~$1 764 → &lt; $400</td></tr>
-				<tr class="base"><td class="c">4%</td><td>800</td><td>$2 216</td><td>$3 968</td></tr>
-				<tr><td class="c">5%</td><td>1 000</td><td>$2 770</td><td>$4 960</td></tr>
-			</tbody>
-		</table></div>
-		<div class="how"><b>Как считали</b>
-			<span>MAU = активированные (подключили Jira и разобрали хотя бы день). Платящих = MAU × конверсия; 2–5% — ориентир freemium, база 4%.</span>
-			<span>Чистыми с платящего в месяц, founder: 0.7 × ($32.75 / 12) + 0.3 × $4.24 − $0.41 AI = 0.7 × $2.73 + $1.27 − $0.41 = <b>$2.77</b>. Обычная: 0.7 × ($55.55 / 12) + 0.3 × $7.09 − $0.41 = <b>$4.96</b>.</span>
-			<span>AI для Free = (MAU − платящие) × $0.09 (все 5 разборов в месяц, текущая модель) → × $0.02 после эвала. Пример: 1 000 − 20 = 980 × $0.09 = $88.</span>
-		</div>
-		<p class="note"><b>Что видно:</b> на текущей модели бесплатный AI при конверсии 2% съедает больше, чем приносят founder-подписки. Смена модели после эвала (#15) — условие плюсовой экономики, а не оптимизация. Ориентир из разбора на 1 000 установок из Store: ~650 запусков → ~350 активированных → 7–25 платящих.</p>
-	</div>
-</section>
-
-<!-- 06 -->
-<section class="sec wrap" id="ltv">
-	<div class="sec-h"><span class="num">06</span><div><h2>LTV и окупаемость</h2><p class="sub">Сколько приносит один платящий за всё время и сколько можно платить за установку. Отток — допущения по отраслевым бенчмаркам, пока нет своих данных.</p></div></div>
-
-	<div class="stats">
-		<div class="stat"><b class="grad">$52.5</b><span>LTV платящего, founder, базовый микс 60/40</span></div>
-		<div class="stat"><b>$94.2</b><span>LTV платящего по обычной цене $7.99 / $59</span></div>
-		<div class="stat"><b>$0.74</b><span>LTV на одну установку, базовый сценарий</span></div>
-		<div class="stat"><b>≤ $0.25</b><span>предел CAC за установку (LTV / 3)</span></div>
-	</div>
+	<div class="card-tbl tbl"><table class="scen ads">
+		<thead><tr><th>Вариант</th><th>LTV на установку<br><small>консерв. · база · оптим.</small></th><th>Макс. CPI, база<br><small>/ 3 · / 2</small></th><th>Макс. CPI, оптим.<br><small>/ 3</small></th><th>Окупаемость<br><small>при макс. CPI</small></th><th>Окупаемость<br><small>при CPI $5</small></th></tr></thead>
+		<tbody>
+			<tr><td>Дёшево $4.99 / $35</td><td>$0.22 · $0.74 · $2.33</td><td>$0.25 · $0.37</td><td>$0.78</td><td>6 мес</td><td>122 мес</td></tr>
+			<tr><td>Founder $6.99 / $59</td><td>$0.37 · $1.25 · $3.81</td><td>$0.42 · $0.63</td><td>$1.27</td><td>6 мес</td><td>74 мес</td></tr>
+			<tr class="base"><td><b>Рекомендуем $9.99 / $79</b></td><td>$0.52 · <b>$1.77</b> · $5.30</td><td><b>$0.59</b> · $0.89</td><td>$1.77</td><td>6 мес</td><td>52 мес</td></tr>
+			<tr><td>Премиум $14.99 / $119</td><td>$0.80 · $2.74 · $8.09</td><td>$0.91 · $1.37</td><td>$2.70</td><td>6 мес</td><td>33 мес</td></tr>
+		</tbody>
+	</table></div>
 
 	<div class="grid2 sp">
 		<div class="card">
-			<div class="card-k">Допущения по оттоку</div>
-			<ul class="dots">
-				<li><b>Месячный план:</b> отток 6–10% в месяц → срок жизни 1 / отток = <b>10–16.7 мес</b> (база 8% → 12.5 мес). Ориентир B2C-подписок по данным ProfitWell/Paddle — 3–8% в месяц, выше 10% — проблема.</li>
-				<li><b>Годовой план:</b> продление 40–60% → оплаченных лет 1 / (1 − продление) = <b>1.67–2.5</b> (база 50% → 2 года).</li>
-				<li><b>Затраты AI на платящего:</b> $0.41/мес сейчас, $0.14/мес после эвала (верх диапазона $0.01–0.14).</li>
-				<li><b>Микс:</b> 60% годовых, 40% месячных (цель к D+90 — ≥ 65% годовых).</li>
-			</ul>
-		</div>
-		<div class="card warnc">
-			<div class="card-k">Стресс-тест: мобильные бенчмарки хуже</div>
-			<p>RevenueCat (State of Subscription Apps), категория <b>Productivity</b>, медианы: продление годовых <b>23%</b> (p75 — 38%), первое продление месячных <b>54%</b>. Категория Business: <b>40%</b> и <b>61%</b>.</p>
-			<p>Если наши пользователи поведут себя как медианное мобильное Productivity-приложение, founder-LTV падает до <b>$26.7</b> (месячный живёт ~3.3 мес, годовой ~1.3 года). Мы ближе к Business: инструмент встроен в рабочий процесс с Jira — но это гипотеза, проверяем на первых продлениях.</p>
-			<p class="src">Источники: <a href="https://www.revenuecat.com/blog/growth/average-subscription-renewal-rates-by-app-category" rel="noopener" target="_blank">RevenueCat: renewal rates by category</a> · <a href="https://www.revenuecat.com/state-of-subscription-apps" rel="noopener" target="_blank">State of Subscription Apps 2026</a> · <a href="https://www.paddle.com/blog/saas-market-report-q1-2025" rel="noopener" target="_blank">Paddle SaaS report Q1 2025</a> · <a href="https://recurflux.com/resources/churn-benchmark" rel="noopener" target="_blank">B2C churn 3–8% (обзор ProfitWell/Recurly)</a></p>
-		</div>
-	</div>
-
-	<div class="card wide">
-		<div class="card-k">LTV одного платящего по планам</div>
-		<h3>Консервативно · база · оптимистично</h3>
-		<div class="tbl"><table class="scen ltvt">
-			<thead><tr><th>План</th><th>Нам с платежа</th><th>Консерв.<br><small>10% / 40%, AI $0.41</small></th><th>База<br><small>8% / 50%, AI $0.41</small></th><th>Оптимист.<br><small>6% / 60%, AI $0.14</small></th></tr></thead>
-			<tbody>
-				<tr><td>Founder $4.99 / мес</td><td>$4.24</td><td>$38.3</td><td>$47.9</td><td>$68.3</td></tr>
-				<tr><td>Founder $35 / год</td><td>$32.75</td><td>$46.4</td><td>$55.7</td><td>$77.7</td></tr>
-				<tr><td>Обычная $7.99 / мес</td><td>$7.09</td><td>$66.8</td><td>$83.5</td><td>$115.8</td></tr>
-				<tr><td>Обычная $59 / год</td><td>$55.55</td><td>$84.4</td><td>$101.3</td><td>$134.7</td></tr>
-				<tr class="base"><td>Founder, микс 60/40</td><td>—</td><td>$43.2</td><td>$52.5</td><td>$73.9</td></tr>
-				<tr class="base"><td>Обычная, микс 60/40</td><td>—</td><td>$77.4</td><td>$94.2</td><td>$127.1</td></tr>
-			</tbody>
-		</table></div>
-		<div class="how"><b>Как считали</b>
-			<span>Нам с платежа = цена − (5% × цена + $0.50). Пример: $35 − ($1.75 + $0.50) = $32.75.</span>
-			<span>Месячный: LTV = (нам с платежа − AI в мес) × 1 / отток. База founder: ($4.24 − $0.41) × 12.5 = $47.9.</span>
-			<span>Годовой: LTV = (нам с платежа − 12 × AI) × 1 / (1 − продление). База founder: ($32.75 − $4.92) × 2 = $55.7.</span>
-			<span>Микс: 0.6 × LTV годового + 0.4 × LTV месячного. База founder: 0.6 × $55.7 + 0.4 × $47.9 = $52.5.</span>
-		</div>
-	</div>
-
-	<div class="card wide">
-		<div class="card-k">LTV на установку и предел CAC</div>
-		<h3>Сколько можно платить за установку из Microsoft Store Ads / Bing</h3>
-		<div class="tbl"><table class="scen">
-			<thead><tr><th></th><th>Консерв.</th><th class="hl">База</th><th>Оптим.</th></tr></thead>
-			<tbody>
-				<tr><td>LTV платящего (founder, микс)</td><td>$43.2</td><td class="hl">$52.5</td><td>$73.9</td></tr>
-				<tr><td>Установка → trial (активирован)</td><td>25%</td><td class="hl">35%</td><td>45%</td></tr>
-				<tr><td>Trial → оплата</td><td>2%</td><td class="hl">4%</td><td>7%</td></tr>
-				<tr><td>Платящих на 1 000 установок</td><td>5</td><td class="hl">14</td><td>32</td></tr>
-				<tr class="base"><td>LTV на установку</td><td>$0.22</td><td class="hl">$0.74</td><td>$2.33</td></tr>
-				<tr class="base"><td>Предел CAC за установку (LTV / 3)</td><td>$0.07</td><td class="hl">$0.25</td><td>$0.78</td></tr>
-				<tr><td>Предел CAC за платящего (LTV / 3)</td><td>$14.4</td><td class="hl">$17.5</td><td>$24.6</td></tr>
-				<tr><td>То же по обычной цене, за установку</td><td>$0.13</td><td class="hl">$0.44</td><td>$1.33</td></tr>
-			</tbody>
-		</table></div>
-		<div class="how"><b>Как считали</b>
-			<span>LTV на установку = LTV платящего × (установка → trial) × (trial → оплата). База: $52.5 × 0.35 × 0.04 = $0.74.</span>
-			<span>Установка → trial: из 1 000 установок ~650 первых запусков (livesubs 62%, цель ≥ 75%) и ~350 активированных; reverse trial получает каждый активированный.</span>
-			<span>Trial → оплата: сценарии 2 / 4 / 7% из разбора. В livesubs было ~14%, но там trial с картой и меньше стартов — для нас это потолок, а не база. Из открытых checkout в livesubs оплачено ~12.5%, значит при базе 4% checkout должны открыть ~32% активированных.</span>
-			<span>Предел CAC = LTV / 3 (правило LTV:CAC ≥ 3). Обычная цена: LTV $77.4 / $94.2 / $127.1 с той же воронкой.</span>
-		</div>
-		<p class="note"><b>Вывод:</b> в базовом сценарии платная реклама окупается только при цене установки до <b>$0.25</b>. Перед масштабированием — тест $100–200 в Microsoft Store Ads и сравнение фактической цены установки с этим порогом. До первых продлений (январь для месячных, декабрь 2027 для годовых) LTV — только модель.</p>
-	</div>
-</section>
-
-<!-- 07 -->
-<section class="sec wrap" id="paywall">
-	<div class="sec-h"><span class="num">07</span><div><h2>Paywall и UX</h2><p class="sub">Сначала ценность, потом предложение. Ручной путь и отправка в Jira всегда открыты.</p></div></div>
-
-	<div class="grid2">
-		<div class="card">
-			<div class="card-k">Где показываем предложение</div>
-			<ol class="steps">
-				<li><b>Никогда</b> при первом запуске и до первого успешного разбора.</li>
-				<li><b>Тонкая строка</b> в шапке дня: «Pro trial · 6 work days left». С 10-го дня заметнее.</li>
-				<li><b>Главное место:</b> нажатие «Sort my day», когда лимит Free исчерпан или trial кончился. Модальное окно: «Upgrade — $35/year» или «Sort manually».</li>
-				<li><b>Конец trial:</b> один экран итогов — «За 14 дней AI разобрал 61 час, вы отправили 38 ворклогов» + founder-цена.</li>
-				<li><b>Настройки → Plan:</b> текущий план, Manage (portal), Restore purchase.</li>
-			</ol>
+			<div class="card-k">Тест на $500 · «Рекомендуем»</div>
+			<div class="tbl"><table class="scen">
+				<thead><tr><th>CPI</th><th>Установок</th><th>Trial</th><th>Платящих<br><small>база · оптим.</small></th><th>LTV<br><small>база · оптим.</small></th></tr></thead>
+				<tbody>
+					<tr><td>$2</td><td>250</td><td>88</td><td>3.5 · 7.9</td><td>$443 · <b>$1 325</b></td></tr>
+					<tr><td>$5</td><td>100</td><td>35</td><td>1.4 · 3.2</td><td>$177 · $530</td></tr>
+					<tr><td>$10</td><td>50</td><td>18</td><td>0.7 · 1.6</td><td>$89 · $265</td></tr>
+				</tbody>
+			</table></div>
+			<p class="muted">Реалистичный CPI для десктопа — <b>$2–10</b>. Это оценка: средняя цена клика в Microsoft Ads $1.54, в B2B SaaS — $3.90–4.22; если установку делает каждый 3–5-й кликнувший, выходит $2–10 за установку.</p>
 		</div>
 		<div class="stack">
-			<div class="card never">
-				<div class="card-k">Никогда не блокируем</div>
-				<div class="chips"><span>Отправка в Jira</span><span>Экспорт CSV</span><span>Ручная разметка</span><span>История и данные после trial</span></div>
-				<p class="muted">Иначе — отзывы «бесплатно только посмотреть». Заодно закрывает 10.8.4 о данных после пробного периода.</p>
+			<div class="dark verdict">
+				<p><b>Вердикт.</b> При базовой воронке реклама окупается, только если установка стоит <b>не дороже $0.59</b> (агрессивно — $0.89). При реальных $2–10 она в минус. Покупать трафик начинаем, когда воронка близка к оптимистичной (45% × 7%, тогда предел $1.77) и CPI в тесте не выше $2. До этого рост идёт через ASO, отзывы и контент.</p>
 			</div>
 			<div class="card">
-				<div class="card-k">Запрос оценки и paywall</div>
-				<p>Правило <code>RatePromptPolicy</code> (после 3 отправленных дней) обычно срабатывает <b>внутри trial</b>, на пике удовлетворённости. Добавляем:</p>
+				<div class="card-k">Что важно знать</div>
 				<ul class="dots">
-					<li>не просить оценку в сессии, где показан paywall или исчерпан лимит, и 3 дня после;</li>
-					<li>не просить в последние 2 дня trial и в день окончания;</li>
-					<li>никаких стимулов за оценку.</li>
+					<li>App install ads в Microsoft Advertising работают только для iOS и Android. Windows-приложение рекламируем поисковыми объявлениями со ссылкой на Store и меткой <code>cid</code> из Partner Center: по ней видны установки с каждой кампании.</li>
+					<li>Годовой план оплачивается сразу: при CPI на пределе привлечение платящего стоит ~$42, а годовой платёж даёт $74.55 в первый же день.</li>
+					<li><b>Рекламу внутри приложения не ставим:</b> она портит образ privacy-first рабочего инструмента и принесла бы центы.</li>
 				</ul>
-			</div>
-			<div class="card">
-				<div class="card-k">Офлайн и неудачный платёж</div>
-				<ul class="dots">
-					<li><b>14 дней</b> офлайн-грейса для не-AI функций Pro с последней успешной проверки (AI и так требует сети).</li>
-					<li><b><code>past_due</code></b>: 3 дня от начала периода, ведём на оплату счёта, а не в portal.</li>
-					<li>Отменённая подписка работает до конца оплаченного периода.</li>
-				</ul>
+				<p class="src">Источники: <a href="https://learn.microsoft.com/en-us/advertising/msa-help/hlp_ba_conc_appinstallads" rel="noopener" target="_blank">App install ads</a> · <a href="https://learn.microsoft.com/en-us/windows/apps/publish/attract-customers-and-promote-your-apps" rel="noopener" target="_blank">Promote Windows apps</a> · <a href="https://www.stackmatix.com/blog/microsoft-advertising-cost-pricing-guide" rel="noopener" target="_blank">CPC $1.54</a> · <a href="https://adcredits.expert/bing-statistics/" rel="noopener" target="_blank">B2B SaaS $3.90</a> · <a href="https://www.uproas.io/blog/bing-ads-cost" rel="noopener" target="_blank">B2B SaaS $4.22</a></p>
 			</div>
 		</div>
 	</div>
+
+	<details class="card wide how-d">
+		<summary><span><span class="card-k">Как считали</span><b>Предел CPI, окупаемость, тестовый бюджет, отток</b></span><span class="chev" aria-hidden="true"></span></summary>
+		<div class="how">
+			<span>Макс. CPI = LTV на установку / 3 (правило LTV:CAC ≥ 3), агрессивный — / 2.</span>
+			<span>Доход с платящего в месяц = 0.6 × (годовой нетто / 12 − $0.41) + 0.4 × (месячный нетто − $0.41): «Дёшево» $2.92, founder $4.82, «Рекомендуем» $6.91, «Премиум» $10.71.</span>
+			<span>Окупаемость = CPI / (35% × 4%) / доход с платящего в месяц. При CPI $5 на одного платящего уходит $357; для «Рекомендуем» это $357 / $6.91 = 52 месяца.</span>
+			<span>Тест: установок = $500 / CPI; trial = установки × 35% (оптим. 45%); платящих = trial × 4% (оптим. 7%); LTV = платящие × $126.5 (оптим. $168.3).</span>
+			<span>Отток — допущения: B2C-подписки теряют 3–8% в месяц (обзоры по данным ProfitWell/Recurly). По RevenueCat у мобильных Productivity-приложений медианное продление годовых — 23%, у Business — 40%. Это хуже нашей базы, проверяем на первых продлениях. <a href="https://www.revenuecat.com/blog/growth/average-subscription-renewal-rates-by-app-category" rel="noopener" target="_blank">RevenueCat</a> · <a href="https://recurflux.com/resources/churn-benchmark" rel="noopener" target="_blank">churn benchmarks</a></span>
+		</div>
+	</details>
 </section>
 
-<!-- 08 -->
-<section class="sec wrap" id="plan">
-	<div class="sec-h"><span class="num">08</span><div><h2>План реализации</h2><p class="sub">Firestore + Cloud Run, Paddle sandbox до запуска. Сервер сразу готов к Store как второму провайдеру.</p></div></div>
-
-	<div class="timeline">
-		<div class="tstep"><span class="date">до 17.11</span><b>До D0</b><p>Ничего платного. «Free in early access. Pro is coming». Лендинг <code>/pricing</code> с будущими ценами и waitlist.</p></div>
-		<div class="tstep"><span class="date">17.11–08.12</span><b>D0 → D+21</b><p>Набираем установки и оценки. Строим права, webhook и checkout в sandbox. Меряем реальные разборы и токены.</p></div>
-		<div class="tstep hot"><span class="date">08–17.12</span><b>Включаем Paddle</b><p>Листинг с ценами (10.8.4), отметка в Partner Center (10.8.2). Новым — 14 рабочих дней trial.</p></div>
-		<div class="tstep"><span class="date">январь</span><b>Ранние → founder</b><p>31.01 ранние пользователи получают письмо и баннер. A/B: год против месяца по умолчанию. Региональные цены.</p></div>
-		<div class="tstep hot"><span class="date">28.02.2027</span><b>Решение по этапу 2</b><p>Founder закрыт. Брошенных checkout &gt; 85% и конверсия &lt; 3% → Store IAP (вариант C). Пересмотр RU.</p></div>
-	</div>
-
-	<div class="grid3">
-		<div class="card">
-			<div class="card-k">Сервер · Cloud Run</div>
-			<ul class="dots">
-				<li><b>Firestore</b> (EU): <code>installs</code>, <code>entitlements</code>, <code>paddle_events</code>, <code>usage</code>. Заодно точный дневной лимит (#14).</li>
-				<li><b>Токен установки</b> (JWT на 7 дней с планом, остатком trial и квотой) вместо dev-ключей. Лимит регистраций по IP, отпечаток машины.</li>
-				<li><b>Webhook Paddle</b> с проверкой <code>Paddle-Signature</code> (HMAC-SHA256, постоянное время, ротация секрета), идемпотентность по <code>event_id</code>, порядок по <code>occurred_at</code>, 401 на неверную подпись, 5xx на неизвестный <code>price_id</code>.</li>
-				<li><b>Checkout-ссылка</b> с одноразовым nonce, portal, <b>restore по email-коду</b> (до 3 устройств).</li>
-				<li><b>Sandbox</b>: второй сервис Cloud Run или профиль <code>local</code>. Секреты — только Secret Manager.</li>
-			</ul>
-		</div>
-		<div class="card">
-			<div class="card-k">Клиент</div>
-			<ul class="dots">
-				<li><code>IEntitlementService</code>: токен в DPAPI, план, остаток trial и AI-разборов.</li>
-				<li>Строка trial, модальное окно, экран итогов, Настройки → Plan.</li>
-				<li>Локализация на 11 языков.</li>
-				<li>Store позже — второй провайдер через <code>StoreContext</code>, сервер пишет <code>provider=store</code>.</li>
-			</ul>
-			<div class="card-k sp">Лендинг</div>
-			<ul class="dots">
-				<li><code>/buy</code>: overlay Paddle.js, предзаполненный email, годовой план по умолчанию, «Processed by Paddle, Merchant of Record».</li>
-				<li><code>?discount=</code>, <code>_ptxn</code>, кнопка повтора, если Paddle.js не загрузился.</li>
-				<li><code>/terms</code>, <code>/refund</code> (14 дней без вопросов), <code>/privacy</code> — без них домен не одобрят.</li>
-			</ul>
-		</div>
-		<div class="card">
-			<div class="card-k">Берём из livesubs</div>
-			<ul class="reuse">
-				<li><code>PaddleSignatureVerifier</code><span>проверка подписи</span></li>
-				<li><code>PaddleWebhookService</code><span>события, дубли, возвраты</span></li>
-				<li><code>PaddleApiClient</code><span>portal, отмена, смена плана</span></li>
-				<li><code>PaddlePricingClient</code><span>локальные цены</span></li>
-				<li><code>WebSubscriptionPlanMap</code><span>price_id → план</span></li>
-				<li><code>buy/index.html</code><span>страница checkout</span></li>
-				<li><code>WebPaymentPlan</code><span>выбор провайдера по стране (для C)</span></li>
-				<li>QA-чеклист sandbox<span>trial, продление, past_due, возврат</span></li>
-			</ul>
-			<p class="muted">Секреты Paddle из livesubs не переносим: ключи нужно перевыпустить.</p>
-		</div>
-	</div>
-
-	<div class="card wide">
-		<div class="fee-head"><div><div class="card-k">Оценка · вечер = 2–3 часа</div><h3>Итого 12–16 вечеров</h3></div></div>
-		<div class="effort">
-			<div><span>Firestore, токен, лимит по плану (+ #14)</span><b>2–3</b><i style="--a:2;--b:3"></i></div>
-			<div><span>Webhook Paddle, тесты на событиях sandbox</span><b>2</b><i style="--a:2;--b:2"></i></div>
-			<div><span>Checkout, portal, restore по email</span><b>2</b><i style="--a:2;--b:2"></i></div>
-			<div><span>Лендинг: /buy, /pricing, /terms, /refund, домен</span><b>1–2</b><i style="--a:1;--b:2"></i></div>
-			<div><span>Клиент: права, trial, paywall, итоги, Plan, 11 языков</span><b>3–4</b><i style="--a:3;--b:4"></i></div>
-			<div><span>Листинг 10.8.4, Partner Center, privacy</span><b>1</b><i style="--a:1;--b:1"></i></div>
-			<div><span>QA по чеклисту в sandbox</span><b>1–2</b><i style="--a:1;--b:2"></i></div>
-		</div>
-		<div class="how"><b>Как считали</b><span>Сумма блоков: минимум 2 + 2 + 2 + 1 + 3 + 1 + 1 = 12, максимум 3 + 2 + 2 + 2 + 4 + 1 + 2 = 16 вечеров по 2–3 часа, то есть 24–48 часов. При 3 вечерах в неделю — 4–5.5 недели, поэтому Paddle включаем на D+21–30 только если начать до D0.</span></div>
-		<p class="note">Вручную, без кода: продукт и три набора цен в Paddle (обычная, founder, региональная), домен, отметка в Partner Center, юридические тексты.</p>
-	</div>
+<!-- 04 -->
+<section class="sec wrap" id="rules">
+	<div class="sec-h"><span class="num">04</span><div><h2>7 правил, которые нужно знать</h2><p class="sub">Microsoft Store Policies 7.20 и Paddle, проверено 20.10.2026.</p></div></div>
+	<ol class="rules">
+		<li><b>Своя оплата разрешена.</b> Не-игра на ПК может использовать сторонний платёжный API вместо Store IAP, и предлагать оба не обязательно (10.8.1). Для подписок — то же самое (10.8.6). <a href="https://learn.microsoft.com/en-us/windows/apps/publish/store-policies" rel="noopener" target="_blank">Policies</a></li>
+		<li><b>Microsoft берёт 0%</b> при своей оплате. Store IAP стоит 15%. <a href="https://learn.microsoft.com/en-us/windows/apps/publish/get-started" rel="noopener" target="_blank">Get started</a></li>
+		<li><b>Раскрытие:</b> при оплате пишем «Payment processed by Paddle.com, our Merchant of Record»; в Partner Center отмечаем third-party purchase API; в листинге указываем «Free. Optional Pro: $6.99–9.99/month or $59–79/year, 14-day free trial, no card required» (10.8.2, 10.8.4).</li>
+		<li><b>Paddle: 5% + $0.50</b> за платёж. На $9.99 это 10%, на $79 — 5.6%. Paddle — продавец (Merchant of Record): сам платит VAT и налоги, разбирает chargeback. <a href="https://www.paddle.com/pricing" rel="noopener" target="_blank">Paddle pricing</a></li>
+		<li><b>RU и BY не платят никак.</b> Paddle блокирует покупателей и продавцов, платежи Store в RU не работают с марта 2022. Там только Free, paywall не показываем. На D+90 местный эквайринг, если доля RU больше 15% (нужен ИП или самозанятый). <a href="https://www.paddle.com/help/legal/sanctions/impact-of-sanctions-on-russia-and-belarus" rel="noopener" target="_blank">Paddle RU/BY</a></li>
+		<li><b>Founder-цена честна по FTC</b>, только если обычная цена $9.99 / $79 опубликована на <code>/pricing</code> с D0 и реально действует после 28.02.2027.</li>
+		<li><b>Данные после trial не трогаем:</b> история и экспорт остаются (10.8.4). Если подписку снимаем с продажи, обслуживаем её до конца оплаченного периода (10.8.6).</li>
+	</ol>
 </section>
 
-<!-- 09 -->
-<section class="sec wrap" id="ru">
-	<div class="sec-h"><span class="num">09</span><div><h2>Россия и Беларусь</h2><p class="sub">Оплату принять нечем. RU работает на рейтинг и отзывы.</p></div></div>
-	<div class="ru">
-		<div class="ru-step"><span class="date">Старт</span><h3>Только Free</h3><p>Полезный Free с 5 AI-разборами. По GeoID и <code>CF-IPCountry</code> <b>не показываем paywall и checkout</b>, чтобы не было «нажал — ошибка». Вместо этого: «Pro is not yet available in your region».</p></div>
-		<div class="ru-step"><span class="date">D+90</span><h3>Если RU &gt; 15% активированных</h3><p>Рассматриваем местного эквайера: ЮKassa, CloudPayments, Prodamus. Store это не запрещает (10.8.1).</p></div>
-		<div class="ru-step"><span class="date">Условие</span><h3>Нужен российский продавец</h3><p><b>ИП или самозанятый</b>-резидент. С продавцом-нерезидентом не решается. Карты третьих стран и смена региона — частные пути пользователей, не наша схема.</p></div>
-		<div class="ru-step warn"><span class="date">AI</span><h3>OpenAI в RU</h3><p>OpenAI, Anthropic и Google не обслуживают RU, а прокси в EU формально проводит RU-запросы. Варианты: open-weights у западного хостера или Mistral; либо BYOK бесплатно там, где оплата недоступна. Решить при эвале (#15).</p></div>
-	</div>
-</section>
-
-<!-- 10 -->
+<!-- 05 -->
 <section class="sec wrap" id="decide">
-	<div class="sec-h"><span class="num">10</span><div><h2>Решения и риски</h2><p class="sub">Отметки сохраняются только в этом браузере.</p></div></div>
-
-	<div class="grid2">
-		<div class="card">
-			<div class="card-k">Решить владельцу</div>
-			<ul class="check" data-store="mon-decisions">
-				<li><label><input type="checkbox"><span>Утвердить <b>вариант A</b>; C — только по сигналу 28.02.2027, D — по запросам тимлидов.</span></label></li>
-				<li><label><input type="checkbox"><span>Цены: founder <b>$4.99 / $35</b> до <b>28.02.2027</b>, обычная <b>$7.99 / $59</b>.</span></label></li>
-				<li><label><input type="checkbox"><span>Free-лимит <b>5 AI-разборов</b> в месяц (поднять до 10, если рейтинг &lt; 4.4).</span></label></li>
-				<li><label><input type="checkbox"><span>Trial <b>14 рабочих дней</b>, без карты, максимум 30 календарных.</span></label></li>
-				<li><label><input type="checkbox"><span>Ранним — <b>Pro до 31.01.2027</b> и founder-цена без срока.</span></label></li>
-				<li><label><input type="checkbox"><span>Тексты в приложении и на лендинге до D0: «Pro is coming».</span></label></li>
-				<li><label><input type="checkbox"><span>Хранилище — <b>Firestore</b> (EU); письма — Cloudflare Email Workers или Resend.</span></label></li>
-				<li><label><input type="checkbox"><span>Аккаунт Partner Center: Individual или Company (если на лендинге выступаем как бизнес).</span></label></li>
-				<li><label><input type="checkbox"><span>Возвраты: <b>14 дней без вопросов</b>; тексты <code>/terms</code>, <code>/refund</code>, <code>/privacy</code>.</span></label></li>
-				<li><label><input type="checkbox"><span><b>Перевыпустить ключи</b> livesubs и dev-ключи этого репозитория (#25).</span></label></li>
-				<li><label><input type="checkbox"><span>Модель для RU — решить при эвале (#15).</span></label></li>
-				<li><label><input type="checkbox"><span>Попросить у Paddle тариф для чеков &lt; $10, когда будет объём.</span></label></li>
-			</ul>
-		</div>
-		<div class="card">
-			<div class="card-k">Риски и что делаем</div>
-			<dl class="risks">
-				<dt>Paywall уронит рейтинг</dt><dd>Jira и данные бесплатны, предложение — после ценности, запрос оценки разведён с paywall. Рейтинг &lt; 4.4 за 30 дней → Free до 10 разборов.</dd>
-				<dt>$0.50 Paddle на маленьком чеке</dt><dd>Годовой по умолчанию, месячный не дешевле $4.99.</dd>
-				<dt>Злоупотребление trial</dt><dd>Trial на сервере, по дням работы, отпечаток машины. Переустановка даёт новые 14 рабочих дней — это до ~$0.26 AI ($0.41 / 22 дня × 14).</dd>
-				<dt>Founder как «вечная скидка» (FTC)</dt><dd>Обычная цена на <code>/pricing</code> с D0, founder — отдельные <code>price_id</code> со сроком.</dd>
-				<dt>Двойная подписка (вариант C)</dt><dd>Побеждает Store, дубль Paddle отменяем с пропорциональным возвратом.</dd>
-				<dt>Утечка ключей</dt><dd>Секреты только в Secret Manager; ключи нужно перевыпустить.</dd>
-				<dt>Cardless trial Paddle в early access</dt><dd>Не зависим: trial ведём сами, Paddle видит только оплату.</dd>
-				<dt>AI-затраты Free при росте</dt><dd>Смена модели после эвала; при 20k MAU это ~$1.7k → &lt; $400 в месяц.</dd>
-			</dl>
-		</div>
+	<div class="sec-h"><span class="num">05</span><div><h2>Что решить</h2><p class="sub">Отметки сохраняются только в этом браузере.</p></div></div>
+	<div class="card">
+		<ul class="check two" data-store="mon-decisions-v2">
+			<li><label><input type="checkbox"><span>Цена Pro: <b>$9.99 / $79</b>, годовой по умолчанию.</span></label></li>
+			<li><label><input type="checkbox"><span>Founder <b>$6.99 / $59</b> до <b>28.02.2027</b>, закреплена, пока подписка активна.</span></label></li>
+			<li><label><input type="checkbox"><span>A/B $59 против $79 за год, первые 4–6 недель.</span></label></li>
+			<li><label><input type="checkbox"><span>Free: <b>5 AI-разборов</b> в месяц; поднять до 10, если рейтинг ниже 4.4.</span></label></li>
+			<li><label><input type="checkbox"><span>Trial <b>14 рабочих дней</b> без карты; ранним — Pro до 31.01.2027.</span></label></li>
+			<li><label><input type="checkbox"><span>Платная реклама — только если тестовый CPI не выше $0.59 при базовой воронке или $1.77 при оптимистичной; тест $500.</span></label></li>
+			<li><label><input type="checkbox"><span>Без рекламы внутри приложения.</span></label></li>
+			<li><label><input type="checkbox"><span>RU и BY — только Free; вернуться к вопросу на D+90.</span></label></li>
+			<li><label><input type="checkbox"><span>Аккаунт Partner Center: Individual или Company; тексты <code>/terms</code>, <code>/refund</code> (14 дней), <code>/privacy</code>.</span></label></li>
+			<li><label><input type="checkbox"><span><b>Перевыпустить ключи</b> livesubs и dev-ключи (#25).</span></label></li>
+		</ul>
 	</div>
-
-	<div class="card wide metrics">
-		<div class="card-k">Как поймём, что сработало · цели к D+90</div>
-		<div class="stats in">
-			<div class="stat"><b class="grad">≥ 4%</b><span>активированных платят</span></div>
-			<div class="stat"><b>≥ 65%</b><span>платящих на годовом плане</span></div>
-			<div class="stat"><b>≥ 4.6</b><span>рейтинг в Store</span></div>
-		</div>
-		<p class="note">События: <code>paywall.shown{place}</code>, <code>checkout.opened{plan}</code>, <code>trial.started</code>, <code>trial.ended{converted}</code>, <code>sub.activated{plan,price_tier}</code>, <code>sub.canceled{reason}</code>. В Grafana — воронка «активирован → paywall → checkout → оплата».</p>
+	<div class="stats in3">
+		<div class="stat"><b class="grad">≥ 4%</b><span>активированных платят к D+90</span></div>
+		<div class="stat"><b>≥ 65%</b><span>платящих на годовом плане</span></div>
+		<div class="stat"><b>≥ 4.6</b><span>рейтинг в Store</span></div>
 	</div>
+</section>
+
+<!-- more -->
+<section class="sec wrap" id="more">
+	<div class="sec-h"><span class="num">+</span><div><h2>Подробности</h2><p class="sub">Для решения не нужны, пригодятся при реализации.</p></div></div>
+
+	<details class="card wide">
+		<summary><span><span class="card-k">План и сроки</span><b>Запуск 17.11 бесплатно → Paddle через 3–4 недели → 28.02 решение по Store IAP</b></span><span class="chev" aria-hidden="true"></span></summary>
+		<div class="tbl"><table class="scen">
+			<thead><tr><th>Когда</th><th>Что</th></tr></thead>
+			<tbody>
+				<tr><td>до 17.11</td><td>Ничего платного: «Free in early access, Pro is coming». На лендинге <code>/pricing</code> с ценами $9.99 / $79 и founder.</td></tr>
+				<tr><td>17.11–08.12</td><td>Набираем установки и оценки. Строим права доступа, webhook и checkout в sandbox, меряем реальные токены.</td></tr>
+				<tr><td>08–17.12</td><td>Включаем Paddle и A/B $59 / $79. Листинг с ценами, отметка в Partner Center.</td></tr>
+				<tr><td>январь</td><td>31.01 у ранних пользователей заканчивается бесплатный Pro: письмо и баннер с founder-ценой. Региональные цены.</td></tr>
+				<tr><td>28.02.2027</td><td>Founder закрыт. Если брошенных checkout больше 85% и конверсия меньше 3%, добавляем Store IAP второй кнопкой.</td></tr>
+			</tbody>
+		</table></div>
+		<p class="note"><b>Работа: 12–16 вечеров.</b> Firestore и токены (2–3), webhook Paddle с проверкой подписи (2), checkout, portal и восстановление по коду из письма (2), лендинг <code>/buy</code> и юридические страницы (1–2), клиент и 11 языков (3–4), листинг (1), QA в sandbox (1–2). Из livesubs берём проверку подписи, обработчик webhook, клиент API и страницу checkout. Секреты храним только в Secret Manager, ключи нужно перевыпустить.</p>
+	</details>
+
+	<details class="card wide">
+		<summary><span><span class="card-k">Paywall и UX</span><b>Где показываем предложение и что никогда не блокируем</b></span><span class="chev" aria-hidden="true"></span></summary>
+		<ul class="dots">
+			<li>Никогда при первом запуске и до первого успешного разбора.</li>
+			<li>Главное место: «Sort my day», когда лимит Free исчерпан или trial закончился. Выбор: «Upgrade — $79/year» или «Sort manually».</li>
+			<li>Отправку в Jira, CSV, ручную разметку и данные не блокируем никогда.</li>
+			<li>Оценку не просим в сессии, где показан paywall, 3 дня после него и в последние 2 дня trial.</li>
+			<li>Офлайн-грейс для не-AI функций Pro — 14 дней; при <code>past_due</code> — 3 дня.</li>
+		</ul>
+	</details>
+
+	<details class="card wide">
+		<summary><span><span class="card-k">Другие модели</span><b>Почему не только Store, не гибрид и не командный тариф сразу</b></span><span class="chev" aria-hidden="true"></span></summary>
+		<ul class="dots">
+			<li><b>Только Store IAP:</b> 15% комиссии, trial только с картой и только 1 неделя или 1 месяц, нет email покупателя и закреплённой founder-цены. Работы 5–7 вечеров.</li>
+			<li><b>Гибрид Store + Paddle + lifetime $99:</b> лучшая конверсия, но две системы возвратов и 16–20 вечеров. Это этап 2, решаем 28.02.2027.</li>
+			<li><b>Free + Team:</b> Team $8 за место — позже, когда появится спрос от агентств. 25+ вечеров.</li>
+			<li><b>Другие провайдеры:</b> Lemon Squeezy до ~8.5%, Stripe Managed Payments 6.4–10%, FastSpring на маленьком чеке ~25%. Paddle уже одобрен и знаком.</li>
+		</ul>
+	</details>
+
+	<details class="card wide">
+		<summary><span><span class="card-k">Источники</span><b>Политики, комиссии, бенчмарки</b></span><span class="chev" aria-hidden="true"></span></summary>
+		<ul class="dots src-list">
+			<li><a href="https://learn.microsoft.com/en-us/windows/apps/publish/store-policies" rel="noopener" target="_blank">Microsoft Store Policies 7.20</a> · <a href="https://learn.microsoft.com/en-us/windows/apps/publish/get-started" rel="noopener" target="_blank">комиссии Store</a> · <a href="https://learn.microsoft.com/en-us/windows/uwp/monetize/enable-subscription-add-ons-for-your-app" rel="noopener" target="_blank">подписки add-on</a></li>
+			<li><a href="https://www.paddle.com/pricing" rel="noopener" target="_blank">Paddle pricing</a> · <a href="https://developer.paddle.com/build/subscriptions/cardless-trials" rel="noopener" target="_blank">cardless trials</a> · <a href="https://developer.paddle.com/webhooks/signature-verification" rel="noopener" target="_blank">webhook signature</a></li>
+			<li><a href="https://www.paddle.com/help/legal/sanctions/impact-of-sanctions-on-russia-and-belarus" rel="noopener" target="_blank">Paddle: RU и BY</a> · <a href="https://www.videogameschronicle.com/news/microsoft-is-suspending-all-sales-of-products-and-services-in-russia/" rel="noopener" target="_blank">Microsoft в RU, 03.2022</a></li>
+			<li><a href="https://www.memtime.com/pricing" rel="noopener" target="_blank">Memtime</a> · <a href="https://rize.io/pricing" rel="noopener" target="_blank">Rize</a> · <a href="https://www.revenuecat.com/state-of-subscription-apps" rel="noopener" target="_blank">RevenueCat State of Subscription Apps</a></li>
+		</ul>
+	</details>
 </section>
 </main>
 
 <footer class="wrap foot-main">
-	<p>Timesheet Tracker · внутренний разбор монетизации, 20.10.2026. Не публичная страница, цены и даты могут измениться.</p>
-	<p class="muted">Конкуренты для ориентира: <a href="https://www.memtime.com/pricing" rel="noopener" target="_blank">Memtime</a> $14–35, 14 дней без карты · <a href="https://rize.io/pricing" rel="noopener" target="_blank">Rize</a> $9.99–49.99 · ManicTime $87 бессрочно. Подписи вебхуков: <a href="https://developer.paddle.com/webhooks/signature-verification" rel="noopener" target="_blank">Paddle docs</a>.</p>
+	<p>Timesheet Tracker · внутренний разбор монетизации. Не публичная страница; все цифры — оценки до появления собственных данных.</p>
 </footer>
 
 <script>
 document.querySelectorAll('.check[data-store]').forEach(function (ul) {
-	var key = ul.dataset.store, boxes = ul.querySelectorAll('input');
-	var saved = [];
+	var key = ul.dataset.store, boxes = ul.querySelectorAll('input'), saved = [];
 	try { saved = JSON.parse(localStorage.getItem(key) || '[]'); } catch (e) {}
 	boxes.forEach(function (b, i) {
 		b.checked = saved[i] === 1;
