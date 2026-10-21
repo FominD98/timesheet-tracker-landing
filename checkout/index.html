@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Checkout | Timesheet Tracker Pro</title>
+	<meta name="description" content="Pay for Timesheet Tracker Pro. Payments are processed by Paddle.com, our merchant of record.">
+	<meta name="robots" content="noindex, nofollow">
+	<meta name="theme-color" content="#f5f6fb">
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+	<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap">
+	<link rel="stylesheet" href="/css/landing.css">
+	<link rel="stylesheet" href="/checkout/checkout.css">
+	<!-- Paddle Billing, overlay checkout: https://developer.paddle.com/paddlejs/overview -->
+	<script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+</head>
+<body>
+	<header class="site-header">
+		<nav class="wrap nav" aria-label="Main">
+			<a class="brand" href="/"><img src="/img/mark.svg" width="30" height="30" alt=""><span>Timesheet Tracker</span></a>
+		</nav>
+	</header>
+
+	<main id="main">
+		<section class="page-hero">
+			<div class="aurora" aria-hidden="true"></div>
+			<div class="wrap">
+				<h1 id="co-title">Timesheet Tracker Pro</h1>
+				<p class="dek" id="co-text">Opening the secure checkout…</p>
+				<div class="co-actions">
+					<button class="btn btn-primary" id="co-retry" type="button" hidden>Open checkout again</button>
+				</div>
+				<p class="co-note">Payments are processed by <a href="https://www.paddle.com" target="_blank" rel="noopener">Paddle.com</a>, our merchant of record, who also handles taxes and invoices. Prices include applicable taxes.
+					<a href="/terms.html#subscriptions">Terms</a> · <a href="/terms.html#refunds">Refunds</a> · <a href="/privacy.html">Privacy</a></p>
+			</div>
+		</section>
+	</main>
+
+	<script>
+	// Страница оплаты: приложение (сервер /v1/checkout) создаёт транзакцию Paddle с custom_data.install_id и открывает
+	// https://timesheet-tracker.com/checkout/?txn=txn_…[&sandbox=1][&email=…]. Здесь только окно Paddle Checkout поверх
+	// страницы; кто платит и за что — уже в транзакции, страница ничего не решает. Ссылка из письма Paddle о брошенной
+	// оплате приходит с ?_ptxn=txn_… — её Paddle.js открывает сам.
+	(function () {
+		// Client-side tokens (Paddle → Developer tools → Authentication). Они публичные по устройству Paddle, но заданы
+		// владельцем: sandbox и live — из разных аккаунтов Paddle.
+		var PADDLE_TOKEN_SANDBOX = 'test_REPLACE_WITH_SANDBOX_CLIENT_TOKEN';
+		var PADDLE_TOKEN_LIVE = 'live_REPLACE_WITH_LIVE_CLIENT_TOKEN';
+		// Язык окна Paddle: наши языки, которые есть у Paddle.js (uk у Paddle нет — он выберет сам)
+		var LOCALES = {en: 'en', de: 'de', fr: 'fr', es: 'es', pt: 'pt', it: 'it', pl: 'pl', nl: 'nl', ja: 'ja', ru: 'ru'};
+
+		var params = new URLSearchParams(location.search);
+		var sandbox = params.get('sandbox') === '1';
+		var txn = params.get('txn') || '';
+		var recovery = params.get('_ptxn') || '';
+		var email = params.get('email') || '';
+		var title = document.getElementById('co-title');
+		var text = document.getElementById('co-text');
+		var retry = document.getElementById('co-retry');
+		var completed = false;
+		var suffix = sandbox ? '?sandbox=1' : '';
+
+		function show(t, d, canRetry) {
+			title.textContent = t;
+			text.textContent = d;
+			retry.hidden = !canRetry;
+		}
+
+		if (!/^txn_[a-z0-9]+$/i.test(txn || recovery)) {
+			show('Start from the app', 'Open Timesheet Tracker, go to Settings → Subscription and choose Get Pro. The app opens this page with your checkout.', false);
+			return;
+		}
+		var token = sandbox ? PADDLE_TOKEN_SANDBOX : PADDLE_TOKEN_LIVE;
+		if (token.indexOf('REPLACE_WITH') >= 0) {
+			show('Checkout is not configured yet', 'The Paddle client-side token is missing on this page. Please write to help@timesheet-tracker.com.', false);
+			return;
+		}
+		if (typeof Paddle === 'undefined') {
+			// Блокировщик или сеть: без Paddle.js окно не откроется — скажем об этом, а не крутим загрузку вечно
+			show('The checkout could not load', 'Your browser blocked the payment window (an ad blocker or a network filter). Allow cdn.paddle.com and reload this page.', true);
+			retry.onclick = function () { location.reload(); };
+			return;
+		}
+
+		if (sandbox) Paddle.Environment.set('sandbox');
+		var lang = (navigator.language || 'en').slice(0, 2).toLowerCase();
+		var settings = {displayMode: 'overlay', theme: 'light', allowLogout: false, successUrl: location.origin + '/checkout/success/' + suffix};
+		if (LOCALES[lang]) settings.locale = LOCALES[lang];
+
+		Paddle.Initialize({
+			token: token,
+			checkout: {settings: settings},
+			eventCallback: function (e) {
+				if (!e || !e.name) return;
+				if (e.name === 'checkout.completed') {
+					completed = true;
+					show('Payment complete', 'Return to the app: Pro turns on within a minute.', false);
+				} else if (e.name === 'checkout.closed' && !completed) {
+					location.href = '/checkout/cancel/' + suffix + (suffix ? '&' : '?') + 'txn=' + encodeURIComponent(txn || recovery);
+				} else if (e.name === 'checkout.error') {
+					show('Something went wrong', 'The checkout reported an error. Try again, or write to help@timesheet-tracker.com.', true);
+				}
+			}
+		});
+
+		function open() {
+			show('Timesheet Tracker Pro', 'Complete the payment in the secure window.', true);
+			var options = {transactionId: txn, settings: settings};
+			if (/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) options.customer = {email: email};
+			Paddle.Checkout.open(options);
+		}
+		retry.onclick = function () { if (txn) open(); else location.reload(); };
+		// ?_ptxn= Paddle.js открывает сам при Initialize; наш ?txn= — открываем мы (с email для предзаполнения)
+		if (txn) open();
+		else show('Timesheet Tracker Pro', 'Complete the payment in the secure window.', true);
+	})();
+	</script>
+</body>
+</html>
