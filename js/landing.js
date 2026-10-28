@@ -1,7 +1,5 @@
 /* Timesheet Tracker landing — small vanilla JS, no dependencies. */
 
-const WAITLIST_ENDPOINT = 'https://waitlist.danielformind.workers.dev/subscribe';
-
 /* Analytics placeholder — intentionally off for now.
    When ready, load a privacy-friendly script here (no cookies) and call it from track().
    function track(name, props) {}
@@ -12,19 +10,11 @@ const WAITLIST_ENDPOINT = 'https://waitlist.danielformind.workers.dev/subscribe'
 
 	const doc = document.documentElement;
 	doc.classList.add('js');
-	const lang = 'en';
 	// ?static renders final states without motion (screenshots); ?p=0..1 freezes the app windows at that point.
 	const q = new URLSearchParams(location.search);
 	const isStatic = q.has('static');
 	if (isStatic) doc.classList.add('static');
 	const reduced = isStatic || window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-	const T = {
-		invalid: 'Please enter a valid email address.',
-		sending: 'Adding you to the list…',
-		error: 'Something went wrong. Please try again in a minute.',
-		network: 'Could not reach the server. Check your connection and try again.',
-	};
 
 	/* ---------- mobile menu ---------- */
 	const header = document.querySelector('.site-header');
@@ -41,67 +31,6 @@ const WAITLIST_ENDPOINT = 'https://waitlist.danielformind.workers.dev/subscribe'
 		document.querySelectorAll('.nav-links a').forEach((a) => a.addEventListener('click', closeNav));
 		document.addEventListener('keydown', (e) => e.key === 'Escape' && closeNav());
 	}
-
-	/* ---------- waitlist forms ---------- */
-	const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-
-	document.querySelectorAll('form[data-waitlist]').forEach((form) => {
-		const input = form.querySelector('input[type="email"]');
-		const hp = form.querySelector('input[name="website"]');
-		const msg = form.querySelector('.wl-msg');
-		const setState = (state, text) => {
-			form.dataset.state = state;
-			if (msg) msg.textContent = text || '';
-			input.setAttribute('aria-invalid', state === 'error' ? 'true' : 'false');
-		};
-
-		input.addEventListener('input', () => {
-			if (form.dataset.state === 'error') setState('idle', '');
-		});
-
-		form.addEventListener('submit', async (e) => {
-			e.preventDefault();
-			if (form.dataset.state === 'loading') return;
-			const email = input.value.trim();
-			if (!EMAIL_RE.test(email) || email.length > 254) {
-				setState('error', T.invalid);
-				input.focus();
-				return;
-			}
-			setState('loading', T.sending);
-			try {
-				const res = await fetch(WAITLIST_ENDPOINT, {
-					method: 'POST',
-					headers: {'Content-Type': 'application/json'},
-					body: JSON.stringify({
-						email,
-						lang,
-						source: 'landing',
-						page: location.pathname,
-						website: hp ? hp.value : '',
-					}),
-				});
-				let data = null;
-				try {
-					data = await res.json();
-				} catch (_) {
-					/* non-JSON reply */
-				}
-				if (res.ok && data && data.ok) {
-					setState('success', '');
-					const done = form.querySelector('.wl-done');
-					if (done) {
-						done.setAttribute('tabindex', '-1');
-						done.focus({preventScroll: true});
-					}
-				} else {
-					setState('error', (data && data.error && /email/i.test(data.error) && T.invalid) || T.error);
-				}
-			} catch (_) {
-				setState('error', T.network);
-			}
-		});
-	});
 
 	/* ---------- reveal on scroll ---------- */
 	const revealEls = document.querySelectorAll('.reveal, [data-inview]');

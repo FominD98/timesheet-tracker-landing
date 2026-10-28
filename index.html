@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>AI Time Tracker &amp; Timesheet for Jira | Timesheet Tracker</title>
-	<meta name="description" content="Automatic time tracking for Windows. Records your day locally, matches it to Jira and drafts your worklogs. No screenshots. Join the waitlist.">
+	<meta name="description" content="Automatic time tracking for Windows. Records your day locally, matches it to Jira and drafts your worklogs. No screenshots. Free in the Microsoft Store.">
 	<link rel="canonical" href="https://timesheet-tracker.com/">
 	<link rel="alternate" hreflang="en" href="https://timesheet-tracker.com/">
 	<link rel="alternate" hreflang="x-default" href="https://timesheet-tracker.com/">
@@ -36,6 +36,8 @@
 		"applicationCategory": "BusinessApplication",
 		"applicationSubCategory": "Time tracking",
 		"operatingSystem": "Windows",
+		"downloadUrl": "https://apps.microsoft.com/detail/9n1vml91q1lx",
+		"installUrl": "https://apps.microsoft.com/detail/9n1vml91q1lx",
 		"url": "https://timesheet-tracker.com/",
 		"image": "https://timesheet-tracker.com/og-image.png",
 		"description": "Windows tray app that records your workday locally (active app, window title, browser domain, idle), finds Jira keys automatically, lets AI sort the rest on request and drafts one worklog per task. You review and confirm; worklogs go to Jira Cloud or Jira Server/Data Center, or to CSV.",
@@ -79,7 +81,7 @@
 			{"@type": "Question", "name": "How does it know which Jira task I worked on?", "acceptedAnswer": {"@type": "Answer", "text": "Most of the day is matched without AI: Jira keys such as ABC-123 appear in window titles, browser tabs, pull request names and git branch names like feature/ABC-123-login. AI only handles the leftovers, and you confirm every assignment before anything is logged."}},
 			{"@type": "Question", "name": "Does it work with Tempo or Excel?", "acceptedAnswer": {"@type": "Answer", "text": "Today it writes native Jira worklogs and exports CSV. Direct Tempo support and Excel (XLSX) export are planned."}},
 			{"@type": "Question", "name": "How much does it cost?", "acceptedAnswer": {"@type": "Answer", "text": "Timesheet Tracker is a free download from the Microsoft Store and starts with a 14-day free trial of Pro, no card required. After that, Pro is $9.99 a month or $79 a year (about $6.58 a month, 34% less); yearly is the default. Without a subscription the app keeps recording and shows your day, with 7 days of history and CSV export for today. Sending worklogs to Jira and AI sorting need Pro."}},
-			{"@type": "Question", "name": "When can I download it?", "acceptedAnswer": {"@type": "Answer", "text": "The app is almost ready and is coming to the Microsoft Store. Join the waitlist and we will send you one email when it is live."}},
+			{"@type": "Question", "name": "Where do I download it?", "acceptedAnswer": {"@type": "Answer", "text": "From the Microsoft Store, where it is listed as \"Time Tracker & Timesheet - AI for Jira\". The download is free and starts with a 14-day free trial of Pro, no card required."}},
 			{"@type": "Question", "name": "Is there a Mac or Linux version?", "acceptedAnswer": {"@type": "Answer", "text": "Not yet. Timesheet Tracker is a Windows app. Tell us at help@timesheet-tracker.com if you need another platform."}}
 		]
 	}
@@ -108,7 +110,7 @@
 				<li><a href="/articles/">Guides</a></li>
 			</ul>
 			<div class="nav-cta">
-				<a class="btn btn-primary btn-sm" href="#join"><span>Join<span class="hide-s"> the</span> waitlist</span></a>
+				<a class="btn btn-primary btn-sm" href="https://apps.microsoft.com/detail/9n1vml91q1lx?cid=site-nav-home" rel="noopener">Get the app</a>
 				<button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false"><span></span></button>
 			</div>
 		</nav>
@@ -124,24 +126,14 @@
 				<i class="blob b4" data-px="-0.26"></i>
 			</div>
 			<div class="wrap hero-inner">
-				<span class="store-badge"><span class="ms" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Coming soon to Microsoft Store <span class="soon">Early access</span></span>
+				<a class="store-badge" href="https://apps.microsoft.com/detail/9n1vml91q1lx?cid=site-badge" rel="noopener"><span class="ms" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Now in the Microsoft Store <span class="soon">New</span></a>
 				<h1>AI time tracker &amp; timesheet for Jira <span class="grad">that fills itself.</span></h1>
 				<p class="lede">Automatic time tracking for Windows. Timesheet Tracker quietly records your day, finds Jira keys on its own and drafts your worklogs. You review, click once, and <strong>an hour of Friday becomes 10 seconds.</strong></p>
 
-				<form class="waitlist" data-waitlist novalidate>
-					<p class="waitlist-note">The app is almost ready — leave your email and we'll write when it's live.</p>
-					<div class="wl-row">
-						<label class="sr-only" for="wl-email-top">Email</label>
-						<input id="wl-email-top" type="email" name="email" placeholder="you@company.com" autocomplete="email" required>
-						<input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-						<button class="btn btn-primary" type="submit"><span class="spinner" aria-hidden="true"></span><span class="lbl">Join the waitlist</span></button>
-					</div>
-					<p class="wl-msg" role="status" aria-live="polite"></p>
-					<div class="wl-done">
-						<span class="tick"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-						<div><b>You're on the list.</b><span>We'll email you once, when Timesheet Tracker is live in the Microsoft Store.</span></div>
-					</div>
-				</form>
+				<div class="get-app">
+					<a class="btn btn-primary btn-store" href="https://apps.microsoft.com/detail/9n1vml91q1lx?cid=site-hero" rel="noopener"><span class="ms" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>Get it from Microsoft Store</span></a>
+					<p class="get-note">Free download · 14-day free trial of Pro, no card required</p>
+				</div>
 
 				<ul class="trust">
 					<li>Stored on your PC</li>
@@ -537,7 +529,7 @@
 					<details><summary>How does it know which Jira task I worked on?</summary><div class="a"><p>Most of the day is matched without AI: Jira keys such as <code>ABC-123</code> appear in window titles, browser tabs, pull request names and git branch names like <code>feature/ABC-123-login</code>. AI only handles the leftovers, and you confirm every assignment before anything is logged.</p></div></details>
 					<details><summary>Does it work with Tempo or Excel?</summary><div class="a"><p>Today it writes native Jira worklogs and exports CSV. Direct Tempo support and Excel (XLSX) export are planned.</p></div></details>
 					<details><summary>How much does it cost?</summary><div class="a"><p>Timesheet Tracker is a free download from the Microsoft Store and starts with a 14-day free trial of Pro, no card required. After that, Pro is $9.99 a month or $79 a year (about $6.58 a month, 34% less); yearly is the default. Without a subscription the app keeps recording and shows your day, with 7 days of history and CSV export for today. Sending worklogs to Jira and AI sorting need Pro.</p></div></details>
-					<details><summary>When can I download it?</summary><div class="a"><p>The app is almost ready and is coming to the Microsoft Store. <a href="#join">Join the waitlist</a> and we will send you one email when it is live.</p></div></details>
+					<details><summary>Where do I download it?</summary><div class="a"><p>From the Microsoft Store, where it is listed as “<a href="https://apps.microsoft.com/detail/9n1vml91q1lx?cid=site-faq" rel="noopener">Time Tracker &amp; Timesheet - AI for Jira</a>”. The download is free and starts with a 14-day free trial of Pro, no card required.</p></div></details>
 					<details><summary>Is there a Mac or Linux version?</summary><div class="a"><p>Not yet. Timesheet Tracker is a Windows app. Tell us at <a href="mailto:help@timesheet-tracker.com">help@timesheet-tracker.com</a> if you need another platform.</p></div></details>
 				</div>
 			</div>
@@ -564,20 +556,10 @@
 			<div class="wrap inner">
 				<img class="app-ico reveal" src="/img/mark-256.webp" width="76" height="76" alt="Timesheet Tracker icon">
 				<h2 id="join-h" class="big reveal">An hour of Friday<br><span class="grad">→ 10 seconds.</span></h2>
-				<p class="sub reveal">Timesheet Tracker is almost ready for the Microsoft Store. Leave your email — we'll write once, when it's live. Free download, 14-day free trial of Pro.</p>
-				<form class="waitlist reveal" data-waitlist novalidate>
-					<div class="wl-row">
-						<label class="sr-only" for="wl-email-bottom">Email</label>
-						<input id="wl-email-bottom" type="email" name="email" placeholder="you@company.com" autocomplete="email" required>
-						<input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-						<button class="btn btn-primary" type="submit"><span class="spinner" aria-hidden="true"></span><span class="lbl">Join the waitlist</span></button>
-					</div>
-					<p class="wl-msg" role="status" aria-live="polite"></p>
-					<div class="wl-done">
-						<span class="tick"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-						<div><b>You're on the list.</b><span>We'll email you once, when Timesheet Tracker is live in the Microsoft Store.</span></div>
-					</div>
-				</form>
+				<p class="sub reveal">Timesheet Tracker is in the Microsoft Store now. Free download, 14-day free trial of Pro, no card required.</p>
+				<div class="get-app reveal">
+					<a class="btn btn-primary btn-store" href="https://apps.microsoft.com/detail/9n1vml91q1lx?cid=site-cta" rel="noopener"><span class="ms" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>Get it from Microsoft Store</span></a>
+				</div>
 				<ul class="trust reveal">
 					<li>Local-first</li>
 					<li>No screenshots</li>
@@ -592,7 +574,7 @@
 			<div class="foot-grid">
 				<div class="foot-about">
 					<a class="brand" href="/"><img src="/img/mark.svg" width="30" height="30" alt="">Timesheet Tracker</a>
-					<p>Automatic time tracking and an AI timesheet for Jira, on Windows. Local-first. No screenshots. Listed in the Microsoft Store as “Time Tracker &amp; Timesheet - AI for Jira”.</p>
+					<p>Automatic time tracking and an AI timesheet for Jira, on Windows. Local-first. No screenshots. Listed in the Microsoft Store as “<a href="https://apps.microsoft.com/detail/9n1vml91q1lx?cid=site-footer" rel="noopener">Time Tracker &amp; Timesheet - AI for Jira</a>”.</p>
 				</div>
 				<div>
 					<h4>Product</h4>

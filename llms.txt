@@ -3,7 +3,7 @@
 > Timesheet Tracker is a Windows desktop app (Microsoft Store title: "Time Tracker & Timesheet - AI for Jira") that fills your Jira timesheet for you. It runs in the tray, passively records your working day on your own PC, finds Jira issue keys automatically, lets AI sort the rest when you ask, and drafts one worklog per task. You review and confirm; the worklogs go to Jira Cloud or Jira Server/Data Center, or to a CSV file.
 
 Key facts:
-- Platform: Windows. Coming soon to the Microsoft Store; a waitlist is open on https://timesheet-tracker.com/
+- Platform: Windows. Available in the Microsoft Store: https://apps.microsoft.com/detail/9n1vml91q1lx
 - Price: free download from the Microsoft Store with a 14-day free trial of Pro (no card). Then Pro is $9.99/month or $79/year (yearly is the default, about $6.58/month, 34% less). No free-forever tier. Without a subscription the app keeps recording and shows your day (7-day history, CSV export for today); sending worklogs to Jira and AI sorting need Pro.
 - Who it is for: individuals who must log time in Jira (developers, analysts, consultants, agencies). Not an employee-monitoring tool: no screenshots, no keystroke logging, no manager dashboards or team reports.
 - Capture: active app, window title, browser tab domain, idle and screen-lock time. Stored locally on the user's PC.
@@ -15,7 +15,7 @@ Key facts:
 
 ## Main pages
 
-- [Home (English)](https://timesheet-tracker.com/): product overview, how it works, privacy, comparison, FAQ, waitlist
+- [Home (English)](https://timesheet-tracker.com/): product overview, how it works, privacy, comparison, FAQ, download link
 - [Privacy policy](https://timesheet-tracker.com/privacy.html): what the app records, what is sent to AI and when
 - [Terms of use](https://timesheet-tracker.com/terms.html)
 

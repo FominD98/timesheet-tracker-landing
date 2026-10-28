@@ -2,16 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 	<url>
 		<loc>https://timesheet-tracker.com/</loc>
-		<lastmod>2026-10-19</lastmod>
+		<lastmod>2026-10-28</lastmod>
 		<xhtml:link rel="alternate" hreflang="en" href="https://timesheet-tracker.com/"/>
 		<xhtml:link rel="alternate" hreflang="x-default" href="https://timesheet-tracker.com/"/>
 	</url>
-	<url><loc>https://timesheet-tracker.com/articles/</loc><lastmod>2026-10-19</lastmod></url>
-	<url><loc>https://timesheet-tracker.com/articles/how-to-log-time-in-jira.html</loc><lastmod>2026-10-19</lastmod></url>
-	<url><loc>https://timesheet-tracker.com/articles/automatic-time-tracking-software-windows.html</loc><lastmod>2026-10-19</lastmod></url>
-	<url><loc>https://timesheet-tracker.com/articles/tempo-timesheets-alternatives.html</loc><lastmod>2026-10-19</lastmod></url>
-	<url><loc>https://timesheet-tracker.com/articles/fill-timesheet-in-10-minutes.html</loc><lastmod>2026-10-19</lastmod></url>
-	<url><loc>https://timesheet-tracker.com/articles/ai-timesheet.html</loc><lastmod>2026-10-19</lastmod></url>
-	<url><loc>https://timesheet-tracker.com/privacy.html</loc><lastmod>2026-10-19</lastmod></url>
-	<url><loc>https://timesheet-tracker.com/terms.html</loc><lastmod>2026-10-19</lastmod></url>
+	<url><loc>https://timesheet-tracker.com/articles/</loc><lastmod>2026-10-28</lastmod></url>
+	<url><loc>https://timesheet-tracker.com/articles/how-to-log-time-in-jira.html</loc><lastmod>2026-10-28</lastmod></url>
+	<url><loc>https://timesheet-tracker.com/articles/automatic-time-tracking-software-windows.html</loc><lastmod>2026-10-28</lastmod></url>
+	<url><loc>https://timesheet-tracker.com/articles/tempo-timesheets-alternatives.html</loc><lastmod>2026-10-28</lastmod></url>
+	<url><loc>https://timesheet-tracker.com/articles/fill-timesheet-in-10-minutes.html</loc><lastmod>2026-10-28</lastmod></url>
+	<url><loc>https://timesheet-tracker.com/articles/ai-timesheet.html</loc><lastmod>2026-10-28</lastmod></url>
+	<url><loc>https://timesheet-tracker.com/privacy.html</loc><lastmod>2026-10-28</lastmod></url>
+	<url><loc>https://timesheet-tracker.com/terms.html</loc><lastmod>2026-10-28</lastmod></url>
 </urlset>
