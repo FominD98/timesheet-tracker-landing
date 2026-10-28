@@ -1,12 +1,9 @@
 /* Timesheet Tracker landing — small vanilla JS, no dependencies. */
 
-/* Yandex Metrica (counter loaded in <head>): clicks to the Store listing are the main goal. */
-const YM_ID = 101009280;
-document.addEventListener('click', (e) => {
-	const a = e.target.closest && e.target.closest('a[href^="https://apps.microsoft.com/"]');
-	if (!a || typeof window.ym !== 'function') return;
-	window.ym(YM_ID, 'reachGoal', 'store_click', {cid: new URL(a.href).searchParams.get('cid') || ''});
-});
+/* Analytics placeholder — intentionally off for now.
+   When ready, load a privacy-friendly script here (no cookies) and call it from track().
+   function track(name, props) {}
+*/
 
 (function () {
 	'use strict';
