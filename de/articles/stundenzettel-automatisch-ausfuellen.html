@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Stundenzettel automatisch ausfüllen – so geht&#x27;s mit Jira</title>
+	<meta name="description" content="Stundenzettel automatisch ausfüllen statt freitags rekonstruieren: welche Daten genügen, wie der Ablauf aussieht und wie Jira-Worklogs in Minuten stehen.">
+	<link rel="canonical" href="https://timesheet-tracker.com/de/articles/stundenzettel-automatisch-ausfuellen.html">
+	<meta name="robots" content="index, follow, max-image-preview:large">
+	<meta name="author" content="AI Timesheet team">
+	<meta name="theme-color" content="#f5f6fb">
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+	<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+	<meta property="og:type" content="article">
+	<meta property="og:site_name" content="Timesheet Tracker">
+	<meta property="og:title" content="Stundenzettel automatisch ausfüllen – so geht&#x27;s mit Jira">
+	<meta property="og:description" content="Stundenzettel automatisch ausfüllen statt freitags rekonstruieren: welche Daten genügen, wie der Ablauf aussieht und wie Jira-Worklogs in Minuten stehen.">
+	<meta property="og:url" content="https://timesheet-tracker.com/de/articles/stundenzettel-automatisch-ausfuellen.html">
+	<meta property="og:image" content="https://timesheet-tracker.com/og-image.png">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="og:locale" content="de_DE">
+	<meta property="article:published_time" content="2026-10-29">
+	<meta name="twitter:card" content="summary_large_image">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap">
+	<link rel="stylesheet" href="/css/landing.css">
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Article",
+		"headline": "Stundenzettel automatisch ausfüllen: vom Arbeitstag zum fertigen Stundennachweis",
+		"description": "Stundenzettel automatisch ausfüllen statt freitags rekonstruieren: welche Daten genügen, wie der Ablauf aussieht und wie Jira-Worklogs in Minuten stehen.",
+		"datePublished": "2026-10-29",
+		"dateModified": "2026-10-29",
+		"inLanguage": "de",
+		"mainEntityOfPage": "https://timesheet-tracker.com/de/articles/stundenzettel-automatisch-ausfuellen.html",
+		"image": "https://timesheet-tracker.com/og-image.png",
+		"author": {
+			"@type": "Organization",
+			"name": "AI Timesheet team",
+			"url": "https://timesheet-tracker.com/"
+		},
+		"publisher": {
+			"@type": "Organization",
+			"name": "Timesheet Tracker",
+			"url": "https://timesheet-tracker.com/",
+			"logo": {
+				"@type": "ImageObject",
+				"url": "https://timesheet-tracker.com/apple-touch-icon.png"
+			}
+		}
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		"itemListElement": [
+			{
+				"@type": "ListItem",
+				"position": 1,
+				"name": "Startseite",
+				"item": "https://timesheet-tracker.com/de/"
+			},
+			{
+				"@type": "ListItem",
+				"position": 2,
+				"name": "Stundenzettel automatisch ausfüllen",
+				"item": "https://timesheet-tracker.com/de/articles/stundenzettel-automatisch-ausfuellen.html"
+			}
+		]
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		"inLanguage": "de",
+		"mainEntity": [
+			{
+				"@type": "Question",
+				"name": "Kann man einen Stundenzettel wirklich automatisch ausfüllen?",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "Zum großen Teil ja. Zeit, die einen Jira-Schlüssel im Fenstertitel, im Git-Branch oder in der URL trägt, lässt sich eindeutig zuordnen. Für den Rest machen Regeln oder eine KI Vorschläge. Ganz ohne Sie geht es nicht und sollte es auch nicht: Sie prüfen und bestätigen, bevor etwas gebucht wird."
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "Ist ein digitaler Stundenzettel als Stundennachweis gültig?",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "Für Projektstunden gibt es keine allgemeine Formvorschrift; maßgeblich ist, was mit Arbeitgeber oder Kunde vereinbart ist. Ein digitaler Stundenzettel mit Datum, Vorgang, Dauer und Tätigkeit ist in der Praxis üblich. Für die gesetzliche Arbeitszeiterfassung gilt das System, das Ihr Arbeitgeber dafür vorsieht."
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "Wie oft sollte ich meinen Stundenzettel ausfüllen?",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "Am besten täglich kurz, auch wenn die Erfassung automatisch läuft. Am selben Tag wissen Sie noch, wofür ein unklarer Block stand. Am Freitag bleibt dann nur ein kurzer Blick auf die Woche."
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "Was passiert mit Pausen und Leerlauf?",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "Eine gute automatische Zeiterfassung erkennt Leerlauf und Bildschirmsperre und markiert diese Zeit als abwesend. Sie landet nicht im Stundenzettel. Private Blöcke während der Arbeitszeit markieren Sie selbst als keine Arbeit."
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "Funktioniert das auch mit Jira Server oder Data Center?",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "Ja. Timesheet Tracker verbindet sich mit Jira Cloud über E-Mail und API-Token und mit Jira Server oder Data Center über einen Personal Access Token. Unabhängig davon können Sie jeden Tag als CSV exportieren."
+				}
+			}
+		]
+	}
+	</script>
+	<script src="/js/landing.js" defer></script>
+	<!-- Yandex.Metrika counter -->
+	<script>
+		(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();
+		for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+		k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+		(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+		ym(113838536, "init", {clickmap: true, trackLinks: true, accurateTrackBounce: true});
+	</script>
+</head>
+<body>
+	<noscript><div><img src="https://mc.yandex.ru/watch/113838536" width="1" height="1" style="position:absolute;left:-9999px" alt=""></div></noscript>
+	<a class="skip" href="#main">Zum Inhalt springen</a>
+	<header class="site-header">
+		<nav class="wrap nav" aria-label="Hauptnavigation">
+			<a class="brand" href="/de/"><img src="/img/mark.svg" width="30" height="30" alt=""><span>Timesheet Tracker</span></a>
+			<ul class="nav-links">
+				<li><a href="/de/#how">So funktioniert's</a></li>
+				<li><a href="/de/#features">Funktionen</a></li>
+				<li><a href="/de/#privacy">Datenschutz</a></li>
+				<li><a href="/de/#compare">Vergleich</a></li>
+				<li><a href="/de/articles/arbeitszeiterfassung-jira.html">Ratgeber</a></li>
+			</ul>
+			<div class="nav-cta">
+				<a class="btn btn-primary btn-sm" href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=de-de&amp;cid=site-de-nav-stundenzettel-automatisch-ausfuellen" rel="noopener">App laden</a>
+				<button class="nav-toggle" type="button" aria-label="Menü" aria-expanded="false"><span></span></button>
+			</div>
+		</nav>
+	</header>
+
+	<main id="main">
+		<section class="page-hero">
+			<div class="aurora" aria-hidden="true"></div>
+			<div class="wrap">
+				<ol class="crumbs">
+					<li><a href="/de/">Startseite</a></li>
+					<li>Stundenzettel automatisch ausfüllen</li>
+				</ol>
+				<h1>Stundenzettel automatisch ausfüllen: vom Arbeitstag zum fertigen Stundennachweis</h1>
+				<p class="dek">Warum manuelle Stundenzettel ungenau werden, welche Spuren Ihr Arbeitstag ohnehin hinterlässt und wie Sie daraus in wenigen Minuten pro Woche saubere Jira-Worklogs und einen belastbaren Stundennachweis machen.</p>
+				<div class="byline">
+					<img src="/img/mark.svg" width="28" height="28" alt="">
+					<span>Von <b>AI Timesheet team</b></span>
+					<span>·</span>
+					<time datetime="2026-10-29">29. Oktober 2026</time>
+					<span>·</span>
+					<span>9 Min. Lesezeit</span>
+				</div>
+			</div>
+		</section>
+
+		<div class="article-layout">
+			<article class="prose">
+				<div class="tldr">
+					<b>Kurz zusammengefasst</b>
+					<ul>
+						<li>Ein Stundenzettel lässt sich zum großen Teil automatisch ausfüllen: Fenstertitel, Git-Branches und Browser-Tabs verraten meist schon, an welchem Jira-Vorgang Sie gearbeitet haben.</li>
+						<li>Der Ablauf: passiv erfassen → Jira-Schlüssel automatisch zuordnen → den Rest per Regel oder KI vorschlagen lassen → prüfen und bestätigen.</li>
+						<li>Gute Worklog-Texte sind konkret: „PRs #412 und #418 reviewt“ statt „Entwicklung“.</li>
+						<li>Entscheidend ist, dass nichts ohne Ihre Bestätigung gebucht wird und die Aktivitätsdaten auf Ihrem PC bleiben.</li>
+					</ul>
+				</div>
+
+				<h2 id="was-gehoert-rein">Was auf einen Stundenzettel gehört</h2>
+				<p>Stundenzettel, Stundennachweis, Timesheet – gemeint ist im Kern dasselbe: eine Aufstellung, wie viel Zeit Sie wofür aufgewendet haben. In der Praxis gibt es zwei Ausprägungen. Der <strong>Arbeitszeitnachweis</strong> hält Beginn, Ende, Pausen und Summe des Arbeitstags fest. Der <strong>Tätigkeitsnachweis</strong> zeigt, auf welche Projekte oder Vorgänge die Zeit entfällt. Freelancer und IT-Dienstleister brauchen Letzteren für die Abrechnung nach Aufwand, Angestellte in Jira-Teams führen ihn in Form von Worklogs.</p>
+				<p>Ein brauchbarer Stundenzettel für die Projektzeit enthält vier Spalten:</p>
+				<table>
+					<thead>
+						<tr><th>Datum</th><th>Vorgang</th><th>Dauer</th><th>Tätigkeit</th></tr>
+					</thead>
+					<tbody>
+						<tr><td>Mo, 12.10.</td><td>CASE-1423</td><td>3h 30m</td><td>Token-Refresh überarbeitet, Integrationstests für auth-service ergänzt</td></tr>
+						<tr><td>Mo, 12.10.</td><td>CASE-1388</td><td>1h 15m</td><td>PRs #412 und #418 in billing reviewt</td></tr>
+						<tr><td>Mo, 12.10.</td><td>TEAM-12</td><td>0h 45m</td><td>Daily, Abstimmung Sprintziel</td></tr>
+						<tr><td>Mo, 12.10.</td><td>OPS-77</td><td>1h 30m</td><td>Billing-Incident analysiert, Alert-Schwellen angepasst</td></tr>
+					</tbody>
+				</table>
+				<p>Pausen, Leerlauf und private Erledigungen gehören nicht hinein. Wer zusätzlich einen Arbeitszeitnachweis führen muss, ergänzt Beginn, Ende und Pausen – oder nutzt dafür ohnehin das Zeiterfassungssystem des Arbeitgebers.</p>
+
+				<h2 id="warum-manuell-scheitert">Warum der manuelle Stundenzettel am Freitag scheitert</h2>
+				<p>Die meisten Stundenzettel entstehen am Freitagnachmittag aus dem Gedächtnis. Das kostet nicht nur Zeit, es macht die Zahlen schlechter:</p>
+				<ul>
+					<li><strong>Das Gedächtnis reicht nicht bis Montag.</strong> Was Sie am Dienstag zwischen zwei Calls erledigt haben, rekonstruieren Sie aus Chatverlauf und Browser-Historie – wenn überhaupt.</li>
+					<li><strong>Kleine Blöcke verschwinden.</strong> Zehn Minuten Review hier, eine Slack-Frage da: In Summe oft eine Stunde am Tag, auf dem Stundenzettel taucht sie nicht auf.</li>
+					<li><strong>Alles landet auf dem größten Ticket.</strong> Wer nicht mehr weiß, wohin die Zeit ging, bucht sie auf den Vorgang, an dem er „hauptsächlich“ gearbeitet hat.</li>
+					<li><strong>Vorlagen helfen beim Format, nicht beim Erinnern.</strong> Ein Stundenzettel zum Ausdrucken oder eine Excel-Tabelle strukturiert die Eingabe, füllt sie aber nicht aus. Und die Zahlen müssen danach noch einmal nach Jira.</li>
+					<li><strong>Stoppuhren verlangen Disziplin.</strong> Bei zwanzig Kontextwechseln am Tag wird der Timer vergessen oder läuft durch die Mittagspause.</li>
+				</ul>
+
+				<h2 id="datenquellen">Ihr Arbeitstag hinterlässt schon alle Spuren</h2>
+				<p>Der Schlüssel zum automatischen Stundenzettel: Fast alles, was Sie wissen müssen, steht bereits auf Ihrem Bildschirm. Man muss es nur aufzeichnen und richtig lesen.</p>
+				<table>
+					<thead>
+						<tr><th>Quelle</th><th>Beispiel</th><th>Was sie verrät</th></tr>
+					</thead>
+					<tbody>
+						<tr><td>Git-Branch im Titel der IDE</td><td><code>feature/CASE-1423-token-refresh</code></td><td>Den Vorgang, eindeutig</td></tr>
+						<tr><td>Jira-Tab im Browser</td><td>[CASE-1388] Review billing</td><td>Den Vorgang, eindeutig</td></tr>
+						<tr><td>Pull Request</td><td>pull/412 · CASE-1388</td><td>Vorgang und Art der Arbeit (Review)</td></tr>
+						<tr><td>Programm und Domain</td><td>Figma, Confluence, Grafana</td><td>Die Tätigkeit, aber keinen Vorgang – hier braucht es einen Vorschlag</td></tr>
+						<tr><td>Leerlauf und Bildschirmsperre</td><td>45 Minuten gesperrt</td><td>Eine Pause, also keine Arbeitszeit</td></tr>
+					</tbody>
+				</table>
+				<p>In vielen Entwicklungsteams trägt ein großer Teil des Tages bereits einen Jira-Schlüssel – vorausgesetzt, Branches, Commits und Pull Requests werden konsequent nach Vorgang benannt. Für diese Zeit ist keine Interpretation nötig, nur eine Regel.</p>
+				<div class="callout">
+					<p>Tipp: Eine Branch-Konvention wie <code>feature/KEY-123-kurzbeschreibung</code> zahlt sich doppelt aus. Jira zeigt Branches und Commits im Entwicklungsbereich des Vorgangs an, und Ihre Zeiterfassung kann die Zeit in der IDE ohne Rätselraten zuordnen.</p>
+				</div>
+
+				<h2 id="ablauf">So füllt sich der Stundenzettel automatisch: vier Schritte</h2>
+				<ol>
+					<li><strong>Passiv erfassen.</strong> Ein Programm im Hintergrund notiert, welches Fenster aktiv ist, dessen Titel, die Domain im Browser und wann der Rechner im Leerlauf oder gesperrt war. Sie starten nichts und stoppen nichts.</li>
+					<li><strong>Eindeutiges automatisch zuordnen.</strong> Alles, was einen Jira-Schlüssel trägt, wird per Regel dem Vorgang zugeordnet. Das geht lokal und braucht keine KI.</li>
+					<li><strong>Den Rest vorschlagen lassen.</strong> Für Blöcke ohne Schlüssel – das Figma-Board, der Slack-Thread zum Incident, die Confluence-Seite – schlägt eine Regel oder eine KI den wahrscheinlichsten Vorgang vor, idealerweise mit einer Angabe, wie sicher der Vorschlag ist. Aus den zugeordneten Blöcken entsteht pro Vorgang und Tag ein Worklog-Text.</li>
+					<li><strong>Prüfen, bestätigen, senden.</strong> Sie gehen die Vorschläge durch, korrigieren, was nicht stimmt, markieren Privates als „keine Arbeit“ und bestätigen den Tag. Erst dann gehen die Worklogs an Jira oder in eine CSV-Datei.</li>
+				</ol>
+				<p>Wichtig ist das Prinzip dahinter: Automatisch heißt nicht ungeprüft. Die Software übernimmt das Erinnern und Tippen, die Entscheidung bleibt bei Ihnen. Das ist auch der Grund, warum ein solcher Stundenzettel belastbarer ist als einer aus dem Gedächtnis – jede Zeile lässt sich auf tatsächliche Aktivität zurückführen.</p>
+
+				<h2 id="worklog-texte">Vorlagen für gute Worklog-Texte</h2>
+				<p>Ein Worklog-Text wird von Projektleitung, Kunde oder Ihnen selbst in drei Monaten gelesen. Bewährt hat sich das Muster <em>Verb + Gegenstand + Kontext</em>, eine Zeile pro Vorgang und Tag:</p>
+				<ul>
+					<li><strong>Entwicklung:</strong> „Token-Refresh für SSO-Timeout umgesetzt, Unit-Tests ergänzt“</li>
+					<li><strong>Code-Review:</strong> „PRs #412 und #418 in billing reviewt, Änderungen an der Retry-Logik angefragt“</li>
+					<li><strong>Bugfix:</strong> „Ursache für doppelte Rechnungen gefunden (Race Condition im Webhook), Fix in PR #421“</li>
+					<li><strong>Meeting:</strong> „Sprint Planning: Stories für Release 4.2 geschätzt“</li>
+					<li><strong>Betrieb:</strong> „Billing-Incident nachbereitet, Post-Mortem entworfen, Alert-Schwellen angepasst“</li>
+					<li><strong>Dokumentation:</strong> „Release Notes 4.2 in Confluence geschrieben“</li>
+				</ul>
+				<p>Vermeiden Sie Platzhalter wie „Entwicklung“, „Diverses“ oder „siehe Ticket“. Sie sparen beim Schreiben fünf Sekunden und kosten beim Lesen die Information, um die es geht. Wenn Ihr Kunde den Stundennachweis prüft, sollten Texte ohne internes Kürzel-Wissen verständlich sein.</p>
+
+				<h2 id="werkzeuge">Excel-Vorlage, Stundenzettel-App oder automatisch?</h2>
+				<table>
+					<thead>
+						<tr><th>Ansatz</th><th>Gut für</th><th>Grenzen</th></tr>
+					</thead>
+					<tbody>
+						<tr><td>Vorlage zum Ausdrucken oder Excel</td><td>Einfache Arbeitszeitnachweise, wenige Projekte</td><td>Alles aus dem Gedächtnis, Übertrag nach Jira doppelt</td></tr>
+						<tr><td>Stundenzettel-App mit Stoppuhr</td><td>Freelancer mit wenigen, langen Aufgaben</td><td>Timer vergessen, viele Wechsel kosten Klicks</td></tr>
+						<tr><td>Jira-Add-on wie Tempo</td><td>Teams mit zentraler Auswertung und Freigaben</td><td>Kosten pro Nutzer, Erfassung bleibt manuell oder vorschlagsbasiert</td></tr>
+						<tr><td>Automatische Zeiterfassung</td><td>Viele Kontextwechsel, Jira als Ziel</td><td>Datenschutz prüfen: Wo liegen die Daten, was wird gesendet?</td></tr>
+					</tbody>
+				</table>
+				<p>Die Ansätze schließen sich nicht aus. Viele Teams nutzen ein Jira-Add-on für die Auswertung und lassen die Erfassung selbst von einem Desktop-Werkzeug vorbereiten. Einen Überblick über Alternativen zu Tempo gibt unser englischsprachiger Ratgeber <a href="/articles/tempo-timesheets-alternatives.html">Tempo Timesheets alternatives</a>.</p>
+
+				<h2 id="datenschutz">Datenschutz: woran Sie eine vertrauenswürdige Lösung erkennen</h2>
+				<p>Ein Werkzeug, das Ihren Tag mitschreibt, sieht viel. Bevor Sie eines installieren, sollten diese Punkte geklärt sein:</p>
+				<ul>
+					<li>Die Aktivitätsdaten werden <strong>lokal auf Ihrem PC</strong> gespeichert und nicht laufend hochgeladen.</li>
+					<li><strong>Keine Screenshots, kein Keylogging,</strong> keine Seiteninhalte.</li>
+					<li>Es ist klar dokumentiert, <strong>was wann gesendet wird</strong> – etwa nur bei einer KI-Auswertung, die Sie selbst auslösen – und sensible Teile von Fenstertiteln werden vorher maskiert.</li>
+					<li>Sie können <strong>Programme ausschließen</strong>, zum Beispiel einen Passwortmanager, und die Aufzeichnung pausieren.</li>
+					<li>Es gibt einen <strong>Modus ohne Cloud-KI</strong>.</li>
+					<li>Es gibt <strong>keine Berichte an Vorgesetzte</strong>. Gerade in Unternehmen mit Betriebsrat ist das der Unterschied zwischen persönlichem Werkzeug und Überwachungssoftware.</li>
+				</ul>
+
+				<h2 id="routine">Die 10-Minuten-Routine für Ihren Stundenzettel</h2>
+				<ol>
+					<li><strong>Täglich, ein bis zwei Minuten:</strong> Zum Feierabend die Vorschläge des Tages ansehen und nur die markierten, unsicheren Blöcke entscheiden. Heute wissen Sie noch, was um 15 Uhr los war.</li>
+					<li><strong>Freitag, fünf Minuten:</strong> Die Woche überfliegen, offene Fragen beantworten, Texte stichprobenartig lesen.</li>
+					<li><strong>Summen abgleichen:</strong> Stimmt die Woche mit Ihrem Soll und mit der Arbeitszeiterfassung Ihres Arbeitgebers überein? Große Differenzen deuten auf vergessene Blöcke oder Arbeit ohne Vorgang hin.</li>
+					<li><strong>Senden und ablegen:</strong> Worklogs an Jira übertragen und bei Bedarf die CSV-Datei als Stundennachweis ablegen.</li>
+				</ol>
+
+				<h2 id="timesheet-tracker">Stundenzettel automatisch ausfüllen mit Timesheet Tracker</h2>
+				<p><a href="/de/">Timesheet Tracker</a> setzt genau diesen Ablauf um. Die Windows-App – im Microsoft Store „Zeiterfassung &amp; Stundenzettel - KI für Jira“ – läuft im Infobereich der Taskleiste und erfasst lokal Programm, Fenstertitel, Browser-Domain, Leerlauf und Bildschirmsperre. Jira-Schlüssel wie <code>BILL-142</code> in Fenstertiteln, URLs und Git-Branches ordnet sie selbst zu, ohne KI.</p>
+				<p>Ein Klick auf <b>„Meinen Tag sortieren“</b> lässt die KI den Rest des Tages Ihren Jira-Vorgängen zuordnen und pro Vorgang einen Worklog-Text schreiben – auf Deutsch oder in zehn weiteren Sprachen. Der Hinweis „KI ist bei N Blöcken unsicher“ zeigt, wo Sie genauer hinsehen sollten, und Sie sehen bei jedem Block, wer ihn zugeordnet hat: Regel, KI oder Sie. Mit <b>„Aufgabe ändern“</b> und <b>„Keine Arbeit“</b> korrigieren Sie, mit <b>„Tag bestätigen“</b> geben Sie frei. <b>„An Jira senden“</b> überträgt die Worklogs an Jira Cloud oder Jira Server / Data Center, ohne Duplikate; <b>„CSV exportieren“</b> liefert Ihren Stundennachweis als Datei.</p>
+				<p>Die Aufzeichnung verlässt Ihren PC nicht. Nur beim Sortieren gehen maskierte Fenstertitel, Programmnamen, Domains und Dauern an den Server; im Modus <b>„Ohne KI“</b> gar nichts. Wer die App erst ausprobieren will, startet den <b>„Demomodus“</b> mit einem Beispieltag, ganz ohne Jira. Der Download ist kostenlos, mit 14 Tagen Pro gratis und ohne Kreditkarte; danach kostet Pro $9.99 pro Monat oder $79 pro Jahr.</p>
+
+				<h2 id="faq">Häufige Fragen</h2>
+				<div class="faq">
+					<details><summary>Kann man einen Stundenzettel wirklich automatisch ausfüllen?</summary><div class="a"><p>Zum großen Teil ja. Zeit, die einen Jira-Schlüssel im Fenstertitel, im Git-Branch oder in der URL trägt, lässt sich eindeutig zuordnen. Für den Rest machen Regeln oder eine KI Vorschläge. Ganz ohne Sie geht es nicht und sollte es auch nicht: Sie prüfen und bestätigen, bevor etwas gebucht wird.</p></div></details>
+					<details><summary>Ist ein digitaler Stundenzettel als Stundennachweis gültig?</summary><div class="a"><p>Für Projektstunden gibt es keine allgemeine Formvorschrift; maßgeblich ist, was mit Arbeitgeber oder Kunde vereinbart ist. Ein digitaler Stundenzettel mit Datum, Vorgang, Dauer und Tätigkeit ist in der Praxis üblich. Für die gesetzliche Arbeitszeiterfassung gilt das System, das Ihr Arbeitgeber dafür vorsieht.</p></div></details>
+					<details><summary>Wie oft sollte ich meinen Stundenzettel ausfüllen?</summary><div class="a"><p>Am besten täglich kurz, auch wenn die Erfassung automatisch läuft. Am selben Tag wissen Sie noch, wofür ein unklarer Block stand. Am Freitag bleibt dann nur ein kurzer Blick auf die Woche.</p></div></details>
+					<details><summary>Was passiert mit Pausen und Leerlauf?</summary><div class="a"><p>Eine gute automatische Zeiterfassung erkennt Leerlauf und Bildschirmsperre und markiert diese Zeit als abwesend. Sie landet nicht im Stundenzettel. Private Blöcke während der Arbeitszeit markieren Sie selbst als keine Arbeit.</p></div></details>
+					<details><summary>Funktioniert das auch mit Jira Server oder Data Center?</summary><div class="a"><p>Ja. Timesheet Tracker verbindet sich mit Jira Cloud über E-Mail und API-Token und mit Jira Server oder Data Center über einen Personal Access Token. Unabhängig davon können Sie jeden Tag als CSV exportieren.</p></div></details>
+				</div>
+
+				<section class="article-cta" id="get-app">
+					<h2>Ihr Stundenzettel, fertig in Minuten</h2>
+					<p>Timesheet Tracker macht aus Ihrem Arbeitstag Jira-Worklogs und einen Stundennachweis als CSV – Sie prüfen und bestätigen nur noch. Kostenlos im Microsoft Store, mit 14 Tagen Pro gratis.</p>
+					<div class="get-app">
+						<a class="btn btn-primary btn-store" href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=de-de&amp;cid=site-de-article-stundenzettel-automatisch-ausfuellen" rel="noopener"><span class="ms" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>Im Microsoft Store herunterladen</span></a>
+					</div>
+				</section>
+
+				<aside class="related">
+					<h2>Weitere Ratgeber</h2>
+					<ul>
+						<li><a href="/de/articles/arbeitszeiterfassung-jira.html">Arbeitszeiterfassung für Entwickler mit Jira</a></li>
+						<li><a href="/articles/fill-timesheet-in-10-minutes.html">Fill your weekly timesheet in 10 minutes (Englisch)</a></li>
+						<li><a href="/articles/ai-timesheet.html">AI timesheet: can AI fill your timesheet? (Englisch)</a></li>
+					</ul>
+				</aside>
+			</article>
+
+			<aside class="toc" aria-label="Auf dieser Seite">
+				<b>Auf dieser Seite</b>
+				<ol>
+					<li><a href="#was-gehoert-rein">Was auf den Stundenzettel gehört</a></li>
+					<li><a href="#warum-manuell-scheitert">Warum manuell scheitert</a></li>
+					<li><a href="#datenquellen">Die Spuren Ihres Arbeitstags</a></li>
+					<li><a href="#ablauf">Der Ablauf in vier Schritten</a></li>
+					<li><a href="#worklog-texte">Vorlagen für Worklog-Texte</a></li>
+					<li><a href="#werkzeuge">Excel, App oder automatisch?</a></li>
+					<li><a href="#datenschutz">Datenschutz</a></li>
+					<li><a href="#routine">Die 10-Minuten-Routine</a></li>
+					<li><a href="#timesheet-tracker">Mit Timesheet Tracker</a></li>
+					<li><a href="#faq">Häufige Fragen</a></li>
+				</ol>
+				<div class="toc-cta">
+					<b style="margin:0;color:var(--ink);font-size:15px;letter-spacing:-.01em;text-transform:none">Timesheet Tracker</b>
+					<p>Der Stundenzettel, der sich selbst ausfüllt. Kostenlos im Microsoft Store.</p>
+					<a class="btn btn-primary btn-sm" href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=de-de&amp;cid=site-de-nav-stundenzettel-automatisch-ausfuellen" rel="noopener">App laden</a>
+				</div>
+			</aside>
+		</div>
+	</main>
+
+	<footer class="site-footer">
+		<div class="wrap">
+			<div class="foot-grid">
+				<div class="foot-about">
+					<a class="brand" href="/de/"><img src="/img/mark.svg" width="30" height="30" alt=""><span>Timesheet Tracker</span></a>
+					<p>Automatische Zeiterfassung und KI-Stundenzettel für Jira unter Windows. Daten bleiben lokal. Keine Screenshots.</p>
+				</div>
+				<div>
+					<h4>Produkt</h4>
+					<ul>
+						<li><a href="/de/#how">So funktioniert's</a></li>
+						<li><a href="/de/#privacy">Datenschutz von Grund auf</a></li>
+						<li><a href="/de/#compare">Vergleich</a></li>
+						<li><a href="/de/#faq">FAQ</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4>Ratgeber</h4>
+					<ul>
+						<li><a href="/de/articles/arbeitszeiterfassung-jira.html">Arbeitszeiterfassung mit Jira</a></li>
+						<li><a href="/de/articles/stundenzettel-automatisch-ausfuellen.html">Stundenzettel automatisch ausfüllen</a></li>
+						<li><a href="/articles/how-to-log-time-in-jira.html" hreflang="en">Log time in Jira (EN)</a></li>
+						<li><a href="/articles/tempo-timesheets-alternatives.html" hreflang="en">Tempo alternatives (EN)</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4>Unternehmen</h4>
+					<ul>
+						<li><a href="mailto:help@timesheet-tracker.com">help@timesheet-tracker.com</a></li>
+						<li><a href="/privacy.html" hreflang="en">Datenschutzerklärung (EN)</a></li>
+						<li><a href="/terms.html" hreflang="en">Nutzungsbedingungen (EN)</a></li>
+					</ul>
+				</div>
+			</div>
+			<nav class="foot-langs" aria-label="Language"><a href="/" hreflang="en" lang="en">English</a><a href="/de/" hreflang="de" lang="de" aria-current="true">Deutsch</a><a href="/fr/" hreflang="fr" lang="fr">Français</a><a href="/es/" hreflang="es" lang="es">Español</a><a href="/pt-br/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a><a href="/it/" hreflang="it" lang="it">Italiano</a><a href="/pl/" hreflang="pl" lang="pl">Polski</a><a href="/nl/" hreflang="nl" lang="nl">Nederlands</a><a href="/ja/" hreflang="ja" lang="ja">日本語</a><a href="/uk/" hreflang="uk" lang="uk">Українська</a><a href="/ru/" hreflang="ru" lang="ru">Русский</a></nav>
+			<div class="foot-bottom">
+				<span>© <span data-year>2026</span> Timesheet Tracker. Jira ist eine Marke von Atlassian. Keine Verbindung zu Atlassian oder Microsoft.</span>
+				<span>Gemacht für alle, die ihre Zeit selbst erfassen.</span>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>

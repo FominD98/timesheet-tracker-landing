@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Urenregistratie voor Jira: uren bijhouden per project</title>
+	<meta name="description" content="Urenregistratie in Jira zonder gedoe: tijdregistratie aanzetten, worklogs boeken, uren per project bijhouden en een urenstaat voor je klant maken.">
+	<link rel="canonical" href="https://timesheet-tracker.com/nl/articles/urenregistratie-jira.html">
+	<meta name="robots" content="index, follow, max-image-preview:large">
+	<meta name="author" content="AI Timesheet team">
+	<meta name="theme-color" content="#f5f6fb">
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+	<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+	<meta property="og:type" content="article">
+	<meta property="og:site_name" content="Timesheet Tracker">
+	<meta property="og:title" content="Urenregistratie voor Jira: uren bijhouden per project">
+	<meta property="og:description" content="Urenregistratie in Jira zonder gedoe: tijdregistratie aanzetten, worklogs boeken, uren per project bijhouden en een urenstaat voor je klant maken.">
+	<meta property="og:url" content="https://timesheet-tracker.com/nl/articles/urenregistratie-jira.html">
+	<meta property="og:image" content="https://timesheet-tracker.com/og-image.png">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="og:locale" content="nl_NL">
+	<meta property="article:published_time" content="2026-10-29">
+	<meta name="twitter:card" content="summary_large_image">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap">
+	<link rel="stylesheet" href="/css/landing.css">
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Article",
+		"headline": "Urenregistratie voor Jira: zo houd je je uren bij per issue en per project",
+		"description": "Urenregistratie in Jira zonder gedoe: tijdregistratie aanzetten, worklogs boeken, uren per project bijhouden en een urenstaat voor je klant maken.",
+		"datePublished": "2026-10-29",
+		"dateModified": "2026-10-29",
+		"inLanguage": "nl",
+		"mainEntityOfPage": "https://timesheet-tracker.com/nl/articles/urenregistratie-jira.html",
+		"image": "https://timesheet-tracker.com/og-image.png",
+		"keywords": "urenregistratie, uren bijhouden, urenregistratie app, Jira, worklog, urenstaat, tijdregistratie, tijdschrijven",
+		"author": {"@type": "Organization", "name": "AI Timesheet team", "url": "https://timesheet-tracker.com/"},
+		"publisher": {"@type": "Organization", "name": "Timesheet Tracker", "url": "https://timesheet-tracker.com/", "logo": {"@type": "ImageObject", "url": "https://timesheet-tracker.com/apple-touch-icon.png"}}
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		"itemListElement": [
+			{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://timesheet-tracker.com/nl/"},
+			{"@type": "ListItem", "position": 2, "name": "Urenregistratie voor Jira", "item": "https://timesheet-tracker.com/nl/articles/urenregistratie-jira.html"}
+		]
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		"inLanguage": "nl",
+		"mainEntity": [
+			{"@type": "Question", "name": "Heeft Jira standaard urenregistratie?", "acceptedAnswer": {"@type": "Answer", "text": "Ja. Jira Cloud en Jira Server / Data Center hebben ingebouwde tijdregistratie: je boekt worklogs op een issue met de tijd, de startdatum en een omschrijving. Een beheerder moet tijdregistratie wel aanzetten, het veld Time tracking moet op de schermen van het project staan en je hebt de permissie Work on issues nodig. Voor uitgebreide urenstaten en rapportages per klant gebruiken veel teams een add-on zoals Tempo."}},
+			{"@type": "Question", "name": "Hoe zie ik hoeveel uur ik deze week in Jira heb geboekt?", "acceptedAnswer": {"@type": "Answer", "text": "Zoek in de issuezoeker met de JQL worklogAuthor = currentUser() AND worklogDate >= startOfWeek(). Dan zie je alle issues waarop je deze week tijd hebt geboekt. Let op: de kolom Time Spent toont de totale tijd op het issue van alle collega's samen, niet alleen jouw uren van deze week."}},
+			{"@type": "Question", "name": "Kan ik als zzp'er mijn Jira-uren gebruiken voor mijn urenadministratie?", "acceptedAnswer": {"@type": "Answer", "text": "Gedeeltelijk. Jira-worklogs laten zien welke declarabele uren je voor een klant hebt gemaakt, maar niet de uren voor acquisitie, administratie of opleiding. Bewaar daarnaast altijd een eigen kopie van je uren, bijvoorbeeld als CSV, want na afloop van een opdracht verlies je meestal de toegang tot de Jira van je klant."}},
+			{"@type": "Question", "name": "Is er een urenregistratie app die Jira automatisch invult?", "acceptedAnswer": {"@type": "Answer", "text": "Ja. Timesheet Tracker (in de Microsoft Store: Urenregistratie & timesheet - AI voor Jira) legt je werkdag in Windows lokaal vast, koppelt Jira-sleutels uit venstertitels en git-branches aan de juiste taak, laat AI op verzoek de rest sorteren en schrijft per taak een worklog. Jij controleert en bevestigt; daarna gaan de worklogs naar Jira Cloud of Jira Server / Data Center, of naar CSV."}}
+		]
+	}
+	</script>
+	<script src="/js/landing.js" defer></script>
+	<!-- Yandex.Metrika counter -->
+	<script>
+		(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();
+		for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+		k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+		(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+		ym(113838536, "init", {clickmap: true, trackLinks: true, accurateTrackBounce: true});
+	</script>
+</head>
+<body>
+	<noscript><div><img src="https://mc.yandex.ru/watch/113838536" width="1" height="1" style="position:absolute;left:-9999px" alt=""></div></noscript>
+	<a class="skip" href="#main">Naar de inhoud</a>
+	<header class="site-header">
+		<nav class="wrap nav" aria-label="Hoofdmenu">
+			<a class="brand" href="/nl/"><img src="/img/mark.svg" width="30" height="30" alt=""><span>Timesheet Tracker</span></a>
+			<ul class="nav-links">
+				<li><a href="/nl/#how">Zo werkt het</a></li>
+				<li><a href="/nl/#features">Functies</a></li>
+				<li><a href="/nl/#privacy">Privacy</a></li>
+				<li><a href="/nl/#compare">Vergelijking</a></li>
+				<li><a href="/nl/articles/urenregistratie-jira.html">Gids</a></li>
+			</ul>
+			<div class="nav-cta">
+				<a class="btn btn-primary btn-sm" href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=nl-nl&amp;cid=site-nl-nav-urenregistratie-jira" rel="noopener">Download de app</a>
+				<button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false"><span></span></button>
+			</div>
+		</nav>
+	</header>
+
+	<main id="main">
+		<section class="page-hero">
+			<div class="aurora" aria-hidden="true"></div>
+			<div class="wrap">
+				<ol class="crumbs">
+					<li><a href="/nl/">Home</a></li>
+					<li>Urenregistratie voor Jira</li>
+				</ol>
+				<h1>Urenregistratie voor Jira: zo houd je je uren bij per issue en per project</h1>
+				<p class="dek">Hoe je tijdregistratie in Jira inricht, worklogs boekt die kloppen, uren per klant of project terugvindt en daar een urenstaat van maakt — plus hoe je het grootste deel automatiseert.</p>
+				<div class="byline">
+					<img src="/img/mark.svg" width="28" height="28" alt="">
+					<span>Door <b>AI Timesheet team</b></span>
+					<span>·</span>
+					<time datetime="2026-10-29">29 oktober 2026</time>
+					<span>·</span>
+					<span>8 min lezen</span>
+				</div>
+			</div>
+		</section>
+
+		<div class="article-layout">
+			<article class="prose">
+				<div class="tldr">
+					<b>Kort antwoord</b>
+					<ul>
+						<li>Jira heeft ingebouwde urenregistratie: je boekt per issue een <b>worklog</b> met de bestede tijd, de startdatum en een korte omschrijving. Een beheerder moet tijdregistratie wel aanzetten en jij hebt de permissie <b>Work on issues</b> nodig.</li>
+						<li>Boek tijd in de notatie <code>2h 30m</code>, controleer de startdatum en schrijf één concrete zin per taak per dag.</li>
+						<li>Je eigen uren van deze week vind je met de JQL <code>worklogAuthor = currentUser() AND worklogDate &gt;= startOfWeek()</code>. Voor nette urenstaten per klant heb je een export of een add-on zoals Tempo nodig.</li>
+						<li>Werk je als zzp’er of gedetacheerde in de Jira van je klant, bewaar dan altijd een eigen kopie van je uren: na de opdracht ben je de toegang meestal kwijt.</li>
+						<li>Uren bijhouden zonder stopwatch kan met een urenregistratie app die je dag vastlegt en de worklogs voor je voorbereidt; jij bevestigt alleen.</li>
+					</ul>
+				</div>
+
+				<h2 id="waarom">Waarom urenregistratie in Jira zo vaak misgaat</h2>
+				<p>Bijna iedereen in een softwareteam kent het: het is vrijdagmiddag, de sprint loopt af en Jira wil weten waar je deze week je tijd aan hebt besteed. In veel organisaties is tijdschrijven geen formaliteit. Uren op issues bepalen wat er aan de klant wordt gefactureerd, hoe een fixed-price-project ervoor staat en of de schattingen voor de volgende sprint realistisch zijn.</p>
+				<p>Voor zzp’ers, freelancers en gedetacheerde developers speelt nog iets mee. Je schrijft je uren vaak twee keer: in de Jira van de klant, omdat het team daarop stuurt, en op een urenstaat of urenbriefje voor je eigen facturatie of voor het detacheringsbureau. Klopt het een niet met het ander, dan krijg je vragen over je factuur.</p>
+				<p>Het probleem is zelden onwil. Een werkdag bestaat uit tientallen contextwissels: een code review tussendoor, een vraag in Slack, een incident, een refinement. Aan het eind van de week weet niemand meer precies hoe lang dat allemaal duurde. Goede urenregistratie begint dus met een goede inrichting, en wordt pas echt betrouwbaar als je niet meer op je geheugen hoeft te vertrouwen.</p>
+
+				<h2 id="inrichten">Stap 1: tijdregistratie in Jira aanzetten</h2>
+				<p>Kun je nergens tijd boeken op een issue, dan ligt dat bijna altijd aan de configuratie. Drie dingen moeten kloppen. De menunamen hieronder zijn de Engelse, omdat de meeste teams Jira in het Engels gebruiken.</p>
+				<ol>
+					<li><strong>Tijdregistratie staat aan.</strong> In Jira Cloud gaat een sitebeheerder naar <b>Settings &rarr; Issues &rarr; Time tracking</b> (in nieuwere Cloud-versies heten issues <em>work items</em>). In Jira Server en Data Center is het <b>Administration &rarr; Issues &rarr; Time tracking</b>. Hier stel je ook in hoeveel uur een dag is: standaard 8 uur per dag en 5 dagen per week. Werkt je organisatie met dagen van 7,5 of 9 uur, pas het dan aan, anders betekent <code>1d</code> niet wat iedereen denkt.</li>
+					<li><strong>Je mag tijd boeken.</strong> In het permission scheme van het project heet dat meestal <b>Work on issues</b>. Aparte permissies bepalen of je je eigen worklogs (of die van anderen) mag wijzigen en verwijderen.</li>
+					<li><strong>Het veld Time tracking staat op de schermen.</strong> In company-managed projecten moet het veld op het scherm van het issuetype staan; in team-managed projecten zet je de functie aan in de projectinstellingen.</li>
+				</ol>
+
+				<h2 id="boeken">Stap 2: uren boeken op een issue</h2>
+				<p>In Jira Cloud klik je in het issue op het veld <b>Time tracking</b>, of je kiest <b>Log work</b> in het menu met de drie puntjes. In Data Center is het <b>More &rarr; Log work</b>. Het venster vraagt om:</p>
+				<ul>
+					<li><b>Time spent</b> — in de notatie van Jira: <code>w</code>, <code>d</code>, <code>h</code> en <code>m</code>. Dus <code>45m</code>, <code>2h 15m</code> of <code>1d</code>.</li>
+					<li><b>Date started</b> — standaard is dat nu. Vul je op maandagochtend de vrijdag in, pas de datum dan aan, anders staan je uren op de verkeerde dag.</li>
+					<li><b>Remaining estimate</b> — laat Jira de resterende schatting automatisch verlagen, of vul zelf een nieuwe waarde in.</li>
+					<li><b>Work description</b> — de omschrijving. Die leest je projectleider, en soms je klant.</li>
+				</ul>
+				<p>Wil je uren boeken vanuit je commits, dan kan dat met smart commits als je repository aan Jira is gekoppeld: <code>git commit -m "CASE-1423 #time 1h 30m Token-refresh hersteld"</code>. Handig, maar alleen voor tijd die je echt in code doorbrengt; overleg en reviews vallen erbuiten.</p>
+				<div class="callout">
+					<p>De meest gemaakte fout in Jira-urenregistratie is niet een verkeerd getal, maar een verkeerde datum. Controleer bij het achteraf boeken altijd het veld Date started.</p>
+				</div>
+
+				<h2 id="per-project">Uren bijhouden per project en per klant</h2>
+				<p>Jira registreert tijd per issue. Wil je weten hoeveel uur er naar een klant of project ging, dan hangt dat af van hoe je Jira hebt ingericht:</p>
+				<ul>
+					<li><strong>Eén Jira-project per klant of opdracht.</strong> Het eenvoudigst: alle worklogs in project <code>ACME</code> zijn uren voor die klant.</li>
+					<li><strong>Epics, components of labels.</strong> Werk je in één groot project, groepeer dan op epic (bijvoorbeeld per deelproject) of op component. Zorg dat elk issue er een heeft, anders vallen uren buiten je overzicht.</li>
+					<li><strong>Accounts in Tempo.</strong> Teams die per klant of per budget factureren, gebruiken vaak de add-on Tempo Timesheets, waarmee je worklogs aan een account koppelt.</li>
+				</ul>
+				<p>Voor je eigen overzicht is JQL je beste vriend. Deze zoekopdracht toont alle issues waarop jij deze week tijd hebt geboekt:</p>
+				<pre><code>worklogAuthor = currentUser() AND worklogDate &gt;= startOfWeek()</code></pre>
+				<p>Een kanttekening: de kolom <b>Time Spent</b> in de zoekresultaten is de totale tijd op het issue, van alle collega’s en over de hele looptijd. Een nette urenstaat per persoon per week bouw je daarmee niet. Daarvoor heb je een rapport uit een add-on nodig, de worklog-API, of een tool die je uren per dag per taak bijhoudt en exporteert.</p>
+
+				<h2 id="urenstaat">Van Jira-worklogs naar een urenstaat voor je klant of bureau</h2>
+				<p>Gedetacheerde professionals en zzp’ers moeten hun uren vaak wekelijks of maandelijks laten aftekenen op een urenstaat. Een paar gewoontes maken dat een stuk makkelijker:</p>
+				<ul>
+					<li><strong>Boek dagelijks, niet wekelijks.</strong> Vijf minuten aan het eind van de dag is nauwkeuriger dan een uur op vrijdag reconstrueren.</li>
+					<li><strong>Houd één bron van waarheid.</strong> Laat je urenstaat uit dezelfde gegevens komen als je Jira-worklogs, zodat er geen verschillen ontstaan tussen wat het team ziet en wat je factureert.</li>
+					<li><strong>Bewaar een eigen kopie.</strong> Na afloop van een opdracht wordt je account in de Jira van de klant meestal gedeactiveerd. Exporteer je uren per dag en per taak naar CSV, zodat je later nog kunt laten zien wat je hebt gedaan.</li>
+					<li><strong>Vergeet de niet-declarabele uren niet.</strong> Acquisitie, administratie en opleiding staan niet in de Jira van je klant. Wie als ondernemer gebruik wil maken van de zelfstandigenaftrek, moet aannemelijk kunnen maken dat hij aan het urencriterium voldoet (de Belastingdienst noemt minimaal 1.225 uur per jaar aan je onderneming). Daar tellen ook die indirecte uren voor mee, dus houd die apart bij.</li>
+				</ul>
+
+				<h2 id="worklogteksten">Worklogteksten die iets zeggen</h2>
+				<p>‘Development’ of ‘overleg’ helpt niemand. Een goede omschrijving is één zin die zegt wat er is gedaan en waaraan:</p>
+				<ul>
+					<li><em>Token-refresh in auth-service gerefactord, integratietests toegevoegd</em></li>
+					<li><em>PR’s #412 en #418 in billing gereviewd, opmerkingen verwerkt</em></li>
+					<li><em>Post-mortem billing-incident geschreven, drempels van alerts aangepast</em></li>
+				</ul>
+				<p>Schrijf in de taal die je team en je klant gebruiken. In veel Nederlandse IT-teams is dat Engels, ook als iedereen Nederlands spreekt; spreek dat aan het begin van een opdracht af.</p>
+
+				<h2 id="fouten">Veelgemaakte fouten</h2>
+				<ul>
+					<li><strong>Alles op één issue boeken.</strong> Eén ‘algemeen’ ticket voor alles maakt je uren onbruikbaar voor planning en facturatie.</li>
+					<li><strong>Pauzes meetellen.</strong> Een timer die doorloopt tijdens de lunch levert te veel uren op; corrigeren kost daarna meer tijd dan het scheelt.</li>
+					<li><strong>Dubbel boeken.</strong> Wie handmatig en via een integratie boekt, of een export twee keer draait, ziet ineens dubbele uren in Jira.</li>
+					<li><strong>Schattingen negeren.</strong> Laat je Remaining estimate nooit bijwerken, dan zegt je burndown niets meer.</li>
+				</ul>
+
+				<h2 id="automatiseren">Urenregistratie automatiseren</h2>
+				<p>Er zijn grofweg drie manieren om je uren bij te houden zonder alles handmatig in te typen: een stopwatch-app die je per taak start en stopt, een Jira-add-on zoals Tempo die suggesties doet, of een desktop-tracker die je werkdag automatisch vastlegt. Een stopwatch werkt alleen als je hem niet vergeet; automatische tijdregistratie werkt altijd, maar je moet goed kijken waar je gegevens heen gaan.</p>
+				<p>Dat is het idee achter <a href="/nl/">Timesheet Tracker, een urenregistratie app voor Jira op Windows</a>. De app draait in het systeemvak en legt het actieve programma, de venstertitel, het domein in de browser en je inactiviteit vast — lokaal op je pc, zonder screenshots en zonder keylogger. Staat er een Jira-sleutel zoals <code>CASE-1423</code> in een venstertitel of git-branch, dan gaat die tijd meteen naar die taak, zonder AI. Aan het eind van de dag klik je op <b>Mijn dag sorteren</b>: AI wijst de overige blokken toe aan je Jira-taken en schrijft per taak één worklogtekst. Alleen gemaskeerde titels, programmanamen, domeinen en tijdsduur gaan daarvoor de deur uit; met de modus <b>Zonder AI</b> gaat er helemaal niets naar AI.</p>
+				<p>Daarna controleer jij: met <b>Taak wijzigen</b> zet je een blok op een andere taak, met <b>Geen werk</b> haal je het uit je uren, en met <b>Dag bevestigen</b> keur je de dag goed. <b>Naar Jira sturen</b> zet de worklogs in Jira Cloud of Jira Server / Data Center, zonder dubbele boekingen als je opnieuw verstuurt. Met <b>CSV exporteren</b> houd je je eigen urenstaat per taak. Het is een persoonlijke tool, geen prikklok of tijdregistratiesysteem voor je werkgever: er zijn geen rapporten voor je leidinggevende. Wil je eerst kijken? De <b>Demomodus</b> laat het hele proces zien op een voorbeelddag, zonder Jira.</p>
+
+				<h2 id="faq">Veelgestelde vragen</h2>
+				<div class="faq">
+					<details><summary>Heeft Jira standaard urenregistratie?</summary><div class="a"><p>Ja. Jira Cloud en Jira Server / Data Center hebben ingebouwde tijdregistratie: je boekt worklogs op een issue met de tijd, de startdatum en een omschrijving. Een beheerder moet tijdregistratie wel aanzetten, het veld Time tracking moet op de schermen van het project staan en je hebt de permissie Work on issues nodig. Voor uitgebreide urenstaten en rapportages per klant gebruiken veel teams een add-on zoals Tempo.</p></div></details>
+					<details><summary>Hoe zie ik hoeveel uur ik deze week in Jira heb geboekt?</summary><div class="a"><p>Zoek in de issuezoeker met de JQL <code>worklogAuthor = currentUser() AND worklogDate &gt;= startOfWeek()</code>. Dan zie je alle issues waarop je deze week tijd hebt geboekt. Let op: de kolom Time Spent toont de totale tijd op het issue van alle collega’s samen, niet alleen jouw uren van deze week.</p></div></details>
+					<details><summary>Kan ik als zzp’er mijn Jira-uren gebruiken voor mijn urenadministratie?</summary><div class="a"><p>Gedeeltelijk. Jira-worklogs laten zien welke declarabele uren je voor een klant hebt gemaakt, maar niet de uren voor acquisitie, administratie of opleiding. Bewaar daarnaast altijd een eigen kopie van je uren, bijvoorbeeld als CSV, want na afloop van een opdracht verlies je meestal de toegang tot de Jira van je klant.</p></div></details>
+					<details><summary>Is er een urenregistratie app die Jira automatisch invult?</summary><div class="a"><p>Ja. Timesheet Tracker (in de Microsoft Store: ‘Urenregistratie &amp; timesheet - AI voor Jira’) legt je werkdag in Windows lokaal vast, koppelt Jira-sleutels uit venstertitels en git-branches aan de juiste taak, laat AI op verzoek de rest sorteren en schrijft per taak een worklog. Jij controleert en bevestigt; daarna gaan de worklogs naar Jira Cloud of Jira Server / Data Center, of naar CSV.</p></div></details>
+				</div>
+
+				<section class="article-cta" id="get-app">
+					<h2>Nooit meer op vrijdag je week reconstrueren</h2>
+					<p>Timesheet Tracker bereidt je Jira-worklogs voor op basis van je echte werkdag, en jij keurt ze in een paar minuten goed. Gratis in de Microsoft Store, met 14 dagen Pro gratis en zonder creditcard. Daarna $9,99 per maand of $79 per jaar.</p>
+					<div class="get-app">
+						<a class="btn btn-primary btn-store" href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=nl-nl&amp;cid=site-nl-article-urenregistratie-jira" rel="noopener"><span class="ms" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>Download in de Microsoft Store</span></a>
+					</div>
+				</section>
+
+				<aside class="related">
+					<h2>Verder lezen (Engelstalig)</h2>
+					<ul>
+						<li><a href="/articles/how-to-log-time-in-jira.html">How to log time in Jira: a practical guide to worklogs</a></li>
+						<li><a href="/articles/fill-timesheet-in-10-minutes.html">How to fill your timesheet in 10 minutes</a></li>
+						<li><a href="/articles/tempo-timesheets-alternatives.html">Tempo Timesheets alternatives</a></li>
+						<li><a href="/articles/automatic-time-tracking-software-windows.html">Automatic time tracking software for Windows</a></li>
+					</ul>
+				</aside>
+			</article>
+
+			<aside class="toc" aria-label="Op deze pagina">
+				<b>Op deze pagina</b>
+				<ol>
+					<li><a href="#waarom">Waarom het misgaat</a></li>
+					<li><a href="#inrichten">Tijdregistratie aanzetten</a></li>
+					<li><a href="#boeken">Uren boeken</a></li>
+					<li><a href="#per-project">Uren per project</a></li>
+					<li><a href="#urenstaat">Urenstaat voor je klant</a></li>
+					<li><a href="#worklogteksten">Worklogteksten</a></li>
+					<li><a href="#fouten">Veelgemaakte fouten</a></li>
+					<li><a href="#automatiseren">Automatiseren</a></li>
+					<li><a href="#faq">Veelgestelde vragen</a></li>
+				</ol>
+				<div class="toc-cta">
+					<b style="margin:0;color:var(--ink);font-size:15px;letter-spacing:-.01em;text-transform:none">Timesheet Tracker</b>
+					<p>De urenstaat die zichzelf invult. Gratis in de Microsoft Store.</p>
+					<a class="btn btn-primary btn-sm" href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=nl-nl&amp;cid=site-nl-toc-urenregistratie-jira" rel="noopener">Download de app</a>
+				</div>
+			</aside>
+		</div>
+	</main>
+
+	<footer class="site-footer">
+		<div class="wrap">
+			<div class="foot-grid">
+				<div class="foot-about">
+					<a class="brand" href="/nl/"><img src="/img/mark.svg" width="30" height="30" alt=""><span>Timesheet Tracker</span></a>
+					<p>Automatische urenregistratie en een AI-timesheet voor Jira, op Windows. Lokaal opgeslagen. Geen screenshots.</p>
+				</div>
+				<div>
+					<h4>Product</h4>
+					<ul>
+						<li><a href="/nl/#how">Zo werkt het</a></li>
+						<li><a href="/nl/#privacy">Privacy voorop</a></li>
+						<li><a href="/nl/#compare">Vergelijking</a></li>
+						<li><a href="/nl/#faq">Veelgestelde vragen</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4>Gidsen</h4>
+					<ul>
+						<li><a href="/nl/articles/urenregistratie-jira.html">Urenregistratie voor Jira</a></li>
+						<li><a href="/articles/how-to-log-time-in-jira.html">Log time in Jira (EN)</a></li>
+						<li><a href="/articles/automatic-time-tracking-software-windows.html">Automatic time tracking (EN)</a></li>
+						<li><a href="/articles/tempo-timesheets-alternatives.html">Tempo alternatives (EN)</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4>Bedrijf</h4>
+					<ul>
+						<li><a href="mailto:help@timesheet-tracker.com">help@timesheet-tracker.com</a></li>
+						<li><a href="/privacy.html">Privacybeleid</a></li>
+						<li><a href="/terms.html">Voorwaarden</a></li>
+					</ul>
+				</div>
+			</div>
+			<nav class="foot-langs" aria-label="Language"><a href="/" hreflang="en" lang="en">English</a><a href="/de/" hreflang="de" lang="de">Deutsch</a><a href="/fr/" hreflang="fr" lang="fr">Français</a><a href="/es/" hreflang="es" lang="es">Español</a><a href="/pt-br/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a><a href="/it/" hreflang="it" lang="it">Italiano</a><a href="/pl/" hreflang="pl" lang="pl">Polski</a><a href="/nl/" hreflang="nl" lang="nl" aria-current="true">Nederlands</a><a href="/ja/" hreflang="ja" lang="ja">日本語</a><a href="/uk/" hreflang="uk" lang="uk">Українська</a><a href="/ru/" hreflang="ru" lang="ru">Русский</a></nav>
+			<div class="foot-bottom">
+				<span>© <span data-year>2026</span> Timesheet Tracker. Jira is een handelsmerk van Atlassian. Niet gelieerd aan Atlassian of Microsoft.</span>
+				<span>Gemaakt voor mensen die zelf hun uren schrijven.</span>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>

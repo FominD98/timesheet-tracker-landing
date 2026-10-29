@@ -1,17 +1,199 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+	<url><loc>https://timesheet-tracker.com/articles/ai-timesheet.html</loc><lastmod>2026-10-29</lastmod></url>
+	<url><loc>https://timesheet-tracker.com/articles/automatic-time-tracking-software-windows.html</loc><lastmod>2026-10-29</lastmod></url>
+	<url><loc>https://timesheet-tracker.com/articles/fill-timesheet-in-10-minutes.html</loc><lastmod>2026-10-29</lastmod></url>
+	<url><loc>https://timesheet-tracker.com/articles/how-to-log-time-in-jira.html</loc><lastmod>2026-10-29</lastmod></url>
+	<url><loc>https://timesheet-tracker.com/articles/</loc><lastmod>2026-10-29</lastmod></url>
+	<url><loc>https://timesheet-tracker.com/articles/tempo-timesheets-alternatives.html</loc><lastmod>2026-10-29</lastmod></url>
+	<url><loc>https://timesheet-tracker.com/de/articles/arbeitszeiterfassung-jira.html</loc><lastmod>2026-10-29</lastmod></url>
+	<url><loc>https://timesheet-tracker.com/de/articles/stundenzettel-automatisch-ausfuellen.html</loc><lastmod>2026-10-29</lastmod></url>
 	<url>
-		<loc>https://timesheet-tracker.com/</loc>
-		<lastmod>2026-10-28</lastmod>
+		<loc>https://timesheet-tracker.com/de/</loc>
+		<lastmod>2026-10-29</lastmod>
 		<xhtml:link rel="alternate" hreflang="en" href="https://timesheet-tracker.com/"/>
+		<xhtml:link rel="alternate" hreflang="de" href="https://timesheet-tracker.com/de/"/>
+		<xhtml:link rel="alternate" hreflang="fr" href="https://timesheet-tracker.com/fr/"/>
+		<xhtml:link rel="alternate" hreflang="es" href="https://timesheet-tracker.com/es/"/>
+		<xhtml:link rel="alternate" hreflang="pt-BR" href="https://timesheet-tracker.com/pt-br/"/>
+		<xhtml:link rel="alternate" hreflang="it" href="https://timesheet-tracker.com/it/"/>
+		<xhtml:link rel="alternate" hreflang="pl" href="https://timesheet-tracker.com/pl/"/>
+		<xhtml:link rel="alternate" hreflang="nl" href="https://timesheet-tracker.com/nl/"/>
+		<xhtml:link rel="alternate" hreflang="ja" href="https://timesheet-tracker.com/ja/"/>
+		<xhtml:link rel="alternate" hreflang="uk" href="https://timesheet-tracker.com/uk/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://timesheet-tracker.com/ru/"/>
 		<xhtml:link rel="alternate" hreflang="x-default" href="https://timesheet-tracker.com/"/>
 	</url>
-	<url><loc>https://timesheet-tracker.com/articles/</loc><lastmod>2026-10-28</lastmod></url>
-	<url><loc>https://timesheet-tracker.com/articles/how-to-log-time-in-jira.html</loc><lastmod>2026-10-28</lastmod></url>
-	<url><loc>https://timesheet-tracker.com/articles/automatic-time-tracking-software-windows.html</loc><lastmod>2026-10-28</lastmod></url>
-	<url><loc>https://timesheet-tracker.com/articles/tempo-timesheets-alternatives.html</loc><lastmod>2026-10-28</lastmod></url>
-	<url><loc>https://timesheet-tracker.com/articles/fill-timesheet-in-10-minutes.html</loc><lastmod>2026-10-28</lastmod></url>
-	<url><loc>https://timesheet-tracker.com/articles/ai-timesheet.html</loc><lastmod>2026-10-28</lastmod></url>
-	<url><loc>https://timesheet-tracker.com/privacy.html</loc><lastmod>2026-10-28</lastmod></url>
-	<url><loc>https://timesheet-tracker.com/terms.html</loc><lastmod>2026-10-28</lastmod></url>
+	<url><loc>https://timesheet-tracker.com/es/articles/registro-horario-jira.html</loc><lastmod>2026-10-29</lastmod></url>
+	<url>
+		<loc>https://timesheet-tracker.com/es/</loc>
+		<lastmod>2026-10-29</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://timesheet-tracker.com/"/>
+		<xhtml:link rel="alternate" hreflang="de" href="https://timesheet-tracker.com/de/"/>
+		<xhtml:link rel="alternate" hreflang="fr" href="https://timesheet-tracker.com/fr/"/>
+		<xhtml:link rel="alternate" hreflang="es" href="https://timesheet-tracker.com/es/"/>
+		<xhtml:link rel="alternate" hreflang="pt-BR" href="https://timesheet-tracker.com/pt-br/"/>
+		<xhtml:link rel="alternate" hreflang="it" href="https://timesheet-tracker.com/it/"/>
+		<xhtml:link rel="alternate" hreflang="pl" href="https://timesheet-tracker.com/pl/"/>
+		<xhtml:link rel="alternate" hreflang="nl" href="https://timesheet-tracker.com/nl/"/>
+		<xhtml:link rel="alternate" hreflang="ja" href="https://timesheet-tracker.com/ja/"/>
+		<xhtml:link rel="alternate" hreflang="uk" href="https://timesheet-tracker.com/uk/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://timesheet-tracker.com/ru/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://timesheet-tracker.com/"/>
+	</url>
+	<url><loc>https://timesheet-tracker.com/fr/articles/feuille-de-temps-jira.html</loc><lastmod>2026-10-29</lastmod></url>
+	<url>
+		<loc>https://timesheet-tracker.com/fr/</loc>
+		<lastmod>2026-10-29</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://timesheet-tracker.com/"/>
+		<xhtml:link rel="alternate" hreflang="de" href="https://timesheet-tracker.com/de/"/>
+		<xhtml:link rel="alternate" hreflang="fr" href="https://timesheet-tracker.com/fr/"/>
+		<xhtml:link rel="alternate" hreflang="es" href="https://timesheet-tracker.com/es/"/>
+		<xhtml:link rel="alternate" hreflang="pt-BR" href="https://timesheet-tracker.com/pt-br/"/>
+		<xhtml:link rel="alternate" hreflang="it" href="https://timesheet-tracker.com/it/"/>
+		<xhtml:link rel="alternate" hreflang="pl" href="https://timesheet-tracker.com/pl/"/>
+		<xhtml:link rel="alternate" hreflang="nl" href="https://timesheet-tracker.com/nl/"/>
+		<xhtml:link rel="alternate" hreflang="ja" href="https://timesheet-tracker.com/ja/"/>
+		<xhtml:link rel="alternate" hreflang="uk" href="https://timesheet-tracker.com/uk/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://timesheet-tracker.com/ru/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://timesheet-tracker.com/"/>
+	</url>
+	<url>
+		<loc>https://timesheet-tracker.com/</loc>
+		<lastmod>2026-10-29</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://timesheet-tracker.com/"/>
+		<xhtml:link rel="alternate" hreflang="de" href="https://timesheet-tracker.com/de/"/>
+		<xhtml:link rel="alternate" hreflang="fr" href="https://timesheet-tracker.com/fr/"/>
+		<xhtml:link rel="alternate" hreflang="es" href="https://timesheet-tracker.com/es/"/>
+		<xhtml:link rel="alternate" hreflang="pt-BR" href="https://timesheet-tracker.com/pt-br/"/>
+		<xhtml:link rel="alternate" hreflang="it" href="https://timesheet-tracker.com/it/"/>
+		<xhtml:link rel="alternate" hreflang="pl" href="https://timesheet-tracker.com/pl/"/>
+		<xhtml:link rel="alternate" hreflang="nl" href="https://timesheet-tracker.com/nl/"/>
+		<xhtml:link rel="alternate" hreflang="ja" href="https://timesheet-tracker.com/ja/"/>
+		<xhtml:link rel="alternate" hreflang="uk" href="https://timesheet-tracker.com/uk/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://timesheet-tracker.com/ru/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://timesheet-tracker.com/"/>
+	</url>
+	<url><loc>https://timesheet-tracker.com/it/articles/timesheet-automatico-jira.html</loc><lastmod>2026-10-29</lastmod></url>
+	<url>
+		<loc>https://timesheet-tracker.com/it/</loc>
+		<lastmod>2026-10-29</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://timesheet-tracker.com/"/>
+		<xhtml:link rel="alternate" hreflang="de" href="https://timesheet-tracker.com/de/"/>
+		<xhtml:link rel="alternate" hreflang="fr" href="https://timesheet-tracker.com/fr/"/>
+		<xhtml:link rel="alternate" hreflang="es" href="https://timesheet-tracker.com/es/"/>
+		<xhtml:link rel="alternate" hreflang="pt-BR" href="https://timesheet-tracker.com/pt-br/"/>
+		<xhtml:link rel="alternate" hreflang="it" href="https://timesheet-tracker.com/it/"/>
+		<xhtml:link rel="alternate" hreflang="pl" href="https://timesheet-tracker.com/pl/"/>
+		<xhtml:link rel="alternate" hreflang="nl" href="https://timesheet-tracker.com/nl/"/>
+		<xhtml:link rel="alternate" hreflang="ja" href="https://timesheet-tracker.com/ja/"/>
+		<xhtml:link rel="alternate" hreflang="uk" href="https://timesheet-tracker.com/uk/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://timesheet-tracker.com/ru/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://timesheet-tracker.com/"/>
+	</url>
+	<url><loc>https://timesheet-tracker.com/ja/articles/kousu-kanri-jira.html</loc><lastmod>2026-10-29</lastmod></url>
+	<url>
+		<loc>https://timesheet-tracker.com/ja/</loc>
+		<lastmod>2026-10-29</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://timesheet-tracker.com/"/>
+		<xhtml:link rel="alternate" hreflang="de" href="https://timesheet-tracker.com/de/"/>
+		<xhtml:link rel="alternate" hreflang="fr" href="https://timesheet-tracker.com/fr/"/>
+		<xhtml:link rel="alternate" hreflang="es" href="https://timesheet-tracker.com/es/"/>
+		<xhtml:link rel="alternate" hreflang="pt-BR" href="https://timesheet-tracker.com/pt-br/"/>
+		<xhtml:link rel="alternate" hreflang="it" href="https://timesheet-tracker.com/it/"/>
+		<xhtml:link rel="alternate" hreflang="pl" href="https://timesheet-tracker.com/pl/"/>
+		<xhtml:link rel="alternate" hreflang="nl" href="https://timesheet-tracker.com/nl/"/>
+		<xhtml:link rel="alternate" hreflang="ja" href="https://timesheet-tracker.com/ja/"/>
+		<xhtml:link rel="alternate" hreflang="uk" href="https://timesheet-tracker.com/uk/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://timesheet-tracker.com/ru/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://timesheet-tracker.com/"/>
+	</url>
+	<url><loc>https://timesheet-tracker.com/nl/articles/urenregistratie-jira.html</loc><lastmod>2026-10-29</lastmod></url>
+	<url>
+		<loc>https://timesheet-tracker.com/nl/</loc>
+		<lastmod>2026-10-29</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://timesheet-tracker.com/"/>
+		<xhtml:link rel="alternate" hreflang="de" href="https://timesheet-tracker.com/de/"/>
+		<xhtml:link rel="alternate" hreflang="fr" href="https://timesheet-tracker.com/fr/"/>
+		<xhtml:link rel="alternate" hreflang="es" href="https://timesheet-tracker.com/es/"/>
+		<xhtml:link rel="alternate" hreflang="pt-BR" href="https://timesheet-tracker.com/pt-br/"/>
+		<xhtml:link rel="alternate" hreflang="it" href="https://timesheet-tracker.com/it/"/>
+		<xhtml:link rel="alternate" hreflang="pl" href="https://timesheet-tracker.com/pl/"/>
+		<xhtml:link rel="alternate" hreflang="nl" href="https://timesheet-tracker.com/nl/"/>
+		<xhtml:link rel="alternate" hreflang="ja" href="https://timesheet-tracker.com/ja/"/>
+		<xhtml:link rel="alternate" hreflang="uk" href="https://timesheet-tracker.com/uk/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://timesheet-tracker.com/ru/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://timesheet-tracker.com/"/>
+	</url>
+	<url><loc>https://timesheet-tracker.com/pl/articles/ewidencja-czasu-pracy-jira.html</loc><lastmod>2026-10-29</lastmod></url>
+	<url>
+		<loc>https://timesheet-tracker.com/pl/</loc>
+		<lastmod>2026-10-29</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://timesheet-tracker.com/"/>
+		<xhtml:link rel="alternate" hreflang="de" href="https://timesheet-tracker.com/de/"/>
+		<xhtml:link rel="alternate" hreflang="fr" href="https://timesheet-tracker.com/fr/"/>
+		<xhtml:link rel="alternate" hreflang="es" href="https://timesheet-tracker.com/es/"/>
+		<xhtml:link rel="alternate" hreflang="pt-BR" href="https://timesheet-tracker.com/pt-br/"/>
+		<xhtml:link rel="alternate" hreflang="it" href="https://timesheet-tracker.com/it/"/>
+		<xhtml:link rel="alternate" hreflang="pl" href="https://timesheet-tracker.com/pl/"/>
+		<xhtml:link rel="alternate" hreflang="nl" href="https://timesheet-tracker.com/nl/"/>
+		<xhtml:link rel="alternate" hreflang="ja" href="https://timesheet-tracker.com/ja/"/>
+		<xhtml:link rel="alternate" hreflang="uk" href="https://timesheet-tracker.com/uk/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://timesheet-tracker.com/ru/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://timesheet-tracker.com/"/>
+	</url>
+	<url><loc>https://timesheet-tracker.com/privacy.html</loc><lastmod>2026-10-29</lastmod></url>
+	<url><loc>https://timesheet-tracker.com/pt-br/articles/timesheet-automatico-jira.html</loc><lastmod>2026-10-29</lastmod></url>
+	<url>
+		<loc>https://timesheet-tracker.com/pt-br/</loc>
+		<lastmod>2026-10-29</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://timesheet-tracker.com/"/>
+		<xhtml:link rel="alternate" hreflang="de" href="https://timesheet-tracker.com/de/"/>
+		<xhtml:link rel="alternate" hreflang="fr" href="https://timesheet-tracker.com/fr/"/>
+		<xhtml:link rel="alternate" hreflang="es" href="https://timesheet-tracker.com/es/"/>
+		<xhtml:link rel="alternate" hreflang="pt-BR" href="https://timesheet-tracker.com/pt-br/"/>
+		<xhtml:link rel="alternate" hreflang="it" href="https://timesheet-tracker.com/it/"/>
+		<xhtml:link rel="alternate" hreflang="pl" href="https://timesheet-tracker.com/pl/"/>
+		<xhtml:link rel="alternate" hreflang="nl" href="https://timesheet-tracker.com/nl/"/>
+		<xhtml:link rel="alternate" hreflang="ja" href="https://timesheet-tracker.com/ja/"/>
+		<xhtml:link rel="alternate" hreflang="uk" href="https://timesheet-tracker.com/uk/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://timesheet-tracker.com/ru/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://timesheet-tracker.com/"/>
+	</url>
+	<url><loc>https://timesheet-tracker.com/ru/articles/kak-spisyvat-vremya-v-jira.html</loc><lastmod>2026-10-29</lastmod></url>
+	<url><loc>https://timesheet-tracker.com/ru/articles/tabel-ucheta-rabochego-vremeni.html</loc><lastmod>2026-10-29</lastmod></url>
+	<url>
+		<loc>https://timesheet-tracker.com/ru/</loc>
+		<lastmod>2026-10-29</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://timesheet-tracker.com/"/>
+		<xhtml:link rel="alternate" hreflang="de" href="https://timesheet-tracker.com/de/"/>
+		<xhtml:link rel="alternate" hreflang="fr" href="https://timesheet-tracker.com/fr/"/>
+		<xhtml:link rel="alternate" hreflang="es" href="https://timesheet-tracker.com/es/"/>
+		<xhtml:link rel="alternate" hreflang="pt-BR" href="https://timesheet-tracker.com/pt-br/"/>
+		<xhtml:link rel="alternate" hreflang="it" href="https://timesheet-tracker.com/it/"/>
+		<xhtml:link rel="alternate" hreflang="pl" href="https://timesheet-tracker.com/pl/"/>
+		<xhtml:link rel="alternate" hreflang="nl" href="https://timesheet-tracker.com/nl/"/>
+		<xhtml:link rel="alternate" hreflang="ja" href="https://timesheet-tracker.com/ja/"/>
+		<xhtml:link rel="alternate" hreflang="uk" href="https://timesheet-tracker.com/uk/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://timesheet-tracker.com/ru/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://timesheet-tracker.com/"/>
+	</url>
+	<url><loc>https://timesheet-tracker.com/terms.html</loc><lastmod>2026-10-29</lastmod></url>
+	<url><loc>https://timesheet-tracker.com/uk/articles/tabel-obliku-robochogo-chasu.html</loc><lastmod>2026-10-29</lastmod></url>
+	<url>
+		<loc>https://timesheet-tracker.com/uk/</loc>
+		<lastmod>2026-10-29</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://timesheet-tracker.com/"/>
+		<xhtml:link rel="alternate" hreflang="de" href="https://timesheet-tracker.com/de/"/>
+		<xhtml:link rel="alternate" hreflang="fr" href="https://timesheet-tracker.com/fr/"/>
+		<xhtml:link rel="alternate" hreflang="es" href="https://timesheet-tracker.com/es/"/>
+		<xhtml:link rel="alternate" hreflang="pt-BR" href="https://timesheet-tracker.com/pt-br/"/>
+		<xhtml:link rel="alternate" hreflang="it" href="https://timesheet-tracker.com/it/"/>
+		<xhtml:link rel="alternate" hreflang="pl" href="https://timesheet-tracker.com/pl/"/>
+		<xhtml:link rel="alternate" hreflang="nl" href="https://timesheet-tracker.com/nl/"/>
+		<xhtml:link rel="alternate" hreflang="ja" href="https://timesheet-tracker.com/ja/"/>
+		<xhtml:link rel="alternate" hreflang="uk" href="https://timesheet-tracker.com/uk/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://timesheet-tracker.com/ru/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://timesheet-tracker.com/"/>
+	</url>
 </urlset>

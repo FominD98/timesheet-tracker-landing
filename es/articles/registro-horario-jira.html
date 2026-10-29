@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Registro horario automático para equipos que usan Jira</title>
+	<meta name="description" content="Registro de jornada o registros de trabajo en Jira: qué exige la ley en España, por qué Jira no sirve para fichar y cómo automatizar tu control horario.">
+	<link rel="canonical" href="https://timesheet-tracker.com/es/articles/registro-horario-jira.html">
+	<meta name="robots" content="index, follow, max-image-preview:large">
+	<meta name="author" content="AI Timesheet team">
+	<meta name="theme-color" content="#f5f6fb">
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+	<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+	<meta property="og:type" content="article">
+	<meta property="og:site_name" content="Timesheet Tracker">
+	<meta property="og:title" content="Registro horario automático para equipos que usan Jira">
+	<meta property="og:description" content="Registro de jornada o registros de trabajo en Jira: qué exige la ley en España, por qué Jira no sirve para fichar y cómo automatizar tu control horario.">
+	<meta property="og:url" content="https://timesheet-tracker.com/es/articles/registro-horario-jira.html">
+	<meta property="og:image" content="https://timesheet-tracker.com/og-image.png">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="og:locale" content="es_ES">
+	<meta property="article:published_time" content="2026-10-29">
+	<meta name="twitter:card" content="summary_large_image">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap">
+	<link rel="stylesheet" href="/css/landing.css">
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Article",
+		"headline": "Registro horario automático para equipos que usan Jira",
+		"description": "Registro de jornada o registros de trabajo en Jira: qué exige la ley en España, por qué Jira no sirve para fichar y cómo automatizar tu control horario.",
+		"datePublished": "2026-10-29",
+		"dateModified": "2026-10-29",
+		"inLanguage": "es",
+		"keywords": "registro horario, control horario, registro de jornada, imputar horas en Jira, registros de trabajo, hoja de horas",
+		"mainEntityOfPage": "https://timesheet-tracker.com/es/articles/registro-horario-jira.html",
+		"image": "https://timesheet-tracker.com/og-image.png",
+		"author": {"@type": "Organization", "name": "AI Timesheet team", "url": "https://timesheet-tracker.com/es/"},
+		"publisher": {"@type": "Organization", "name": "Timesheet Tracker", "url": "https://timesheet-tracker.com/", "logo": {"@type": "ImageObject", "url": "https://timesheet-tracker.com/apple-touch-icon.png"}}
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		"itemListElement": [
+			{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://timesheet-tracker.com/es/"},
+			{"@type": "ListItem", "position": 2, "name": "Registro horario en Jira", "item": "https://timesheet-tracker.com/es/articles/registro-horario-jira.html"}
+		]
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		"mainEntity": [
+			{"@type": "Question", "name": "¿Los registros de trabajo de Jira sirven como registro de jornada?", "acceptedAnswer": {"@type": "Answer", "text": "No. Miden el tiempo dedicado a cada incidencia, no la hora de inicio y fin de la jornada; cada usuario puede editarlos y no cubren a quien no usa Jira. El registro de jornada tiene que llevarse en un sistema que garantice la empresa."}},
+			{"@type": "Question", "name": "¿Timesheet Tracker sirve como sistema de fichaje o cumple la ley de registro de jornada?", "acceptedAnswer": {"@type": "Answer", "text": "No, y no lo pretende. Es una herramienta personal para imputar horas en Jira. El registro de jornada sigue siendo responsabilidad de la empresa y de su sistema de fichaje; Timesheet Tracker no lo sustituye."}},
+			{"@type": "Question", "name": "¿Puede mi empresa ver lo que registra la app?", "acceptedAnswer": {"@type": "Answer", "text": "No. La actividad se guarda en tu PC, no hay paneles para responsables ni informes de equipo, y a Jira solo llegan los registros de trabajo que tú confirmas."}},
+			{"@type": "Question", "name": "¿Cuánto tiempo hay que conservar el registro de jornada en España?", "acceptedAnswer": {"@type": "Answer", "text": "Cuatro años, según el artículo 34.9 del Estatuto de los Trabajadores. Durante ese tiempo debe estar a disposición de las personas trabajadoras, de sus representantes y de la Inspección de Trabajo y Seguridad Social."}}
+		]
+	}
+	</script>
+	<script src="/js/landing.js" defer></script>
+	<!-- Yandex.Metrika counter -->
+	<script>
+		(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();
+		for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+		k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+		(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+		ym(113838536, "init", {clickmap: true, trackLinks: true, accurateTrackBounce: true});
+	</script>
+</head>
+<body>
+	<noscript><div><img src="https://mc.yandex.ru/watch/113838536" width="1" height="1" style="position:absolute;left:-9999px" alt=""></div></noscript>
+	<a class="skip" href="#main">Saltar al contenido</a>
+	<header class="site-header">
+		<nav class="wrap nav" aria-label="Principal">
+			<a class="brand" href="/es/"><img src="/img/mark.svg" width="30" height="30" alt=""><span>Timesheet Tracker</span></a>
+			<ul class="nav-links">
+				<li><a href="/es/#how">Cómo funciona</a></li>
+				<li><a href="/es/#features">Funciones</a></li>
+				<li><a href="/es/#privacy">Privacidad</a></li>
+				<li><a href="/es/#compare">Comparativa</a></li>
+				<li><a href="/es/articles/registro-horario-jira.html">Guía</a></li>
+			</ul>
+			<div class="nav-cta">
+				<a class="btn btn-primary btn-sm" href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=es-es&amp;cid=site-es-nav-registro-horario-jira" rel="noopener">Descargar</a>
+				<button class="nav-toggle" type="button" aria-label="Menú" aria-expanded="false"><span></span></button>
+			</div>
+		</nav>
+	</header>
+
+	<main id="main">
+		<section class="page-hero">
+			<div class="aurora" aria-hidden="true"></div>
+			<div class="wrap">
+				<ol class="crumbs">
+					<li><a href="/es/">Inicio</a></li>
+					<li>Registro horario en Jira</li>
+				</ol>
+				<h1>Registro horario automático para equipos que usan Jira</h1>
+				<p class="dek">El registro de jornada que exige la ley y los registros de trabajo de Jira no son lo mismo. Qué cubre cada uno, por qué Jira no sirve para fichar y cómo dejar de imputar horas de memoria cada viernes.</p>
+				<div class="byline">
+					<img src="/img/mark.svg" width="28" height="28" alt="">
+					<span>Por <b>el equipo de AI Timesheet</b></span>
+					<span>·</span>
+					<time datetime="2026-10-29">29 de octubre de 2026</time>
+					<span>·</span>
+					<span>9 min de lectura</span>
+				</div>
+			</div>
+		</section>
+
+		<div class="article-layout">
+			<article class="prose">
+				<div class="tldr">
+					<b>Respuesta corta</b>
+					<ul>
+						<li>En España, desde mayo de 2019 la empresa está obligada a llevar un <b>registro de jornada</b> diario con la hora de inicio y fin de cada persona trabajadora (art. 34.9 del Estatuto de los Trabajadores) y a conservarlo cuatro años.</li>
+						<li>Los <b>registros de trabajo de Jira</b> (worklogs) no son un registro de jornada: miden tiempo por tarea, no la entrada y la salida, y cada usuario puede editarlos.</li>
+						<li>Lo sensato es tener dos capas: el sistema de fichaje de la empresa para la jornada y un registro horario por tareas para Jira, y cuadrar ambos cada semana.</li>
+						<li>La parte pesada, imputar horas en Jira, se puede automatizar: claves de Jira en ramas y títulos, registro pasivo en tu PC y una revisión de dos minutos al día.</li>
+					</ul>
+				</div>
+
+				<h2 id="dos-registros">Registro de jornada e imputación de horas: no son lo mismo</h2>
+				<p>Cuando en un equipo que trabaja con Jira alguien dice «tenemos que hacer el registro horario», puede estar hablando de dos cosas que suenan igual y responden a preguntas distintas.</p>
+				<p>El <strong>registro de jornada</strong> (lo que todo el mundo llama «fichar») responde a una pregunta laboral: ¿cuánto ha trabajado hoy esta persona y de qué hora a qué hora? Es una obligación de la empresa y lo puede pedir la Inspección de Trabajo.</p>
+				<p>La <strong>imputación de horas en Jira</strong> responde a una pregunta de gestión: ¿en qué se ha ido ese tiempo? Cuántas horas se llevó la incidencia PAY-311, cuánto costó el sprint, qué hay que facturar al cliente. Es una práctica interna, no una obligación legal, y vive en los registros de trabajo de cada incidencia.</p>
+				<table>
+					<thead>
+						<tr><th>Aspecto</th><th>Registro de jornada</th><th>Registros de trabajo en Jira</th></tr>
+					</thead>
+					<tbody>
+						<tr><td>Qué mide</td><td>Hora de inicio y fin de la jornada, cada día</td><td>Tiempo dedicado a cada incidencia</td></tr>
+						<tr><td>Quién responde</td><td>La empresa</td><td>Cada persona, según la política del equipo</td></tr>
+						<tr><td>¿Obligatorio?</td><td>Sí, en España (art. 34.9 ET)</td><td>No; lo decide la empresa o lo pide el cliente</td></tr>
+						<tr><td>Para qué sirve</td><td>Jornada máxima, horas extra, descansos, Inspección</td><td>Estimaciones, costes, facturación, informes</td></tr>
+						<tr><td>Conservación</td><td>Cuatro años</td><td>Lo que dure el proyecto en Jira</td></tr>
+						<tr><td>Herramienta habitual</td><td>Sistema de fichaje: app, terminal o web</td><td>Jira, Tempo, hojas de cálculo, time trackers</td></tr>
+					</tbody>
+				</table>
+				<p>Mezclarlos produce los dos problemas de siempre: empresas que intentan usar Jira como sistema de fichaje y personas que rellenan los registros de trabajo «para que cuadren las ocho horas», aunque no reflejen el trabajo real.</p>
+
+				<h2 id="ley">Qué exige el registro de jornada en España</h2>
+				<p>La obligación llegó con el Real Decreto-ley 8/2019, que modificó el artículo 34.9 del Estatuto de los Trabajadores y se aplica desde el 12 de mayo de 2019. En resumen práctico:</p>
+				<ul>
+					<li><strong>Registro diario.</strong> La empresa garantiza un registro de la jornada de cada día que incluya el horario concreto de inicio y finalización de cada persona trabajadora.</li>
+					<li><strong>Organización pactada.</strong> Cómo se registra se fija por convenio colectivo, por acuerdo de empresa o, en su defecto, por decisión de la empresa previa consulta con la representación legal de los trabajadores.</li>
+					<li><strong>Cuatro años.</strong> Los registros se conservan durante cuatro años y deben estar a disposición de las personas trabajadoras, de sus representantes y de la Inspección de Trabajo y Seguridad Social.</li>
+					<li><strong>Sanciones.</strong> Incumplir las obligaciones de registro se considera una infracción grave según la Ley sobre Infracciones y Sanciones en el Orden Social (LISOS).</li>
+				</ul>
+				<p>La norma no impone una tecnología concreta. Lo importante es que el registro sea fiable y que no se pueda alterar después sin dejar rastro, en la línea de la sentencia del Tribunal de Justicia de la UE de 14 de mayo de 2019 (asunto C-55/18), que pide sistemas objetivos, fiables y accesibles. Además, en los últimos años el Gobierno ha impulsado una reforma para que el registro horario sea digital y la Inspección pueda consultarlo en remoto. Antes de elegir herramienta, comprueba la normativa vigente y lo que diga tu convenio.</p>
+				<div class="callout">
+					<p>Esto es un resumen divulgativo, no asesoramiento legal. En Latinoamérica las reglas cambian según el país: lo que sigue sobre Jira se aplica igual; la parte legal, no.</p>
+				</div>
+
+				<h2 id="jira-no-es-fichaje">Por qué Jira no sirve como sistema de fichaje</h2>
+				<p>Jira trae seguimiento del tiempo integrado: cualquier incidencia admite registros de trabajo con duración, fecha de inicio y descripción, desde <b>Registrar trabajo</b> (Log work) tanto en Jira Cloud como en Data Center. Es tentador pensar que con eso basta. No basta, por cuatro motivos:</p>
+				<ul>
+					<li><strong>Registra tareas, no la jornada.</strong> Un registro de trabajo dice «2h en PAY-311», no «entré a las 8:57 y salí a las 17:40». La comida, las pausas o un curso no tienen por qué aparecer.</li>
+					<li><strong>Se puede editar y borrar.</strong> Con los permisos habituales, cada usuario modifica sus propios registros. Es útil para corregir errores, pero choca con la idea de un registro fiable e inalterable.</li>
+					<li><strong>No cubre a todo el mundo.</strong> Administración, ventas o parte del soporte a menudo ni siquiera tienen licencia de Jira.</li>
+					<li><strong>Cuadrar no es medir.</strong> Si el equipo rellena ocho horas en Jira cada día «para cumplir», el dato deja de servir tanto para la ley como para la gestión.</li>
+				</ul>
+				<p>La conclusión práctica: la jornada va en el sistema de fichaje de la empresa, y Jira se queda con lo que hace bien, saber a qué se ha dedicado el tiempo.</p>
+
+				<h2 id="imputar-horas">El verdadero dolor: imputar horas en Jira cada día</h2>
+				<p>Fichar son dos clics al día. Imputar horas en Jira es otra historia: abrir cada incidencia, pulsar <b>Registrar trabajo</b>, escribir la duración en formato <code>1h 30m</code>, elegir la fecha correcta y redactar una descripción. Con cinco o seis tareas al día, más reuniones y revisiones de código, el ritual acaba aplazándose al viernes, y el viernes nadie recuerda qué pasó el martes.</p>
+				<p>Las opciones habituales y sus límites:</p>
+				<ul>
+					<li><strong>A mano en Jira.</strong> Preciso si lo haces en el momento; en la práctica, se acumula.</li>
+					<li><strong>Cronómetros</strong> (Toggl Track, Clockify o el de Tempo). Funcionan si te acuerdas de iniciarlos y pararlos en cada cambio de tarea, justo lo que falla en un día con interrupciones.</li>
+					<li><strong>Smart commits</strong> (<code>PAY-311 #time 2h</code> en el mensaje del commit). Cómodos para desarrollo, pero no cubren reuniones, revisiones ni documentación.</li>
+					<li><strong>Complementos como Tempo Timesheets.</strong> Una buena hoja de horas dentro de Jira, pero el tiempo lo sigues aportando tú.</li>
+					<li><strong>Registro automático en el escritorio.</strong> Una app registra tu actividad y te propone los registros de trabajo; tú solo revisas y confirmas.</li>
+				</ul>
+
+				<h2 id="como-automatizar">Cómo montar un registro horario automático para Jira</h2>
+				<p>La idea es que la jornada se registre sola en tu ordenador y que tu intervención se limite a revisar. Para que funcione en un equipo:</p>
+				<ol>
+					<li><strong>Pon la clave de Jira en todo lo que tocas.</strong> Ramas como <code>feature/PAY-311-reembolsos</code>, pull requests que empiezan por <code>[PAY-311]</code>, pestañas del navegador abiertas en la incidencia. La clave acaba en el título de la ventana, y con eso buena parte del día se asigna sin adivinar nada.</li>
+					<li><strong>Crea incidencias para el trabajo «sin ticket».</strong> Una tarea para reuniones (por ejemplo, <code>TEAM-12</code>) y otra para soporte o guardias. Si no existen, ese tiempo no tiene dónde ir y acaba inflando otras tareas.</li>
+					<li><strong>Registra en segundo plano y en local.</strong> Un registro pasivo del programa activo, el título de la ventana y la inactividad reconstruye tus horas trabajadas mejor que la memoria, sin cronómetros. Exige que los datos se queden en el PC y que no haya capturas de pantalla.</li>
+					<li><strong>Revisa a diario, dos minutos.</strong> Al final del día, confirma los bloques asignados, resuelve los dudosos y envía. Revisar el mismo día es mucho más fiable que reconstruir la semana el viernes.</li>
+					<li><strong>Acordad las reglas de imputación.</strong> Redondeo a 15 minutos (al más cercano, no siempre hacia arriba), una línea por tarea y día y descripciones que empiecen por un verbo: «Corregido el cálculo del IVA en reembolsos, añadido test de regresión».</li>
+				</ol>
+
+				<h2 id="cuadrar">Cómo cuadrar el fichaje con los registros de Jira</h2>
+				<p>Con dos capas, tarde o temprano alguien comparará las cifras. Cuatro reglas evitan sustos:</p>
+				<ul>
+					<li><strong>Lo imputado no supera lo fichado.</strong> Si en Jira hay más horas que en el registro de jornada, uno de los dos está mal, o hay horas extra sin registrar, que es otro problema.</li>
+					<li><strong>Lo imputado casi nunca iguala lo fichado.</strong> Pausas cortas, correo, formación o tareas internas sin incidencia hacen que lo normal sea imputar algo menos que la jornada. Un 100 % sistemático suele indicar que se está rellenando para cuadrar.</li>
+					<li><strong>Compara por semanas, no por días.</strong> Un día de reuniones y otro de trabajo concentrado se compensan; lo que cuenta es la tendencia semanal.</li>
+					<li><strong>Cuida la fecha y la zona horaria.</strong> Un registro de trabajo que empieza a las 23:30 puede caer al día siguiente en el informe de un compañero de otro huso horario.</li>
+				</ul>
+
+				<h2 id="privacidad">Privacidad: qué exigir a un registro automático</h2>
+				<p>Un registro automático ve buena parte de tu día, así que importa quién ve los datos. En España, la LOPDGDD (Ley Orgánica 3/2018) reconoce el derecho a la intimidad en el uso de dispositivos digitales en el trabajo y el derecho a la desconexión digital, y el RGPD obliga a minimizar los datos. Criterios razonables:</p>
+				<ul>
+					<li>Los datos de actividad se guardan en tu equipo, no en la nube de un proveedor.</li>
+					<li>Sin capturas de pantalla, sin registro de teclas y sin contenido de páginas.</li>
+					<li>Nada llega a Jira sin que tú lo confirmes.</li>
+					<li>Sin paneles para jefes: la herramienta es para quien imputa, no para vigilarle.</li>
+					<li>Si hay IA, que se pueda desactivar y que solo reciba datos mínimos y enmascarados.</li>
+				</ul>
+
+				<h2 id="timesheet-tracker">Dónde encaja Timesheet Tracker (y dónde no)</h2>
+				<p><a href="/es/">Timesheet Tracker</a> es una app de Windows que convierte tu jornada en registros de trabajo de Jira. Vive en el área de notificación y registra en local el programa activo, el título de la ventana, el dominio de la pestaña del navegador y la inactividad. Las claves de Jira de títulos, URL y ramas de git se asignan en tu PC, sin IA. Para el resto, el botón <b>“Ordenar mi día”</b> deja que la IA reparta los bloques entre tus tareas y redacte un texto por tarea. Para ese paso solo se envían títulos enmascarados, nombres de programas, dominios y duraciones. Si lo prefieres, hay un modo <b>“Sin IA”</b>.</p>
+				<p>Revisas con <b>“Cambiar tarea”</b> o <b>“No es trabajo”</b>, pulsas <b>“Confirmar día”</b> y los registros de trabajo van a Jira Cloud o Jira Server / Data Center sin duplicados, o los guardas con <b>“Exportar CSV”</b>. Tienes todos los detalles en la sección de <a href="/es/#privacy">privacidad</a>.</p>
+				<div class="callout warn">
+					<p><b>Lo que no es:</b> Timesheet Tracker no es un sistema de fichaje ni sustituye al registro de jornada de tu empresa. No registra la entrada y la salida con validez legal ni envía informes a la empresa. Es tu control horario personal para imputar horas en Jira, y los datos son tuyos.</p>
+				</div>
+				<p>Se descarga gratis desde Microsoft Store e incluye 14 días de prueba de Pro, sin tarjeta. Después, Pro cuesta $9.99 al mes o $79 al año.</p>
+
+				<h2 id="preguntas">Preguntas frecuentes</h2>
+				<h3>¿Los registros de trabajo de Jira sirven como registro de jornada?</h3>
+				<p>No. Miden el tiempo dedicado a cada incidencia, no la hora de inicio y fin de la jornada; cada usuario puede editarlos y no cubren a quien no usa Jira. El registro de jornada tiene que llevarse en un sistema que garantice la empresa.</p>
+				<h3>¿Timesheet Tracker sirve como sistema de fichaje o cumple la ley de registro de jornada?</h3>
+				<p>No, y no lo pretende. Es una herramienta personal para imputar horas en Jira. El registro de jornada sigue siendo responsabilidad de la empresa y de su sistema de fichaje; Timesheet Tracker no lo sustituye.</p>
+				<h3>¿Puede mi empresa ver lo que registra la app?</h3>
+				<p>No. La actividad se guarda en tu PC, no hay paneles para responsables ni informes de equipo, y a Jira solo llegan los registros de trabajo que tú confirmas.</p>
+				<h3>¿Cuánto tiempo hay que conservar el registro de jornada en España?</h3>
+				<p>Cuatro años, según el artículo 34.9 del Estatuto de los Trabajadores. Durante ese tiempo debe estar a disposición de las personas trabajadoras, de sus representantes y de la Inspección de Trabajo y Seguridad Social.</p>
+
+				<section class="article-cta" id="get-app">
+					<h2>Deja de reconstruir la semana de memoria</h2>
+					<p>Timesheet Tracker redacta tus registros de trabajo de Jira a partir de tu jornada real, y tú los apruebas en un par de minutos. Descárgala gratis en Microsoft Store, con 14 días de prueba de Pro.</p>
+					<div class="get-app">
+						<a class="btn btn-primary btn-store" href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=es-es&amp;cid=site-es-article-registro-horario-jira" rel="noopener"><span class="ms" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>Descargar en Microsoft Store</span></a>
+					</div>
+				</section>
+
+				<aside class="related">
+					<h2>Guías relacionadas (en inglés)</h2>
+					<ul>
+						<li><a href="/articles/how-to-log-time-in-jira.html">Cómo registrar horas en Jira: guía de registros de trabajo</a></li>
+						<li><a href="/articles/fill-timesheet-in-10-minutes.html">Tu hoja de horas semanal en 10 minutos</a></li>
+						<li><a href="/articles/automatic-time-tracking-software-windows.html">Software de control horario automático para Windows</a></li>
+						<li><a href="/articles/tempo-timesheets-alternatives.html">Alternativas a Tempo Timesheets</a></li>
+					</ul>
+				</aside>
+			</article>
+
+			<aside class="toc" aria-label="En esta página">
+				<b>En esta página</b>
+				<ol>
+					<li><a href="#dos-registros">Jornada frente a imputación</a></li>
+					<li><a href="#ley">Qué exige la ley en España</a></li>
+					<li><a href="#jira-no-es-fichaje">Jira no sirve para fichar</a></li>
+					<li><a href="#imputar-horas">Imputar horas en Jira</a></li>
+					<li><a href="#como-automatizar">Cómo automatizarlo</a></li>
+					<li><a href="#cuadrar">Cuadrar fichaje y Jira</a></li>
+					<li><a href="#privacidad">Privacidad</a></li>
+					<li><a href="#timesheet-tracker">Dónde encaja Timesheet Tracker</a></li>
+					<li><a href="#preguntas">Preguntas frecuentes</a></li>
+				</ol>
+				<div class="toc-cta">
+					<b style="margin:0;color:var(--ink);font-size:15px;letter-spacing:-.01em;text-transform:none">Timesheet Tracker</b>
+					<p>La hoja de horas que se rellena sola. Gratis en Microsoft Store.</p>
+					<a class="btn btn-primary btn-sm" href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=es-es&amp;cid=site-es-nav-registro-horario-jira" rel="noopener">Descargar</a>
+				</div>
+			</aside>
+		</div>
+	</main>
+
+	<footer class="site-footer">
+		<div class="wrap">
+			<div class="foot-grid">
+				<div class="foot-about">
+					<a class="brand" href="/es/"><img src="/img/mark.svg" width="30" height="30" alt=""><span>Timesheet Tracker</span></a>
+					<p>Control horario automático y hoja de horas con IA para Jira, en Windows. Datos en local. Sin capturas de pantalla. En Microsoft Store como “<a href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=es-es&amp;cid=site-es-footer" rel="noopener">Control horario y hoja de horas - IA para Jira</a>”.</p>
+				</div>
+				<div>
+					<h4>Producto</h4>
+					<ul>
+						<li><a href="/es/#how">Cómo funciona</a></li>
+						<li><a href="/es/#privacy">Privacidad por diseño</a></li>
+						<li><a href="/es/#compare">Comparativa</a></li>
+						<li><a href="/es/#faq">Preguntas frecuentes</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4>Guías</h4>
+					<ul>
+						<li><a href="/es/articles/registro-horario-jira.html">Registro horario en Jira</a></li>
+						<li><a href="/articles/how-to-log-time-in-jira.html">Registrar horas en Jira (EN)</a></li>
+						<li><a href="/articles/automatic-time-tracking-software-windows.html">Control horario automático (EN)</a></li>
+						<li><a href="/articles/tempo-timesheets-alternatives.html">Alternativas a Tempo (EN)</a></li>
+						<li><a href="/articles/ai-timesheet.html">Hoja de horas con IA (EN)</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4>Empresa</h4>
+					<ul>
+						<li><a href="mailto:help@timesheet-tracker.com">help@timesheet-tracker.com</a></li>
+						<li><a href="/privacy.html">Política de privacidad (EN)</a></li>
+						<li><a href="/terms.html">Condiciones de uso (EN)</a></li>
+					</ul>
+				</div>
+			</div>
+			<nav class="foot-langs" aria-label="Language"><a href="/" hreflang="en" lang="en">English</a><a href="/de/" hreflang="de" lang="de">Deutsch</a><a href="/fr/" hreflang="fr" lang="fr">Français</a><a href="/es/" hreflang="es" lang="es" aria-current="true">Español</a><a href="/pt-br/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a><a href="/it/" hreflang="it" lang="it">Italiano</a><a href="/pl/" hreflang="pl" lang="pl">Polski</a><a href="/nl/" hreflang="nl" lang="nl">Nederlands</a><a href="/ja/" hreflang="ja" lang="ja">日本語</a><a href="/uk/" hreflang="uk" lang="uk">Українська</a><a href="/ru/" hreflang="ru" lang="ru">Русский</a></nav>
+			<div class="foot-bottom">
+				<span>© <span data-year>2026</span> Timesheet Tracker. Jira es una marca comercial de Atlassian. Sin afiliación con Atlassian ni con Microsoft.</span>
+				<span>Hecho para quienes imputan su propio tiempo.</span>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>

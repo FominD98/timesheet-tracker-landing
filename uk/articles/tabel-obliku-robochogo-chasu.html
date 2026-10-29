@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Табель обліку робочого часу для розробників і Jira</title>
+	<meta name="description" content="Кадровий табель обліку робочого часу і ворклоги в Jira — не одне й те саме. Як розробнику вести облік часу точно, щодня і без ручного введення.">
+	<link rel="canonical" href="https://timesheet-tracker.com/uk/articles/tabel-obliku-robochogo-chasu.html">
+	<meta name="robots" content="index, follow, max-image-preview:large">
+	<meta name="author" content="AI Timesheet team">
+	<meta name="theme-color" content="#f5f6fb">
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+	<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+	<meta property="og:type" content="article">
+	<meta property="og:site_name" content="Timesheet Tracker">
+	<meta property="og:title" content="Табель обліку робочого часу для розробників і Jira">
+	<meta property="og:description" content="Кадровий табель обліку робочого часу і ворклоги в Jira — не одне й те саме. Як розробнику вести облік часу точно, щодня і без ручного введення.">
+	<meta property="og:url" content="https://timesheet-tracker.com/uk/articles/tabel-obliku-robochogo-chasu.html">
+	<meta property="og:image" content="https://timesheet-tracker.com/og-image.png">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="og:locale" content="uk_UA">
+	<meta property="article:published_time" content="2026-10-29">
+	<meta name="twitter:card" content="summary_large_image">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap">
+	<link rel="stylesheet" href="/css/landing.css">
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Article",
+		"headline": "Табель обліку робочого часу для розробників: кадровий облік, ворклоги в Jira і як не заповнювати їх з пам’яті",
+		"description": "Кадровий табель обліку робочого часу і ворклоги в Jira — не одне й те саме. Як розробнику вести облік часу точно, щодня і без ручного введення.",
+		"datePublished": "2026-10-29",
+		"dateModified": "2026-10-29",
+		"inLanguage": "uk",
+		"mainEntityOfPage": "https://timesheet-tracker.com/uk/articles/tabel-obliku-robochogo-chasu.html",
+		"image": "https://timesheet-tracker.com/og-image.png",
+		"author": {"@type": "Organization", "name": "AI Timesheet team", "url": "https://timesheet-tracker.com/uk/"},
+		"publisher": {"@type": "Organization", "name": "Timesheet Tracker", "url": "https://timesheet-tracker.com/", "logo": {"@type": "ImageObject", "url": "https://timesheet-tracker.com/apple-touch-icon.png"}}
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		"itemListElement": [
+			{"@type": "ListItem", "position": 1, "name": "Головна", "item": "https://timesheet-tracker.com/uk/"},
+			{"@type": "ListItem", "position": 2, "name": "Табель обліку робочого часу", "item": "https://timesheet-tracker.com/uk/articles/tabel-obliku-robochogo-chasu.html"}
+		]
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		"inLanguage": "uk",
+		"mainEntity": [
+			{"@type": "Question", "name": "Чи зобов’язаний роботодавець вести табель обліку робочого часу?", "acceptedAnswer": {"@type": "Answer", "text": "Для працівників за трудовим договором роботодавець має вести облік робочого часу, і табель — найпоширеніший спосіб це робити. Форму компанія зазвичай визначає сама, часто беручи за основу типову форму П-5. Конкретні вимоги до вашого випадку краще уточнити в бухгалтерії або в юриста."}},
+			{"@type": "Question", "name": "Чи потрібен табель обліку робочого часу ФОП?", "acceptedAnswer": {"@type": "Answer", "text": "Якщо ви працюєте як ФОП за договором про надання послуг, ви не є працівником замовника, тож кадровий табель на вас зазвичай не ведуть. Облік годин тоді — частина домовленості із замовником: щомісячний звіт, таймшит або ворклоги в Jira, на основі яких підписують акт. Якщо ж ФОП сам наймає працівників, облік їхнього робочого часу — його обов’язок як роботодавця."}},
+			{"@type": "Question", "name": "Чим таймшит відрізняється від табеля обліку робочого часу?", "acceptedAnswer": {"@type": "Answer", "text": "Табель фіксує, скільки годин людина відпрацювала і чому була відсутня; його веде роботодавець для зарплати та кадрів. Таймшит, або ворклоги в Jira, показує, на які задачі й проєкти пішов цей час; його заповнює сам фахівець для планування, звітності та білінгу клієнтам."}},
+			{"@type": "Question", "name": "Чи можна списати час у Jira заднім числом?", "acceptedAnswer": {"@type": "Answer", "text": "Так. У діалозі Log work можна вказати дату й час початку роботи, тож ворклог за минулий день створюється без проблем, якщо цього не обмежують налаштування вашої Jira чи плагінів на кшталт Tempo. Складність не в Jira, а в тому, щоб згадати, що саме ви робили."}},
+			{"@type": "Question", "name": "Чи бачить керівник мою активність у Timesheet Tracker?", "acceptedAnswer": {"@type": "Answer", "text": "Ні. Активність зберігається лише на вашому комп’ютері, немає скриншотів, кейлогера, командних дашбордів чи звітів керівнику. У Jira потрапляють тільки ворклоги, які ви самі підтвердили."}}
+		]
+	}
+	</script>
+	<script src="/js/landing.js" defer></script>
+	<!-- Yandex.Metrika counter -->
+	<script>
+		(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();
+		for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+		k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+		(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+		ym(113838536, "init", {clickmap: true, trackLinks: true, accurateTrackBounce: true});
+	</script>
+</head>
+<body>
+	<noscript><div><img src="https://mc.yandex.ru/watch/113838536" width="1" height="1" style="position:absolute;left:-9999px" alt=""></div></noscript>
+	<a class="skip" href="#main">Перейти до вмісту</a>
+	<header class="site-header">
+		<nav class="wrap nav" aria-label="Головне меню">
+			<a class="brand" href="/uk/"><img src="/img/mark.svg" width="30" height="30" alt=""><span>Timesheet Tracker</span></a>
+			<ul class="nav-links">
+				<li><a href="/uk/#how">Як це працює</a></li>
+				<li><a href="/uk/#features">Можливості</a></li>
+				<li><a href="/uk/#privacy">Приватність</a></li>
+				<li><a href="/uk/#compare">Порівняння</a></li>
+				<li><a href="/uk/#faq">Питання</a></li>
+				<li><a href="/uk/articles/tabel-obliku-robochogo-chasu.html">Статті</a></li>
+			</ul>
+			<div class="nav-cta">
+				<a class="btn btn-primary btn-sm" href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=uk-ua&amp;cid=site-uk-nav-tabel-obliku-robochogo-chasu" rel="noopener">Завантажити</a>
+				<button class="nav-toggle" type="button" aria-label="Меню" aria-expanded="false"><span></span></button>
+			</div>
+		</nav>
+	</header>
+
+	<main id="main">
+		<section class="page-hero">
+			<div class="aurora" aria-hidden="true"></div>
+			<div class="wrap">
+				<ol class="crumbs">
+					<li><a href="/uk/">Головна</a></li>
+					<li>Табель обліку робочого часу</li>
+				</ol>
+				<h1>Табель обліку робочого часу для розробників</h1>
+				<p class="dek">У розробника фактично два табелі: кадровий, який веде бухгалтерія, і ворклоги в Jira, які він заповнює сам. Розбираємося, чим вони відрізняються, де їх найчастіше плутають і як вести облік робочого часу з даних, а не з пам’яті.</p>
+				<div class="byline">
+					<img src="/img/mark.svg" width="28" height="28" alt="">
+					<span>Автор: <b>AI Timesheet team</b></span>
+					<span>·</span>
+					<time datetime="2026-10-29">29 жовтня 2026</time>
+					<span>·</span>
+					<span>8 хв читання</span>
+				</div>
+			</div>
+		</section>
+
+		<div class="article-layout">
+			<article class="prose">
+				<div class="tldr">
+					<b>Коротко</b>
+					<ul>
+						<li><strong>Табель обліку робочого часу</strong> — кадровий документ: скільки годин працівник відпрацював і чому був відсутній. Його веде роботодавець для зарплати та звітності.</li>
+						<li><strong>Ворклоги в Jira</strong> (таймшит) показують, на які задачі пішов час. Їх заповнює сам розробник — для планування, звітів і білінгу клієнтам.</li>
+						<li>На розробника-ФОП кадровий табель зазвичай не ведуть: облік годин там — частина договору із замовником, найчастіше це звіт або ворклоги, за якими підписують акт.</li>
+						<li>Точні ворклоги будуються з даних — гілок git, заголовків вікон, календаря, — а не з пам’яті в п’ятницю ввечері. Цю частину можна автоматизувати.</li>
+					</ul>
+				</div>
+
+				<h2 id="shcho-take-tabel">Що таке табель обліку робочого часу</h2>
+				<p>Табель обліку робочого часу — це документ, у якому роботодавець за кожен день місяця фіксує, чи вийшов працівник на роботу, скільки годин відпрацював, а якщо не вийшов — з якої причини: відпустка, лікарняний, відрядження, простій. На підставі табеля бухгалтерія нараховує зарплату, а кадровики бачать, як використовується робочий час.</p>
+				<p>Законодавство про працю зобов’язує роботодавця вести облік робочого часу працівників, які працюють за трудовим договором. Обов’язкового бланка для приватних компаній немає: багато хто бере за основу типову форму П-5 «Табель обліку використання робочого часу» або складає власну форму в обліковій програмі. Причини неявок у табелі позначають умовними кодами, а підсумок за місяць — це кількість відпрацьованих днів і годин.</p>
+				<div class="callout">
+					<p>Ця стаття не є юридичною консультацією. Якщо вам потрібно скласти чи перевірити кадровий табель, звертайтеся до бухгалтера або юриста — вимоги залежать від форми співпраці, режиму роботи та облікової політики компанії.</p>
+				</div>
+				<p>Для більшості розробників кадровий табель невидимий: у ньому за замовчуванням стоїть вісім годин за графіком, а змінюється він лише через відпустки й лікарняні. Зовсім інша історія — облік часу всередині команди.</p>
+
+				<h2 id="tabel-i-vorklogy">Табель і ворклоги в Jira: два обліки, які часто плутають</h2>
+				<p>У типовій ІТ-компанії паралельно існують два обліки. Перший відповідає на питання «скільки людина працювала», другий — «над чим саме». Коли їх змішують, з’являються вимоги на кшталт «ворклоги мають щодня давати рівно 8 годин» — і ворклоги перетворюються на вигадку, яка нікому не допомагає.</p>
+				<table>
+					<thead>
+						<tr><th></th><th>Кадровий табель</th><th>Ворклоги в Jira (таймшит)</th></tr>
+					</thead>
+					<tbody>
+						<tr><td>Хто веде</td><td>Роботодавець: кадри, бухгалтерія</td><td>Сам фахівець</td></tr>
+						<tr><td>Навіщо</td><td>Зарплата, кадровий облік, звітність</td><td>Планування, оцінки, звіти клієнту, білінг</td></tr>
+						<tr><td>Деталізація</td><td>День: години й причини неявки</td><td>Задача: години й опис виконаної роботи</td></tr>
+						<tr><td>Де живе</td><td>Облікова програма компанії</td><td>Jira Cloud або Jira Server / Data Center, іноді Tempo</td></tr>
+						<tr><td>Ціна помилки</td><td>Неправильне нарахування зарплати</td><td>Зірвані оцінки, суперечки з клієнтом щодо годин</td></tr>
+					</tbody>
+				</table>
+				<p>Цифри в обох обліках не зобов’язані збігатися до хвилини. Навчання, внутрішні розмови, налаштування робочого середовища — усе це робочий час, але не завжди задача в Jira. Добра практика — завести для такої роботи окремі задачі (наприклад, «Зустрічі команди» чи «Онбординг»), а не розмазувати її по продуктових тікетах.</p>
+
+				<h2 id="na-praktytsi">Як облік часу виглядає в ІТ-команді на практиці</h2>
+				<h3>Розробник за трудовим договором</h3>
+				<p>Табель веде компанія, і розробник його майже не бачить. Ворклоги в Jira потрібні для внутрішнього планування: тимлід порівнює оцінки з фактом, PM готує звіт для замовника. Від точності ворклогів залежить, наскільки реалістичним буде наступний спринт.</p>
+				<h3>Аутсорс і аутстаф з погодинною оплатою</h3>
+				<p>Тут ворклоги — основа рахунку клієнту. Кожна година в Jira перетворюється на гроші, тож клієнт має право спитати, що саме зроблено за ці три години в задачі <code>BILL-142</code>. Розмиті описи на кшталт «робота над задачею» тут шкодять найбільше.</p>
+				<h3>Розробник-ФОП</h3>
+				<p>Значна частина українських розробників співпрацює з компаніями як ФОП за договором про надання послуг. Кадровий табель на них зазвичай не ведуть, бо вони не працівники в трудовому сенсі. Натомість щомісяця потрібен звіт про години або вивантаження ворклогів, яке додають до акта. По суті, це той самий таймшит, тільки з юридичною вагою: за ним вам платять.</p>
+
+				<h2 id="chomu-v-pyatnytsyu">Чому ворклоги заповнюють у п’ятницю ввечері — і чим це загрожує</h2>
+				<p>Сам діалог Log work у Jira простий: час, дата, опис. Проблема в іншому — щоб його заповнити, треба пам’ятати, що ви робили. А пам’ять підводить:</p>
+				<ul>
+					<li><strong>Перемикання контексту ховають час.</strong> День, у якому були фіча, два рев’ю, інцидент у Slack і дзвінок, згадується як «я робив фічу».</li>
+					<li><strong>Дрібниці зникають.</strong> Двадцять хвилин допомоги колезі з конфігом у вівторок до п’ятниці не доживають.</li>
+					<li><strong>Таймери не працюють.</strong> Їх забувають увімкнути, забувають вимкнути, а після десятого перемикання за годину просто махають рукою.</li>
+					<li><strong>Добивання до восьми годин.</strong> Незрозумілі 40 хвилин скидають на першу-ліпшу задачу, і факт у Jira перестає відповідати реальності.</li>
+				</ul>
+				<p>Наслідки накопичуються тихо: оцінки задач з кожним спринтом стають менш правдивими, клієнт оскаржує години, а година п’ятниці, яку щотижня з’їдає заповнення таймшиту, — це понад 40 годин на рік.</p>
+
+				<h2 id="pravyla">Як вести облік робочого часу розробнику: 5 правил</h2>
+				<ol>
+					<li><strong>Фіксуйте джерела, а не години.</strong> Календар, історія комітів, закриті пул-реквести та історія браузера вже знають, що ви робили. Ворклог — це переказ цих даних, а не спогад.</li>
+					<li><strong>Тримайте ключ задачі на видноті.</strong> Назва гілки на кшталт <code>feature/BILL-142-invoice-export</code> і ключ у заголовку пул-реквесту автоматично пов’язують роботу з задачею — і для людей, і для інструментів.</li>
+					<li><strong>Заведіть задачі для «невидимої» роботи.</strong> Зустрічі, рев’ю, підтримка, онбординг — окремі задачі, а не шум у продуктових тікетах.</li>
+					<li><strong>Пишіть опис за формулою «дія + об’єкт + результат».</strong> Не «робота над задачею», а «Додав експорт рахунків у CSV, покрив тестами, виправив зауваження з рев’ю».</li>
+					<li><strong>Не підганяйте під норму.</strong> Якщо в день вийшло 6 годин 40 хвилин по задачах — так і пишіть. Чесний таймшит корисніший за рівні вісімки.</li>
+				</ol>
+				<div class="callout warn">
+					<p>Списувати час у Jira можна й заднім числом: у Log work є поле дати. Але що більше днів минуло, то менше від ворклогу користі — опис стає загальним, а цифри округленими.</p>
+				</div>
+
+				<h2 id="avtomatychnyi-oblik">Автоматичний облік часу: табель з даних, а не з пам’яті</h2>
+				<p>Найповільніша частина — відновити, що ви робили. Саме її можна віддати програмі. Пасивний трекер часу у фоні записує, яка програма була активна, заголовок вікна і домен сайту, а також коли ви відійшли від комп’ютера. Цього вистачає, щоб у кінці дня побачити день по відрізках — і зіставити їх із задачами.</p>
+				<p>Так працює <a href="/uk/">Timesheet Tracker</a> — застосунок для Windows, який живе в системному треї. Ключі задач Jira в заголовках вікон, адресах і гілках git він знаходить локально, без AI. Решту дня розкладає кнопка <strong>«Розібрати день»</strong>: AI зіставляє відрізки з вашими задачами Jira і пише один текст ворклогу на кожну задачу — зокрема українською. Далі ви перевіряєте: можна <strong>«Змінити задачу»</strong>, позначити відрізок як <strong>«Не робота»</strong>, виправити текст, а потім <strong>«Підтвердити день»</strong> і <strong>«Надіслати в Jira»</strong>. Ворклоги потрапляють у Jira Cloud або Jira Server / Data Center без дублів. Якщо звіт для акта потрібен у таблиці, є <strong>«Експорт CSV»</strong>.</p>
+				<p>Про приватність: це особистий інструмент, а не стеження за співробітниками. Активність зберігається на вашому комп’ютері, немає скриншотів, кейлогера та звітів керівнику. В AI замасковані заголовки вікон і тривалість відрізків ідуть лише після натискання «Розібрати день», а в режимі <strong>«Без AI»</strong> туди не йде нічого: ключі Jira зіставляються локально, решту ви розподіляєте вручну.</p>
+				<p>І важливе застереження: Timesheet Tracker не замінює кадровий табель обліку робочого часу. Він закриває другу половину — ворклоги, які ви все одно мусите заповнювати.</p>
+
+				<h2 id="chek-lyst">Чек-лист на тиждень</h2>
+				<ul>
+					<li>Ключ задачі є в назві кожної гілки й пул-реквесту.</li>
+					<li>Для зустрічей і рев’ю є окремі задачі в Jira.</li>
+					<li>Ворклоги підтверджуються щодня або хоча б наприкінці тижня з даних, а не з пам’яті.</li>
+					<li>Опис кожного ворклогу відповідає на питання «що зроблено».</li>
+					<li>Підсумок тижня в Jira звірено з вашим графіком, а розбіжності пояснюються, а не замазуються.</li>
+					<li>Якщо ви ФОП — CSV-вивантаження за місяць готове до акта.</li>
+				</ul>
+
+				<h2 id="faq">Питання й відповіді</h2>
+				<div class="faq">
+					<details><summary>Чи зобов’язаний роботодавець вести табель обліку робочого часу?</summary><div class="a"><p>Для працівників за трудовим договором роботодавець має вести облік робочого часу, і табель — найпоширеніший спосіб це робити. Форму компанія зазвичай визначає сама, часто беручи за основу типову форму П-5. Конкретні вимоги до вашого випадку краще уточнити в бухгалтерії або в юриста.</p></div></details>
+					<details><summary>Чи потрібен табель обліку робочого часу ФОП?</summary><div class="a"><p>Якщо ви працюєте як ФОП за договором про надання послуг, ви не є працівником замовника, тож кадровий табель на вас зазвичай не ведуть. Облік годин тоді — частина домовленості із замовником: щомісячний звіт, таймшит або ворклоги в Jira, на основі яких підписують акт. Якщо ж ФОП сам наймає працівників, облік їхнього робочого часу — його обов’язок як роботодавця.</p></div></details>
+					<details><summary>Чим таймшит відрізняється від табеля обліку робочого часу?</summary><div class="a"><p>Табель фіксує, скільки годин людина відпрацювала і чому була відсутня; його веде роботодавець для зарплати та кадрів. Таймшит, або ворклоги в Jira, показує, на які задачі й проєкти пішов цей час; його заповнює сам фахівець для планування, звітності та білінгу клієнтам.</p></div></details>
+					<details><summary>Чи можна списати час у Jira заднім числом?</summary><div class="a"><p>Так. У діалозі Log work можна вказати дату й час початку роботи, тож ворклог за минулий день створюється без проблем, якщо цього не обмежують налаштування вашої Jira чи плагінів на кшталт Tempo. Складність не в Jira, а в тому, щоб згадати, що саме ви робили. Детальніше — у гайді <a href="/articles/how-to-log-time-in-jira.html">How to log time in Jira</a> (англійською).</p></div></details>
+					<details><summary>Чи бачить керівник мою активність у Timesheet Tracker?</summary><div class="a"><p>Ні. Активність зберігається лише на вашому комп’ютері, немає скриншотів, кейлогера, командних дашбордів чи звітів керівнику. У Jira потрапляють тільки ворклоги, які ви самі підтвердили.</p></div></details>
+				</div>
+
+				<section class="article-cta" id="get-app">
+					<h2>Ворклоги без п’ятничних розкопок</h2>
+					<p>Timesheet Tracker веде облік робочого часу у фоні й готує чернетки ворклогів для Jira з того, що ви справді робили. Вам лишається перевірити й надіслати. Безкоштовне завантаження з Microsoft Store і 14 днів Pro безкоштовно, без картки.</p>
+					<div class="get-app">
+						<a class="btn btn-primary btn-store" href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=uk-ua&amp;cid=site-uk-article-tabel-obliku-robochogo-chasu" rel="noopener"><span class="ms" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>Завантажити з Microsoft Store</span></a>
+					</div>
+				</section>
+
+				<aside class="related">
+					<h2>Що почитати далі</h2>
+					<ul>
+						<li><a href="/uk/">Timesheet Tracker: облік робочого часу і табель для Jira</a></li>
+						<li><a href="/articles/how-to-log-time-in-jira.html">How to log time in Jira</a> (англійською)</li>
+						<li><a href="/articles/fill-timesheet-in-10-minutes.html">How to fill your weekly timesheet in 10 minutes</a> (англійською)</li>
+						<li><a href="/articles/automatic-time-tracking-software-windows.html">Automatic time tracking software for Windows</a> (англійською)</li>
+					</ul>
+				</aside>
+			</article>
+
+			<aside class="toc" aria-label="На цій сторінці">
+				<b>На цій сторінці</b>
+				<ol>
+					<li><a href="#shcho-take-tabel">Що таке табель обліку робочого часу</a></li>
+					<li><a href="#tabel-i-vorklogy">Табель і ворклоги в Jira</a></li>
+					<li><a href="#na-praktytsi">Облік часу в ІТ-команді</a></li>
+					<li><a href="#chomu-v-pyatnytsyu">Чому ворклоги заповнюють у п’ятницю</a></li>
+					<li><a href="#pravyla">5 правил обліку часу</a></li>
+					<li><a href="#avtomatychnyi-oblik">Автоматичний облік часу</a></li>
+					<li><a href="#chek-lyst">Чек-лист на тиждень</a></li>
+					<li><a href="#faq">Питання й відповіді</a></li>
+				</ol>
+				<div class="toc-cta">
+					<b style="margin:0;color:var(--ink);font-size:15px;letter-spacing:-.01em;text-transform:none">Timesheet Tracker</b>
+					<p>Табель для Jira, який заповнюється сам. Безкоштовно в Microsoft Store.</p>
+					<a class="btn btn-primary btn-sm" href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=uk-ua&amp;cid=site-uk-nav-tabel-obliku-robochogo-chasu" rel="noopener">Завантажити</a>
+				</div>
+			</aside>
+		</div>
+	</main>
+
+	<footer class="site-footer">
+		<div class="wrap">
+			<div class="foot-grid">
+				<div class="foot-about">
+					<a class="brand" href="/uk/"><img src="/img/mark.svg" width="30" height="30" alt=""><span>Timesheet Tracker</span></a>
+					<p>Автоматичний облік робочого часу і AI-табель для Jira у Windows. Дані — локально. Без скриншотів.</p>
+				</div>
+				<div>
+					<h4>Продукт</h4>
+					<ul>
+						<li><a href="/uk/#how">Як це працює</a></li>
+						<li><a href="/uk/#privacy">Приватність за задумом</a></li>
+						<li><a href="/uk/#compare">Порівняння</a></li>
+						<li><a href="/uk/#faq">Питання й відповіді</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4>Статті</h4>
+					<ul>
+						<li><a href="/uk/articles/tabel-obliku-robochogo-chasu.html">Табель обліку робочого часу</a></li>
+						<li><a href="/articles/how-to-log-time-in-jira.html">Списання часу в Jira (англ.)</a></li>
+						<li><a href="/articles/automatic-time-tracking-software-windows.html">Автоматичний облік часу (англ.)</a></li>
+						<li><a href="/articles/tempo-timesheets-alternatives.html">Альтернативи Tempo (англ.)</a></li>
+						<li><a href="/articles/ai-timesheet.html">AI-таймшит (англ.)</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4>Компанія</h4>
+					<ul>
+						<li><a href="mailto:help@timesheet-tracker.com">help@timesheet-tracker.com</a></li>
+						<li><a href="/privacy.html">Політика приватності</a></li>
+						<li><a href="/terms.html">Умови використання</a></li>
+					</ul>
+				</div>
+			</div>
+			<nav class="foot-langs" aria-label="Language"><a href="/" hreflang="en" lang="en">English</a><a href="/de/" hreflang="de" lang="de">Deutsch</a><a href="/fr/" hreflang="fr" lang="fr">Français</a><a href="/es/" hreflang="es" lang="es">Español</a><a href="/pt-br/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a><a href="/it/" hreflang="it" lang="it">Italiano</a><a href="/pl/" hreflang="pl" lang="pl">Polski</a><a href="/nl/" hreflang="nl" lang="nl">Nederlands</a><a href="/ja/" hreflang="ja" lang="ja">日本語</a><a href="/uk/" hreflang="uk" lang="uk" aria-current="true">Українська</a><a href="/ru/" hreflang="ru" lang="ru">Русский</a></nav>
+			<div class="foot-bottom">
+				<span>© <span data-year>2026</span> Timesheet Tracker. Jira — торговельна марка Atlassian. Не пов’язано з Atlassian чи Microsoft.</span>
+				<span>Зроблено для тих, хто сам списує свій час.</span>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>

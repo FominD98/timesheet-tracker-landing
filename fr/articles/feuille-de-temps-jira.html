@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Feuille de temps automatique pour Jira : guide pratique</title>
+	<meta name="description" content="Imputer son temps de travail dans Jira sans y passer le vendredi : worklogs, CRA, méthode en 10 minutes et suivi du temps automatique.">
+	<link rel="canonical" href="https://timesheet-tracker.com/fr/articles/feuille-de-temps-jira.html">
+	<meta name="robots" content="index, follow, max-image-preview:large">
+	<meta name="author" content="AI Timesheet team">
+	<meta name="theme-color" content="#f5f6fb">
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+	<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+	<meta property="og:type" content="article">
+	<meta property="og:site_name" content="Timesheet Tracker">
+	<meta property="og:title" content="Feuille de temps automatique pour Jira : guide pratique">
+	<meta property="og:description" content="Imputer son temps de travail dans Jira sans y passer le vendredi : worklogs, CRA, méthode en 10 minutes et suivi du temps automatique.">
+	<meta property="og:url" content="https://timesheet-tracker.com/fr/articles/feuille-de-temps-jira.html">
+	<meta property="og:image" content="https://timesheet-tracker.com/og-image.png">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="og:locale" content="fr_FR">
+	<meta property="article:published_time" content="2026-10-29">
+	<meta name="twitter:card" content="summary_large_image">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap">
+	<link rel="stylesheet" href="/css/landing.css">
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Article",
+		"headline": "Feuille de temps automatique pour Jira : imputer son temps de travail sans y passer le vendredi",
+		"description": "Imputer son temps de travail dans Jira sans y passer le vendredi : worklogs, CRA, méthode en 10 minutes et suivi du temps automatique.",
+		"datePublished": "2026-10-29",
+		"dateModified": "2026-10-29",
+		"inLanguage": "fr",
+		"mainEntityOfPage": "https://timesheet-tracker.com/fr/articles/feuille-de-temps-jira.html",
+		"image": "https://timesheet-tracker.com/og-image.png",
+		"author": {
+			"@type": "Organization",
+			"name": "AI Timesheet team",
+			"url": "https://timesheet-tracker.com/fr/"
+		},
+		"publisher": {
+			"@type": "Organization",
+			"name": "Timesheet Tracker",
+			"url": "https://timesheet-tracker.com/",
+			"logo": {
+				"@type": "ImageObject",
+				"url": "https://timesheet-tracker.com/apple-touch-icon.png"
+			}
+		}
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		"itemListElement": [
+			{
+				"@type": "ListItem",
+				"position": 1,
+				"name": "Accueil",
+				"item": "https://timesheet-tracker.com/fr/"
+			},
+			{
+				"@type": "ListItem",
+				"position": 2,
+				"name": "Feuille de temps Jira",
+				"item": "https://timesheet-tracker.com/fr/articles/feuille-de-temps-jira.html"
+			}
+		]
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		"inLanguage": "fr",
+		"mainEntity": [
+			{
+				"@type": "Question",
+				"name": "Jira propose-t-il une feuille de temps native ?",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "Pas vraiment. Jira enregistre le temps sous forme de worklogs sur chaque ticket et permet de les retrouver avec une requête JQL. Pour une vue hebdomadaire avec totaux et validation, les équipes ajoutent généralement une application du Marketplace comme Tempo Timesheets, ou exportent les données vers un tableur."
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "Quelle différence entre une feuille de temps et un CRA ?",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "La feuille de temps détaille les heures passées par tâche, au jour le jour. Le CRA (compte rendu d’activité) récapitule, généralement chaque mois, les jours travaillés pour un client ou une mission, et sert souvent de base à la facturation en régie. Les deux doivent raconter la même histoire."
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "Comment convertir les heures Jira en jours de CRA ?",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "Divisez le total d’heures par la durée de journée retenue pour la mission : 7 heures pour une base de 35 heures hebdomadaires, parfois 8 heures selon le contrat. Saisissez plutôt en heures qu’en jours dans Jira, car « 1d » y vaut la durée de journée configurée par l’administrateur (8 heures par défaut)."
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "Un outil de suivi du temps automatique, est-ce de la surveillance ?",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "Tout dépend de qui voit les données. Timesheet Tracker est un outil personnel : l’activité reste sur votre PC, sans captures d’écran ni enregistrement des frappes, et seuls les worklogs que vous validez arrivent dans Jira. Il n’y a ni tableau de bord manager, ni rapport d’équipe."
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "Timesheet Tracker fonctionne-t-il avec Jira Server ou Data Center ?",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "Oui. Il prend en charge Jira Cloud (avec un jeton d’API) et Jira Server / Data Center (avec un Personal Access Token). Les worklogs sont créés avec votre propre compte, sans doublons si vous renvoyez une journée."
+				}
+			}
+		]
+	}
+	</script>
+	<script src="/js/landing.js" defer></script>
+	<!-- Yandex.Metrika counter -->
+	<script>
+		(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();
+		for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+		k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+		(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+		ym(113838536, "init", {clickmap: true, trackLinks: true, accurateTrackBounce: true});
+	</script>
+</head>
+<body>
+	<noscript><div><img src="https://mc.yandex.ru/watch/113838536" width="1" height="1" style="position:absolute;left:-9999px" alt=""></div></noscript>
+	<a class="skip" href="#main">Aller au contenu</a>
+	<header class="site-header">
+		<nav class="wrap nav" aria-label="Navigation principale">
+			<a class="brand" href="/fr/"><img src="/img/mark.svg" width="30" height="30" alt=""><span>Timesheet Tracker</span></a>
+			<ul class="nav-links">
+				<li><a href="/fr/#how">Comment ça marche</a></li>
+				<li><a href="/fr/#features">Fonctionnalités</a></li>
+				<li><a href="/fr/#privacy">Confidentialité</a></li>
+				<li><a href="/fr/#compare">Comparatif</a></li>
+				<li><a href="/fr/articles/feuille-de-temps-jira.html">Guide</a></li>
+			</ul>
+			<div class="nav-cta">
+				<a class="btn btn-primary btn-sm" href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=fr-fr&amp;cid=site-fr-nav-article" rel="noopener">Obtenir l’app</a>
+				<button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false"><span></span></button>
+			</div>
+		</nav>
+	</header>
+
+	<main id="main">
+		<section class="page-hero">
+			<div class="aurora" aria-hidden="true"></div>
+			<div class="wrap">
+				<ol class="crumbs">
+					<li><a href="/fr/">Accueil</a></li>
+					<li>Feuille de temps Jira</li>
+				</ol>
+				<h1>Feuille de temps automatique pour Jira : imputer son temps de travail sans y passer le vendredi</h1>
+				<p class="dek">Consultants d’ESN, développeurs, chefs de projet : dans Jira, la feuille de temps se résume à une série de worklogs. Voici comment la tenir juste, la raccorder à votre CRA et confier la partie fastidieuse à un suivi du temps automatique.</p>
+				<div class="byline">
+					<img src="/img/mark.svg" width="28" height="28" alt="">
+					<span>Par <b>l’équipe AI Timesheet</b></span>
+					<span>·</span>
+					<time datetime="2026-10-29">29 octobre 2026</time>
+					<span>·</span>
+					<span>8 min de lecture</span>
+				</div>
+			</div>
+		</section>
+
+		<div class="article-layout">
+			<article class="prose">
+				<div class="tldr">
+					<b>En bref</b>
+					<ul>
+						<li>Dans Jira, la feuille de temps n’est pas un écran à part : c’est la somme de vos worklogs, une entrée par ticket avec une date, une durée et une description.</li>
+						<li>En ESN ou en régie, ces heures alimentent souvent le CRA (compte rendu d’activité) mensuel et la facturation : une saisie approximative finit toujours par coûter cher.</li>
+						<li>La méthode qui marche : saisir chaque jour, une ligne par tâche, reconstituer à partir de traces (agenda, git, historique Jira) plutôt que de mémoire, et ne jamais gonfler les heures.</li>
+						<li>La reconstitution peut être automatisée : un suivi du temps local repère les clés Jira, l’IA propose le reste, vous validez avant tout envoi.</li>
+					</ul>
+				</div>
+
+				<h2 id="feuille-de-temps-jira">Ce qu’est vraiment une feuille de temps dans Jira</h2>
+				<p>Jira ne connaît pas de « feuille de temps » au sens d’un tableau hebdomadaire à remplir. Il enregistre des <strong>worklogs</strong> : chaque fois que vous saisissez du temps sur un ticket, Jira crée une entrée avec l’auteur, la date de début, la durée passée et un commentaire facultatif. Votre feuille de temps (ou feuille d’heures) de la semaine, c’est l’ensemble de ces entrées.</p>
+				<ul>
+					<li><strong>La durée</strong> se saisit au format Jira : <code>2h 30m</code>, <code>45m</code> ou <code>1d</code>. Attention : <code>1d</code> vaut la durée de journée configurée par l’administrateur (8 heures par défaut), pas forcément votre journée contractuelle.</li>
+					<li><strong>L’estimation restante</strong> peut être ajustée à chaque saisie. C’est utile pour le suivi de charge, trompeur si l’équipe ne l’utilise pas de façon homogène.</li>
+					<li><strong>La description</strong> est facultative, mais c’est elle que liront votre chef de projet ou votre client dans trois mois.</li>
+				</ul>
+				<p>Pour retrouver ce que vous avez déjà saisi cette semaine, une requête JQL suffit :</p>
+				<pre><code>worklogAuthor = currentUser() AND worklogDate &gt;= startOfWeek()</code></pre>
+				<p>Les vues de type « timesheet », avec totaux par jour, validation par un manager ou export comptable, viennent en général d’une application du Marketplace Atlassian (Tempo Timesheets est la plus répandue) ou d’un export vers un tableur.</p>
+
+				<h2 id="esn-cra">Pourquoi l’imputation du temps compte autant en ESN et en mission</h2>
+				<p>Dans beaucoup d’ESN et de cabinets de conseil, le temps saisi dans Jira n’est pas une formalité. Selon le contexte, il alimente :</p>
+				<ul>
+					<li><strong>Le CRA (compte rendu d’activité).</strong> En régie, le consultant déclare chaque mois les jours ou demi-journées travaillés pour le client ; ce document, validé par le client, sert souvent de base à la facture. Si le CRA indique 20 jours et que Jira n’en montre que 17, quelqu’un posera la question.</li>
+					<li><strong>Le suivi d’un forfait.</strong> Sur un projet au forfait, le temps imputé par ticket permet de comparer le consommé à l’estimé et de calculer le reste à faire. Des imputations faites au jugé faussent la marge du projet.</li>
+					<li><strong>Le pilotage interne</strong> : taux d’activité, temps passé par projet pour la comptabilité analytique, ou justification du temps consacré à la R&amp;D lorsqu’un dossier de crédit d’impôt recherche est préparé.</li>
+				</ul>
+				<p>D’où une difficulté bien connue : on raisonne en heures dans Jira, mais en jours dans le CRA. La conversion dépend de votre contrat. Sur une base de 35 heures par semaine, une journée fait 7 heures ; un cadre au forfait jours, lui, décompte des jours et non des heures. Fixez la règle une fois pour toutes avec votre manager ou votre client (par exemple « 7 h = 1 jour, 3 h 30 = une demi-journée ») et appliquez-la toujours de la même façon.</p>
+				<div class="callout">
+					<p><strong>Astuce :</strong> si votre Jira compte 8 heures par jour mais que votre mission en compte 7, évitez les durées en <code>d</code>. Saisissez en heures et convertissez au moment du CRA : vous éviterez un écart d’une heure par jour.</p>
+				</div>
+
+				<h2 id="methode">La méthode : une feuille de temps juste en 10 minutes par semaine</h2>
+				<p>Le plus long n’est pas de taper des chiffres, c’est de savoir lesquels taper. Le vendredi après-midi, le lundi est déjà flou. La solution : arrêter de compter sur sa mémoire et lire les traces que vos outils ont déjà laissées.</p>
+				<ol>
+					<li><strong>Rassemblez les sources (2 minutes).</strong> L’agenda en vue semaine (chaque réunion est un bloc tout prêt), votre historique git, la liste des tickets Jira récemment consultés et l’historique du navigateur pour le travail qui n’a laissé aucun commit :
+						<pre><code>git log --since=monday --author="vous@exemple.fr" --oneline --all</code></pre></li>
+					<li><strong>Découpez chaque journée (4 minutes).</strong> D’abord les réunions, puis les tickets qui apparaissent dans les commits et l’activité Jira du jour. Raisonnez par blocs de 15 à 30 minutes, pas à la minute près.</li>
+					<li><strong>Rédigez une ligne par tâche et par jour (2 minutes).</strong> Verbe, objet, résultat : le modèle est détaillé plus bas.</li>
+					<li><strong>Contrôlez (2 minutes).</strong> Comparez le total à votre base contractuelle, repérez les journées à 4 ou 11 heures, appliquez le même arrondi partout et tranchez pour les blocs orphelins : affectés s’il existe une trace, sinon imputés sur une tâche de fonctionnement ou laissés de côté.</li>
+				</ol>
+
+				<h3>Exemple : la semaine d’un consultant en régie</h3>
+				<p>Voici une semaine type de développeur en mission, sur une base de 35 heures, après application de la méthode. Chaque journée fait 7 heures : le CRA de la semaine affichera 5 jours, et chaque jour se justifie ticket par ticket.</p>
+				<table>
+					<thead>
+						<tr><th>Tâche</th><th>Lun</th><th>Mar</th><th>Mer</th><th>Jeu</th><th>Ven</th><th>Total</th></tr>
+					</thead>
+					<tbody>
+						<tr><td>PAY-214 API de paiement</td><td>4h</td><td>5h</td><td>3h30</td><td>4h</td><td>2h30</td><td><strong>19h</strong></td></tr>
+						<tr><td>PAY-198 Revue de code</td><td>1h</td><td>1h</td><td>1h30</td><td>1h</td><td>1h</td><td><strong>5h30</strong></td></tr>
+						<tr><td>PAY-12 Réunions (daily, rétro, démo)</td><td>1h</td><td>0h30</td><td>1h</td><td>0h30</td><td>1h30</td><td><strong>4h30</strong></td></tr>
+						<tr><td>OPS-41 Incident de production</td><td>1h</td><td>0h30</td><td>–</td><td>–</td><td>–</td><td><strong>1h30</strong></td></tr>
+						<tr><td>PAY-220 Documentation de l’API</td><td>–</td><td>–</td><td>1h</td><td>1h30</td><td>2h</td><td><strong>4h30</strong></td></tr>
+						<tr><td><strong>Total du jour</strong></td><td><strong>7h</strong></td><td><strong>7h</strong></td><td><strong>7h</strong></td><td><strong>7h</strong></td><td><strong>7h</strong></td><td><strong>35h</strong></td></tr>
+					</tbody>
+				</table>
+				<p>Remarquez la ligne des réunions : daily, rétro et démo de sprint sont imputées sur un ticket dédié plutôt que dispersées sur les tickets de développement. Et l’incident de production du lundi a son propre ticket : le jour où quelqu’un demandera pourquoi PAY-214 a pris du retard, la réponse sera dans la feuille de temps.</p>
+
+				<h2 id="worklog">Rédiger un worklog utile</h2>
+				<p>Un worklog s’adresse à la personne qui le lira plus tard : votre chef de projet, le client qui valide le CRA, ou vous-même au moment de l’entretien annuel. Le modèle tient en une ligne :</p>
+				<pre><code>[Verbe] [quoi] — [résultat / statut / suite]</code></pre>
+				<table>
+					<thead>
+						<tr><th>À éviter</th><th>Mieux</th></tr>
+					</thead>
+					<tbody>
+						<tr><td>dev</td><td>Implémenté le remboursement partiel dans l’API de paiement — tests unitaires au vert, PR ouverte</td></tr>
+						<tr><td>revue</td><td>Revue de 3 PR du module facturation — modifications demandées sur la logique de relance</td></tr>
+						<tr><td>réunion</td><td>Sprint planning — chiffrage des stories de documentation, prise en charge de PAY-220</td></tr>
+						<tr><td>correctifs</td><td>Ajout d’une alerte sur la file de messages après l’incident OPS-41 — déployé en recette</td></tr>
+						<tr><td>doc</td><td>Rédaction de la documentation de l’API de paiement — envoyée au PO pour relecture</td></tr>
+					</tbody>
+				</table>
+				<p>Trois règles font gagner le plus de temps. Saisir 60 secondes chaque soir plutôt que 60 minutes le vendredi. Imputer les interruptions sur le sujet qui les a causées : un fil Slack de 20 minutes sur l’incident va sur OPS-41. Et ne jamais compléter artificiellement une semaine pour atteindre 35 heures : une feuille de temps gonflée masque les vrais problèmes, et la confiance s’effondre la première fois que quelqu’un la compare aux commits.</p>
+
+				<h2 id="automatiser">Les options pour automatiser le suivi du temps dans Jira</h2>
+				<p>Quatre familles d’outils de gestion des temps existent, avec des compromis différents :</p>
+				<ul>
+					<li><strong>La saisie manuelle dans Jira.</strong> Gratuite et native, mais tout repose sur votre mémoire et votre discipline.</li>
+					<li><strong>Les modules du Marketplace</strong>, comme Tempo Timesheets : vue feuille de temps, validation par le manager, rapports. Ils facilitent la saisie et le contrôle, mais reconstituer la journée reste à votre charge. Facturés par utilisateur, ils visent plutôt une équipe entière.</li>
+					<li><strong>Les chronomètres</strong>, comme Toggl Track ou Clockify : précis quand on pense à les lancer et à les arrêter, ce qui arrive rarement quand on change de tâche vingt fois par jour.</li>
+					<li><strong>Le suivi du temps automatique</strong> sur le poste de travail : l’application enregistre en arrière-plan les programmes et les fenêtres utilisés, puis vous aide à transformer cette activité en temps imputé. C’est la seule approche qui supprime l’étape de reconstitution.</li>
+				</ul>
+				<p>Pour cette dernière famille, un point de vigilance : la confidentialité. Un outil personnel, dont les données restent sur votre machine et qui ne remonte rien à la hiérarchie, n’a rien à voir avec un logiciel de surveillance des salariés. En France, un dispositif de contrôle de l’activité mis en place par l’employeur suppose notamment l’information préalable des salariés et la consultation du CSE, et la CNIL publie des recommandations sur le sujet. Vérifiez donc ce que l’outil enregistre, où les données sont stockées et qui peut les consulter.</p>
+
+				<h2 id="timesheet-tracker">Comment Timesheet Tracker remplit votre feuille de temps Jira</h2>
+				<p><a href="/fr/">Timesheet Tracker</a> est une application Windows de suivi du temps automatique, conçue pour la personne qui saisit ses temps. Elle se loge dans la zone de notification et enregistre le programme actif, le titre de la fenêtre, le domaine du site et les périodes d’inactivité, le tout stocké sur votre PC. Aucune capture d’écran, aucun enregistrement des frappes, aucun rapport au manager.</p>
+				<ol>
+					<li><strong>Les clés Jira sont reconnues en local.</strong> Une clé comme <code>PAY-214</code> dans un titre de fenêtre, une URL ou une branche git (<code>feature/PAY-214-remboursement</code>) suffit pour affecter le bloc à la bonne tâche, sans IA.</li>
+					<li><strong>« Trier ma journée ».</strong> Un clic, et l’IA répartit les blocs restants (une page Confluence, un fil Slack, un fichier Figma) entre vos tâches Jira, puis rédige un texte de worklog par tâche. Seuls les titres de fenêtres masqués, les noms de programmes, les domaines et les durées sont envoyés, et uniquement à ce moment-là.</li>
+					<li><strong>Vous vérifiez.</strong> « Changer de tâche » pour corriger une affectation, « Hors travail » pour écarter un bloc, puis « Valider la journée ».</li>
+					<li><strong>Vous envoyez.</strong> « Envoyer vers Jira » crée les worklogs dans Jira Cloud ou Jira Server / Data Center, sans doublons même si vous renvoyez. « Exporter en CSV » produit un fichier à reprendre dans votre outil de CRA ou un tableur.</li>
+				</ol>
+				<p>Vous préférez que rien ne parte vers une IA ? Le mode « Sans IA » conserve la reconnaissance des clés Jira et vous laisse trier le reste à la main. Le « Mode démo », lui, fait parcourir tout le circuit sur une journée d’exemple, sans connecter Jira.</p>
+				<p>L’application se télécharge gratuitement sur le Microsoft Store, avec 14 jours d’essai gratuit de Pro, sans carte bancaire. Ensuite, Pro coûte 9,99 $ par mois ou 79 $ par an. Le fonctionnement détaillé est présenté sur la <a href="/fr/#how">page d’accueil</a>.</p>
+
+				<h2 id="faq">Questions fréquentes</h2>
+				<h3>Jira propose-t-il une feuille de temps native ?</h3>
+				<p>Pas vraiment. Jira enregistre le temps sous forme de worklogs sur chaque ticket et permet de les retrouver avec une requête JQL. Pour une vue hebdomadaire avec totaux et validation, les équipes ajoutent généralement une application du Marketplace comme Tempo Timesheets, ou exportent les données vers un tableur.</p>
+				<h3>Quelle différence entre une feuille de temps et un CRA ?</h3>
+				<p>La feuille de temps détaille les heures passées par tâche, au jour le jour. Le CRA (compte rendu d’activité) récapitule, généralement chaque mois, les jours travaillés pour un client ou une mission, et sert souvent de base à la facturation en régie. Les deux doivent raconter la même histoire.</p>
+				<h3>Comment convertir les heures Jira en jours de CRA ?</h3>
+				<p>Divisez le total d’heures par la durée de journée retenue pour la mission : 7 heures pour une base de 35 heures hebdomadaires, parfois 8 heures selon le contrat. Saisissez plutôt en heures qu’en jours dans Jira, car « 1d » y vaut la durée de journée configurée par l’administrateur (8 heures par défaut).</p>
+				<h3>Un outil de suivi du temps automatique, est-ce de la surveillance ?</h3>
+				<p>Tout dépend de qui voit les données. Timesheet Tracker est un outil personnel : l’activité reste sur votre PC, sans captures d’écran ni enregistrement des frappes, et seuls les worklogs que vous validez arrivent dans Jira. Il n’y a ni tableau de bord manager, ni rapport d’équipe.</p>
+				<h3>Timesheet Tracker fonctionne-t-il avec Jira Server ou Data Center ?</h3>
+				<p>Oui. Il prend en charge Jira Cloud (avec un jeton d’API) et Jira Server / Data Center (avec un Personal Access Token). Les worklogs sont créés avec votre propre compte, sans doublons si vous renvoyez une journée.</p>
+
+				<section class="article-cta" id="get-app">
+					<h2>Votre feuille de temps Jira, prête le vendredi</h2>
+					<p>Timesheet Tracker reconstitue votre semaine à partir de ce que vous avez réellement fait ; vous relisez et envoyez vers Jira en un clic. Téléchargement gratuit sur le Microsoft Store, avec 14 jours d’essai gratuit de Pro.</p>
+					<div class="get-app">
+						<a class="btn btn-primary btn-store" href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=fr-fr&amp;cid=site-fr-article" rel="noopener"><span class="ms" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>Obtenir sur le Microsoft Store</span></a>
+					</div>
+				</section>
+
+				<aside class="related">
+					<h2>À lire aussi</h2>
+					<ul>
+						<li><a href="/fr/">Timesheet Tracker : la feuille de temps Jira qui se remplit toute seule</a></li>
+						<li><a href="/articles/how-to-log-time-in-jira.html">How to log time in Jira</a> (en anglais)</li>
+						<li><a href="/articles/fill-timesheet-in-10-minutes.html">How to fill your weekly timesheet in 10 minutes</a> (en anglais)</li>
+						<li><a href="/articles/tempo-timesheets-alternatives.html">Tempo Timesheets alternatives</a> (en anglais)</li>
+					</ul>
+				</aside>
+			</article>
+
+			<aside class="toc" aria-label="Sur cette page">
+				<b>Sur cette page</b>
+				<ol>
+					<li><a href="#feuille-de-temps-jira">La feuille de temps dans Jira</a></li>
+					<li><a href="#esn-cra">ESN, régie et CRA</a></li>
+					<li><a href="#methode">La méthode en 10 minutes</a></li>
+					<li><a href="#worklog">Rédiger un worklog utile</a></li>
+					<li><a href="#automatiser">Automatiser le suivi du temps</a></li>
+					<li><a href="#timesheet-tracker">Avec Timesheet Tracker</a></li>
+					<li><a href="#faq">Questions fréquentes</a></li>
+				</ol>
+				<div class="toc-cta">
+					<b style="margin:0;color:var(--ink);font-size:15px;letter-spacing:-.01em;text-transform:none">Timesheet Tracker</b>
+					<p>La feuille de temps qui se remplit toute seule. Téléchargement gratuit sur le Microsoft Store.</p>
+					<a class="btn btn-primary btn-sm" href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=fr-fr&amp;cid=site-fr-toc" rel="noopener">Obtenir l’app</a>
+				</div>
+			</aside>
+		</div>
+	</main>
+
+	<footer class="site-footer">
+		<div class="wrap">
+			<div class="foot-grid">
+				<div class="foot-about">
+					<a class="brand" href="/fr/"><img src="/img/mark.svg" width="30" height="30" alt=""><span>Timesheet Tracker</span></a>
+					<p>Suivi du temps automatique et feuille de temps IA pour Jira, sous Windows. Données en local. Aucune capture d’écran.</p>
+				</div>
+				<div>
+					<h4>Produit</h4>
+					<ul>
+						<li><a href="/fr/#how">Comment ça marche</a></li>
+						<li><a href="/fr/#privacy">Confidentialité</a></li>
+						<li><a href="/fr/#compare">Comparatif</a></li>
+						<li><a href="/fr/#faq">FAQ</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4>Guides</h4>
+					<ul>
+						<li><a href="/fr/articles/feuille-de-temps-jira.html">Feuille de temps Jira</a></li>
+						<li><a href="/articles/how-to-log-time-in-jira.html">Saisir son temps dans Jira (EN)</a></li>
+						<li><a href="/articles/automatic-time-tracking-software-windows.html">Suivi du temps automatique (EN)</a></li>
+						<li><a href="/articles/tempo-timesheets-alternatives.html">Alternatives à Tempo (EN)</a></li>
+						<li><a href="/articles/fill-timesheet-in-10-minutes.html">Feuille de temps en 10 minutes (EN)</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4>Société</h4>
+					<ul>
+						<li><a href="mailto:help@timesheet-tracker.com">help@timesheet-tracker.com</a></li>
+						<li><a href="/privacy.html">Politique de confidentialité (EN)</a></li>
+						<li><a href="/terms.html">Conditions d’utilisation (EN)</a></li>
+					</ul>
+				</div>
+			</div>
+			<nav class="foot-langs" aria-label="Language"><a href="/" hreflang="en" lang="en">English</a><a href="/de/" hreflang="de" lang="de">Deutsch</a><a href="/fr/" hreflang="fr" lang="fr" aria-current="true">Français</a><a href="/es/" hreflang="es" lang="es">Español</a><a href="/pt-br/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a><a href="/it/" hreflang="it" lang="it">Italiano</a><a href="/pl/" hreflang="pl" lang="pl">Polski</a><a href="/nl/" hreflang="nl" lang="nl">Nederlands</a><a href="/ja/" hreflang="ja" lang="ja">日本語</a><a href="/uk/" hreflang="uk" lang="uk">Українська</a><a href="/ru/" hreflang="ru" lang="ru">Русский</a></nav>
+			<div class="foot-bottom">
+				<span>© <span data-year>2026</span> Timesheet Tracker. Jira est une marque d’Atlassian. Sans lien avec Atlassian ni Microsoft.</span>
+				<span>Conçu pour celles et ceux qui saisissent leurs propres temps.</span>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Zeiterfassung &amp; Stundenzettel für Jira – automatisch mit KI</title>
+	<meta name="description" content="Automatische Arbeitszeiterfassung für Windows: erkennt Ihre Jira-Vorgänge, füllt den Stundenzettel und schreibt Worklogs. Ohne Screenshots. 14 Tage gratis.">
+	<link rel="canonical" href="https://timesheet-tracker.com/de/">
+	<link rel="alternate" hreflang="en" href="https://timesheet-tracker.com/">
+	<link rel="alternate" hreflang="de" href="https://timesheet-tracker.com/de/">
+	<link rel="alternate" hreflang="fr" href="https://timesheet-tracker.com/fr/">
+	<link rel="alternate" hreflang="es" href="https://timesheet-tracker.com/es/">
+	<link rel="alternate" hreflang="pt-BR" href="https://timesheet-tracker.com/pt-br/">
+	<link rel="alternate" hreflang="it" href="https://timesheet-tracker.com/it/">
+	<link rel="alternate" hreflang="pl" href="https://timesheet-tracker.com/pl/">
+	<link rel="alternate" hreflang="nl" href="https://timesheet-tracker.com/nl/">
+	<link rel="alternate" hreflang="ja" href="https://timesheet-tracker.com/ja/">
+	<link rel="alternate" hreflang="uk" href="https://timesheet-tracker.com/uk/">
+	<link rel="alternate" hreflang="ru" href="https://timesheet-tracker.com/ru/">
+	<link rel="alternate" hreflang="x-default" href="https://timesheet-tracker.com/">
+	<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+	<meta name="theme-color" content="#f5f6fb">
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+	<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="Timesheet Tracker">
+	<meta property="og:title" content="Timesheet Tracker – der Stundenzettel, der sich selbst ausfüllt">
+	<meta property="og:description" content="KI-Zeiterfassung und Stundenzettel für Jira unter Windows. Daten bleiben lokal, keine Screenshots. Eine Stunde Freitag → 10 Sekunden.">
+	<meta property="og:url" content="https://timesheet-tracker.com/de/">
+	<meta property="og:image" content="https://timesheet-tracker.com/og-image.png">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="og:locale" content="de_DE">
+	<meta name="twitter:card" content="summary_large_image">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap">
+	<link rel="stylesheet" href="/css/landing.css">
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "SoftwareApplication",
+		"name": "Zeiterfassung & Stundenzettel - KI für Jira",
+		"alternateName": "Timesheet Tracker",
+		"inLanguage": "de",
+		"applicationCategory": "BusinessApplication",
+		"applicationSubCategory": "Zeiterfassung",
+		"operatingSystem": "Windows",
+		"downloadUrl": "https://apps.microsoft.com/detail/9n1vml91q1lx?hl=de-de",
+		"installUrl": "https://apps.microsoft.com/detail/9n1vml91q1lx?hl=de-de",
+		"url": "https://timesheet-tracker.com/de/",
+		"image": "https://timesheet-tracker.com/og-image.png",
+		"description": "Windows-App im Infobereich, die Ihren Arbeitstag lokal aufzeichnet (aktives Programm, Fenstertitel, Browser-Domain, Leerlauf), Jira-Schlüssel automatisch erkennt, den Rest auf Wunsch per KI sortiert und pro Vorgang einen Worklog vorformuliert. Sie prüfen und bestätigen; die Worklogs gehen an Jira Cloud oder Jira Server/Data Center oder in eine CSV-Datei.",
+		"featureList": [
+			"Passive, lokale Erfassung von aktivem Programm, Fenstertitel, Domain des Browser-Tabs sowie Leerlauf und Bildschirmsperre",
+			"Jira-Schlüssel in Fenstertiteln, URLs und Git-Branches werden lokal erkannt, ohne KI",
+			"Meinen Tag sortieren: Die KI ordnet die übrigen Zeitblöcke Jira-Vorgängen zu und formuliert Worklog-Texte vor",
+			"Prüfansicht: Aufgabe ändern oder einen Block als „Keine Arbeit“ markieren",
+			"Worklogs an Jira Cloud und Jira Server/Data Center ohne Duplikate",
+			"CSV-Export",
+			"Modus „Ohne KI“",
+			"Keine Screenshots, kein Keylogging, keine Berichte an Vorgesetzte"
+		],
+		"offers": [
+			{
+				"@type": "Offer",
+				"name": "Kostenloser Download",
+				"price": "0",
+				"priceCurrency": "USD",
+				"description": "Kostenloser Download aus dem Microsoft Store mit 14 Tagen Pro gratis, ohne Kreditkarte. Ohne Abo zeichnet die App weiter auf und zeigt Ihren Tag (7 Tage Verlauf, CSV für heute)."
+			},
+			{
+				"@type": "Offer",
+				"name": "Pro, monatlich",
+				"price": "9.99",
+				"priceCurrency": "USD",
+				"description": "Pro-Abo mit monatlicher Abrechnung: Worklogs an Jira senden und KI-Sortierung.",
+				"priceSpecification": {
+					"@type": "UnitPriceSpecification",
+					"price": "9.99",
+					"priceCurrency": "USD",
+					"unitCode": "MON",
+					"billingDuration": "P1M"
+				}
+			},
+			{
+				"@type": "Offer",
+				"name": "Pro, jährlich",
+				"price": "79",
+				"priceCurrency": "USD",
+				"description": "Pro-Abo mit jährlicher Abrechnung (etwa $6.58 im Monat, 34 % günstiger als monatlich): Worklogs an Jira senden und KI-Sortierung.",
+				"priceSpecification": {
+					"@type": "UnitPriceSpecification",
+					"price": "79",
+					"priceCurrency": "USD",
+					"unitCode": "ANN",
+					"billingDuration": "P1Y"
+				}
+			}
+		],
+		"publisher": {
+			"@type": "Organization",
+			"name": "Timesheet Tracker",
+			"url": "https://timesheet-tracker.com/"
+		}
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		"name": "Timesheet Tracker",
+		"url": "https://timesheet-tracker.com/",
+		"logo": "https://timesheet-tracker.com/apple-touch-icon.png",
+		"contactPoint": {
+			"@type": "ContactPoint",
+			"email": "help@timesheet-tracker.com",
+			"contactType": "customer support",
+			"availableLanguage": [
+				"English",
+				"Russian"
+			]
+		}
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		"inLanguage": "de",
+		"mainEntity": [
+			{
+				"@type": "Question",
+				"name": "Ist Timesheet Tracker ein Tool zur Mitarbeiterüberwachung?",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "Nein. Die App ist für die Person gemacht, die ihre Zeit selbst erfasst. Es gibt keine Screenshots, kein Keylogging, keine Dashboards für Vorgesetzte und keine Team-Berichte. Ihre Aktivität bleibt auf Ihrem PC, und an Jira gehen nur die Worklogs, die Sie bestätigen."
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "Welche Daten verlassen meinen Computer?",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "Nichts, solange Sie nicht selbst aktiv werden. Erst wenn Sie auf „Meinen Tag sortieren“ klicken, gehen maskierte Fenstertitel, Programmnamen, Domains und Dauern der noch nicht zugeordneten Blöcke an die KI. Vollständige URLs, Seiteninhalte, Screenshots, Tastatureingaben und Ihr Jira-Token werden nie übertragen. Wenn Sie den Tag bestätigen, gehen die freigegebenen Worklogs an Ihr Jira."
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "Kann ich die App ohne KI nutzen?",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "Ja. Im Modus „Ohne KI“ geht nichts an einen KI-Anbieter. Jira-Schlüssel in Fenstertiteln, URLs und Git-Branches werden weiterhin lokal zugeordnet, die übrigen Blöcke ordnen Sie in der Prüfansicht selbst zu."
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "Welche Jira-Versionen werden unterstützt?",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "Jira Cloud und Jira Server / Data Center. Die Worklogs werden mit Ihrem eigenen Konto geschrieben, und wenn Sie einen Tag erneut senden, entstehen keine Duplikate."
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "Woher weiß die App, an welchem Jira-Vorgang ich gearbeitet habe?",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "Der Großteil des Tages wird ohne KI zugeordnet: Jira-Schlüssel wie ABC-123 stehen in Fenstertiteln, Browser-Tabs, Pull-Request-Namen und Git-Branches wie feature/ABC-123-login. Die KI kümmert sich nur um den Rest, und Sie bestätigen jede Zuordnung, bevor etwas gebucht wird."
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "Funktioniert die App mit Tempo oder Excel?",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "Heute schreibt sie native Jira-Worklogs und exportiert CSV. Eine direkte Tempo-Anbindung und Excel-Export (XLSX) sind geplant."
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "Ersetzt die App die gesetzliche Arbeitszeiterfassung meines Arbeitgebers?",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "Nein. Timesheet Tracker ist eine persönliche Projektzeiterfassung: Die App bucht Ihre Zeit auf Jira-Vorgänge. Wenn Ihr Arbeitgeber Beginn, Ende und Dauer der Arbeitszeit mit einem eigenen System erfasst, bleibt das davon unberührt. Der CSV-Export kann Ihnen aber als persönlicher Stundennachweis dienen."
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "Was kostet die App?",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "Timesheet Tracker ist ein kostenloser Download aus dem Microsoft Store und startet mit 14 Tagen Pro gratis, ohne Kreditkarte. Danach kostet Pro $9.99 pro Monat oder $79 pro Jahr (etwa $6.58 im Monat, 34 % günstiger); das Jahresabo ist voreingestellt. Ohne Abo zeichnet die App weiter auf und zeigt Ihren Tag, mit 7 Tagen Verlauf und CSV-Export für heute. Senden an Jira und KI-Sortierung brauchen Pro."
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "Wo kann ich die App herunterladen?",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "Im Microsoft Store, dort heißt sie „Zeiterfassung & Stundenzettel - KI für Jira“. Der Download ist kostenlos und startet mit 14 Tagen Pro gratis, ohne Kreditkarte."
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "Gibt es eine Version für Mac oder Linux?",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "Noch nicht. Timesheet Tracker ist eine Windows-App. Schreiben Sie uns an help@timesheet-tracker.com, wenn Sie eine andere Plattform brauchen."
+				}
+			}
+		]
+	}
+	</script>
+	<script src="/js/landing.js" defer></script>
+	<!-- Yandex.Metrika counter -->
+	<script>
+		(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();
+		for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+		k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+		(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+		ym(113838536, "init", {clickmap: true, trackLinks: true, accurateTrackBounce: true});
+	</script>
+</head>
+<body>
+	<noscript><div><img src="https://mc.yandex.ru/watch/113838536" width="1" height="1" style="position:absolute;left:-9999px" alt=""></div></noscript>
+	<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+		<symbol id="spark" viewBox="0 0 24 24"><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z"/><path d="M19 2l.8 2.2L22 5l-2.2.8L19 8l-.8-2.2L16 5l2.2-.8z" opacity=".7"/></symbol>
+		<symbol id="chk" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+		<symbol id="lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></symbol>
+		<symbol id="branch" viewBox="0 0 24 24"><circle cx="6" cy="5" r="2.2"/><circle cx="6" cy="19" r="2.2"/><circle cx="18" cy="7" r="2.2"/><path d="M6 7.2v9.6M18 9.2c0 5-6 3.5-11 7.8"/></symbol>
+		<symbol id="jira" viewBox="0 0 32 32"><path d="M16 3l7 7-7 7-7-7z" fill="#fff"/><path d="M16 15l7 7-7 7-7-7z" fill="#fff" opacity=".75"/></symbol>
+	</svg>
+
+	<a class="skip" href="#main">Zum Inhalt springen</a>
+	<header class="site-header">
+		<nav class="wrap nav" aria-label="Hauptnavigation">
+			<a class="brand" href="/de/"><img src="/img/mark.svg" width="30" height="30" alt=""><span>Timesheet Tracker</span></a>
+			<ul class="nav-links">
+				<li><a href="#how">So funktioniert's</a></li>
+				<li><a href="#features">Funktionen</a></li>
+				<li><a href="#privacy">Datenschutz</a></li>
+				<li><a href="#compare">Vergleich</a></li>
+				<li><a href="#faq">FAQ</a></li>
+				<li><a href="/de/articles/arbeitszeiterfassung-jira.html">Ratgeber</a></li>
+			</ul>
+			<div class="nav-cta">
+				<a class="btn btn-primary btn-sm" href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=de-de&amp;cid=site-de-nav-home" rel="noopener">App laden</a>
+				<button class="nav-toggle" type="button" aria-label="Menü" aria-expanded="false"><span></span></button>
+			</div>
+		</nav>
+	</header>
+
+	<main id="main">
+		<!-- ============ HERO ============ -->
+		<section class="hero">
+			<div class="sky" aria-hidden="true">
+				<i class="blob b1" data-px="-0.18"></i>
+				<i class="blob b2" data-px="-0.08"></i>
+				<i class="blob b3" data-px="0.06"></i>
+				<i class="blob b4" data-px="-0.26"></i>
+			</div>
+			<div class="wrap hero-inner">
+				<a class="store-badge" href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=de-de&amp;cid=site-de-badge" rel="noopener"><span class="ms" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Jetzt im Microsoft Store <span class="soon">Neu</span></a>
+				<h1>KI-Zeiterfassung für Jira: <span class="grad">Ihr Stundenzettel füllt sich selbst aus.</span></h1>
+				<p class="lede">Automatische Arbeitszeiterfassung für Windows. Timesheet Tracker zeichnet Ihren Arbeitstag unauffällig auf, erkennt Jira-Schlüssel selbstständig und formuliert Ihre Worklogs vor. Sie prüfen, klicken einmal – und <strong>aus einer Stunde Freitagabend werden 10 Sekunden.</strong></p>
+
+				<div class="get-app">
+					<a class="btn btn-primary btn-store" href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=de-de&amp;cid=site-de-hero" rel="noopener"><span class="ms" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>Im Microsoft Store herunterladen</span></a>
+					<p class="get-note">Kostenloser Download · 14 Tage Pro gratis testen, ohne Kreditkarte</p>
+				</div>
+
+				<ul class="trust">
+					<li>Daten bleiben auf Ihrem PC</li>
+					<li>Keine Screenshots</li>
+					<li>Jira Cloud &amp; Data Center</li>
+					<li>14 Tage gratis testen</li>
+				</ul>
+			</div>
+
+			<!-- Today: simple → details, scrubbed by scroll on desktop; stacked on phones and tablets -->
+			<div class="stage" data-stage="today" id="product">
+				<div class="stage-track">
+					<div class="stage-sticky">
+						<div class="stage-cap">
+							<p class="cap" aria-live="polite"><span class="cap-a"><b>Einfach.</b> Ein Ring, ein Satz, ein Button.</span><span class="cap-b"><b>Details, wenn Sie sie brauchen.</b> Die Spalte wird schmaler, Ihr ganzer Tag gleitet herein.</span></p>
+							<div class="modes" role="group" aria-label="App-Ansicht"><button type="button" data-mode="0" aria-pressed="true">Einfach</button><button type="button" data-mode="1" aria-pressed="false">Details</button><span class="modes-thumb" aria-hidden="true"></span></div>
+						</div>
+						<div class="stage-win">
+							<div class="floaters" aria-hidden="true">
+								<div class="float f1" data-depth="1.1"><span class="f-ic"><svg><use href="#branch"/></svg></span><span><small>Git-Branch</small><b>CASE-1423 erkannt</b></span></div>
+								<div class="float f2" data-depth="-0.8"><span class="f-ic ai"><svg><use href="#spark"/></svg></span><span><small>KI · 88 % sicher</small><b>Onboarding-Flow</b></span></div>
+								<div class="float f3" data-depth="0.7"><span class="f-ic ok"><svg><use href="#lock"/></svg></span><span><small>Datenschutz</small><b>Keine Screenshots</b></span></div>
+								<div class="float f4" data-depth="-1.3"><span class="f-dot"></span><span><small>Abwesend · 13:00</small><b>Mittag, nicht erfasst</b></span></div>
+							</div>
+							<div class="tt-frame" role="img" aria-label="Timesheet Tracker, Ansicht Heute. Einfacher Modus: Ein Ring zeigt 8 Std. 10 Min. von 8 Stunden, ein Satz sagt, dass 3 Std. 10 Min. noch ohne Aufgabe sind, dazu ein einziger Button „Meinen Tag sortieren“. Detailmodus: Die Spalte wird schmaler, ein Bereich mit Kennzahlen, der Zeitleiste für Aktivität und Arbeit und einer Live-Liste mit zugeordneten Jira-Schlüsseln gleitet herein.">
+								<div class="tt tt-desk" aria-hidden="true">
+<!-- H4:today-desk -->
+<div class="win" data-scene="today"><div class="tint"></div>
+<div class="layer L-s"><div class="d-col" style="top:92px"><div class="d-date" data-share="date" style="">Freitag, 16. Oktober</div>
+<div class="d-ring" style="width:300px;height:300px;margin-top:14px"><div data-share="ring" style="width:300px;height:300px;filter:drop-shadow(0 14px 30px rgba(91,91,240,.18))"><svg width="300" height="300" viewBox="0 0 300 300"><circle cx="150" cy="150" r="138" fill="none" stroke="rgba(22,24,40,.07)" stroke-width="22"/><path d="M 159.89 12.35 A 138 138 0 0 1 240.25 254.39" fill="none" stroke="#5b5bf0" stroke-width="22" stroke-linecap="round"/><path d="M 224.40 266.23 A 138 138 0 0 1 91.07 274.79" fill="none" stroke="#f08a3c" stroke-width="22" stroke-linecap="round"/><path d="M 73.84 265.08 A 138 138 0 0 1 68.31 261.22" fill="none" stroke="#a66cf0" stroke-width="22" stroke-linecap="round"/><circle cx="53.24" cy="248.40" r="5.28" fill="#d97706"/><circle cx="40.18" cy="233.57" r="5.28" fill="#d97706"/><circle cx="29.37" cy="217.03" r="5.28" fill="#d97706"/><circle cx="21.04" cy="199.12" r="5.28" fill="#d97706"/><circle cx="15.34" cy="180.19" r="5.28" fill="#d97706"/><circle cx="12.41" cy="160.65" r="5.28" fill="#d97706"/><circle cx="12.30" cy="140.90" r="5.28" fill="#d97706"/><circle cx="15.01" cy="121.32" r="5.28" fill="#d97706"/><circle cx="20.49" cy="102.34" r="5.28" fill="#d97706"/><circle cx="28.63" cy="84.33" r="5.28" fill="#d97706"/><circle cx="39.25" cy="67.67" r="5.28" fill="#d97706"/><circle cx="52.14" cy="52.70" r="5.28" fill="#d97706"/><circle cx="67.04" cy="39.72" r="5.28" fill="#d97706"/><circle cx="83.64" cy="29.00" r="5.28" fill="#d97706"/><circle cx="101.60" cy="20.77" r="5.28" fill="#d97706"/><circle cx="120.55" cy="15.18" r="5.28" fill="#d97706"/><circle cx="140.11" cy="12.35" r="5.28" fill="#d97706"/></svg></div>
+<div class="d-mid"><div class="d-big num" data-share="total" style="">8h 10m</div><div class="d-sub" data-share="norm" style="">von 8 Std. · Soll erreicht</div></div></div>
+<div class="d-line" data-share="line" style="margin-top:22px;">Hauptsächlich <span class="tk" style="background:#e3e4ff;color:#4f46e5"><i style="background:#5b5bf0"></i>Auth-API-Refactoring</span> und <span class="tk" style="background:#fde8cf;color:#c2410c"><i style="background:#f08a3c"></i>Code-Review</span><br><span class="d-warn num" >3h 10m</span> noch ohne Aufgabe.</div>
+<div class="cta" data-share="cta" style="margin-top:30px;"><svg width="20" height="20" viewBox="0 0 24 24"><defs><linearGradient id="sg20" x1="0" x2="1"><stop offset="0" stop-color="#a5b4fc"/><stop offset=".5" stop-color="#f0abfc"/><stop offset="1" stop-color="#fcd34d"/></linearGradient></defs><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z" fill="url(#sg20)"/></svg>Meinen Tag sortieren<small>Enter</small></div>
+<div class="d-hint" data-out="fade" data-at="0" data-dur=".22" style="margin-top:14px;">Die KI schlägt vor, Sie bestätigen. Nur Fenstertitel und Dauern verlassen diesen PC.</div></div>
+<div class="d-col" style="bottom:28px"><div class="peek" data-toggle data-out="recede" data-at="0" data-dur=".25"><span class="ms"><i style="flex:195;background:#5b5bf0"></i><i style="flex:15;background:#a66cf0"></i><i style="flex:90;background:#f08a3c"></i><i style="flex:190;background:#d97706"></i></span>9 Aktivitäten · 6 Programme · 45m abwesend<span style="color:var(--accent)">Detailbereich öffnen ›</span></div></div></div><div class="panebg"></div>
+<div class="layer L-d"><div class="d-col" style="left:0;right:auto;width:380px;top:76px"><div class="d-date" data-share="date" style="font-size:13.5px">Freitag, 16. Oktober</div>
+<div class="d-ring" style="width:208px;height:208px;margin-top:12px"><div data-share="ring" style="width:208px;height:208px;filter:drop-shadow(0 14px 30px rgba(91,91,240,.18))"><svg width="208" height="208" viewBox="0 0 208 208"><circle cx="104" cy="104" r="95" fill="none" stroke="rgba(22,24,40,.07)" stroke-width="16"/><path d="M 111.19 9.27 A 95 95 0 0 1 166.42 175.61" fill="none" stroke="#5b5bf0" stroke-width="16" stroke-linecap="round"/><path d="M 154.89 184.22 A 95 95 0 0 1 63.78 190.07" fill="none" stroke="#f08a3c" stroke-width="16" stroke-linecap="round"/><path d="M 51.25 183.01 A 95 95 0 0 1 48.07 180.79" fill="none" stroke="#a66cf0" stroke-width="16" stroke-linecap="round"/><circle cx="37.12" cy="171.47" r="3.84" fill="#d97706"/><circle cx="28.20" cy="161.26" r="3.84" fill="#d97706"/><circle cx="20.82" cy="149.89" r="3.84" fill="#d97706"/><circle cx="15.14" cy="137.59" r="3.84" fill="#d97706"/><circle cx="11.26" cy="124.60" r="3.84" fill="#d97706"/><circle cx="9.27" cy="111.19" r="3.84" fill="#d97706"/><circle cx="9.21" cy="97.64" r="3.84" fill="#d97706"/><circle cx="11.08" cy="84.21" r="3.84" fill="#d97706"/><circle cx="14.85" cy="71.19" r="3.84" fill="#d97706"/><circle cx="20.42" cy="58.84" r="3.84" fill="#d97706"/><circle cx="27.70" cy="47.40" r="3.84" fill="#d97706"/><circle cx="36.53" cy="37.12" r="3.84" fill="#d97706"/><circle cx="46.74" cy="28.20" r="3.84" fill="#d97706"/><circle cx="58.11" cy="20.82" r="3.84" fill="#d97706"/><circle cx="70.41" cy="15.14" r="3.84" fill="#d97706"/><circle cx="83.40" cy="11.26" r="3.84" fill="#d97706"/><circle cx="96.81" cy="9.27" r="3.84" fill="#d97706"/></svg></div>
+<div class="d-mid"><div class="d-big num" data-share="total" style="font-size:40px;letter-spacing:-1.92px">8h 10m</div><div class="d-sub" data-share="norm" style="font-size:12.5px">von 8 Std. · Soll erreicht</div></div></div>
+<div class="d-line" data-share="line" style="margin-top:16px;font-size:16px;letter-spacing:-0.352px">Hauptsächlich <span class="tk" style="background:#e3e4ff;color:#4f46e5"><i style="background:#5b5bf0"></i>Auth-API-Refactoring</span> und <span class="tk" style="background:#fde8cf;color:#c2410c"><i style="background:#f08a3c"></i>Code-Review</span><br><span class="d-warn num" >3h 10m</span> noch ohne Aufgabe.</div>
+<div class="cta" data-share="cta" style="margin-top:22px;height:54px;width:316px;font-size:16.5px;border-radius:17px;padding:0"><svg width="20" height="20" viewBox="0 0 24 24"><defs><linearGradient id="sg20" x1="0" x2="1"><stop offset="0" stop-color="#a5b4fc"/><stop offset=".5" stop-color="#f0abfc"/><stop offset="1" stop-color="#fcd34d"/></linearGradient></defs><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z" fill="url(#sg20)"/></svg>Meinen Tag sortieren<small>Enter</small></div>
+<div class="d-hint" data-in="fade" data-at=".55" data-dur=".3" style="margin-top:10px;max-width:300px;font-size:12px;line-height:1.45">Die KI schlägt vor, Sie bestätigen. Nur Fenstertitel und Dauern verlassen diesen PC.</div><div style="width:316px;margin-top:22px" data-in="up" data-at=".5" data-dur=".35">
+<div style="display:flex;justify-content:space-between;font-size:12.5px;font-weight:700;padding-bottom:4px"><span>Noch zu sortieren</span><span style="color:var(--muted);font-weight:600">4 Aktivitäten · KI bereit</span></div>
+<div class="qrow"><i style="width:8px;height:8px;border-radius:50%;background:#f24e1e;flex:none"></i><span class="an">Figma</span><span class="w">Onboarding v3 – Screens</span><span class="d num">45m</span></div><div class="qrow"><i style="width:8px;height:8px;border-radius:50%;background:#2eb67d;flex:none"></i><span class="an">Slack</span><span class="w">#incident-billing · Grafana</span><span class="d num">45m</span></div><div class="qrow"><i style="width:8px;height:8px;border-radius:50%;background:#1868db;flex:none"></i><span class="an">Confluence</span><span class="w">Release 4.2 – Entwurf der Notes</span><span class="d num">1h 25m</span></div><div class="qrow"><i style="width:8px;height:8px;border-radius:50%;background:#2eb67d;flex:none"></i><span class="an">Slack</span><span class="w">DMs · Chrome-Tabs</span><span class="d num">15m</span></div></div></div>
+<div class="pane" style="position:absolute;left:380px;top:52px;right:0;bottom:0;padding:18px 24px 20px">
+<div class="a-hdr" data-in="right" data-at=".2" data-dur=".45"><span class="a-h1" style="font-size:24px">Tag im Detail</span><span class="navb"><span><svg class="i" viewBox="0 0 24 24" style="width:16px;height:16px;"><path d="M15 6l-6 6 6 6"/></svg></span><span style="opacity:.35"><svg class="i" viewBox="0 0 24 24" style="width:16px;height:16px;"><path d="M9 6l6 6-6 6"/></svg></span></span><span class="pill-ok" style="margin-left:auto"><i></i>Aufzeichnung · lokal gespeichert</span></div>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:14px" data-stg="in,right,.24,.04,.45"><div class="card kpi"><div class="kl">Automatisch</div><div class="kv num">5h 00m</div><div class="ks">Git-Branch · Titel · Kalender</div></div><div class="card kpi"><div class="kl">Nicht zugeordnet</div><div class="kv num" style="color:var(--warn)">3h 10m</div><div class="ks">4 Aktivitäten</div></div><div class="card kpi"><div class="kl">Mit Aufgabe</div><div class="kv num">61%</div><div class="kbar"><i style="width:61%"></i></div></div><div class="card kpi"><div class="kl">Diese Woche</div><div class="kv num">30h 45m</div><div class="ks">von 40 Std. · im Plan</div></div></div>
+<div class="card tl" data-in="right" data-at=".3" data-dur=".5" style="margin-top:14px;height:548px"><div class="tlgrid" style="width:810px">
+<div class="g" data-in="fade" data-at="0.4" data-dur=".3"><div class="hour" style="left:58px">9:00</div><div class="vline" style="left:58px"></div><div class="hour" style="left:136.31578947368422px">10:00</div><div class="vline" style="left:136.31578947368422px"></div><div class="hour" style="left:214.6315789473684px">11:00</div><div class="vline" style="left:214.6315789473684px"></div><div class="hour" style="left:292.9473684210526px">12:00</div><div class="vline" style="left:292.9473684210526px"></div><div class="hour" style="left:371.2631578947368px">13:00</div><div class="vline" style="left:371.2631578947368px"></div><div class="hour" style="left:449.57894736842104px">14:00</div><div class="vline" style="left:449.57894736842104px"></div><div class="hour" style="left:527.8947368421052px">15:00</div><div class="vline" style="left:527.8947368421052px"></div><div class="hour" style="left:606.2105263157895px">16:00</div><div class="vline" style="left:606.2105263157895px"></div><div class="hour" style="left:684.5263157894736px">17:00</div><div class="vline" style="left:684.5263157894736px"></div><div class="hour" style="left:762.8421052631578px">18:00</div><div class="vline" style="left:762.8421052631578px"></div><div class="lane-l" style="top:40px">Aktivität</div><div class="lane-l" style="top:114px">Arbeit</div></div>
+<div class="g" data-stg="in,growx,0.46,.018,.3"><div class="app" style="left:59px;width:115.4736842105263px;background:#2f80ed">VS Code</div><div class="app" style="left:176.4736842105263px;width:17.57894736842105px;background:#6264a7"></div><div class="app" style="left:196.05263157894737px;width:115.4736842105263px;background:#e7a400">Chrome · GitHub</div><div class="app" style="left:313.52631578947364px;width:56.73684210526315px;background:#f24e1e"></div><div class="app" style="left:431px;width:135.05263157894737px;background:#2f80ed">VS Code</div><div class="app" style="left:568.0526315789473px;width:23.844210526315795px;background:#2eb67d"></div><div class="app" style="left:593.8968421052631px;width:30.89263157894736px;background:#f46800"></div><div class="app" style="left:626.7894736842105px;width:109.2084210526317px;background:#1868db">Confluence</div><div class="app" style="left:737.9978947368422px;width:10.530526315789206px;background:#2eb67d"></div><div class="app" style="left:750.5284210526314px;width:5.048421052631846px;background:#e7a400"></div></div>
+<div class="g wk" data-stg="in,growx,0.5,.022,.32"><div class="blk away" style="left:373.2631578947368px;width:54.73684210526315px">Abwesend</div><div class="blk" style="left:60px;width:113.4736842105263px;background:#e3e4ff;box-shadow:inset 3px 0 0 #4f46e5"><div class="k" style="color:#4f46e5">CASE-1423</div><div class="t">Auth-API-Refactoring</div></div><div class="blk" style="left:177.4736842105263px;width:15.578947368421051px;background:#ede4ff;box-shadow:inset 3px 0 0 #7c3aed"><div class="k" style="color:#7c3aed"></div></div><div class="blk" style="left:197.05263157894737px;width:113.4736842105263px;background:#fde8cf;box-shadow:inset 3px 0 0 #c2410c"><div class="k" style="color:#c2410c">CASE-1388</div><div class="t">Code-Review</div></div><div class="blk un" style="left:314.52631578947364px;width:54.73684210526315px">?</div><div class="blk" style="left:432px;width:133.05263157894737px;background:#e3e4ff;box-shadow:inset 3px 0 0 #4f46e5"><div class="k" style="color:#4f46e5">CASE-1423</div><div class="t">Auth-API-Refactoring</div></div><div class="blk un" style="left:569.0526315789473px;width:54.73684210526315px">?</div><div class="blk un" style="left:627.7894736842105px;width:107.2084210526317px">Offen</div><div class="blk un" style="left:738.9978947368422px;width:15.578947368421051px">?</div></div>
+<div class="g" data-in="fade" data-at="0.72" data-dur=".2"><div class="now" style="left:756.5768421052633px"></div><div class="nowtag" style="left:756.5768421052633px">17:55</div></div></div><div class="sep" data-in="fade" data-at="0.5"></div>
+<div class="feedh" data-in="up" data-at="0.5" data-dur=".3">Aktivität <span>Fenster · Titel · Domain · Leerlauf – keine Screenshots</span><span style="margin-left:auto;color:var(--accent);font-weight:600">Regeln · 3</span></div>
+<div data-stg="in,up,0.53,.025,.3" style="margin-top:4px"><div class="fr"><span class="tm num">17:40</span><span class="dot" style="background:#2eb67d"></span><span class="an">Slack</span><span class="w">DMs · Chrome-Tabs – gemischt</span><span class="ar">→</span><span class="to" style=""><span class="unchip">? Offen</span></span></div><div class="fr"><span class="tm num">16:15</span><span class="dot" style="background:#1868db"></span><span class="an">Confluence</span><span class="w">Release 4.2 – Entwurf der Notes</span><span class="ar">→</span><span class="to" style=""><span class="unchip">? Offen</span></span></div><div class="fr"><span class="tm num">15:30</span><span class="dot" style="background:#2eb67d"></span><span class="an">Slack</span><span class="w">#incident-billing · Grafana-Alerts</span><span class="ar">→</span><span class="to" style=""><span class="unchip">? Offen</span></span></div><div class="fr"><span class="tm num">13:45</span><span class="dot" style="background:#2f80ed"></span><span class="an">VS Code</span><span class="w">auth-service · feature/CASE-1423-token-refresh</span><span class="ar">→</span><span class="to" style=""><span class="chip" style="background:#e3e4ff;color:#4f46e5">CASE-1423</span><span class="via">Git-Branch</span></span></div><div class="fr"><span class="tm num">13:00</span><span class="dot" style="background:#9ca3af"></span><span class="an">Abwesend</span><span class="w">Bildschirm gesperrt · 45 min</span><span class="ar">→</span><span class="to" style=""><span class="via">Mittag · nicht erfasst</span></span></div><div class="fr"><span class="tm num">12:15</span><span class="dot" style="background:#f24e1e"></span><span class="an">Figma</span><span class="w">Onboarding v3 – Screens</span><span class="ar">→</span><span class="to" style=""><span class="unchip">? Offen</span></span></div><div class="fr"><span class="tm num">10:45</span><span class="dot" style="background:#e7a400"></span><span class="an">Chrome</span><span class="w">github.com/acme/billing/pull/412 · CASE-1388</span><span class="ar">→</span><span class="to" style=""><span class="chip" style="background:#fde8cf;color:#c2410c">CASE-1388</span><span class="via">Schlüssel im Titel</span></span></div></div></div>
+</div></div>
+<div class="chrome"><div class="tb"><div class="logo"><img src="/img/mark.svg" width="22" height="22" alt=""></div><span class="appname">Zeiterfassung &amp; Stundenzettel</span><span class="rec"><i></i>Aufzeichnung</span><div class="seg" data-anim="seg"><span class="on" data-go="today">Heute</span><span class="" data-go="week">Woche<i class="dot"></i></span></div><div class="tbr"><div class="tg" data-toggle><span class="thumb"></span><span data-opt="0">Einfach</span><span data-opt="1"><svg class="i" viewBox="0 0 24 24" style="width:14px;height:14px;"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>Details <kbd>D</kbd></span></div><div class="caps"><span>&#x2014;</span><span>&#x2610;</span><span>&#x2715;</span></div></div></div></div><div class="fx"></div><div class="sheen"></div><div class="rim"></div></div>
+<!-- /H4:today-desk -->
+								</div>
+							</div>
+						</div>
+						<p class="stage-hint" aria-hidden="true"><span></span>Scrollen, um die Details zu öffnen</p>
+					</div>
+				</div>
+				<div class="tt tt-mob" role="img" aria-label="Timesheet Tracker, Ansicht Heute: 8 Std. 10 Min. von 8 Stunden, 3 Std. 10 Min. noch ohne Aufgabe, ein Button „Meinen Tag sortieren“, Kennzahlen, die Zeitleiste des Tages und die Live-Erfassung mit Jira-Schlüsseln.">
+					<div class="tt-mob-in" aria-hidden="true">
+<!-- H4:today-mob -->
+<div class="m-app">
+<div class="m-bar"><div class="logo"><img src="/img/mark.svg" width="22" height="22" alt=""></div><span class="appname">Zeiterfassung &amp; Stundenzettel</span><span class="rec"><i></i>Aufzeichnung</span></div>
+<div class="m-d"><div class="d-date" style="font-size:14px">Freitag, 16. Oktober</div>
+<div class="d-ring" style="width:232px;height:232px;margin-top:12px"><div style="width:232px;height:232px;filter:drop-shadow(0 14px 30px rgba(91,91,240,.18))"><svg width="232" height="232" viewBox="0 0 232 232"><circle cx="116" cy="116" r="106" fill="none" stroke="rgba(22,24,40,.07)" stroke-width="18"/><path d="M 124.09 10.31 A 106 106 0 0 1 185.70 195.86" fill="none" stroke="#5b5bf0" stroke-width="18" stroke-linecap="round"/><path d="M 172.73 205.54 A 106 106 0 0 1 71.19 212.06" fill="none" stroke="#f08a3c" stroke-width="18" stroke-linecap="round"/><path d="M 57.08 204.12 A 106 106 0 0 1 53.65 201.72" fill="none" stroke="#a66cf0" stroke-width="18" stroke-linecap="round"/><circle cx="41.33" cy="191.23" r="4.32" fill="#d97706"/><circle cx="30.78" cy="179.04" r="4.32" fill="#d97706"/><circle cx="22.21" cy="165.39" r="4.32" fill="#d97706"/><circle cx="15.80" cy="150.59" r="4.32" fill="#d97706"/><circle cx="11.72" cy="135.00" r="4.32" fill="#d97706"/><circle cx="10.04" cy="118.96" r="4.32" fill="#d97706"/><circle cx="10.82" cy="102.86" r="4.32" fill="#d97706"/><circle cx="14.03" cy="87.06" r="4.32" fill="#d97706"/><circle cx="19.59" cy="71.93" r="4.32" fill="#d97706"/><circle cx="27.39" cy="57.82" r="4.32" fill="#d97706"/><circle cx="37.24" cy="45.06" r="4.32" fill="#d97706"/><circle cx="48.91" cy="33.94" r="4.32" fill="#d97706"/><circle cx="62.13" cy="24.71" r="4.32" fill="#d97706"/><circle cx="76.60" cy="17.60" r="4.32" fill="#d97706"/><circle cx="91.97" cy="12.76" r="4.32" fill="#d97706"/><circle cx="107.91" cy="10.31" r="4.32" fill="#d97706"/></svg></div>
+<div class="d-mid"><div class="d-big num" style="font-size:44px;letter-spacing:-2.112px">8h 10m</div><div class="d-sub" style="font-size:13px">von 8 Std. · Soll erreicht</div></div></div>
+<div class="d-line" style="margin-top:18px;font-size:18px;letter-spacing:-0.39599999999999996px">Hauptsächlich <span class="tk" style="background:#e3e4ff;color:#4f46e5"><i style="background:#5b5bf0"></i>Auth-API-Refactoring</span> und <span class="tk" style="background:#fde8cf;color:#c2410c"><i style="background:#f08a3c"></i>Code-Review</span><br><span class="d-warn num" >3h 10m</span> noch ohne Aufgabe.</div>
+<div class="cta" style="margin-top:22px;height:56px;width:100%;font-size:17px;border-radius:18px;padding:0"><svg width="20" height="20" viewBox="0 0 24 24"><defs><linearGradient id="sg20m" x1="0" x2="1"><stop offset="0" stop-color="#a5b4fc"/><stop offset=".5" stop-color="#f0abfc"/><stop offset="1" stop-color="#fcd34d"/></linearGradient></defs><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z" fill="url(#sg20m)"/></svg>Meinen Tag sortieren<small>Enter</small></div>
+<div class="d-hint" style="margin-top:12px;">Die KI schlägt vor, Sie bestätigen. Nur Fenstertitel und Dauern verlassen diesen PC.</div></div>
+<div class="m-peek"><div class="peek"><span class="ms"><i style="flex:195;background:#5b5bf0"></i><i style="flex:15;background:#a66cf0"></i><i style="flex:90;background:#f08a3c"></i><i style="flex:190;background:#d97706"></i></span>9 Aktivitäten · 6 Programme · 45m abwesend<span style="color:var(--accent)">Details unten ›</span></div></div>
+</div>
+<div class="m-panel reveal"><div class="m-h"><b>Noch zu sortieren</b><span>4 Aktivitäten · KI bereit</span></div><div class="qrow"><i style="width:8px;height:8px;border-radius:50%;background:#f24e1e;flex:none"></i><span class="an">Figma</span><span class="w">Onboarding v3 – Screens</span><span class="d num">45m</span></div><div class="qrow"><i style="width:8px;height:8px;border-radius:50%;background:#2eb67d;flex:none"></i><span class="an">Slack</span><span class="w">#incident-billing · Grafana</span><span class="d num">45m</span></div><div class="qrow"><i style="width:8px;height:8px;border-radius:50%;background:#1868db;flex:none"></i><span class="an">Confluence</span><span class="w">Release 4.2 – Entwurf der Notes</span><span class="d num">1h 25m</span></div><div class="qrow"><i style="width:8px;height:8px;border-radius:50%;background:#2eb67d;flex:none"></i><span class="an">Slack</span><span class="w">DMs · Chrome-Tabs</span><span class="d num">15m</span></div></div>
+<div class="m-kpis reveal"><div class="card kpi"><div class="kl">Automatisch</div><div class="kv num">5h 00m</div><div class="ks">Git-Branch · Titel · Kalender</div></div><div class="card kpi"><div class="kl">Nicht zugeordnet</div><div class="kv num" style="color:var(--warn)">3h 10m</div><div class="ks">4 Aktivitäten</div></div><div class="card kpi"><div class="kl">Mit Aufgabe</div><div class="kv num">61%</div><div class="kbar"><i style="width:61%"></i></div></div><div class="card kpi"><div class="kl">Diese Woche</div><div class="kv num">30h 45m</div><div class="ks">von 40 Std. · im Plan</div></div></div>
+<div class="m-panel reveal"><div class="m-h"><b>Tag im Detail</b><span class="pill-ok"><i></i>Lokal gespeichert</span></div><div class="m-tl">
+<div class="m-hours"><span style="left:0.00%">9:00</span><span style="left:21.05%">11:00</span><span style="left:42.11%">13:00</span><span style="left:63.16%">15:00</span><span style="left:84.21%">17:00</span></div>
+<div class="m-lane"><b>Aktivität</b><div class="m-trk"><i style="left:0.00%;width:calc(15.79% - 2px);background:#2f80ed"></i><i style="left:15.79%;width:calc(2.63% - 2px);background:#6264a7"></i><i style="left:18.42%;width:calc(15.79% - 2px);background:#e7a400"></i><i style="left:34.21%;width:calc(7.90% - 2px);background:#f24e1e"></i><i style="left:50.00%;width:calc(18.42% - 2px);background:#2f80ed"></i><i style="left:68.42%;width:calc(3.47% - 2px);background:#2eb67d"></i><i style="left:71.89%;width:calc(4.43% - 2px);background:#f46800"></i><i style="left:76.32%;width:calc(14.94% - 2px);background:#1868db"></i><i style="left:91.26%;width:calc(1.69% - 2px);background:#2eb67d"></i><i style="left:92.95%;width:calc(0.94% - 2px);background:#e7a400"></i></div></div>
+<div class="m-lane"><b>Arbeit</b><div class="m-trk tall"><i class="away" style="left:42.11%;width:calc(7.89% - 2px)"></i><i class="" style="left:0.00%;width:calc(15.79% - 3px);background:#e3e4ff;box-shadow:inset 3px 0 0 #4f46e5"></i><i class="" style="left:15.79%;width:calc(2.63% - 3px);background:#ede4ff;box-shadow:inset 3px 0 0 #7c3aed"></i><i class="" style="left:18.42%;width:calc(15.79% - 3px);background:#fde8cf;box-shadow:inset 3px 0 0 #c2410c"></i><i class="un" style="left:34.21%;width:calc(7.90% - 3px);"></i><i class="" style="left:50.00%;width:calc(18.42% - 3px);background:#e3e4ff;box-shadow:inset 3px 0 0 #4f46e5"></i><i class="un" style="left:68.42%;width:calc(7.90% - 3px);"></i><i class="un" style="left:76.32%;width:calc(14.94% - 3px);"></i><i class="un" style="left:91.26%;width:calc(2.63% - 3px);"></i><span class="m-now" style="left:93.89%"></span></div></div>
+<div class="m-legend"><span><i style="background:#5b5bf0"></i>CASE-1423</span><span><i style="background:#f08a3c"></i>CASE-1388</span><span><i class="un"></i>Offen · 3h 10m</span></div></div></div>
+<div class="m-panel m-feed reveal"><div class="sep"></div>
+<div class="feedh">Aktivität <span>Fenster · Titel · Domain · Leerlauf – keine Screenshots</span><span style="margin-left:auto;color:var(--accent);font-weight:600">Regeln · 3</span></div>
+<div style="margin-top:4px"><div class="fr"><span class="tm num">17:40</span><span class="dot" style="background:#2eb67d"></span><span class="an">Slack</span><span class="w">DMs · Chrome-Tabs – gemischt</span><span class="ar">→</span><span class="to" style=""><span class="unchip">? Offen</span></span></div><div class="fr"><span class="tm num">16:15</span><span class="dot" style="background:#1868db"></span><span class="an">Confluence</span><span class="w">Release 4.2 – Entwurf der Notes</span><span class="ar">→</span><span class="to" style=""><span class="unchip">? Offen</span></span></div><div class="fr"><span class="tm num">15:30</span><span class="dot" style="background:#2eb67d"></span><span class="an">Slack</span><span class="w">#incident-billing · Grafana-Alerts</span><span class="ar">→</span><span class="to" style=""><span class="unchip">? Offen</span></span></div><div class="fr"><span class="tm num">13:45</span><span class="dot" style="background:#2f80ed"></span><span class="an">VS Code</span><span class="w">auth-service · feature/CASE-1423-token-refresh</span><span class="ar">→</span><span class="to" style=""><span class="chip" style="background:#e3e4ff;color:#4f46e5">CASE-1423</span><span class="via">Git-Branch</span></span></div><div class="fr"><span class="tm num">13:00</span><span class="dot" style="background:#9ca3af"></span><span class="an">Abwesend</span><span class="w">Bildschirm gesperrt · 45 min</span><span class="ar">→</span><span class="to" style=""><span class="via">Mittag · nicht erfasst</span></span></div><div class="fr"><span class="tm num">12:15</span><span class="dot" style="background:#f24e1e"></span><span class="an">Figma</span><span class="w">Onboarding v3 – Screens</span><span class="ar">→</span><span class="to" style=""><span class="unchip">? Offen</span></span></div></div></div>
+<!-- /H4:today-mob -->
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============ FRIDAY ============ -->
+		<section class="friday" aria-labelledby="friday-h">
+			<div class="wrap">
+				<h2 id="friday-h" class="clock reveal" data-px="0.08">Freitag, 17<span class="colon">:</span>42.</h2>
+				<p class="empty reveal" style="--rd:.1s">Ihr Stundenzettel ist noch leer.</p>
+				<div class="pains">
+					<div class="pain reveal" style="--rd:.05s"><b>Was war eigentlich am Dienstag?</b>Fünf Tage voller Tickets, Reviews, Calls und „kurzer Fragen“ – rekonstruiert aus dem Gedächtnis, dem Chatverlauf und offenen Browser-Tabs.</div>
+					<div class="pain reveal" style="--rd:.15s"><b>Jira will einen Worklog pro Vorgang.</b>Vorgang öffnen, Arbeit protokollieren, Beschreibung tippen, Datum wählen. Und das für jeden Vorgang, an jedem Tag der Woche.</div>
+					<div class="pain reveal" style="--rd:.25s"><b>Stoppuhren überleben keinen echten Arbeitstag.</b>Sie vergessen, sie zu starten, vergessen, sie zu stoppen – und wechseln vor dem Mittagessen zwanzigmal die Aufgabe.</div>
+				</div>
+				<p class="whatif reveal"><span class="grad">Und wenn er sich selbst ausfüllt?</span></p>
+			</div>
+		</section>
+
+		<!-- ============ HOW ============ -->
+		<section class="section" id="how" aria-labelledby="how-h">
+			<div class="wrap">
+				<div class="section-head reveal" data-px="0.05">
+					<span class="kicker">So funktioniert's</span>
+					<h2 id="how-h">Erfassen. Sortieren. Bestätigen.</h2>
+					<p>Keine Stoppuhr starten, keine Ticketnummern merken. Drei Schritte – und nur beim letzten braucht es Sie.</p>
+				</div>
+				<div class="steps">
+					<article class="step reveal">
+						<span class="num">1</span>
+						<h3>Die App erfasst Ihren Tag – ganz nebenbei</h3>
+						<p>Aus dem Infobereich der Taskleiste zeichnet sie das aktive Programm, den Fenstertitel, die Domain des Browser-Tabs sowie Leerlauf und Bildschirmsperre auf. Alles wird auf Ihrem PC gespeichert.</p>
+						<div class="viz" aria-hidden="true">
+							<div class="viz-row" style="--c:#2f80ed"><span class="dot"></span><b>VS Code</b><span class="m">feature/CASE-1423-token-refresh</span><span class="chip p-auth">CASE-1423</span></div>
+							<div class="viz-row" style="--c:#e7a400"><span class="dot"></span><b>Chrome</b><span class="m">pull/412 · CASE-1388</span><span class="chip p-review">CASE-1388</span></div>
+							<div class="viz-row" style="--c:#9ca3af"><span class="dot"></span><b>Abwesend</b><span class="m">Bildschirm gesperrt · 45 min</span><span class="chip grey">nicht erfasst</span></div>
+							<div class="viz-row" style="--c:#f24e1e"><span class="dot"></span><b>Figma</b><span class="m">Onboarding v3 – Screens</span><span class="chip grey">?</span></div>
+						</div>
+					</article>
+					<article class="step reveal" style="--rd:.1s">
+						<span class="num">2</span>
+						<h3>Ein Button: „Meinen Tag sortieren“</h3>
+						<p>Jira-Schlüssel in Fenstertiteln, URLs und Git-Branches werden lokal zugeordnet, ganz ohne KI. Für den Rest wählt die KI den passenden Vorgang und formuliert pro Vorgang einen Worklog-Text.</p>
+						<div class="viz" aria-hidden="true">
+							<div class="viz-ai">
+								<span class="sort-btn"><span><svg><use href="#spark"/></svg>Meinen Tag sortieren</span></span>
+								<div class="chips"><span class="chip p-onboard" style="--i:0">CASE-1501 · 88 %</span><span class="chip p-ops" style="--i:1">OPS-77 · 81 %</span><span class="chip p-notes" style="--i:2">CASE-1510 · 76 %</span></div>
+							</div>
+						</div>
+					</article>
+					<article class="step reveal" style="--rd:.2s">
+						<span class="num">3</span>
+						<h3>Sie prüfen. Ein Klick – ab nach Jira.</h3>
+						<p>Mit „Aufgabe ändern“ korrigieren Sie eine Zuordnung oder markieren einen Block als „Keine Arbeit“, dann „Tag bestätigen“. Die Worklogs gehen an Jira Cloud oder Server/Data Center – ohne Duplikate – oder in eine CSV-Datei.</p>
+						<div class="viz" aria-hidden="true">
+							<div class="viz-jira">
+								<div class="flow"><span class="chip p-auth" style="--i:0">CASE-1423</span><span class="chip p-review" style="--i:1">CASE-1388</span><span class="chip p-ops" style="--i:2">OPS-77</span></div>
+								<span class="tile j"><svg width="34" height="34"><use href="#jira"/></svg></span>
+								<span class="tile ok"><svg width="30" height="30" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><use href="#chk"/></svg></span>
+							</div>
+						</div>
+					</article>
+				</div>
+			</div>
+		</section>
+
+
+		<!-- ============ WEEK ============ -->
+		<section class="section week-sec" id="review" aria-labelledby="review-h">
+			<div class="wrap">
+				<div class="section-head reveal" data-px="0.05">
+					<span class="kicker">Freitag</span>
+					<h2 id="review-h">Prüfen statt erinnern.</h2>
+					<p>Am Freitag ist Ihre Woche schon sortiert. Kurz drüberschauen, die eine Frage beantworten, bei der sich die App nicht sicher war – und 38 Stunden mit einem Klick an Jira senden.</p>
+				</div>
+			</div>
+			<div class="stage" data-stage="week">
+				<div class="stage-track">
+					<div class="stage-sticky">
+						<div class="stage-cap">
+							<p class="cap" aria-live="polite"><span class="cap-a"><b>Ihre Woche in Sätzen.</b> Fünf Tagesringe und eine kurze Frage.</span><span class="cap-b"><b>Jeder Worklog sendebereit.</b> Entwürfe, KI-Sicherheit und die Aufteilung nach Projekt.</span></p>
+							<div class="modes" role="group" aria-label="Wochenansicht"><button type="button" data-mode="0" aria-pressed="true">Einfach</button><button type="button" data-mode="1" aria-pressed="false">Details</button><span class="modes-thumb" aria-hidden="true"></span></div>
+						</div>
+						<div class="stage-win">
+							<div class="tt-frame" role="img" aria-label="Wochenansicht. Einfacher Modus: Ihre Woche ist sortiert, 38 Std. 20 Min. auf sechs Aufgaben in kurzen Sätzen, dazu eine kurze Frage. Detailmodus: Worklog-Entwürfe pro Jira-Vorgang mit KI-Sicherheit, ein Ringdiagramm nach Projekt und ein Button „38h 20m bestätigen → Jira“.">
+								<div class="tt tt-desk" aria-hidden="true">
+<!-- H4:week-desk -->
+<div class="win" data-scene="week"><div class="tint"></div>
+<div class="layer L-s"><div class="d-col" style="top:96px"><div class="w-h" data-out="recede" data-at="0" data-dur=".3" style="">Ihre Woche ist sortiert</div>
+<div class="w-sub" style="margin-top:8px"><span class="w-tot num" data-share="wtotal">38h 20m</span> <span data-out="fade" data-at="0" data-dur=".2">verteilt auf 6 Aufgaben · 12.–16. Okt. · 1 kurze Frage</span></div>
+<div class="drow" style="margin-top:22px;gap:30px"><div class="dd"><div data-share="day0" style="width:76px;height:76px"><svg width="76" height="76" viewBox="0 0 76 76"><circle cx="38" cy="38" r="33" fill="none" stroke="rgba(22,24,40,.07)" stroke-width="8"/><path d="M 41.59 5.20 A 33 33 0 0 1 48.19 69.39" fill="none" stroke="#5b5bf0" stroke-width="8" stroke-linecap="round"/><path d="M 41.16 70.85 A 33 33 0 0 1 11.84 58.11" fill="none" stroke="#f08a3c" stroke-width="8" stroke-linecap="round"/><path d="M 8.10 51.97 A 33 33 0 0 1 5.44 32.61" fill="none" stroke="#a66cf0" stroke-width="8" stroke-linecap="round"/><path d="M 7.38 25.69 A 33 33 0 0 1 34.41 5.20" fill="none" stroke="#f0609e" stroke-width="8" stroke-linecap="round"/></svg></div><span data-out="fade" data-at="0" data-dur=".2">Mo · 7:40</span></div><div class="dd"><div data-share="day1" style="width:76px;height:76px"><svg width="76" height="76" viewBox="0 0 76 76"><circle cx="38" cy="38" r="33" fill="none" stroke="rgba(22,24,40,.07)" stroke-width="8"/><path d="M 41.59 5.20 A 33 33 0 0 1 53.03 67.38" fill="none" stroke="#5b5bf0" stroke-width="8" stroke-linecap="round"/><path d="M 46.31 69.94 A 33 33 0 0 1 27.59 69.32" fill="none" stroke="#f08a3c" stroke-width="8" stroke-linecap="round"/><path d="M 21.06 66.32 A 33 33 0 0 1 11.82 58.10" fill="none" stroke="#a66cf0" stroke-width="8" stroke-linecap="round"/><path d="M 8.09 51.95 A 33 33 0 0 1 5.26 42.13" fill="none" stroke="#f0609e" stroke-width="8" stroke-linecap="round"/><path d="M 5.14 34.95 A 33 33 0 0 1 34.41 5.20" fill="none" stroke="#23b39a" stroke-width="8" stroke-linecap="round"/></svg></div><span data-out="fade" data-at="0" data-dur=".2">Di · 7:55</span></div><div class="dd"><div data-share="day2" style="width:76px;height:76px"><svg width="76" height="76" viewBox="0 0 76 76"><circle cx="38" cy="38" r="33" fill="none" stroke="rgba(22,24,40,.07)" stroke-width="8"/><path d="M 41.59 5.20 A 33 33 0 0 1 60.19 62.43" fill="none" stroke="#5b5bf0" stroke-width="8" stroke-linecap="round"/><path d="M 54.37 66.65 A 33 33 0 0 1 27.94 69.43" fill="none" stroke="#f08a3c" stroke-width="8" stroke-linecap="round"/><path d="M 21.38 66.51 A 33 33 0 0 1 7.91 51.55" fill="none" stroke="#a66cf0" stroke-width="8" stroke-linecap="round"/><path d="M 5.69 44.72 A 33 33 0 0 1 34.41 5.20" fill="none" stroke="#f0609e" stroke-width="8" stroke-linecap="round"/></svg></div><span data-out="fade" data-at="0" data-dur=".2">Mi · 7:30</span></div><div class="dd"><div data-share="day3" style="width:76px;height:76px"><svg width="76" height="76" viewBox="0 0 76 76"><circle cx="38" cy="38" r="33" fill="none" stroke="rgba(22,24,40,.07)" stroke-width="8"/><path d="M 41.59 5.20 A 33 33 0 0 1 43.82 70.48" fill="none" stroke="#5b5bf0" stroke-width="8" stroke-linecap="round"/><path d="M 36.65 70.97 A 33 33 0 0 1 13.27 59.85" fill="none" stroke="#f08a3c" stroke-width="8" stroke-linecap="round"/><path d="M 9.13 53.98 A 33 33 0 0 1 5.15 34.84" fill="none" stroke="#a66cf0" stroke-width="8" stroke-linecap="round"/><path d="M 6.61 27.81 A 33 33 0 0 1 7.22 26.10" fill="none" stroke="#f0609e" stroke-width="8" stroke-linecap="round"/><path d="M 10.53 19.72 A 33 33 0 0 1 12.98 16.48" fill="none" stroke="#23b39a" stroke-width="8" stroke-linecap="round"/><path d="M 18.24 11.57 A 33 33 0 0 1 34.41 5.20" fill="none" stroke="#3aa0e8" stroke-width="8" stroke-linecap="round"/></svg></div><span data-out="fade" data-at="0" data-dur=".2">Do · 7:40</span></div><div class="dd"><div data-share="day4" style="width:76px;height:76px"><svg width="76" height="76" viewBox="0 0 76 76"><circle cx="38" cy="38" r="33" fill="none" stroke="rgba(22,24,40,.07)" stroke-width="8"/><path d="M 41.59 5.20 A 33 33 0 0 1 68.50 50.59" fill="none" stroke="#5b5bf0" stroke-width="8" stroke-linecap="round"/><path d="M 65.05 56.90 A 33 33 0 0 1 49.34 68.99" fill="none" stroke="#f08a3c" stroke-width="8" stroke-linecap="round"/><path d="M 42.36 70.71 A 33 33 0 0 1 42.33 70.71" fill="none" stroke="#a66cf0" stroke-width="8" stroke-linecap="round"/><path d="M 35.54 70.91 A 33 33 0 0 1 22.83 67.30" fill="none" stroke="#f0609e" stroke-width="8" stroke-linecap="round"/><path d="M 16.84 63.33 A 33 33 0 0 1 8.60 52.99" fill="none" stroke="#23b39a" stroke-width="8" stroke-linecap="round"/><path d="M 6.05 46.27 A 33 33 0 0 1 17.73 11.96" fill="none" stroke="#3aa0e8" stroke-width="8" stroke-linecap="round"/><circle cx="23.85" cy="8.19" r="1.92" fill="#d97706"/><circle cx="34.41" cy="5.20" r="1.92" fill="#d97706"/></svg></div><span data-out="fade" data-at="0" data-dur=".2">Fr · 7:35</span></div></div>
+<div class="stack" data-out="recede" data-at=".02" data-dur=".28" style="width:900px;margin-top:22px"><i style="flex:980;background:#5b5bf0"></i><i style="flex:360;background:#f08a3c"></i><i style="flex:335;background:#f0609e"></i><i style="flex:240;background:#a66cf0"></i><i style="flex:190;background:#23b39a"></i><i style="flex:155;background:#3aa0e8"></i><i style="flex:40;background:repeating-linear-gradient(90deg,#d97706 0 3px,transparent 3px 6px)"></i></div>
+<div class="sents" data-out="recede" data-at=".04" data-dur=".3" style="width:900px;margin-top:16px;"><div class="sn"><span class="h num">16h 20m</span><span style="min-width:0"><div class="t"><i style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#5b5bf0;flex:none"></i> <span style="margin-left:4px">Auth-API-Refactoring</span><em>CASE-1423</em></div><div class="w">Token-Refresh überarbeitet, Integrationstests für auth-service</div></span><span class="okc"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div><div class="sn"><span class="h num">6h 00m</span><span style="min-width:0"><div class="t"><i style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#f08a3c;flex:none"></i> <span style="margin-left:4px">Code-Review</span><em>CASE-1388</em></div><div class="w">PRs #412, #418, #421 in billing reviewt</div></span><span class="okc"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div><div class="sn"><span class="h num">5h 35m</span><span style="min-width:0"><div class="t"><i style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#f0609e;flex:none"></i> <span style="margin-left:4px">Onboarding-Flow</span><em>CASE-1501</em></div><div class="w">Onboarding-Screens mit dem Designteam abgestimmt</div></span><span class="okc"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div><div class="sn"><span class="h num">4h 00m</span><span style="min-width:0"><div class="t"><i style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#a66cf0;flex:none"></i> <span style="margin-left:4px">Meetings</span><em>TEAM-12</em></div><div class="w">Stand-ups, Sprint Planning, 1:1</div></span><span class="okc"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div><div class="sn"><span class="h num">3h 10m</span><span style="min-width:0"><div class="t"><i style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#23b39a;flex:none"></i> <span style="margin-left:4px">Incident-Nachbereitung</span><em>OPS-77</em></div><div class="w">Post-Mortem zum Billing-Incident, Alerts nachjustiert</div></span><span class="okc"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div><div class="sn"><span class="h num">2h 35m</span><span style="min-width:0"><div class="t"><i style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3aa0e8;flex:none"></i> <span style="margin-left:4px">Release Notes</span><em>CASE-1510</em></div><div class="w">Notes zu Release 4.2 in Confluence</div></span><span class="okc"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+<div class="sn q"><span class="h num" style="color:var(--warn)">0h 40m</span><span><div class="t">Fr 17:40 – was war das?</div><div class="w">Slack-DMs und Chrome-Tabs, gemischt</div></span><span style="margin-left:auto;display:flex;gap:8px"><span class="qb sel"><i style="background:#3aa0e8"></i>Release Notes</span><span class="qb"><i style="background:#23b39a"></i>Incident</span><span class="qb">Keine Arbeit</span></span></div></div>
+<div class="confirm" data-share="wcta" style="margin-top:20px;height:58px;font-size:17px;padding:0 34px;border-radius:18px">38h 20m bestätigen → Jira<small>nach 1 Antwort</small></div>
+<div class="d-hint" data-out="fade" data-at="0" data-dur=".2" style="margin-top:10px">oder als CSV speichern · geht an acme.atlassian.net</div></div></div><div class="panebg"></div>
+<div class="layer L-d"><div style="position:absolute;left:0;top:52px;width:380px;bottom:0;padding:24px 32px">
+<div data-in="fade" data-at=".4"><div class="wk-s">KW 42 · 12.–16. Okt.</div><div style="font-size:24px;font-weight:800;letter-spacing:-.8px;margin-top:2px">Ihre Woche ist sortiert</div></div>
+<div class="w-tot num" data-share="wtotal" style="font-size:52px;letter-spacing:-2.4px;line-height:1.1;margin-top:4px">38h 20m</div>
+<div style="display:flex;justify-content:space-between;margin-top:20px"><div class="dd" style="gap:6px;font-size:11.5px"><div data-share="day0" style="width:54px;height:54px"><svg width="54" height="54" viewBox="0 0 54 54"><circle cx="27" cy="27" r="23" fill="none" stroke="rgba(22,24,40,.07)" stroke-width="6"/><path d="M 29.69 4.16 A 23 23 0 0 1 34.28 48.82" fill="none" stroke="#5b5bf0" stroke-width="6" stroke-linecap="round"/><path d="M 29.01 49.91 A 23 23 0 0 1 8.88 41.17" fill="none" stroke="#f08a3c" stroke-width="6" stroke-linecap="round"/><path d="M 6.08 36.57 A 23 23 0 0 1 4.28 23.43" fill="none" stroke="#a66cf0" stroke-width="6" stroke-linecap="round"/><path d="M 5.73 18.24 A 23 23 0 0 1 24.31 4.16" fill="none" stroke="#f0609e" stroke-width="6" stroke-linecap="round"/></svg></div><span data-in="fade" data-at=".5">Mo</span></div><div class="dd" style="gap:6px;font-size:11.5px"><div data-share="day1" style="width:54px;height:54px"><svg width="54" height="54" viewBox="0 0 54 54"><circle cx="27" cy="27" r="23" fill="none" stroke="rgba(22,24,40,.07)" stroke-width="6"/><path d="M 29.69 4.16 A 23 23 0 0 1 37.64 47.39" fill="none" stroke="#5b5bf0" stroke-width="6" stroke-linecap="round"/><path d="M 32.61 49.31 A 23 23 0 0 1 19.93 48.89" fill="none" stroke="#f08a3c" stroke-width="6" stroke-linecap="round"/><path d="M 15.03 46.64 A 23 23 0 0 1 8.87 41.16" fill="none" stroke="#a66cf0" stroke-width="6" stroke-linecap="round"/><path d="M 6.08 36.55 A 23 23 0 0 1 4.21 30.07" fill="none" stroke="#f0609e" stroke-width="6" stroke-linecap="round"/><path d="M 4.12 24.68 A 23 23 0 0 1 24.31 4.16" fill="none" stroke="#23b39a" stroke-width="6" stroke-linecap="round"/></svg></div><span data-in="fade" data-at=".5">Di</span></div><div class="dd" style="gap:6px;font-size:11.5px"><div data-share="day2" style="width:54px;height:54px"><svg width="54" height="54" viewBox="0 0 54 54"><circle cx="27" cy="27" r="23" fill="none" stroke="rgba(22,24,40,.07)" stroke-width="6"/><path d="M 29.69 4.16 A 23 23 0 0 1 42.61 43.90" fill="none" stroke="#5b5bf0" stroke-width="6" stroke-linecap="round"/><path d="M 38.25 47.06 A 23 23 0 0 1 20.17 48.96" fill="none" stroke="#f08a3c" stroke-width="6" stroke-linecap="round"/><path d="M 15.25 46.77 A 23 23 0 0 1 6.11 36.62" fill="none" stroke="#a66cf0" stroke-width="6" stroke-linecap="round"/><path d="M 4.44 31.50 A 23 23 0 0 1 24.31 4.16" fill="none" stroke="#f0609e" stroke-width="6" stroke-linecap="round"/></svg></div><span data-in="fade" data-at=".5">Mi</span></div><div class="dd" style="gap:6px;font-size:11.5px"><div data-share="day3" style="width:54px;height:54px"><svg width="54" height="54" viewBox="0 0 54 54"><circle cx="27" cy="27" r="23" fill="none" stroke="rgba(22,24,40,.07)" stroke-width="6"/><path d="M 29.69 4.16 A 23 23 0 0 1 31.25 49.60" fill="none" stroke="#5b5bf0" stroke-width="6" stroke-linecap="round"/><path d="M 25.87 49.97 A 23 23 0 0 1 9.89 42.37" fill="none" stroke="#f08a3c" stroke-width="6" stroke-linecap="round"/><path d="M 6.79 37.97 A 23 23 0 0 1 4.09 24.99" fill="none" stroke="#a66cf0" stroke-width="6" stroke-linecap="round"/><path d="M 5.18 19.72 A 23 23 0 0 1 5.48 18.88" fill="none" stroke="#f0609e" stroke-width="6" stroke-linecap="round"/><path d="M 7.96 14.10 A 23 23 0 0 1 9.44 12.15" fill="none" stroke="#23b39a" stroke-width="6" stroke-linecap="round"/><path d="M 13.38 8.47 A 23 23 0 0 1 24.31 4.16" fill="none" stroke="#3aa0e8" stroke-width="6" stroke-linecap="round"/></svg></div><span data-in="fade" data-at=".5">Do</span></div><div class="dd" style="gap:6px;font-size:11.5px"><div data-share="day4" style="width:54px;height:54px"><svg width="54" height="54" viewBox="0 0 54 54"><circle cx="27" cy="27" r="23" fill="none" stroke="rgba(22,24,40,.07)" stroke-width="6"/><path d="M 29.69 4.16 A 23 23 0 0 1 48.33 35.60" fill="none" stroke="#5b5bf0" stroke-width="6" stroke-linecap="round"/><path d="M 45.75 40.33 A 23 23 0 0 1 35.08 48.53" fill="none" stroke="#f08a3c" stroke-width="6" stroke-linecap="round"/><path d="M 29.85 49.82 A 23 23 0 0 1 29.83 49.83" fill="none" stroke="#a66cf0" stroke-width="6" stroke-linecap="round"/><path d="M 25.10 49.92 A 23 23 0 0 1 16.59 47.51" fill="none" stroke="#f0609e" stroke-width="6" stroke-linecap="round"/><path d="M 12.11 44.53 A 23 23 0 0 1 6.60 37.62" fill="none" stroke="#23b39a" stroke-width="6" stroke-linecap="round"/><path d="M 4.69 32.58 A 23 23 0 0 1 12.72 8.97" fill="none" stroke="#3aa0e8" stroke-width="6" stroke-linecap="round"/><circle cx="17.31" cy="6.14" r="1.44" fill="#d97706"/><circle cx="24.31" cy="4.16" r="1.44" fill="#d97706"/></svg></div><span data-in="fade" data-at=".5">Fr</span></div></div>
+<div class="stack" data-in="fade" data-at=".45" style="margin-top:22px;height:12px;border-radius:6px"><i style="flex:980;background:#5b5bf0"></i><i style="flex:360;background:#f08a3c"></i><i style="flex:335;background:#f0609e"></i><i style="flex:240;background:#a66cf0"></i><i style="flex:190;background:#23b39a"></i><i style="flex:155;background:#3aa0e8"></i><i style="flex:40;background:repeating-linear-gradient(90deg,#d97706 0 3px,transparent 3px 6px)"></i></div>
+<div class="card" data-in="up" data-at=".42" style="margin-top:16px;padding:16px 18px;display:flex;align-items:center;gap:14px"><svg width="96" height="96" viewBox="0 0 96 96"><g transform="rotate(-90 48 48)"><circle cx="48" cy="48" r="38.400000000000006" fill="none" stroke="#5b5bf0" stroke-width="12.48" stroke-dasharray="100.30383890425314 241.27431579569614" stroke-dashoffset="0"/><circle cx="48" cy="48" r="38.400000000000006" fill="none" stroke="#f08a3c" stroke-width="12.48" stroke-dasharray="35.2646755158481 241.27431579569614" stroke-dashoffset="-102.80383890425314"/><circle cx="48" cy="48" r="38.400000000000006" fill="none" stroke="#f0609e" stroke-width="12.48" stroke-dasharray="32.642128605025306 241.27431579569614" stroke-dashoffset="-140.56851442010122"/><circle cx="48" cy="48" r="38.400000000000006" fill="none" stroke="#a66cf0" stroke-width="12.48" stroke-dasharray="22.676450343898725 241.27431579569614" stroke-dashoffset="-175.71064302512653"/><circle cx="48" cy="48" r="38.400000000000006" fill="none" stroke="#23b39a" stroke-width="12.48" stroke-dasharray="17.431356522253157 241.27431579569614" stroke-dashoffset="-200.88709336902525"/><circle cx="48" cy="48" r="38.400000000000006" fill="none" stroke="#3aa0e8" stroke-width="12.48" stroke-dasharray="13.75979084710126 241.27431579569614" stroke-dashoffset="-220.81844989127842"/><circle cx="48" cy="48" r="38.400000000000006" fill="none" stroke="#d97706" stroke-width="12.48" stroke-dasharray="1.6960750573164542 241.27431579569614" stroke-dashoffset="-237.0782407383797"/></g><text x="48" y="46" text-anchor="middle" font-size="17" font-weight="800" fill="#14161c" font-family="Inter">38h</text><text x="48" y="62" text-anchor="middle" font-size="10" fill="#767b89" font-family="Inter">7 Aufgaben</text></svg><div style="display:flex;flex-direction:column;gap:5px"><span style="display:flex;align-items:center;gap:7px;font-size:11.5px;font-weight:600;color:var(--ink2)"><i style="width:8px;height:8px;border-radius:3px;background:#5b5bf0"></i>CASE-1423</span><span style="display:flex;align-items:center;gap:7px;font-size:11.5px;font-weight:600;color:var(--ink2)"><i style="width:8px;height:8px;border-radius:3px;background:#f08a3c"></i>CASE-1388</span><span style="display:flex;align-items:center;gap:7px;font-size:11.5px;font-weight:600;color:var(--ink2)"><i style="width:8px;height:8px;border-radius:3px;background:#f0609e"></i>CASE-1501</span><span style="display:flex;align-items:center;gap:7px;font-size:11.5px;font-weight:600;color:var(--ink2)"><i style="width:8px;height:8px;border-radius:3px;background:#a66cf0"></i>TEAM-12</span><span style="display:flex;align-items:center;gap:7px;font-size:11.5px;font-weight:600;color:var(--ink2)"><i style="width:8px;height:8px;border-radius:3px;background:#23b39a"></i>OPS-77</span><span style="display:flex;align-items:center;gap:7px;font-size:11.5px;font-weight:600;color:var(--ink2)"><i style="width:8px;height:8px;border-radius:3px;background:#3aa0e8"></i>CASE-1510</span></div></div>
+<div class="cq" data-in="up" data-at=".48" style="margin-top:16px"><div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700"><span>Fr 17:40 – was war das?</span><span class="num" style="color:var(--warn)">0h 40m</span></div>
+<div style="display:flex;gap:6px;margin-top:9px"><span class="qb sel"><i style="background:#3aa0e8"></i>Release Notes</span><span class="qb"><i style="background:#23b39a"></i>Incident</span><span class="qb">Keine Arbeit</span></div></div>
+<div class="confirm" data-share="wcta" style="margin-top:18px;height:54px;border-radius:17px;font-size:15.5px">38h 20m bestätigen → Jira<small>nach 1 Antwort</small></div>
+<div class="d-hint" data-in="fade" data-at=".55" style="margin-top:10px">oder CSV exportieren · acme.atlassian.net</div></div>
+<div class="pane" style="position:absolute;left:380px;top:52px;right:0;bottom:0;padding:18px 24px 20px">
+<div class="a-hdr" data-in="right" data-at=".2" data-dur=".45"><span class="a-h1" style="font-size:24px">Worklogs</span><span style="margin-left:10px;font-size:14px;color:var(--muted);font-weight:500">14 Entwürfe · 6 Aufgaben · Jira Cloud</span><span class="pill-ok" style="margin-left:auto;background:rgba(147,51,234,.08);color:#9333ea"><i style="background:#9333ea;box-shadow:0 0 0 4px rgba(147,51,234,.14)"></i>KI-Zuordnung: 3 · Ø 82 %</span></div>
+<div style="margin-top:14px"><div class="rows" data-stg="in,up,0.26,.03,.32"><div class="card row"><span class="a" style="width:236px"><span class="chip" style="background:#e3e4ff;color:#4f46e5">CASE-1423</span><b>Auth-API-Refactoring</b></span><span class="txt">Token-Refresh überarbeitet, Integrationstests für auth-service</span><span class="h num">16h 20m</span><span class="st"><span class="tick"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span style="color:var(--muted)">auto</span></span></div><div class="card row"><span class="a" style="width:236px"><span class="chip" style="background:#fde8cf;color:#c2410c">CASE-1388</span><b>Code-Review</b></span><span class="txt">PRs #412, #418, #421 in billing reviewt</span><span class="h num">6h 00m</span><span class="st"><span class="tick"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span style="color:var(--muted)">auto</span></span></div><div class="card row"><span class="a" style="width:236px"><span class="chip" style="background:#fde2ee;color:#db2777">CASE-1501</span><b>Onboarding-Flow</b></span><span class="txt">Onboarding-Screens mit dem Designteam abgestimmt</span><span class="h num">5h 35m</span><span class="st"><span class="tick"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span style="color:#9333ea">KI 88 %</span></span></div><div class="card row"><span class="a" style="width:236px"><span class="chip" style="background:#ede4ff;color:#7c3aed">TEAM-12</span><b>Meetings</b></span><span class="txt">Stand-ups, Sprint Planning, 1:1</span><span class="h num">4h 00m</span><span class="st"><span class="tick"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span style="color:var(--muted)">auto</span></span></div><div class="card row"><span class="a" style="width:236px"><span class="chip" style="background:#d3f4ec;color:#0f766e">OPS-77</span><b>Incident-Nachbereitung</b></span><span class="txt">Post-Mortem zum Billing-Incident, Alerts nachjustiert</span><span class="h num">3h 10m</span><span class="st"><span class="tick"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span style="color:#9333ea">KI 81 %</span></span></div><div class="card row"><span class="a" style="width:236px"><span class="chip" style="background:#d9edfd;color:#0369a1">CASE-1510</span><b>Release Notes</b></span><span class="txt">Notes zu Release 4.2 in Confluence</span><span class="h num">2h 35m</span><span class="st"><span class="tick"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span style="color:#9333ea">KI 76 %</span></span></div>
+<div class="row pick"><span class="a" style="width:236px"><b style="color:var(--warn)">Unklar · Fr 17:40</b></span><span class="txt" style="display:flex;gap:6px"><span class="opt hi">CASE-1510 Release Notes</span><span class="opt">OPS-77</span><span class="opt">Keine Arbeit</span></span><span class="h num">0h 40m</span><span class="st" style="color:var(--warn)">Auswählen</span></div></div></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px" data-stg="in,right,.4,.05,.45">
+<div class="card" style="padding:16px 18px;display:flex;align-items:center;justify-content:space-between;height:96px"><div><div style="font-size:12px;color:var(--muted);font-weight:600">Ohne Änderungen bestätigt</div><div style="font-size:32px;font-weight:800;letter-spacing:-1px;color:var(--ok)">92%</div></div><svg width="110" height="40" viewBox="0 0 110 40"><polyline points="0,32 22,27 44,29 66,16 88,11 110,6" fill="none" stroke="#16a34a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="110" cy="6" r="3" fill="#16a34a"/></svg></div>
+<div class="card" style="padding:16px 18px;font-size:12.5px;color:var(--ink2);line-height:1.5;height:96px"><b style="color:var(--ink)">Datenschutz von Grund auf</b><br>Nur Titel und Dauern gingen an die KI. Niemals Screenshots. Rohdaten bleiben auf diesem PC.</div></div>
+</div></div>
+<div class="chrome"><div class="tb"><div class="logo"><img src="/img/mark.svg" width="22" height="22" alt=""></div><span class="appname">Zeiterfassung &amp; Stundenzettel</span><span class="rec"><i></i>Aufzeichnung</span><div class="seg" data-anim="seg"><span class="" data-go="today">Heute</span><span class="on" data-go="week">Woche</span></div><div class="tbr"><div class="tg" data-toggle><span class="thumb"></span><span data-opt="0">Einfach</span><span data-opt="1"><svg class="i" viewBox="0 0 24 24" style="width:14px;height:14px;"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>Details <kbd>D</kbd></span></div><div class="caps"><span>&#x2014;</span><span>&#x2610;</span><span>&#x2715;</span></div></div></div></div><div class="fx"></div><div class="sheen"></div><div class="rim"></div></div>
+<!-- /H4:week-desk -->
+								</div>
+							</div>
+							<div class="logged" aria-hidden="true">
+								<div class="ring"><svg viewBox="0 0 104 104" width="104" height="104"><circle cx="52" cy="52" r="46" fill="none" stroke="#eceef6" stroke-width="6"/><circle class="p" cx="52" cy="52" r="46" fill="none" stroke="#16a34a" stroke-width="6" stroke-linecap="round"/></svg><span class="sq"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><use href="#chk"/></svg></span></div>
+								<div><b>38h 20m erfasst</b><span>14 Worklogs · Jira Cloud · keine Duplikate</span></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tt tt-mob" role="img" aria-label="Wochenansicht: Ihre Woche ist sortiert, 38 Std. 20 Min. auf sechs Jira-Vorgängen, eine kurze Frage, ein Ringdiagramm nach Projekt und ein Button „38h 20m bestätigen → Jira“.">
+					<div class="tt-mob-in" aria-hidden="true">
+<!-- H4:week-mob -->
+<div class="m-app">
+<div class="m-bar"><div class="logo"><img src="/img/mark.svg" width="22" height="22" alt=""></div><span class="appname">KW 42 · 12.–16. Okt.</span><span class="rec"><i></i>Bereit</span></div>
+<div class="m-wk">
+<div class="w-h">Ihre Woche ist sortiert</div>
+<div class="m-wtot num">38h 20m</div>
+<div class="w-sub">verteilt auf 6 Aufgaben · 1 kurze Frage</div>
+<div class="m-drow"><div class="dd"><svg width="52" height="52" viewBox="0 0 52 52"><circle cx="26" cy="26" r="22" fill="none" stroke="rgba(22,24,40,.07)" stroke-width="6"/><path d="M 28.69 4.17 A 22 22 0 0 1 33.08 46.83" fill="none" stroke="#5b5bf0" stroke-width="6" stroke-linecap="round"/><path d="M 27.81 47.93 A 22 22 0 0 1 8.74 39.65" fill="none" stroke="#f08a3c" stroke-width="6" stroke-linecap="round"/><path d="M 5.94 35.04 A 22 22 0 0 1 4.25 22.70" fill="none" stroke="#a66cf0" stroke-width="6" stroke-linecap="round"/><path d="M 5.70 17.52 A 22 22 0 0 1 23.31 4.17" fill="none" stroke="#f0609e" stroke-width="6" stroke-linecap="round"/></svg><span>Mo</span></div><div class="dd"><svg width="52" height="52" viewBox="0 0 52 52"><circle cx="26" cy="26" r="22" fill="none" stroke="rgba(22,24,40,.07)" stroke-width="6"/><path d="M 28.69 4.17 A 22 22 0 0 1 36.29 45.45" fill="none" stroke="#5b5bf0" stroke-width="6" stroke-linecap="round"/><path d="M 31.25 47.36 A 22 22 0 0 1 19.35 46.97" fill="none" stroke="#f08a3c" stroke-width="6" stroke-linecap="round"/><path d="M 14.45 44.73 A 22 22 0 0 1 8.73 39.63" fill="none" stroke="#a66cf0" stroke-width="6" stroke-linecap="round"/><path d="M 5.94 35.03 A 22 22 0 0 1 4.21 29.05" fill="none" stroke="#f0609e" stroke-width="6" stroke-linecap="round"/><path d="M 4.12 23.67 A 22 22 0 0 1 23.31 4.17" fill="none" stroke="#23b39a" stroke-width="6" stroke-linecap="round"/></svg><span>Di</span></div><div class="dd"><svg width="52" height="52" viewBox="0 0 52 52"><circle cx="26" cy="26" r="22" fill="none" stroke="rgba(22,24,40,.07)" stroke-width="6"/><path d="M 28.69 4.17 A 22 22 0 0 1 41.01 42.08" fill="none" stroke="#5b5bf0" stroke-width="6" stroke-linecap="round"/><path d="M 36.66 45.25 A 22 22 0 0 1 19.58 47.04" fill="none" stroke="#f08a3c" stroke-width="6" stroke-linecap="round"/><path d="M 14.66 44.85 A 22 22 0 0 1 6.07 35.31" fill="none" stroke="#a66cf0" stroke-width="6" stroke-linecap="round"/><path d="M 4.40 30.19 A 22 22 0 0 1 23.31 4.17" fill="none" stroke="#f0609e" stroke-width="6" stroke-linecap="round"/></svg><span>Mi</span></div><div class="dd"><svg width="52" height="52" viewBox="0 0 52 52"><circle cx="26" cy="26" r="22" fill="none" stroke="rgba(22,24,40,.07)" stroke-width="6"/><path d="M 28.69 4.17 A 22 22 0 0 1 30.18 47.60" fill="none" stroke="#5b5bf0" stroke-width="6" stroke-linecap="round"/><path d="M 24.80 47.97 A 22 22 0 0 1 9.71 40.79" fill="none" stroke="#f08a3c" stroke-width="6" stroke-linecap="round"/><path d="M 6.61 36.39 A 22 22 0 0 1 4.07 24.19" fill="none" stroke="#a66cf0" stroke-width="6" stroke-linecap="round"/><path d="M 5.17 18.92 A 22 22 0 0 1 5.37 18.35" fill="none" stroke="#f0609e" stroke-width="6" stroke-linecap="round"/><path d="M 7.85 13.56 A 22 22 0 0 1 9.13 11.88" fill="none" stroke="#23b39a" stroke-width="6" stroke-linecap="round"/><path d="M 13.07 8.20 A 22 22 0 0 1 23.31 4.17" fill="none" stroke="#3aa0e8" stroke-width="6" stroke-linecap="round"/></svg><span>Do</span></div><div class="dd"><svg width="52" height="52" viewBox="0 0 52 52"><circle cx="26" cy="26" r="22" fill="none" stroke="rgba(22,24,40,.07)" stroke-width="6"/><path d="M 28.69 4.17 A 22 22 0 0 1 46.45 34.12" fill="none" stroke="#5b5bf0" stroke-width="6" stroke-linecap="round"/><path d="M 43.86 38.84 A 22 22 0 0 1 33.84 46.56" fill="none" stroke="#f08a3c" stroke-width="6" stroke-linecap="round"/><path d="M 28.61 47.84 A 22 22 0 0 1 28.59 47.85" fill="none" stroke="#a66cf0" stroke-width="6" stroke-linecap="round"/><path d="M 24.06 47.91 A 22 22 0 0 1 16.15 45.67" fill="none" stroke="#f0609e" stroke-width="6" stroke-linecap="round"/><path d="M 11.67 42.69 A 22 22 0 0 1 6.54 36.26" fill="none" stroke="#23b39a" stroke-width="6" stroke-linecap="round"/><path d="M 4.63 31.22 A 22 22 0 0 1 12.25 8.83" fill="none" stroke="#3aa0e8" stroke-width="6" stroke-linecap="round"/><circle cx="16.84" cy="6.00" r="1.44" fill="#d97706"/><circle cx="23.31" cy="4.17" r="1.44" fill="#d97706"/></svg><span>Fr</span></div></div>
+<div class="stack"><i style="flex:980;background:#5b5bf0"></i><i style="flex:360;background:#f08a3c"></i><i style="flex:335;background:#f0609e"></i><i style="flex:240;background:#a66cf0"></i><i style="flex:190;background:#23b39a"></i><i style="flex:155;background:#3aa0e8"></i><i style="flex:40;background:repeating-linear-gradient(90deg,#d97706 0 3px,transparent 3px 6px)"></i></div>
+</div>
+</div>
+<div class="m-sents reveal"><div class="sn"><span class="h num">16h 20m</span><span style="min-width:0"><div class="t"><i style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#5b5bf0;flex:none"></i> <span style="margin-left:4px">Auth-API-Refactoring</span><em>CASE-1423</em></div><div class="w">Token-Refresh überarbeitet, Integrationstests für auth-service</div></span><span class="okc"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div><div class="sn"><span class="h num">6h 00m</span><span style="min-width:0"><div class="t"><i style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#f08a3c;flex:none"></i> <span style="margin-left:4px">Code-Review</span><em>CASE-1388</em></div><div class="w">PRs #412, #418, #421 in billing reviewt</div></span><span class="okc"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div><div class="sn"><span class="h num">5h 35m</span><span style="min-width:0"><div class="t"><i style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#f0609e;flex:none"></i> <span style="margin-left:4px">Onboarding-Flow</span><em>CASE-1501</em></div><div class="w">Onboarding-Screens mit dem Designteam abgestimmt</div></span><span class="okc"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div><div class="sn"><span class="h num">4h 00m</span><span style="min-width:0"><div class="t"><i style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#a66cf0;flex:none"></i> <span style="margin-left:4px">Meetings</span><em>TEAM-12</em></div><div class="w">Stand-ups, Sprint Planning, 1:1</div></span><span class="okc"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div><div class="sn"><span class="h num">3h 10m</span><span style="min-width:0"><div class="t"><i style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#23b39a;flex:none"></i> <span style="margin-left:4px">Incident-Nachbereitung</span><em>OPS-77</em></div><div class="w">Post-Mortem zum Billing-Incident, Alerts nachjustiert</div></span><span class="okc"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div><div class="sn"><span class="h num">2h 35m</span><span style="min-width:0"><div class="t"><i style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3aa0e8;flex:none"></i> <span style="margin-left:4px">Release Notes</span><em>CASE-1510</em></div><div class="w">Notes zu Release 4.2 in Confluence</div></span><span class="okc"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></div>
+<div class="m-panel m-q reveal"><div class="m-h"><b>Fr 17:40 – was war das?</b><span class="num" style="color:var(--warn)">0h 40m</span></div><div class="m-qb"><span class="qb sel"><i style="background:#3aa0e8"></i>Release Notes</span><span class="qb"><i style="background:#23b39a"></i>Incident</span><span class="qb">Keine Arbeit</span></div></div>
+<div class="m-panel m-donut reveal"><svg width="120" height="120" viewBox="0 0 120 120"><g transform="rotate(-90 60 60)"><circle cx="60" cy="60" r="48" fill="none" stroke="#5b5bf0" stroke-width="15.600000000000001" stroke-dasharray="126.0047986303164 301.59289474462014" stroke-dashoffset="0"/><circle cx="60" cy="60" r="48" fill="none" stroke="#f08a3c" stroke-width="15.600000000000001" stroke-dasharray="44.705844394810114 301.59289474462014" stroke-dashoffset="-128.5047986303164"/><circle cx="60" cy="60" r="48" fill="none" stroke="#f0609e" stroke-width="15.600000000000001" stroke-dasharray="41.427660756281625 301.59289474462014" stroke-dashoffset="-175.7106430251265"/><circle cx="60" cy="60" r="48" fill="none" stroke="#a66cf0" stroke-width="15.600000000000001" stroke-dasharray="28.970562929873402 301.59289474462014" stroke-dashoffset="-219.63830378140813"/><circle cx="60" cy="60" r="48" fill="none" stroke="#23b39a" stroke-width="15.600000000000001" stroke-dasharray="22.414195652816446 301.59289474462014" stroke-dashoffset="-251.10886671128154"/><circle cx="60" cy="60" r="48" fill="none" stroke="#3aa0e8" stroke-width="15.600000000000001" stroke-dasharray="17.824738558876575 301.59289474462014" stroke-dashoffset="-276.023062364098"/><circle cx="60" cy="60" r="48" fill="none" stroke="#d97706" stroke-width="15.600000000000001" stroke-dasharray="2.7450938216455674 301.59289474462014" stroke-dashoffset="-296.34780092297456"/></g><text x="60" y="58" text-anchor="middle" font-size="17" font-weight="800" fill="#14161c" font-family="Inter">38h</text><text x="60" y="74" text-anchor="middle" font-size="10" fill="#767b89" font-family="Inter">7 Aufgaben</text></svg><div class="m-leg"><span><i style="background:#5b5bf0"></i>CASE-1423<b class="num">16h 20m</b></span><span><i style="background:#f08a3c"></i>CASE-1388<b class="num">6h 00m</b></span><span><i style="background:#f0609e"></i>CASE-1501<b class="num">5h 35m</b></span><span><i style="background:#a66cf0"></i>TEAM-12<b class="num">4h 00m</b></span><span><i style="background:#23b39a"></i>OPS-77<b class="num">3h 10m</b></span><span><i style="background:#3aa0e8"></i>CASE-1510<b class="num">2h 35m</b></span></div></div>
+<div class="m-confirm reveal"><div class="confirm">38h 20m bestätigen → Jira</div><div class="d-hint">oder CSV exportieren · acme.atlassian.net</div></div>
+<!-- /H4:week-mob -->
+						<div class="logged m-logged reveal">
+							<div class="ring"><svg viewBox="0 0 104 104" width="104" height="104"><circle cx="52" cy="52" r="46" fill="none" stroke="#eceef6" stroke-width="6"/><circle class="p" cx="52" cy="52" r="46" fill="none" stroke="#16a34a" stroke-width="6" stroke-linecap="round"/></svg><span class="sq"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><use href="#chk"/></svg></span></div>
+							<div><b>38h 20m erfasst</b><span>14 Worklogs · Jira Cloud</span></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="wrap">
+				<div class="points">
+					<div class="point reveal"><h3><span class="ic-s"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h7"/></svg></span>Ein Worklog pro Vorgang</h3><p>Jeder Vorgang bekommt pro Tag eine klare Zeile – geschrieben aus dem, was Sie tatsächlich getan haben, statt eines nichtssagenden „Entwicklung“.</p></div>
+					<div class="point reveal" style="--rd:.1s"><h3><span class="ic-s"><svg viewBox="0 0 24 24"><path d="M12 8v5M12 16.5v.5M10.3 3.9L2.6 17.5A2 2 0 004.3 20.5h15.4a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/></svg></span>Nur echte Zweifelsfälle landen bei Ihnen</h3><p>Blöcke, bei denen die App unsicher ist, werden mit zwei oder drei wahrscheinlichen Optionen markiert. Alles andere ist vorausgefüllt.</p></div>
+					<div class="point reveal" style="--rd:.2s"><h3><span class="ic-s"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0114-5.3M20 12a8 8 0 01-14 5.3M18 3v4h-4M6 21v-4h4"/></svg></span>Doppelt senden? Kein Problem.</h3><p>Bereits gebuchte Tage werden erkannt – erneutes Senden verdoppelt Ihre Stunden in Jira nie.</p></div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============ FEATURES ============ -->
+		<section class="section" id="features" aria-labelledby="features-h" style="padding-top:40px">
+			<div class="wrap">
+				<div class="section-head reveal" data-px="0.05">
+					<span class="kicker">Funktionen</span>
+					<h2 id="features-h">Automatische Zeiterfassung, die Jira versteht</h2>
+					<p>Für Entwickler, Analysten, Berater und Agenturen, die ihre Arbeitszeit in Jira erfassen müssen – und lieber nicht ständig daran denken.</p>
+				</div>
+				<div class="features">
+					<article class="feature reveal" data-px="0.02"><span class="ic-s"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.5.5l3-3a5 5 0 00-7-7l-1.7 1.7M14 11a5 5 0 00-7.5-.5l-3 3a5 5 0 007 7l1.7-1.7"/></svg></span><h3>Jira-Schlüssel lokal erkannt, ohne KI</h3><p>Vorgangsschlüssel werden aus Fenstertiteln, Browser-Tabs, Pull Requests und Git-Branch-Namen gelesen – sofort und direkt auf Ihrem PC.</p><div class="ex"><code>feature/CASE-1423-token</code><code>/browse/OPS-77</code><code>[CASE-1388] Review</code></div></article>
+					<article class="feature reveal" style="--rd:.06s" data-px="0.06"><span class="ic-s ic-ai"><svg viewBox="0 0 24 24" style="fill:currentColor;stroke:none"><use href="#spark"/></svg></span><h3>„Meinen Tag sortieren“ mit KI</h3><p>Ein Klick ordnet die Blöcke zu, die keine Regel erkannt hat – Figma-Dateien, Slack-Threads, Confluence-Seiten –, jeweils mit der Angabe, wie sicher sich die KI ist.</p></article>
+					<article class="feature reveal" style="--rd:.12s" data-px="0.1"><span class="ic-s"><svg viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V9zM14 3v6h6M8 13h8M8 17h5"/></svg></span><h3>Worklog-Texte, vorformuliert</h3><p>Pro Vorgang eine kurze, konkrete Beschreibung aus dem, woran Sie gearbeitet haben: „PRs #412, #418 in billing reviewt“. Auf Deutsch oder in zehn weiteren Sprachen.</p></article>
+					<article class="feature reveal" data-px="0.02"><span class="ic-s"><svg viewBox="0 0 24 24"><path d="M9 11l3 3 8-8M20 12v7a2 2 0 01-2 2H6a2 2 0 01-2-2V5a2 2 0 012-2h9"/></svg></span><h3>Sie behalten die Kontrolle</h3><p>Nichts wird gebucht, bevor Sie bestätigen. In der Prüfansicht ändern Sie die Aufgabe, teilen einen Block auf oder markieren ihn als „Keine Arbeit“.</p></article>
+					<article class="feature reveal" style="--rd:.06s" data-px="0.06"><span class="ic-s"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></svg></span><h3>Jira Cloud und Data Center</h3><p>Worklogs werden mit Ihrem eigenen Konto in Jira Cloud oder Jira Server / Data Center geschrieben. Keine Duplikate, wenn Sie erneut senden.</p></article>
+					<article class="feature reveal" style="--rd:.12s" data-px="0.1"><span class="ic-s"><svg viewBox="0 0 24 24"><path d="M12 7v5l3 2M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></span><h3>Erkennt Leerlauf und Sperre</h3><p>Mittagspause, gesperrter Bildschirm oder ein Gang weg vom Schreibtisch werden als abwesend markiert – und landen nie in Ihrem Stundenzettel.</p></article>
+					<article class="feature reveal" data-px="0.02"><span class="ic-s"><svg viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></span><h3>CSV-Export <span class="soon-tag">Excel &amp; Tempo folgen</span></h3><p>Sie brauchen die Zeiten in einer Tabelle oder einem anderen System? Exportieren Sie die bestätigte Woche als CSV. XLSX und eine direkte Tempo-Anbindung sind geplant.</p></article>
+					<article class="feature reveal" style="--rd:.06s" data-px="0.06"><span class="ic-s"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg></span><h3>Modus „Ohne KI“</h3><p>Soll gar nichts Ihren PC verlassen? Schalten Sie die KI ab. Schlüssel und Regeln werden weiter lokal zugeordnet, den Rest ordnen Sie selbst zu.</p></article>
+					<article class="feature reveal" style="--rd:.12s" data-px="0.1"><span class="ic-s"><svg viewBox="0 0 24 24"><path d="M3 5h18v11H3zM8 20h8M12 16v4"/></svg></span><h3>Läuft im Infobereich</h3><p>Eine native Windows-App, die mit Ihrem PC startet und nicht im Weg ist. Kein Browser-Tab, den Sie offen halten müssen, keine Stoppuhr, an die Sie denken müssen.</p></article>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============ PRIVACY ============ -->
+		<section class="section privacy-sec" id="privacy" aria-labelledby="privacy-h">
+			<div class="wrap">
+				<div class="section-head reveal" data-px="0.05">
+					<span class="kicker">Datenschutz von Grund auf</span>
+					<h2 id="privacy-h">Keine Screenshots. <span class="grad">Keine Überwachung.</span></h2>
+					<p>Ihr Aktivitätsprotokoll gehört Ihnen. Es liegt auf Ihrem PC, und die KI sieht nur eine maskierte Zusammenfassung – und nur dann, wenn Sie auf den Button drücken.</p>
+				</div>
+				<div class="priv-grid">
+					<div class="priv-col reveal" data-px="0.03">
+						<h3><span class="ic-s ic-ok"><svg viewBox="0 0 24 24"><path d="M3 5h18v11H3zM8 20h8M12 16v4"/></svg></span>Bleibt auf Ihrem PC</h3>
+						<p class="sub">Lokal aufgezeichnet, nie hochgeladen.</p>
+						<ul><li>Aktives Programm und Fenstertitel</li><li>Domains der Browser-Tabs</li><li>Leerlauf und Bildschirmsperre</li><li>Ihre Regeln, Ihr Verlauf und Ihre Korrekturen</li><li>Ihre Jira-Verbindungsdaten</li></ul>
+					</div>
+					<div class="priv-col ai-col reveal" style="--rd:.08s" data-px="0.07">
+						<h3><span class="ic-s ic-ai"><svg viewBox="0 0 24 24" style="fill:currentColor;stroke:none"><use href="#spark"/></svg></span>Nur bei „Meinen Tag sortieren“ gesendet</h3>
+						<p class="sub">Für die Blöcke, die keine Regel zuordnen konnte.</p>
+						<ul><li>Fenstertitel, mit maskierten E-Mails und Zahlen</li><li>Programmnamen</li><li>Domains statt vollständiger Adressen</li><li>Dauer jedes Blocks</li></ul>
+					</div>
+					<div class="priv-col never reveal" style="--rd:.16s" data-px="0.11">
+						<h3><span class="ic-s ic-no"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7zM9 9l6 6M15 9l-6 6"/></svg></span>Nie gesendet, nie erfasst</h3>
+						<p class="sub">Nicht gesammelt – kann also auch nicht abfließen.</p>
+						<ul><li>Vollständige URLs und Seiteninhalte</li><li>Screenshots oder Bildschirmaufnahmen</li><li>Tastatureingaben</li><li>Ihr Jira-Token</li></ul>
+					</div>
+				</div>
+				<p class="not-for reveal"><span><b>Für alle, die ihre Zeit selbst erfassen.</b></span><span>Keine Dashboards für Vorgesetzte</span><span>Keine Mitarbeiterüberwachung</span><span>Keine Team-Berichte</span></p>
+			</div>
+		</section>
+
+		<!-- ============ COMPARE ============ -->
+		<section class="section" id="compare" aria-labelledby="compare-h">
+			<div class="wrap">
+				<div class="section-head reveal" data-px="0.05">
+					<span class="kicker">Vergleich</span>
+					<h2 id="compare-h">Timesheet Tracker im Vergleich</h2>
+					<p>Die meisten Tools verlangen entweder eine Stoppuhr oder sammeln alles in der Cloud. Timesheet Tracker übernimmt das Erinnern lokal und schreibt direkt in Jira.</p>
+				</div>
+				<div class="table-wrap reveal">
+					<table class="cmp">
+						<thead>
+							<tr>
+								<th scope="col"><span class="sr-only">Funktion</span></th>
+								<th scope="col" class="us">Timesheet Tracker</th>
+								<th scope="col">Memtime</th>
+								<th scope="col">Timely</th>
+								<th scope="col">Tempo Timesheets<small>Jira-Add-on</small></th>
+								<th scope="col">Toggl Track</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row">Erfasst Ihren Tag automatisch</th>
+								<td class="us" data-label="Timesheet Tracker"><span class="cy">Ja</span><small>Programme, Titel, Domains, Leerlauf</small></td>
+								<td data-label="Memtime"><span class="cy">Ja</span></td>
+								<td data-label="Timely"><span class="cy">Ja</span></td>
+								<td data-label="Tempo Timesheets"><span class="cp">Teilweise</span><small>Vorschläge aus Jira- und Kalenderaktivität</small></td>
+								<td data-label="Toggl Track"><span class="cp">Teilweise</span><small>Primär Stoppuhr; Desktop-Timeline optional</small></td>
+							</tr>
+							<tr>
+								<th scope="row">Bucht Zeit für Sie auf Jira-Vorgänge</th>
+								<td class="us" data-label="Timesheet Tracker"><span class="cy">Ja</span><small>Schlüssel lokal + KI, Sie bestätigen</small></td>
+								<td data-label="Memtime"><span class="cp">Manuell</span><small>Sie ordnen Blöcke selbst zu</small></td>
+								<td data-label="Timely"><span class="cy">Ja</span><small>KI-Vorschläge</small></td>
+								<td data-label="Tempo Timesheets"><span class="cp">Teilweise</span><small>Vorschläge, die Sie übernehmen</small></td>
+								<td data-label="Toggl Track"><span class="cn">Nein</span><small>Sie starten pro Vorgang eine Stoppuhr</small></td>
+							</tr>
+							<tr>
+								<th scope="row">Formuliert den Worklog-Text vor</th>
+								<td class="us" data-label="Timesheet Tracker"><span class="cy">Ja</span><small>Eine Zeile pro Vorgang und Tag</small></td>
+								<td data-label="Memtime"><span class="cn">—</span></td>
+								<td data-label="Timely"><span class="cp">Teilweise</span></td>
+								<td data-label="Tempo Timesheets"><span class="cn">—</span></td>
+								<td data-label="Toggl Track"><span class="cn">—</span></td>
+							</tr>
+							<tr>
+								<th scope="row">Native Jira-Worklogs</th>
+								<td class="us" data-label="Timesheet Tracker"><span class="cy">Ja</span><small>Cloud + Server / Data Center</small></td>
+								<td data-label="Memtime"><span class="cy">Ja</span><small>Über Connector</small></td>
+								<td data-label="Timely"><span class="cp">Integration</span><small>Je nach Tarif</small></td>
+								<td data-label="Tempo Timesheets"><span class="cy">Ja</span><small>Direkt in Jira</small></td>
+								<td data-label="Toggl Track"><span class="cp">Integration</span><small>Über Erweiterung / Integrationen</small></td>
+							</tr>
+							<tr>
+								<th scope="row">Wo Ihre Aktivitätsdaten liegen</th>
+								<td class="us" data-label="Timesheet Tracker"><b>Auf Ihrem PC</b><small>KI sieht eine maskierte Zusammenfassung, nur auf Klick</small></td>
+								<td data-label="Memtime">Auf Ihrem PC</td>
+								<td data-label="Timely">Cloud des Anbieters</td>
+								<td data-label="Tempo Timesheets">Jira- / Tempo-Cloud</td>
+								<td data-label="Toggl Track">Cloud des Anbieters</td>
+							</tr>
+							<tr>
+								<th scope="row">Gemacht für</th>
+								<td class="us" data-label="Timesheet Tracker">Einzelne, die in Jira buchen</td>
+								<td data-label="Memtime">Einzelne und Teams</td>
+								<td data-label="Timely">Teams und Agenturen</td>
+								<td data-label="Tempo Timesheets">Jira-Teams und Admins</td>
+								<td data-label="Toggl Track">Freelancer und Teams</td>
+							</tr>
+							<tr>
+								<th scope="row">Preis</th>
+								<td class="us" data-label="Timesheet Tracker"><b>$9.99/Monat · $79/Jahr, 14 Tage Test</b></td>
+								<td data-label="Memtime">≈ $14–30 / Nutzer / Monat</td>
+								<td data-label="Timely">≈ $11–28 / Nutzer / Monat</td>
+								<td data-label="Tempo Timesheets">Pro Nutzer, Atlassian Marketplace</td>
+								<td data-label="Toggl Track">Gratis-Tarif; kostenpflichtige Stufen</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<p class="footnote">Angaben zu anderen Anbietern beruhen auf deren öffentlichen Informationen, Stand Oktober 2026, und können sich ändern – prüfen Sie aktuelle Funktionen und Preise direkt beim Anbieter. Sie suchen weitere Optionen? Unsere englischsprachigen Ratgeber vergleichen <a href="/articles/tempo-timesheets-alternatives.html">Alternativen zu Tempo Timesheets</a> und <a href="/articles/automatic-time-tracking-software-windows.html">Software für automatische Zeiterfassung unter Windows</a>.</p>
+			</div>
+		</section>
+
+		<!-- ============ FAQ ============ -->
+		<section class="section" id="faq" aria-labelledby="faq-h" style="padding-top:40px">
+			<div class="wrap">
+				<div class="section-head reveal" data-px="0.05">
+					<span class="kicker">FAQ</span>
+					<h2 id="faq-h">Häufige Fragen</h2>
+				</div>
+				<div class="faq">
+					<details><summary>Ist Timesheet Tracker ein Tool zur Mitarbeiterüberwachung?</summary><div class="a"><p>Nein. Die App ist für die Person gemacht, die ihre Zeit selbst erfasst. Es gibt keine Screenshots, kein Keylogging, keine Dashboards für Vorgesetzte und keine Team-Berichte. Ihre Aktivität bleibt auf Ihrem PC, und an Jira gehen nur die Worklogs, die Sie bestätigen.</p></div></details>
+					<details><summary>Welche Daten verlassen meinen Computer?</summary><div class="a"><p>Nichts, solange Sie nicht selbst aktiv werden. Erst wenn Sie auf <b>„Meinen Tag sortieren“</b> klicken, gehen maskierte Fenstertitel, Programmnamen, Domains und Dauern der noch nicht zugeordneten Blöcke an die KI. Vollständige URLs, Seiteninhalte, Screenshots, Tastatureingaben und Ihr Jira-Token werden nie übertragen. Wenn Sie den Tag bestätigen, gehen die freigegebenen Worklogs an Ihr Jira. Details stehen in der <a href="/privacy.html">Datenschutzerklärung</a> (auf Englisch).</p></div></details>
+					<details><summary>Kann ich die App ohne KI nutzen?</summary><div class="a"><p>Ja. Im Modus „Ohne KI“ geht nichts an einen KI-Anbieter. Jira-Schlüssel in Fenstertiteln, URLs und Git-Branches werden weiterhin lokal zugeordnet, die übrigen Blöcke ordnen Sie in der Prüfansicht selbst zu.</p></div></details>
+					<details><summary>Welche Jira-Versionen werden unterstützt?</summary><div class="a"><p>Jira Cloud und Jira Server / Data Center. Die Worklogs werden mit Ihrem eigenen Konto geschrieben, und wenn Sie einen Tag erneut senden, entstehen keine Duplikate. Wie Worklogs in Jira grundsätzlich funktionieren, erklärt unser Ratgeber <a href="/de/articles/arbeitszeiterfassung-jira.html">Arbeitszeiterfassung für Entwickler mit Jira</a>.</p></div></details>
+					<details><summary>Woher weiß die App, an welchem Jira-Vorgang ich gearbeitet habe?</summary><div class="a"><p>Der Großteil des Tages wird ohne KI zugeordnet: Jira-Schlüssel wie <code>ABC-123</code> stehen in Fenstertiteln, Browser-Tabs, Pull-Request-Namen und Git-Branches wie <code>feature/ABC-123-login</code>. Die KI kümmert sich nur um den Rest, und Sie bestätigen jede Zuordnung, bevor etwas gebucht wird.</p></div></details>
+					<details><summary>Funktioniert die App mit Tempo oder Excel?</summary><div class="a"><p>Heute schreibt sie native Jira-Worklogs und exportiert CSV. Eine direkte Tempo-Anbindung und Excel-Export (XLSX) sind geplant.</p></div></details>
+					<details><summary>Ersetzt die App die gesetzliche Arbeitszeiterfassung meines Arbeitgebers?</summary><div class="a"><p>Nein. Timesheet Tracker ist eine persönliche Projektzeiterfassung: Die App bucht Ihre Zeit auf Jira-Vorgänge. Wenn Ihr Arbeitgeber Beginn, Ende und Dauer der Arbeitszeit mit einem eigenen System erfasst, bleibt das davon unberührt. Der CSV-Export kann Ihnen aber als persönlicher Stundennachweis dienen.</p></div></details>
+					<details><summary>Was kostet die App?</summary><div class="a"><p>Timesheet Tracker ist ein kostenloser Download aus dem Microsoft Store und startet mit 14 Tagen Pro gratis, ohne Kreditkarte. Danach kostet Pro $9.99 pro Monat oder $79 pro Jahr (etwa $6.58 im Monat, 34 % günstiger); das Jahresabo ist voreingestellt. Ohne Abo zeichnet die App weiter auf und zeigt Ihren Tag, mit 7 Tagen Verlauf und CSV-Export für heute. Senden an Jira und KI-Sortierung brauchen Pro.</p></div></details>
+					<details><summary>Wo kann ich die App herunterladen?</summary><div class="a"><p>Im Microsoft Store, dort heißt sie „<a href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=de-de&amp;cid=site-de-faq" rel="noopener">Zeiterfassung &amp; Stundenzettel - KI für Jira</a>“. Der Download ist kostenlos und startet mit 14 Tagen Pro gratis, ohne Kreditkarte.</p></div></details>
+					<details><summary>Gibt es eine Version für Mac oder Linux?</summary><div class="a"><p>Noch nicht. Timesheet Tracker ist eine Windows-App. Schreiben Sie uns an <a href="mailto:help@timesheet-tracker.com">help@timesheet-tracker.com</a>, wenn Sie eine andere Plattform brauchen.</p></div></details>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============ GUIDES ============ -->
+		<section class="section" aria-labelledby="guides-h" style="padding-top:20px">
+			<div class="wrap">
+				<div class="section-head reveal" data-px="0.05">
+					<span class="kicker">Ratgeber</span>
+					<h2 id="guides-h">Holen Sie sich Ihren Freitag zurück</h2>
+				</div>
+				<div class="guides">
+					<a class="guide-card reveal" href="/de/articles/arbeitszeiterfassung-jira.html"><small>Jira</small><b>Arbeitszeiterfassung für Entwickler mit Jira</b><span>Was die Pflicht zur Arbeitszeiterfassung bedeutet, wie Worklogs funktionieren und wie Sie ohne Stoppuhr buchen.</span><span class="more">Zum Ratgeber →</span></a>
+					<a class="guide-card reveal" style="--rd:.08s" href="/de/articles/stundenzettel-automatisch-ausfuellen.html"><small>Methode</small><b>Stundenzettel automatisch ausfüllen</b><span>Vom leeren Freitag zum fertigen Stundennachweis: Datenquellen, Ablauf und Vorlagen für gute Worklogs.</span><span class="more">Zum Ratgeber →</span></a>
+					<a class="guide-card reveal" style="--rd:.16s" href="/articles/how-to-log-time-in-jira.html"><small>Jira · auf Englisch</small><b>How to log time in Jira</b><span>Worklogs in Cloud und Data Center, Zeitformate, Smart Commits und die REST-API im Detail.</span><span class="more">Zum Ratgeber →</span></a>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============ FINAL CTA ============ -->
+		<section class="cta-final" id="join" aria-labelledby="join-h">
+			<div class="aurora" aria-hidden="true"></div>
+			<div class="wrap inner">
+				<img class="app-ico reveal" src="/img/mark-256.webp" width="76" height="76" alt="Timesheet Tracker Icon">
+				<h2 id="join-h" class="big reveal">Eine Stunde Freitag<br><span class="grad">→ 10 Sekunden.</span></h2>
+				<p class="sub reveal">Timesheet Tracker ist jetzt im Microsoft Store. Kostenloser Download, 14 Tage Pro gratis testen, ohne Kreditkarte.</p>
+				<div class="get-app reveal">
+					<a class="btn btn-primary btn-store" href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=de-de&amp;cid=site-de-cta" rel="noopener"><span class="ms" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>Im Microsoft Store herunterladen</span></a>
+				</div>
+				<ul class="trust reveal">
+					<li>Daten bleiben lokal</li>
+					<li>Keine Screenshots</li>
+					<li>Ihre Daten, Ihre Wahl – mit oder ohne KI</li>
+				</ul>
+			</div>
+		</section>
+	</main>
+
+	<footer class="site-footer">
+		<div class="wrap">
+			<div class="foot-grid">
+				<div class="foot-about">
+					<a class="brand" href="/de/"><img src="/img/mark.svg" width="30" height="30" alt="">Timesheet Tracker</a>
+					<p>Automatische Zeiterfassung und KI-Stundenzettel für Jira unter Windows. Daten bleiben lokal. Keine Screenshots. Im Microsoft Store als „<a href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=de-de&amp;cid=site-de-footer" rel="noopener">Zeiterfassung &amp; Stundenzettel - KI für Jira</a>“.</p>
+				</div>
+				<div>
+					<h4>Produkt</h4>
+					<ul>
+						<li><a href="#how">So funktioniert's</a></li>
+						<li><a href="#privacy">Datenschutz von Grund auf</a></li>
+						<li><a href="#compare">Vergleich</a></li>
+						<li><a href="#faq">FAQ</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4>Ratgeber</h4>
+					<ul>
+						<li><a href="/de/articles/arbeitszeiterfassung-jira.html">Arbeitszeiterfassung mit Jira</a></li>
+						<li><a href="/de/articles/stundenzettel-automatisch-ausfuellen.html">Stundenzettel automatisch ausfüllen</a></li>
+						<li><a href="/articles/how-to-log-time-in-jira.html" hreflang="en">Log time in Jira (EN)</a></li>
+						<li><a href="/articles/tempo-timesheets-alternatives.html" hreflang="en">Tempo alternatives (EN)</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4>Unternehmen</h4>
+					<ul>
+						<li><a href="mailto:help@timesheet-tracker.com">help@timesheet-tracker.com</a></li>
+						<li><a href="/privacy.html" hreflang="en">Datenschutzerklärung (EN)</a></li>
+						<li><a href="/terms.html" hreflang="en">Nutzungsbedingungen (EN)</a></li>
+					</ul>
+				</div>
+			</div>
+			<nav class="foot-langs" aria-label="Language"><a href="/" hreflang="en" lang="en">English</a><a href="/de/" hreflang="de" lang="de" aria-current="true">Deutsch</a><a href="/fr/" hreflang="fr" lang="fr">Français</a><a href="/es/" hreflang="es" lang="es">Español</a><a href="/pt-br/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a><a href="/it/" hreflang="it" lang="it">Italiano</a><a href="/pl/" hreflang="pl" lang="pl">Polski</a><a href="/nl/" hreflang="nl" lang="nl">Nederlands</a><a href="/ja/" hreflang="ja" lang="ja">日本語</a><a href="/uk/" hreflang="uk" lang="uk">Українська</a><a href="/ru/" hreflang="ru" lang="ru">Русский</a></nav>
+			<div class="foot-bottom">
+				<span>© <span data-year>2026</span> Timesheet Tracker. Jira ist eine Marke von Atlassian. Keine Verbindung zu Atlassian oder Microsoft.</span>
+				<span>Gemacht für alle, die ihre Zeit selbst erfassen.</span>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Как списывать время в Jira: worklog и учёт времени</title>
+	<meta name="description" content="Списание времени в Jira Cloud и Data Center: как включить учёт времени, заполнить Log work, писать ворклоги, списывать из коммитов и через API без дублей.">
+	<link rel="canonical" href="https://timesheet-tracker.com/ru/articles/kak-spisyvat-vremya-v-jira.html">
+	<meta name="robots" content="index, follow, max-image-preview:large">
+	<meta name="author" content="Команда AI Timesheet">
+	<meta name="theme-color" content="#f5f6fb">
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+	<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+	<meta property="og:type" content="article">
+	<meta property="og:site_name" content="Timesheet Tracker">
+	<meta property="og:title" content="Как списывать время в Jira: практическое руководство по ворклогам">
+	<meta property="og:description" content="Списание времени в Jira Cloud и Data Center: как включить учёт времени, заполнить Log work, писать ворклоги, списывать из коммитов и через API без дублей.">
+	<meta property="og:url" content="https://timesheet-tracker.com/ru/articles/kak-spisyvat-vremya-v-jira.html">
+	<meta property="og:image" content="https://timesheet-tracker.com/og-image.png">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="og:locale" content="ru_RU">
+	<meta property="article:published_time" content="2026-10-29">
+	<meta name="twitter:card" content="summary_large_image">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap">
+	<link rel="stylesheet" href="/css/landing.css">
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Article",
+		"headline": "Как списывать время в Jira: практическое руководство по ворклогам",
+		"description": "Списание времени в Jira Cloud и Data Center: как включить учёт времени, заполнить Log work, писать ворклоги, списывать из коммитов и через API без дублей.",
+		"datePublished": "2026-10-29",
+		"dateModified": "2026-10-29",
+		"inLanguage": "ru",
+		"mainEntityOfPage": "https://timesheet-tracker.com/ru/articles/kak-spisyvat-vremya-v-jira.html",
+		"image": "https://timesheet-tracker.com/og-image.png",
+		"keywords": "списание времени jira, worklog jira, ворклог jira, учет времени в jira, log work, jira учет рабочего времени",
+		"author": {"@type": "Organization", "name": "AI Timesheet team", "url": "https://timesheet-tracker.com/"},
+		"publisher": {"@type": "Organization", "name": "Timesheet Tracker", "url": "https://timesheet-tracker.com/", "logo": {"@type": "ImageObject", "url": "https://timesheet-tracker.com/apple-touch-icon.png"}}
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		"itemListElement": [
+			{"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://timesheet-tracker.com/ru/"},
+			{"@type": "ListItem", "position": 2, "name": "Как списывать время в Jira", "item": "https://timesheet-tracker.com/ru/articles/kak-spisyvat-vremya-v-jira.html"}
+		]
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		"inLanguage": "ru",
+		"mainEntity": [
+			{"@type": "Question", "name": "Почему в задаче Jira нет кнопки Log work?", "acceptedAnswer": {"@type": "Answer", "text": "Почти всегда дело в настройках. Либо учёт времени выключен для всего сайта, либо у вас нет права Work on issues в схеме разрешений проекта, либо поле Time tracking убрали с экрана задачи. Начните с экранов: чаще всего кнопка пропадает после того, как кто-то отредактировал схему экранов."}},
+			{"@type": "Question", "name": "Можно ли списать время в Jira задним числом?", "acceptedAnswer": {"@type": "Answer", "text": "Да. В окне списания времени есть поле даты начала работы: поставьте нужный день, и ворклог попадёт в него. Стандартная Jira не запрещает списывать прошлые дни, но компании иногда закрывают периоды через Tempo или собственные правила — тогда понадобится помощь администратора."}},
+			{"@type": "Question", "name": "Как исправить или удалить ворклог в Jira?", "acceptedAnswer": {"@type": "Answer", "text": "Откройте задачу, перейдите на вкладку Work log в разделе Activity и воспользуйтесь действиями редактирования или удаления у нужной записи. Для своих ворклогов нужны права Edit Own Worklogs и Delete Own Worklogs, для чужих — Edit All Worklogs и Delete All Worklogs."}},
+			{"@type": "Question", "name": "Как посмотреть, сколько времени я списал в Jira за неделю?", "acceptedAnswer": {"@type": "Answer", "text": "Найдите задачи запросом JQL worklogAuthor = currentUser() AND worklogDate >= startOfWeek(). Он вернёт задачи, в которые вы списывали время, но не сумму часов по дням. Полноценного личного табеля в стандартной Jira нет, поэтому для недельных отчётов обычно используют Tempo или другие приложения."}},
+			{"@type": "Question", "name": "Чем смарт-коммиты отличаются от автоматического трекера времени?", "acceptedAnswer": {"@type": "Answer", "text": "Смарт-коммит списывает время, которое вы сами указали в сообщении коммита командой #time, и только на ту работу, которая заканчивается коммитом. Автоматический трекер записывает весь день, включая встречи, ревью и поддержку, и предлагает ворклоги, которые вы затем проверяете и подтверждаете."}}
+		]
+	}
+	</script>
+	<script src="/js/landing.js" defer></script>
+	<!-- Yandex.Metrika counter -->
+	<script>
+		(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();
+		for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+		k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+		(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+		ym(113838536, "init", {clickmap: true, trackLinks: true, accurateTrackBounce: true});
+	</script>
+</head>
+<body>
+	<noscript><div><img src="https://mc.yandex.ru/watch/113838536" width="1" height="1" style="position:absolute;left:-9999px" alt=""></div></noscript>
+	<a class="skip" href="#main">Перейти к содержимому</a>
+	<header class="site-header">
+		<nav class="wrap nav" aria-label="Главное меню">
+			<a class="brand" href="/ru/"><img src="/img/mark.svg" width="30" height="30" alt=""><span>Timesheet Tracker</span></a>
+			<ul class="nav-links">
+				<li><a href="/ru/#how">Как это работает</a></li>
+				<li><a href="/ru/#features">Возможности</a></li>
+				<li><a href="/ru/#privacy">Приватность</a></li>
+				<li><a href="/ru/#compare">Сравнение</a></li>
+				<li><a href="/ru/articles/tabel-ucheta-rabochego-vremeni.html">Гайды</a></li>
+			</ul>
+			<div class="nav-cta">
+				<a class="btn btn-primary btn-sm" href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=ru-ru&amp;cid=site-ru-nav-kak-spisyvat-vremya-v-jira" rel="noopener">Скачать</a>
+				<button class="nav-toggle" type="button" aria-label="Меню" aria-expanded="false"><span></span></button>
+			</div>
+		</nav>
+	</header>
+
+	<main id="main">
+		<section class="page-hero">
+			<div class="aurora" aria-hidden="true"></div>
+			<div class="wrap">
+				<ol class="crumbs">
+					<li><a href="/ru/">Главная</a></li>
+					<li>Как списывать время в Jira</li>
+				</ol>
+				<h1>Как списывать время в Jira: практическое руководство по ворклогам</h1>
+				<p class="dek">Все способы списания времени в Jira Cloud и Data Center — от окна задачи до смарт-коммитов и REST API, — а также ошибки, из-за которых незаметно разваливается табель.</p>
+				<div class="byline">
+					<img src="/img/mark.svg" width="28" height="28" alt="">
+					<span>Автор: <b>команда AI Timesheet</b></span>
+					<span>·</span>
+					<time datetime="2026-10-29">29 октября 2026</time>
+					<span>·</span>
+					<span>9 минут чтения</span>
+				</div>
+			</div>
+		</section>
+
+		<div class="article-layout">
+			<article class="prose">
+				<div class="tldr">
+					<b>Главное</b>
+					<ul>
+						<li>Чтобы списывать время, в Jira должен быть включён учёт времени (Time tracking), поле Time tracking должно стоять на экранах проекта, а у вас должно быть право <b>Work on issues</b>.</li>
+						<li>В Jira Cloud нажмите на поле Time tracking в задаче или найдите Log work в меню <b>&hellip;</b>. В Data Center — <b>More &rarr; Log work</b>.</li>
+						<li>Время вводится в формате <code>1w 2d 3h 30m</code>. Проверьте дату начала и напишите одну понятную строку о том, что сделано.</li>
+						<li>Для массового или автоматического списания есть смарт-коммиты (<code>#time 2h</code>) и <code>POST /rest/api/3/issue/{key}/worklog</code> — но защиту от дублей придётся делать самим.</li>
+					</ul>
+				</div>
+
+				<h2 id="terminy">Сначала о терминах</h2>
+				<p>В русскоязычных командах одно и то же действие называют по-разному: «списать время», «залогировать», «заворклогать», «внести часы». Во всех случаях речь об одном — создать в задаче Jira <strong>ворклог</strong> (worklog): запись о том, кто, когда и сколько времени потратил на задачу, с коротким комментарием. Из ворклогов потом строятся отчёты, табели и счета заказчикам.</p>
+				<p>Названия пунктов меню в русской локализации Jira менялись от версии к версии, поэтому ниже мы указываем английские — Log work, Time tracking, Work log. По ним проще найти нужное и в интерфейсе, и в документации Atlassian.</p>
+
+				<h2 id="vklyuchit">Перед началом: включите учёт времени</h2>
+				<p>Если в задаче негде списать время, дело почти всегда в настройках, а не в вас. Должны выполняться три условия:</p>
+				<ol>
+					<li><strong>Учёт времени включён для всего экземпляра.</strong> В Jira Cloud администратор сайта открывает <b>Settings (шестерёнка) &rarr; Issues &rarr; Time tracking</b>, в Jira Server и Data Center — <b>Administration &rarr; Issues &rarr; Time tracking</b>. Там же задаётся пересчёт: по умолчанию 1 день = 8 часов, 1 неделя = 5 дней. Если в компании другой рабочий день, поменяйте настройку, иначе «1d» в ворклогах будет означать не то, что думают люди.</li>
+					<li><strong>У вас есть право списывать время.</strong> В схеме разрешений проекта оно обычно называется <b>Work on issues</b>. Редактирование и удаление своих и чужих ворклогов настраивается отдельными правами.</li>
+					<li><strong>Поле Time tracking есть на экранах проекта.</strong> В проектах, управляемых компанией (company-managed), поле должно стоять на экране нужного типа задач. В командных проектах (team-managed) функцию или поле учёта времени включают в настройках проекта.</li>
+				</ol>
+				<div class="callout">
+					<p>По нашему опыту, «пропала кнопка Log work» чаще всего означает, что кто-то отредактировал схему экранов, а не поменял права. Начинайте проверку с экранов.</p>
+				</div>
+
+				<h2 id="jira-cloud">Как списать время в Jira Cloud</h2>
+				<p>Интерфейс задачи в Cloud за последние годы менялся не раз, поэтому точное место зависит от вашей раскладки. Основные пути такие:</p>
+				<ul>
+					<li><strong>Поле Time tracking.</strong> В панели деталей задачи нажмите на полоску учёта времени (на ней может быть написано «No time logged»). Откроется окно списания.</li>
+					<li><strong>Меню &hellip; (More actions).</strong> В верхней части задачи откройте меню и найдите <b>Log work</b> или <b>Log time</b>.</li>
+					<li><strong>Палитра команд.</strong> Во многих раскладках Cloud нажатие <kbd>.</kbd> в открытой задаче вызывает поиск по действиям: наберите «log» и выберите списание времени. Если на вашем сайте это не работает, путь через меню работает всегда.</li>
+				</ul>
+				<p>В окне есть поля <b>Time spent</b> (затраченное время), <b>Time remaining</b> (оставшееся), дата и время начала и описание работы. Затраченное время пишется в нотации Jira: <code>w</code> — недели, <code>d</code> — дни, <code>h</code> — часы, <code>m</code> — минуты. Запись <code>1w 2d 3h 30m</code> корректна и при настройках по умолчанию равна 59,5 рабочего часа. В повседневной работе вы чаще будете вводить что-то вроде <code>45m</code> или <code>2h 15m</code>.</p>
+				<p>Внимательно смотрите на дату начала. По умолчанию это текущий момент, и если в понедельник утром вы списываете пятницу, дату нужно поменять — иначе в недельном табеле всё окажется не в тот день.</p>
+
+				<h2 id="data-center">Как списать время в Jira Server и Data Center</h2>
+				<p>Многие компании в России работают на собственной установке Jira Server или Data Center. Здесь откройте задачу и выберите <b>More &rarr; Log work</b>. Настроек в окне чуть больше, чем в Cloud:</p>
+				<ul>
+					<li><b>Time spent</b> — та же нотация, например <code>3h 30m</code>.</li>
+					<li><b>Date started</b> — день и время начала работы.</li>
+					<li><b>Remaining estimate</b> — что делать с оставшейся оценкой:
+						<ul>
+							<li><em>Adjust automatically</em> — вычесть списанное время из оставшейся оценки;</li>
+							<li><em>Use existing estimate</em> — оценку не трогать;</li>
+							<li><em>Set to</em> — заменить оставшуюся оценку новым значением;</li>
+							<li><em>Reduce by</em> — уменьшить оценку на другую величину, чем списано.</li>
+						</ul>
+					</li>
+					<li><b>Work description</b> — комментарий, который попадёт в ворклог.</li>
+				</ul>
+				<p>Для большинства подходит «Adjust automatically». «Set to» пригодится, когда стало ясно, что оценка была неверной, — например, двухчасовая правка оказалась двухдневной переделкой.</p>
+
+				<h2 id="shpargalka">Шпаргалка: Cloud и Data Center</h2>
+				<table>
+					<thead>
+						<tr><th>Действие</th><th>Jira Cloud</th><th>Data Center</th></tr>
+					</thead>
+					<tbody>
+						<tr><td>Включить учёт времени</td><td>Settings &rarr; Issues &rarr; Time tracking</td><td>Administration &rarr; Issues &rarr; Time tracking</td></tr>
+						<tr><td>Списать время в задаче</td><td>Поле Time tracking или меню &hellip; &rarr; Log work</td><td>More &rarr; Log work</td></tr>
+						<tr><td>Все ворклоги задачи</td><td>Activity &rarr; Work log</td><td>Activity &rarr; Work Log</td></tr>
+						<tr><td>API ворклогов</td><td><code>/rest/api/3/issue/{key}/worklog</code> (комментарий в ADF)</td><td><code>/rest/api/2/issue/{key}/worklog</code> (комментарий строкой)</td></tr>
+						<tr><td>Списание из коммитов</td><td>Смарт-коммиты через подключённый Git</td><td>Смарт-коммиты через связанный DVCS</td></tr>
+					</tbody>
+				</table>
+
+				<h2 id="smart-commits">Списание времени из коммитов (смарт-коммиты)</h2>
+				<p>Если репозиторий подключён к Jira (Bitbucket, GitHub или GitLab через соответствующую интеграцию), время можно списать прямо в сообщении коммита:</p>
+				<pre><code>git commit -m "PAY-214 #time 2h 30m Исправил лимиты возвратов для частичных refund"</code></pre>
+				<p>Jira распознаёт ключ задачи, команду <code>#time</code> и длительность, а остаток сообщения использует как комментарий ворклога. Два нюанса: email в коммите должен совпадать с пользователем Jira, у которого есть право списывать время, а ворклог создаётся, когда Jira обработает коммит, а не когда вы писали код. Squash и rebase могут «проиграть» сообщение повторно, так что следите за дублями.</p>
+				<p>Смарт-коммиты удобны разработчикам, которые и так пишут ключ в каждом коммите. Но встречи, код-ревью и поддержка коммитов не порождают — и это время так не списать.</p>
+
+				<h2 id="rest-api">Списание времени через REST API</h2>
+				<p>Для скриптов и интеграций в Jira Cloud есть <code>POST /rest/api/3/issue/{issueIdOrKey}/worklog</code>. Третья версия API ждёт комментарий в формате Atlassian Document Format (ADF), а поле <code>started</code> — с миллисекундами и смещением часового пояса:</p>
+				<pre><code>curl -X POST \
+  -u "you@company.ru:$JIRA_API_TOKEN" \
+  -H "Content-Type: application/json" \
+  "https://your-site.atlassian.net/rest/api/3/issue/OPS-77/worklog" \
+  -d '{
+    "timeSpentSeconds": 5400,
+    "started": "2026-10-16T09:00:00.000+0300",
+    "comment": {
+      "type": "doc", "version": 1,
+      "content": [{"type": "paragraph",
+        "content": [{"type": "text", "text": "Обновил сертификаты на стейдже"}]}]
+    }
+  }'</code></pre>
+				<p>В Data Center аналог — <code>/rest/api/2/issue/{key}/worklog</code>, где <code>comment</code> — обычная строка. В свежих версиях для аутентификации обычно используют персональный токен доступа (Personal Access Token) в заголовке <code>Authorization: Bearer</code>. В обоих случаях эндпоинт принимает параметр <code>adjustEstimate</code>, если нужно управлять оставшейся оценкой так же, как в окне Log work.</p>
+				<div class="callout warn">
+					<p>У API нет ключа идемпотентности. Если скрипт упал на середине и вы запустили его снова, появятся дубли ворклогов. Перед отправкой прочитайте существующие ворклоги задачи и пропускайте записи, совпадающие по автору, времени начала и длительности.</p>
+				</div>
+
+				<h2 id="gde-smotret">Где видны ворклоги и как их найти</h2>
+				<p>Каждый ворклог отображается в задаче на вкладке <b>Activity &rarr; Work log</b>: автор, дата начала, длительность и комментарий. Полоска учёта времени в деталях задачи сравнивает три числа: <b>первоначальную оценку</b>, <b>списанное</b> время и <b>оставшееся</b>. Когда списанное плюс оставшееся превышает исходную оценку, полоска показывает перерасход — часто это первый сигнал, что задачу недооценили.</p>
+				<p>Найти задачи, в которые вы списывали время на этой неделе, можно запросом JQL:</p>
+				<pre><code>worklogAuthor = currentUser() AND worklogDate &gt;= startOfWeek()</code></pre>
+				<p>Он вернёт список задач, но не сумму часов по дням: полноценного личного табеля в стандартной Jira нет. Ворклоги же читают все отчёты, фильтры и приложения для табелей, поэтому если они неверны в задаче, они неверны везде.</p>
+
+				<h2 id="oshibki">Типичные ошибки при списании времени</h2>
+				<ul>
+					<li><strong>Время на эпике, а не на истории или подзадаче.</strong> Такое время трудно атрибутировать, и в зависимости от настроек оно может суммироваться не так, как вы ожидаете. Списывайте туда, где шла работа.</li>
+					<li><strong>Не та дата или часовой пояс.</strong> Ворклог, начатый в 23:30 по одному поясу, в отчёте коллеги из другого может оказаться в следующем дне. Списывайте по своему рабочему дню и проверяйте время начала, когда догоняете прошлые дни.</li>
+					<li><strong>Дубли.</strong> Повторный запуск скриптов, «проигранные» смарт-коммиты, одна и та же встреча с двух устройств. Перед массовым вводом загляните во вкладку Work log.</li>
+					<li><strong>Накопленное округление.</strong> Если каждую запись округлять вверх до 30 минут, реальные 6,5 часа превращаются в 8. Выберите шаг (мы используем 15 минут) и округляйте до ближайшего, а не всегда вверх.</li>
+				</ul>
+
+				<h2 id="opisaniya">Как писать хорошие описания ворклогов</h2>
+				<p>Комментарий к ворклогу должен объяснять, на что ушло время, — в том числе вам самим через три недели. Что работает у нас:</p>
+				<ul>
+					<li><strong>Один ворклог на задачу за день.</strong> Утреннюю и вечернюю сессию по PAY-214 лучше объединить в одну запись, чем оставлять пять обрывков.</li>
+					<li><strong>Начинайте с глагола.</strong> «Исправил», «Провёл ревью», «Разобрался», «Выкатил».</li>
+					<li><strong>Называйте конкретику.</strong> Компонент, пул-реквест, клиента, окружение.</li>
+				</ul>
+				<p>Примеры:</p>
+				<ul>
+					<li><code>PAY-214 · 2h 30m · Исправил обновление токена для истёкших SSO-сессий, добавил регрессионный тест</code></li>
+					<li><code>OPS-77 · 1h 30m · Обновил TLS-сертификаты на стейдже, дополнил ранбук</code></li>
+					<li><code>CASE-1501 · 45m · Ревью PR #312 (выгрузка счетов), запросил правки</code></li>
+				</ul>
+				<p>«Работа над задачей» или «разработка» никому ничего не говорят — и именно такие записи вызывают вопросы в конце месяца. Как связать ворклоги с кадровым табелем и нормой часов, мы разобрали в статье <a href="/ru/articles/tabel-ucheta-rabochego-vremeni.html">«Табель учёта рабочего времени для ИТ-команд»</a>.</p>
+
+				<h2 id="tempo">Если в компании Tempo</h2>
+				<p>Если ваша компания использует Tempo Timesheets, время списывают в интерфейсе Tempo. Tempo хранит свои ворклоги и синхронизирует их с ворклогами Jira, поэтому записи по-прежнему видны на вкладке Work log задачи. Правила выше — правильная задача, правильная дата, понятное описание — действуют так же. Сравнение Tempo с другими вариантами есть в нашем англоязычном обзоре <a href="/articles/tempo-timesheets-alternatives.html" hreflang="en">альтернатив Tempo Timesheets</a>.</p>
+
+				<h2 id="avtomatizaciya">Как автоматизировать списание времени</h2>
+				<p>Всё описанное выше предполагает, что вы помните, что делали. Это и есть слабое место. К пятнице большинство восстанавливает неделю по приглашениям в календаре, истории чатов и догадкам, и в итоге недосписывает мелочи: двадцатиминутное ревью, быструю проверку прода.</p>
+				<p>Надёжнее восстанавливать день по активности, которая и так остаётся на компьютере:</p>
+				<ul>
+					<li><strong>Заголовки окон.</strong> Вкладка Jira содержит ключ задачи: «[PAY-214] Лимиты возвратов не учитывают частичные refund».</li>
+					<li><strong>Ветки git.</strong> Ветка <code>feature/PAY-214-refund-limits</code> в заголовке IDE однозначно указывает на задачу.</li>
+					<li><strong>Программы и домены.</strong> Время во встречах или на дашборде мониторинга можно отнести к задаче встреч или дежурства.</li>
+				</ul>
+				<p>Дальше инструмент готовит ворклоги, а вы их утверждаете. Так работает <a href="/ru/">Timesheet Tracker — автоматический табель для Jira в Windows</a>. Он живёт в трее и записывает активную программу, заголовок окна, домен вкладки браузера и время простоя или блокировки — локально, на вашем компьютере. Ключи Jira в заголовках, адресах и ветках git находятся на устройстве, без AI. Остаток раскладывает кнопка <b>«Разобрать день»</b>: AI назначает оставшиеся отрезки задачам и пишет по одному ворклогу на задачу. Для этого уходят только замаскированные заголовки, названия программ, домены и длительности — никогда полные адреса, содержимое страниц, скриншоты, нажатия клавиш или ваш токен Jira. Есть и режим <b>«Без AI»</b>.</p>
+				<p>Вы просматриваете черновики, при необходимости нажимаете <b>«Сменить задачу»</b> или <b>«Не работа»</b>, затем <b>«Подтвердить день»</b> и <b>«Отправить в Jira»</b>. Ворклоги уходят в Jira Cloud или Server / Data Center без дублей, а <b>«Экспорт CSV»</b> выгрузит день в файл. Скриншотов и отчётов руководителю нет: приложение сделано для тех, кто сам списывает своё время. Скачивание из Microsoft Store бесплатное, первые 14 дней Pro тоже бесплатны.</p>
+
+				<h2 id="faq">Частые вопросы</h2>
+				<h3>Почему в задаче Jira нет кнопки Log work?</h3>
+				<p>Почти всегда дело в настройках. Либо учёт времени выключен для всего сайта, либо у вас нет права Work on issues в схеме разрешений проекта, либо поле Time tracking убрали с экрана задачи. Начните с экранов: чаще всего кнопка пропадает после того, как кто-то отредактировал схему экранов.</p>
+				<h3>Можно ли списать время в Jira задним числом?</h3>
+				<p>Да. В окне списания времени есть поле даты начала работы: поставьте нужный день, и ворклог попадёт в него. Стандартная Jira не запрещает списывать прошлые дни, но компании иногда закрывают периоды через Tempo или собственные правила — тогда понадобится помощь администратора.</p>
+				<h3>Как исправить или удалить ворклог в Jira?</h3>
+				<p>Откройте задачу, перейдите на вкладку Work log в разделе Activity и воспользуйтесь действиями редактирования или удаления у нужной записи. Для своих ворклогов нужны права Edit Own Worklogs и Delete Own Worklogs, для чужих — Edit All Worklogs и Delete All Worklogs.</p>
+				<h3>Как посмотреть, сколько времени я списал в Jira за неделю?</h3>
+				<p>Найдите задачи запросом JQL <code>worklogAuthor = currentUser() AND worklogDate &gt;= startOfWeek()</code>. Он вернёт задачи, в которые вы списывали время, но не сумму часов по дням. Полноценного личного табеля в стандартной Jira нет, поэтому для недельных отчётов обычно используют Tempo или другие приложения.</p>
+				<h3>Чем смарт-коммиты отличаются от автоматического трекера времени?</h3>
+				<p>Смарт-коммит списывает время, которое вы сами указали в сообщении коммита командой <code>#time</code>, и только на ту работу, которая заканчивается коммитом. Автоматический трекер записывает весь день, включая встречи, ревью и поддержку, и предлагает ворклоги, которые вы затем проверяете и подтверждаете.</p>
+
+				<section class="article-cta" id="get-app">
+					<h2>Хватит восстанавливать неделю по памяти</h2>
+					<p>Timesheet Tracker готовит ворклоги Jira по вашему реальному дню, а вы подтверждаете их за пару минут. Скачайте бесплатно в Microsoft Store — первые 14 дней Pro тоже бесплатны.</p>
+					<div class="get-app">
+						<a class="btn btn-primary btn-store" href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=ru-ru&amp;cid=site-ru-article-kak-spisyvat-vremya-v-jira" rel="noopener"><span class="ms" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>Скачать в Microsoft Store</span></a>
+					</div>
+				</section>
+
+				<aside class="related">
+					<h2>Читайте также</h2>
+					<ul>
+						<li><a href="/ru/articles/tabel-ucheta-rabochego-vremeni.html">Табель учёта рабочего времени для ИТ-команд</a></li>
+						<li><a href="/articles/how-to-log-time-in-jira.html" hreflang="en">How to log time in Jira (на английском)</a></li>
+						<li><a href="/articles/ai-timesheet.html" hreflang="en">Может ли AI заполнить табель? (на английском)</a></li>
+					</ul>
+				</aside>
+			</article>
+
+			<aside class="toc" aria-label="Содержание">
+				<b>Содержание</b>
+				<ol>
+					<li><a href="#terminy">Термины</a></li>
+					<li><a href="#vklyuchit">Включить учёт времени</a></li>
+					<li><a href="#jira-cloud">Jira Cloud</a></li>
+					<li><a href="#data-center">Server и Data Center</a></li>
+					<li><a href="#shpargalka">Шпаргалка</a></li>
+					<li><a href="#smart-commits">Смарт-коммиты</a></li>
+					<li><a href="#rest-api">REST API</a></li>
+					<li><a href="#gde-smotret">Где видны ворклоги</a></li>
+					<li><a href="#oshibki">Типичные ошибки</a></li>
+					<li><a href="#opisaniya">Описания ворклогов</a></li>
+					<li><a href="#tempo">Если в компании Tempo</a></li>
+					<li><a href="#avtomatizaciya">Автоматизация</a></li>
+					<li><a href="#faq">Частые вопросы</a></li>
+				</ol>
+				<div class="toc-cta">
+					<b style="margin:0;color:var(--ink);font-size:15px;letter-spacing:-.01em;text-transform:none">Timesheet Tracker</b>
+					<p>Табель для Jira, который заполняется сам. Бесплатно в Microsoft Store.</p>
+					<a class="btn btn-primary btn-sm" href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=ru-ru&amp;cid=site-ru-nav-kak-spisyvat-vremya-v-jira" rel="noopener">Скачать</a>
+				</div>
+			</aside>
+		</div>
+	</main>
+
+	<footer class="site-footer">
+		<div class="wrap">
+			<div class="foot-grid">
+				<div class="foot-about">
+					<a class="brand" href="/ru/"><img src="/img/mark.svg" width="30" height="30" alt=""><span>Timesheet Tracker</span></a>
+					<p>Автоматический учёт рабочего времени и AI-табель для Jira в Windows. Данные хранятся локально. Без скриншотов.</p>
+				</div>
+				<div>
+					<h4>Продукт</h4>
+					<ul>
+						<li><a href="/ru/#how">Как это работает</a></li>
+						<li><a href="/ru/#privacy">Приватность</a></li>
+						<li><a href="/ru/#compare">Сравнение</a></li>
+						<li><a href="/ru/#faq">Вопросы и ответы</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4>Гайды</h4>
+					<ul>
+						<li><a href="/ru/articles/tabel-ucheta-rabochego-vremeni.html">Табель учёта рабочего времени</a></li>
+						<li><a href="/ru/articles/kak-spisyvat-vremya-v-jira.html">Как списывать время в Jira</a></li>
+						<li><a href="/articles/" hreflang="en">Все гайды (на английском)</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4>Компания</h4>
+					<ul>
+						<li><a href="mailto:help@timesheet-tracker.com">help@timesheet-tracker.com</a></li>
+						<li><a href="/privacy.html" hreflang="en">Политика конфиденциальности</a></li>
+						<li><a href="/terms.html" hreflang="en">Условия использования</a></li>
+					</ul>
+				</div>
+			</div>
+			<nav class="foot-langs" aria-label="Language"><a href="/" hreflang="en" lang="en">English</a><a href="/de/" hreflang="de" lang="de">Deutsch</a><a href="/fr/" hreflang="fr" lang="fr">Français</a><a href="/es/" hreflang="es" lang="es">Español</a><a href="/pt-br/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a><a href="/it/" hreflang="it" lang="it">Italiano</a><a href="/pl/" hreflang="pl" lang="pl">Polski</a><a href="/nl/" hreflang="nl" lang="nl">Nederlands</a><a href="/ja/" hreflang="ja" lang="ja">日本語</a><a href="/uk/" hreflang="uk" lang="uk">Українська</a><a href="/ru/" hreflang="ru" lang="ru" aria-current="true">Русский</a></nav>
+			<div class="foot-bottom">
+				<span>© <span data-year>2026</span> Timesheet Tracker. Jira — товарный знак Atlassian. Приложение не связано с Atlassian и Microsoft.</span>
+				<span>Сделано для тех, кто сам учитывает своё время.</span>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>

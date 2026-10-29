@@ -30,3 +30,28 @@ Key facts:
 ## Comparison summary
 
 Compared with Memtime (local desktop auto-tracker, manual assignment to tasks), Timely (cloud AI time tracker), Tempo Timesheets (Jira add-on ledger with suggestions) and Toggl Track (timer-first tracker), Timesheet Tracker focuses on one job: reconstructing an individual's day locally and turning it into confirmed Jira worklogs with minimal typing.
+
+## Localized pages
+
+- [Zeiterfassung & Stundenzettel für Jira – automatisch mit KI](https://timesheet-tracker.com/de/) (Deutsch home)
+- [Arbeitszeiterfassung für Entwickler mit Jira: Praxisguide](https://timesheet-tracker.com/de/articles/arbeitszeiterfassung-jira.html) (Deutsch)
+- [Stundenzettel automatisch ausfüllen – so geht's mit Jira](https://timesheet-tracker.com/de/articles/stundenzettel-automatisch-ausfuellen.html) (Deutsch)
+- [Feuille de temps Jira automatique (IA) | Timesheet Tracker](https://timesheet-tracker.com/fr/) (Français home)
+- [Feuille de temps automatique pour Jira : guide pratique](https://timesheet-tracker.com/fr/articles/feuille-de-temps-jira.html) (Français)
+- [Control horario automático para Jira | Timesheet Tracker](https://timesheet-tracker.com/es/) (Español home)
+- [Registro horario automático para equipos que usan Jira](https://timesheet-tracker.com/es/articles/registro-horario-jira.html) (Español)
+- [Controle de horas e timesheet para Jira | Timesheet Tracker](https://timesheet-tracker.com/pt-br/) (Português (Brasil) home)
+- [Timesheet automático para Jira: apontamento de horas](https://timesheet-tracker.com/pt-br/articles/timesheet-automatico-jira.html) (Português (Brasil))
+- [Registro ore e timesheet per Jira con IA | Timesheet Tracker](https://timesheet-tracker.com/it/) (Italiano home)
+- [Timesheet automatico per Jira: guida pratica al foglio ore](https://timesheet-tracker.com/it/articles/timesheet-automatico-jira.html) (Italiano)
+- [Ewidencja czasu pracy i timesheet z AI dla Jira](https://timesheet-tracker.com/pl/) (Polski home)
+- [Ewidencja czasu pracy programisty w Jira: poradnik](https://timesheet-tracker.com/pl/articles/ewidencja-czasu-pracy-jira.html) (Polski)
+- [Automatische urenregistratie voor Jira | Timesheet Tracker](https://timesheet-tracker.com/nl/) (Nederlands home)
+- [Urenregistratie voor Jira: uren bijhouden per project](https://timesheet-tracker.com/nl/articles/urenregistratie-jira.html) (Nederlands)
+- [Jiraの工数管理を自動化するタイムトラッカー｜Timesheet Tracker](https://timesheet-tracker.com/ja/) (日本語 home)
+- [工数管理を自動化する方法（Jira）｜工数入力をラクにするコツ](https://timesheet-tracker.com/ja/articles/kousu-kanri-jira.html) (日本語)
+- [Облік робочого часу і табель для Jira — тайм трекер з AI](https://timesheet-tracker.com/uk/) (Українська home)
+- [Табель обліку робочого часу для розробників і Jira](https://timesheet-tracker.com/uk/articles/tabel-obliku-robochogo-chasu.html) (Українська)
+- [Тайм-трекер для Jira: автоматический учёт времени с AI](https://timesheet-tracker.com/ru/) (Русский home)
+- [Как списывать время в Jira: worklog и учёт времени](https://timesheet-tracker.com/ru/articles/kak-spisyvat-vremya-v-jira.html) (Русский)
+- [Табель учёта рабочего времени в ИТ без ручного ввода](https://timesheet-tracker.com/ru/articles/tabel-ucheta-rabochego-vremeni.html) (Русский)

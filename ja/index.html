@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Jiraの工数管理を自動化するタイムトラッカー｜Timesheet Tracker</title>
+	<meta name="description" content="Windowsでの作業を自動で記録し、Jiraの課題キーを照合、AIが作業ログを下書き。工数入力は確認してワンクリックで完了。スクリーンショットなし、データはPCに保存。Microsoft Storeから無料で入手できます。">
+	<link rel="canonical" href="https://timesheet-tracker.com/ja/">
+	<link rel="alternate" hreflang="en" href="https://timesheet-tracker.com/">
+	<link rel="alternate" hreflang="de" href="https://timesheet-tracker.com/de/">
+	<link rel="alternate" hreflang="fr" href="https://timesheet-tracker.com/fr/">
+	<link rel="alternate" hreflang="es" href="https://timesheet-tracker.com/es/">
+	<link rel="alternate" hreflang="pt-BR" href="https://timesheet-tracker.com/pt-br/">
+	<link rel="alternate" hreflang="it" href="https://timesheet-tracker.com/it/">
+	<link rel="alternate" hreflang="pl" href="https://timesheet-tracker.com/pl/">
+	<link rel="alternate" hreflang="nl" href="https://timesheet-tracker.com/nl/">
+	<link rel="alternate" hreflang="ja" href="https://timesheet-tracker.com/ja/">
+	<link rel="alternate" hreflang="uk" href="https://timesheet-tracker.com/uk/">
+	<link rel="alternate" hreflang="ru" href="https://timesheet-tracker.com/ru/">
+	<link rel="alternate" hreflang="x-default" href="https://timesheet-tracker.com/">
+	<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+	<meta name="theme-color" content="#f5f6fb">
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+	<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="Timesheet Tracker">
+	<meta property="og:title" content="Timesheet Tracker — Jiraの工数が自動で埋まるタイムシート">
+	<meta property="og:description" content="Windows用、Jiraのための工数管理・AIタイムトラッカー。データはPCに保存、スクリーンショットなし。金曜日の1時間が10秒に。">
+	<meta property="og:url" content="https://timesheet-tracker.com/ja/">
+	<meta property="og:image" content="https://timesheet-tracker.com/og-image.png">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="og:locale" content="ja_JP">
+	<meta name="twitter:card" content="summary_large_image">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap">
+	<link rel="stylesheet" href="/css/landing.css">
+	<style>
+		:root{--font:"Inter","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Yu Gothic","Meiryo",ui-sans-serif,system-ui,sans-serif}
+		html[lang="ja"] body{line-break:strict;overflow-wrap:anywhere}
+		html[lang="ja"] h1,html[lang="ja"] h2,html[lang="ja"] h3,html[lang="ja"] .lede,html[lang="ja"] .whatif{word-break:auto-phrase}
+		html[lang="ja"] main h1,html[lang="ja"] main h2{letter-spacing:-0.01em}
+	</style>
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "SoftwareApplication",
+		"name": "工数管理・タイムトラッカー - Jira用AI",
+		"alternateName": [
+			"Timesheet Tracker",
+			"Time Tracker & Timesheet - AI for Jira"
+		],
+		"applicationCategory": "BusinessApplication",
+		"applicationSubCategory": "タイムトラッキング・工数管理",
+		"operatingSystem": "Windows",
+		"inLanguage": "ja",
+		"downloadUrl": "https://apps.microsoft.com/detail/9n1vml91q1lx?hl=ja-jp",
+		"installUrl": "https://apps.microsoft.com/detail/9n1vml91q1lx?hl=ja-jp",
+		"url": "https://timesheet-tracker.com/ja/",
+		"image": "https://timesheet-tracker.com/og-image.png",
+		"description": "Windowsの通知領域に常駐し、1日の作業（アクティブなプログラム、ウィンドウタイトル、ブラウザーのドメイン、離席時間）をPC上に記録するアプリです。Jiraの課題キーを自動で見つけ、残りは依頼したときだけAIが仕分けて、タスクごとに作業ログを1つ下書きします。確認して確定すると、作業ログはJira Cloud または Jira Server / Data Center に送信されます。CSVでの書き出しにも対応しています。",
+		"featureList": [
+			"アクティブなプログラム、ウィンドウタイトル、ブラウザーのタブのドメイン、離席・画面ロック時間をPC上で自動記録",
+			"ウィンドウタイトル、URL、gitブランチのJiraキーをAIを使わずPC上で検出",
+			"「この日を仕分け」：残りの時間ブロックをAIがJiraのタスクに割り当て、作業ログのテキストを下書き",
+			"確認画面：タスクの変更、ブロックを「業務外」に指定",
+			"Jira Cloud と Jira Server / Data Center へ重複なしで作業ログを送信",
+			"CSVエクスポート",
+			"「AIなしで使用」モード",
+			"スクリーンショットなし、キー入力の記録なし、上司へのレポートなし"
+		],
+		"offers": [
+			{
+				"@type": "Offer",
+				"name": "無料ダウンロード",
+				"price": "0",
+				"priceCurrency": "USD",
+				"description": "Microsoft Storeから無料でダウンロードでき、Proを14日間無料で試用できます（カード不要）。サブスクリプションがなくても記録は続き、1日の画面を表示します（7日分の履歴、当日のCSV）。"
+			},
+			{
+				"@type": "Offer",
+				"name": "Pro（月額）",
+				"price": "9.99",
+				"priceCurrency": "USD",
+				"description": "月額請求のProサブスクリプション：Jiraへの作業ログ送信とAIによる仕分け。",
+				"priceSpecification": {
+					"@type": "UnitPriceSpecification",
+					"price": "9.99",
+					"priceCurrency": "USD",
+					"unitCode": "MON",
+					"billingDuration": "P1M"
+				}
+			},
+			{
+				"@type": "Offer",
+				"name": "Pro（年額）",
+				"price": "79",
+				"priceCurrency": "USD",
+				"description": "年額請求のProサブスクリプション（月あたり約$6.58、月額より34%お得）：Jiraへの作業ログ送信とAIによる仕分け。",
+				"priceSpecification": {
+					"@type": "UnitPriceSpecification",
+					"price": "79",
+					"priceCurrency": "USD",
+					"unitCode": "ANN",
+					"billingDuration": "P1Y"
+				}
+			}
+		],
+		"publisher": {
+			"@type": "Organization",
+			"name": "Timesheet Tracker",
+			"url": "https://timesheet-tracker.com/"
+		}
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		"name": "Timesheet Tracker",
+		"url": "https://timesheet-tracker.com/",
+		"logo": "https://timesheet-tracker.com/apple-touch-icon.png",
+		"contactPoint": {
+			"@type": "ContactPoint",
+			"email": "help@timesheet-tracker.com",
+			"contactType": "customer support",
+			"availableLanguage": [
+				"English",
+				"Russian"
+			]
+		}
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		"inLanguage": "ja",
+		"mainEntity": [
+			{
+				"@type": "Question",
+				"name": "Timesheet Trackerは従業員監視ツールですか？",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "いいえ。工数を入力する本人のためのツールです。スクリーンショット、キー入力の記録、上司向けダッシュボード、チームレポートはありません。アクティビティはあなたのPCに残り、Jiraに送られるのはあなたが確定した作業ログだけです。"
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "勤怠管理システムの代わりになりますか？",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "いいえ。Jiraへの工数入力（作業ログ）のための個人用ツールで、会社の勤怠管理システムや、出退勤・労働時間の記録を置き換えるものではありません。"
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "PCの外に出るデータは何ですか？",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "あなたが操作するまでは何も出ません。「この日を仕分け」を押すと、未割り当てブロックのマスク済みウィンドウタイトル、プログラム名、ドメイン、時間がAIに送られます。完全なURL、ページの内容、スクリーンショット、キー入力、Jiraのトークンは送信されません。1日を確定すると、承認した作業ログがあなたのJiraに送られます。詳しくはプライバシーポリシー（英語）をご覧ください。"
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "AIなしでも使えますか？",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "はい。「AIなしで使用」モードでは、AIプロバイダーには何も送られません。ウィンドウタイトル、URL、gitブランチにあるJiraキーは引き続きPC上で照合され、残りのブロックは確認画面で自分で割り当てます。"
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "対応しているJiraは？",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "Jira Cloud と Jira Server / Data Center です。作業ログはあなた自身のアカウントで書き込まれ、同じ日を再送しても重複しません。Jiraでの工数管理の基本は工数管理を自動化する方法（Jira）で解説しています。"
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "どのJiraタスクで作業したか、どうやって判断するのですか？",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "1日の大部分はAIを使わずに照合されます。ABC-123のようなJiraキーは、ウィンドウタイトル、ブラウザーのタブ、プルリクエスト名、feature/ABC-123-loginのようなgitブランチ名に現れるからです。AIが扱うのは残りの部分だけで、記録される前にすべての割り当てをあなたが確定します。"
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "TempoやExcelには対応していますか？",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "現在は、Jiraネイティブの作業ログの書き込みとCSVエクスポートに対応しています。Tempoへの直接対応とExcel（XLSX）への書き出しは予定しています。"
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "料金はいくらですか？",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "Microsoft Storeから無料でダウンロードでき、まずProを14日間無料で試用できます（カード不要）。その後Proは月額$9.99、または年額$79（月あたり約$6.58、34%お得）で、既定は年額プランです。サブスクリプションがなくても記録は続き、1日の画面、7日分の履歴、当日のCSVエクスポートを利用できます。Jiraへの作業ログの送信とAIによる仕分けにはProが必要です。"
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "どこからダウンロードできますか？",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "Microsoft Storeから。「工数管理・タイムトラッカー - Jira用AI」という名前で公開しています（英語名：Time Tracker & Timesheet - AI for Jira）。ダウンロードは無料で、Proを14日間無料で試用できます（カード不要）。"
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "Mac版やLinux版はありますか？",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "まだありません。Timesheet TrackerはWindowsアプリです。ほかのプラットフォームが必要な場合は、help@timesheet-tracker.com までお知らせください。"
+				}
+			}
+		]
+	}
+	</script>
+	<script src="/js/landing.js" defer></script>
+	<!-- Yandex.Metrika counter -->
+	<script>
+		(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();
+		for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+		k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+		(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+		ym(113838536, "init", {clickmap: true, trackLinks: true, accurateTrackBounce: true});
+	</script>
+</head>
+<body>
+	<noscript><div><img src="https://mc.yandex.ru/watch/113838536" width="1" height="1" style="position:absolute;left:-9999px" alt=""></div></noscript>
+	<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+		<symbol id="spark" viewBox="0 0 24 24"><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z"/><path d="M19 2l.8 2.2L22 5l-2.2.8L19 8l-.8-2.2L16 5l2.2-.8z" opacity=".7"/></symbol>
+		<symbol id="chk" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+		<symbol id="lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></symbol>
+		<symbol id="branch" viewBox="0 0 24 24"><circle cx="6" cy="5" r="2.2"/><circle cx="6" cy="19" r="2.2"/><circle cx="18" cy="7" r="2.2"/><path d="M6 7.2v9.6M18 9.2c0 5-6 3.5-11 7.8"/></symbol>
+		<symbol id="jira" viewBox="0 0 32 32"><path d="M16 3l7 7-7 7-7-7z" fill="#fff"/><path d="M16 15l7 7-7 7-7-7z" fill="#fff" opacity=".75"/></symbol>
+	</svg>
+
+	<a class="skip" href="#main">本文へスキップ</a>
+	<header class="site-header">
+		<nav class="wrap nav" aria-label="メイン">
+			<a class="brand" href="/ja/"><img src="/img/mark.svg" width="30" height="30" alt=""><span>Timesheet Tracker</span></a>
+			<ul class="nav-links">
+				<li><a href="#how">使い方</a></li>
+				<li><a href="#features">機能</a></li>
+				<li><a href="#privacy">プライバシー</a></li>
+				<li><a href="#compare">比較</a></li>
+				<li><a href="#faq">よくある質問</a></li>
+				<li><a href="/ja/articles/kousu-kanri-jira.html">ガイド</a></li>
+			</ul>
+			<div class="nav-cta">
+				<a class="btn btn-primary btn-sm" href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=ja-jp&amp;cid=site-ja-nav-home" rel="noopener">アプリを入手</a>
+				<button class="nav-toggle" type="button" aria-label="メニュー" aria-expanded="false"><span></span></button>
+			</div>
+		</nav>
+	</header>
+
+	<main id="main">
+		<!-- ============ HERO ============ -->
+		<section class="hero">
+			<div class="sky" aria-hidden="true">
+				<i class="blob b1" data-px="-0.18"></i>
+				<i class="blob b2" data-px="-0.08"></i>
+				<i class="blob b3" data-px="0.06"></i>
+				<i class="blob b4" data-px="-0.26"></i>
+			</div>
+			<div class="wrap hero-inner">
+				<a class="store-badge" href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=ja-jp&amp;cid=site-ja-badge" rel="noopener"><span class="ms" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Microsoft Storeで公開中 <span class="soon">新着</span></a>
+				<h1>Jiraの工数管理を自動化するAIタイムトラッカー。<span class="grad">工数が、自動で埋まる。</span></h1>
+				<p class="lede">Windows向けの自動タイムトラッキング。Timesheet Trackerはあなたの1日を静かに記録し、Jiraの課題キーを自動で見つけ、作業ログを下書きします。確認してワンクリックするだけで、<strong>金曜日の工数入力にかかっていた1時間が10秒になります。</strong></p>
+
+				<div class="get-app">
+					<a class="btn btn-primary btn-store" href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=ja-jp&amp;cid=site-ja-hero" rel="noopener"><span class="ms" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>Microsoft Store から入手</span></a>
+					<p class="get-note">無料ダウンロード · Proを14日間無料で試用（カード不要）</p>
+				</div>
+
+				<ul class="trust">
+					<li>データはPCに保存</li>
+					<li>スクリーンショットなし</li>
+					<li>Jira Cloud・Data Center対応</li>
+					<li>14日間無料トライアル</li>
+				</ul>
+			</div>
+
+			<!-- Today: simple → details, scrubbed by scroll on desktop; stacked on phones and tablets -->
+			<div class="stage" data-stage="today" id="product">
+				<div class="stage-track">
+					<div class="stage-sticky">
+						<div class="stage-cap">
+							<p class="cap" aria-live="polite"><span class="cap-a"><b>シンプル。</b> リングが1つ、文が1つ、ボタンが1つ。</span><span class="cap-b"><b>詳細は、見たいときに。</b> 列が細くなり、1日全体がスライドして表示されます。</span></p>
+							<div class="modes" role="group" aria-label="アプリの表示"><button type="button" data-mode="0" aria-pressed="true">シンプル</button><button type="button" data-mode="1" aria-pressed="false">詳細</button><span class="modes-thumb" aria-hidden="true"></span></div>
+						</div>
+						<div class="stage-win">
+							<div class="floaters" aria-hidden="true">
+								<div class="float f1" data-depth="1.1"><span class="f-ic"><svg><use href="#branch"/></svg></span><span><small>gitブランチ</small><b>CASE-1423 を検出</b></span></div>
+								<div class="float f2" data-depth="-0.8"><span class="f-ic ai"><svg><use href="#spark"/></svg></span><span><small>AI · 確信度88%</small><b>オンボーディング</b></span></div>
+								<div class="float f3" data-depth="0.7"><span class="f-ic ok"><svg><use href="#lock"/></svg></span><span><small>プライバシー</small><b>スクリーンショットなし</b></span></div>
+								<div class="float f4" data-depth="-1.3"><span class="f-dot"></span><span><small>離席 · 13:00</small><b>昼休み、記録対象外</b></span></div>
+							</div>
+							<div class="tt-frame" role="img" aria-label="Timesheet Trackerアプリの「今日」画面。シンプル表示：リングが8時間のうち8時間10分を示し、「3時間10分はまだタスクが未割り当てです」という1文と「この日を仕分け」ボタンが1つ。詳細表示：列が細くなり、KPIタイル、アクティビティと作業のタイムライン、Jiraキーと照合されたアクティビティ一覧がスライドして表示されます。">
+								<div class="tt tt-desk" aria-hidden="true">
+<!-- H4:today-desk -->
+<div class="win" data-scene="today"><div class="tint"></div>
+<div class="layer L-s"><div class="d-col" style="top:92px"><div class="d-date" data-share="date" style="">10月16日（金）</div>
+<div class="d-ring" style="width:300px;height:300px;margin-top:14px"><div data-share="ring" style="width:300px;height:300px;filter:drop-shadow(0 14px 30px rgba(91,91,240,.18))"><svg width="300" height="300" viewBox="0 0 300 300"><circle cx="150" cy="150" r="138" fill="none" stroke="rgba(22,24,40,.07)" stroke-width="22"/><path d="M 159.89 12.35 A 138 138 0 0 1 240.25 254.39" fill="none" stroke="#5b5bf0" stroke-width="22" stroke-linecap="round"/><path d="M 224.40 266.23 A 138 138 0 0 1 91.07 274.79" fill="none" stroke="#f08a3c" stroke-width="22" stroke-linecap="round"/><path d="M 73.84 265.08 A 138 138 0 0 1 68.31 261.22" fill="none" stroke="#a66cf0" stroke-width="22" stroke-linecap="round"/><circle cx="53.24" cy="248.40" r="5.28" fill="#d97706"/><circle cx="40.18" cy="233.57" r="5.28" fill="#d97706"/><circle cx="29.37" cy="217.03" r="5.28" fill="#d97706"/><circle cx="21.04" cy="199.12" r="5.28" fill="#d97706"/><circle cx="15.34" cy="180.19" r="5.28" fill="#d97706"/><circle cx="12.41" cy="160.65" r="5.28" fill="#d97706"/><circle cx="12.30" cy="140.90" r="5.28" fill="#d97706"/><circle cx="15.01" cy="121.32" r="5.28" fill="#d97706"/><circle cx="20.49" cy="102.34" r="5.28" fill="#d97706"/><circle cx="28.63" cy="84.33" r="5.28" fill="#d97706"/><circle cx="39.25" cy="67.67" r="5.28" fill="#d97706"/><circle cx="52.14" cy="52.70" r="5.28" fill="#d97706"/><circle cx="67.04" cy="39.72" r="5.28" fill="#d97706"/><circle cx="83.64" cy="29.00" r="5.28" fill="#d97706"/><circle cx="101.60" cy="20.77" r="5.28" fill="#d97706"/><circle cx="120.55" cy="15.18" r="5.28" fill="#d97706"/><circle cx="140.11" cy="12.35" r="5.28" fill="#d97706"/></svg></div>
+<div class="d-mid"><div class="d-big num" data-share="total" style="">8h 10m</div><div class="d-sub" data-share="norm" style="">/ 8時間 · 目標達成</div></div></div>
+<div class="d-line" data-share="line" style="margin-top:22px;">主に <span class="tk" style="background:#e3e4ff;color:#4f46e5"><i style="background:#5b5bf0"></i>認証APIリファクタ</span> と <span class="tk" style="background:#fde8cf;color:#c2410c"><i style="background:#f08a3c"></i>コードレビュー</span><br><span class="d-warn num" >3h 10m</span>はまだタスクが未割り当てです。</div>
+<div class="cta" data-share="cta" style="margin-top:30px;"><svg width="20" height="20" viewBox="0 0 24 24"><defs><linearGradient id="sg20" x1="0" x2="1"><stop offset="0" stop-color="#a5b4fc"/><stop offset=".5" stop-color="#f0abfc"/><stop offset="1" stop-color="#fcd34d"/></linearGradient></defs><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z" fill="url(#sg20)"/></svg>この日を仕分け<small>Enter</small></div>
+<div class="d-hint" data-out="fade" data-at="0" data-dur=".22" style="margin-top:14px;">AIが提案し、あなたが確定します。このPCの外に出るのはウィンドウタイトルと時間だけです。</div></div>
+<div class="d-col" style="bottom:28px"><div class="peek" data-toggle data-out="recede" data-at="0" data-dur=".25"><span class="ms"><i style="flex:195;background:#5b5bf0"></i><i style="flex:15;background:#a66cf0"></i><i style="flex:90;background:#f08a3c"></i><i style="flex:190;background:#d97706"></i></span>9件のアクティビティ · 6個のアプリ · 離席 45m<span style="color:var(--accent)">詳細ウィンドウを開く ›</span></div></div></div><div class="panebg"></div>
+<div class="layer L-d"><div class="d-col" style="left:0;right:auto;width:380px;top:76px"><div class="d-date" data-share="date" style="font-size:13.5px">10月16日（金）</div>
+<div class="d-ring" style="width:208px;height:208px;margin-top:12px"><div data-share="ring" style="width:208px;height:208px;filter:drop-shadow(0 14px 30px rgba(91,91,240,.18))"><svg width="208" height="208" viewBox="0 0 208 208"><circle cx="104" cy="104" r="95" fill="none" stroke="rgba(22,24,40,.07)" stroke-width="16"/><path d="M 111.19 9.27 A 95 95 0 0 1 166.42 175.61" fill="none" stroke="#5b5bf0" stroke-width="16" stroke-linecap="round"/><path d="M 154.89 184.22 A 95 95 0 0 1 63.78 190.07" fill="none" stroke="#f08a3c" stroke-width="16" stroke-linecap="round"/><path d="M 51.25 183.01 A 95 95 0 0 1 48.07 180.79" fill="none" stroke="#a66cf0" stroke-width="16" stroke-linecap="round"/><circle cx="37.12" cy="171.47" r="3.84" fill="#d97706"/><circle cx="28.20" cy="161.26" r="3.84" fill="#d97706"/><circle cx="20.82" cy="149.89" r="3.84" fill="#d97706"/><circle cx="15.14" cy="137.59" r="3.84" fill="#d97706"/><circle cx="11.26" cy="124.60" r="3.84" fill="#d97706"/><circle cx="9.27" cy="111.19" r="3.84" fill="#d97706"/><circle cx="9.21" cy="97.64" r="3.84" fill="#d97706"/><circle cx="11.08" cy="84.21" r="3.84" fill="#d97706"/><circle cx="14.85" cy="71.19" r="3.84" fill="#d97706"/><circle cx="20.42" cy="58.84" r="3.84" fill="#d97706"/><circle cx="27.70" cy="47.40" r="3.84" fill="#d97706"/><circle cx="36.53" cy="37.12" r="3.84" fill="#d97706"/><circle cx="46.74" cy="28.20" r="3.84" fill="#d97706"/><circle cx="58.11" cy="20.82" r="3.84" fill="#d97706"/><circle cx="70.41" cy="15.14" r="3.84" fill="#d97706"/><circle cx="83.40" cy="11.26" r="3.84" fill="#d97706"/><circle cx="96.81" cy="9.27" r="3.84" fill="#d97706"/></svg></div>
+<div class="d-mid"><div class="d-big num" data-share="total" style="font-size:40px;letter-spacing:-1.92px">8h 10m</div><div class="d-sub" data-share="norm" style="font-size:12.5px">/ 8時間 · 目標達成</div></div></div>
+<div class="d-line" data-share="line" style="margin-top:16px;font-size:16px;letter-spacing:-0.352px">主に <span class="tk" style="background:#e3e4ff;color:#4f46e5"><i style="background:#5b5bf0"></i>認証APIリファクタ</span> と <span class="tk" style="background:#fde8cf;color:#c2410c"><i style="background:#f08a3c"></i>コードレビュー</span><br><span class="d-warn num" >3h 10m</span>はまだタスクが未割り当てです。</div>
+<div class="cta" data-share="cta" style="margin-top:22px;height:54px;width:316px;font-size:16.5px;border-radius:17px;padding:0"><svg width="20" height="20" viewBox="0 0 24 24"><defs><linearGradient id="sg20" x1="0" x2="1"><stop offset="0" stop-color="#a5b4fc"/><stop offset=".5" stop-color="#f0abfc"/><stop offset="1" stop-color="#fcd34d"/></linearGradient></defs><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z" fill="url(#sg20)"/></svg>この日を仕分け<small>Enter</small></div>
+<div class="d-hint" data-in="fade" data-at=".55" data-dur=".3" style="margin-top:10px;max-width:300px;font-size:12px;line-height:1.45">AIが提案し、あなたが確定します。このPCの外に出るのはウィンドウタイトルと時間だけです。</div><div style="width:316px;margin-top:22px" data-in="up" data-at=".5" data-dur=".35">
+<div style="display:flex;justify-content:space-between;font-size:12.5px;font-weight:700;padding-bottom:4px"><span>未仕分け</span><span style="color:var(--muted);font-weight:600">4件 · AI準備完了</span></div>
+<div class="qrow"><i style="width:8px;height:8px;border-radius:50%;background:#f24e1e;flex:none"></i><span class="an">Figma</span><span class="w">オンボーディング v3 — 画面</span><span class="d num">45m</span></div><div class="qrow"><i style="width:8px;height:8px;border-radius:50%;background:#2eb67d;flex:none"></i><span class="an">Slack</span><span class="w">#incident-billing · Grafana</span><span class="d num">45m</span></div><div class="qrow"><i style="width:8px;height:8px;border-radius:50%;background:#1868db;flex:none"></i><span class="an">Confluence</span><span class="w">リリース4.2 — ノート下書き</span><span class="d num">1h 25m</span></div><div class="qrow"><i style="width:8px;height:8px;border-radius:50%;background:#2eb67d;flex:none"></i><span class="an">Slack</span><span class="w">DM · Chromeのタブ</span><span class="d num">15m</span></div></div></div>
+<div class="pane" style="position:absolute;left:380px;top:52px;right:0;bottom:0;padding:18px 24px 20px">
+<div class="a-hdr" data-in="right" data-at=".2" data-dur=".45"><span class="a-h1" style="font-size:24px">1日の詳細</span><span class="navb"><span><svg class="i" viewBox="0 0 24 24" style="width:16px;height:16px;"><path d="M15 6l-6 6 6 6"/></svg></span><span style="opacity:.35"><svg class="i" viewBox="0 0 24 24" style="width:16px;height:16px;"><path d="M9 6l6 6-6 6"/></svg></span></span><span class="pill-ok" style="margin-left:auto"><i></i>記録中 · このPCに保存</span></div>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:14px" data-stg="in,right,.24,.04,.45"><div class="card kpi"><div class="kl">自動割り当て</div><div class="kv num">5h 00m</div><div class="ks">gitブランチ · タイトル · カレンダー</div></div><div class="card kpi"><div class="kl">未割り当て</div><div class="kv num" style="color:var(--warn)">3h 10m</div><div class="ks">4件</div></div><div class="card kpi"><div class="kl">Jiraと照合</div><div class="kv num">61%</div><div class="kbar"><i style="width:61%"></i></div></div><div class="card kpi"><div class="kl">今週</div><div class="kv num">30h 45m</div><div class="ks">/ 40時間 · 順調</div></div></div>
+<div class="card tl" data-in="right" data-at=".3" data-dur=".5" style="margin-top:14px;height:548px"><div class="tlgrid" style="width:810px">
+<div class="g" data-in="fade" data-at="0.4" data-dur=".3"><div class="hour" style="left:58px">9:00</div><div class="vline" style="left:58px"></div><div class="hour" style="left:136.31578947368422px">10:00</div><div class="vline" style="left:136.31578947368422px"></div><div class="hour" style="left:214.6315789473684px">11:00</div><div class="vline" style="left:214.6315789473684px"></div><div class="hour" style="left:292.9473684210526px">12:00</div><div class="vline" style="left:292.9473684210526px"></div><div class="hour" style="left:371.2631578947368px">13:00</div><div class="vline" style="left:371.2631578947368px"></div><div class="hour" style="left:449.57894736842104px">14:00</div><div class="vline" style="left:449.57894736842104px"></div><div class="hour" style="left:527.8947368421052px">15:00</div><div class="vline" style="left:527.8947368421052px"></div><div class="hour" style="left:606.2105263157895px">16:00</div><div class="vline" style="left:606.2105263157895px"></div><div class="hour" style="left:684.5263157894736px">17:00</div><div class="vline" style="left:684.5263157894736px"></div><div class="hour" style="left:762.8421052631578px">18:00</div><div class="vline" style="left:762.8421052631578px"></div><div class="lane-l" style="top:40px">アクティビティ</div><div class="lane-l" style="top:114px">作業</div></div>
+<div class="g" data-stg="in,growx,0.46,.018,.3"><div class="app" style="left:59px;width:115.4736842105263px;background:#2f80ed">VS Code</div><div class="app" style="left:176.4736842105263px;width:17.57894736842105px;background:#6264a7"></div><div class="app" style="left:196.05263157894737px;width:115.4736842105263px;background:#e7a400">Chrome · GitHub</div><div class="app" style="left:313.52631578947364px;width:56.73684210526315px;background:#f24e1e"></div><div class="app" style="left:431px;width:135.05263157894737px;background:#2f80ed">VS Code</div><div class="app" style="left:568.0526315789473px;width:23.844210526315795px;background:#2eb67d"></div><div class="app" style="left:593.8968421052631px;width:30.89263157894736px;background:#f46800"></div><div class="app" style="left:626.7894736842105px;width:109.2084210526317px;background:#1868db">Confluence</div><div class="app" style="left:737.9978947368422px;width:10.530526315789206px;background:#2eb67d"></div><div class="app" style="left:750.5284210526314px;width:5.048421052631846px;background:#e7a400"></div></div>
+<div class="g wk" data-stg="in,growx,0.5,.022,.32"><div class="blk away" style="left:373.2631578947368px;width:54.73684210526315px">離席</div><div class="blk" style="left:60px;width:113.4736842105263px;background:#e3e4ff;box-shadow:inset 3px 0 0 #4f46e5"><div class="k" style="color:#4f46e5">CASE-1423</div><div class="t">認証APIリファクタ</div></div><div class="blk" style="left:177.4736842105263px;width:15.578947368421051px;background:#ede4ff;box-shadow:inset 3px 0 0 #7c3aed"><div class="k" style="color:#7c3aed"></div></div><div class="blk" style="left:197.05263157894737px;width:113.4736842105263px;background:#fde8cf;box-shadow:inset 3px 0 0 #c2410c"><div class="k" style="color:#c2410c">CASE-1388</div><div class="t">コードレビュー</div></div><div class="blk un" style="left:314.52631578947364px;width:54.73684210526315px">?</div><div class="blk" style="left:432px;width:133.05263157894737px;background:#e3e4ff;box-shadow:inset 3px 0 0 #4f46e5"><div class="k" style="color:#4f46e5">CASE-1423</div><div class="t">認証APIリファクタ</div></div><div class="blk un" style="left:569.0526315789473px;width:54.73684210526315px">?</div><div class="blk un" style="left:627.7894736842105px;width:107.2084210526317px">未割り当て</div><div class="blk un" style="left:738.9978947368422px;width:15.578947368421051px">?</div></div>
+<div class="g" data-in="fade" data-at="0.72" data-dur=".2"><div class="now" style="left:756.5768421052633px"></div><div class="nowtag" style="left:756.5768421052633px">17:55</div></div></div><div class="sep" data-in="fade" data-at="0.5"></div>
+<div class="feedh" data-in="up" data-at="0.5" data-dur=".3">アクティビティ <span>ウィンドウ · タイトル · ドメイン · アイドル — スクリーンショットなし</span><span style="margin-left:auto;color:var(--accent);font-weight:600">ルール · 3</span></div>
+<div data-stg="in,up,0.53,.025,.3" style="margin-top:4px"><div class="fr"><span class="tm num">17:40</span><span class="dot" style="background:#2eb67d"></span><span class="an">Slack</span><span class="w">DM · Chromeのタブ — 混在</span><span class="ar">→</span><span class="to" style=""><span class="unchip">? 未割り当て</span></span></div><div class="fr"><span class="tm num">16:15</span><span class="dot" style="background:#1868db"></span><span class="an">Confluence</span><span class="w">リリース4.2 — ノート下書き</span><span class="ar">→</span><span class="to" style=""><span class="unchip">? 未割り当て</span></span></div><div class="fr"><span class="tm num">15:30</span><span class="dot" style="background:#2eb67d"></span><span class="an">Slack</span><span class="w">#incident-billing · Grafanaアラート</span><span class="ar">→</span><span class="to" style=""><span class="unchip">? 未割り当て</span></span></div><div class="fr"><span class="tm num">13:45</span><span class="dot" style="background:#2f80ed"></span><span class="an">VS Code</span><span class="w">auth-service · feature/CASE-1423-token-refresh</span><span class="ar">→</span><span class="to" style=""><span class="chip" style="background:#e3e4ff;color:#4f46e5">CASE-1423</span><span class="via">gitブランチ</span></span></div><div class="fr"><span class="tm num">13:00</span><span class="dot" style="background:#9ca3af"></span><span class="an">離席</span><span class="w">画面ロック · 45分</span><span class="ar">→</span><span class="to" style=""><span class="via">昼休み · 記録対象外</span></span></div><div class="fr"><span class="tm num">12:15</span><span class="dot" style="background:#f24e1e"></span><span class="an">Figma</span><span class="w">オンボーディング v3 — 画面</span><span class="ar">→</span><span class="to" style=""><span class="unchip">? 未割り当て</span></span></div><div class="fr"><span class="tm num">10:45</span><span class="dot" style="background:#e7a400"></span><span class="an">Chrome</span><span class="w">github.com/acme/billing/pull/412 · CASE-1388</span><span class="ar">→</span><span class="to" style=""><span class="chip" style="background:#fde8cf;color:#c2410c">CASE-1388</span><span class="via">タイトル内のキー</span></span></div></div></div>
+</div></div>
+<div class="chrome"><div class="tb"><div class="logo"><img src="/img/mark.svg" width="22" height="22" alt=""></div><span class="appname">工数管理・タイムトラッカー</span><span class="rec"><i></i>記録中</span><div class="seg" data-anim="seg"><span class="on" data-go="today">今日</span><span class="" data-go="week">週<i class="dot"></i></span></div><div class="tbr"><div class="tg" data-toggle><span class="thumb"></span><span data-opt="0">シンプル</span><span data-opt="1"><svg class="i" viewBox="0 0 24 24" style="width:14px;height:14px;"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>詳細 <kbd>D</kbd></span></div><div class="caps"><span>&#x2014;</span><span>&#x2610;</span><span>&#x2715;</span></div></div></div></div><div class="fx"></div><div class="sheen"></div><div class="rim"></div></div>
+<!-- /H4:today-desk -->
+								</div>
+							</div>
+						</div>
+						<p class="stage-hint" aria-hidden="true"><span></span>スクロールして詳細を表示</p>
+					</div>
+				</div>
+				<div class="tt tt-mob" role="img" aria-label="Timesheet Trackerアプリの「今日」画面：8時間のうち8時間10分、3時間10分はタスク未割り当て、「この日を仕分け」ボタン、KPIタイル、1日のタイムライン、Jiraキーと照合されたアクティビティ一覧。">
+					<div class="tt-mob-in" aria-hidden="true">
+<!-- H4:today-mob -->
+<div class="m-app">
+<div class="m-bar"><div class="logo"><img src="/img/mark.svg" width="22" height="22" alt=""></div><span class="appname">工数管理・タイムトラッカー</span><span class="rec"><i></i>記録中</span></div>
+<div class="m-d"><div class="d-date" style="font-size:14px">10月16日（金）</div>
+<div class="d-ring" style="width:232px;height:232px;margin-top:12px"><div style="width:232px;height:232px;filter:drop-shadow(0 14px 30px rgba(91,91,240,.18))"><svg width="232" height="232" viewBox="0 0 232 232"><circle cx="116" cy="116" r="106" fill="none" stroke="rgba(22,24,40,.07)" stroke-width="18"/><path d="M 124.09 10.31 A 106 106 0 0 1 185.70 195.86" fill="none" stroke="#5b5bf0" stroke-width="18" stroke-linecap="round"/><path d="M 172.73 205.54 A 106 106 0 0 1 71.19 212.06" fill="none" stroke="#f08a3c" stroke-width="18" stroke-linecap="round"/><path d="M 57.08 204.12 A 106 106 0 0 1 53.65 201.72" fill="none" stroke="#a66cf0" stroke-width="18" stroke-linecap="round"/><circle cx="41.33" cy="191.23" r="4.32" fill="#d97706"/><circle cx="30.78" cy="179.04" r="4.32" fill="#d97706"/><circle cx="22.21" cy="165.39" r="4.32" fill="#d97706"/><circle cx="15.80" cy="150.59" r="4.32" fill="#d97706"/><circle cx="11.72" cy="135.00" r="4.32" fill="#d97706"/><circle cx="10.04" cy="118.96" r="4.32" fill="#d97706"/><circle cx="10.82" cy="102.86" r="4.32" fill="#d97706"/><circle cx="14.03" cy="87.06" r="4.32" fill="#d97706"/><circle cx="19.59" cy="71.93" r="4.32" fill="#d97706"/><circle cx="27.39" cy="57.82" r="4.32" fill="#d97706"/><circle cx="37.24" cy="45.06" r="4.32" fill="#d97706"/><circle cx="48.91" cy="33.94" r="4.32" fill="#d97706"/><circle cx="62.13" cy="24.71" r="4.32" fill="#d97706"/><circle cx="76.60" cy="17.60" r="4.32" fill="#d97706"/><circle cx="91.97" cy="12.76" r="4.32" fill="#d97706"/><circle cx="107.91" cy="10.31" r="4.32" fill="#d97706"/></svg></div>
+<div class="d-mid"><div class="d-big num" style="font-size:44px;letter-spacing:-2.112px">8h 10m</div><div class="d-sub" style="font-size:13px">/ 8時間 · 目標達成</div></div></div>
+<div class="d-line" style="margin-top:18px;font-size:18px;letter-spacing:-0.39599999999999996px">主に <span class="tk" style="background:#e3e4ff;color:#4f46e5"><i style="background:#5b5bf0"></i>認証APIリファクタ</span> と <span class="tk" style="background:#fde8cf;color:#c2410c"><i style="background:#f08a3c"></i>コードレビュー</span><br><span class="d-warn num" >3h 10m</span>はまだタスクが未割り当てです。</div>
+<div class="cta" style="margin-top:22px;height:56px;width:100%;font-size:17px;border-radius:18px;padding:0"><svg width="20" height="20" viewBox="0 0 24 24"><defs><linearGradient id="sg20m" x1="0" x2="1"><stop offset="0" stop-color="#a5b4fc"/><stop offset=".5" stop-color="#f0abfc"/><stop offset="1" stop-color="#fcd34d"/></linearGradient></defs><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z" fill="url(#sg20m)"/></svg>この日を仕分け<small>Enter</small></div>
+<div class="d-hint" style="margin-top:12px;">AIが提案し、あなたが確定します。このPCの外に出るのはウィンドウタイトルと時間だけです。</div></div>
+<div class="m-peek"><div class="peek"><span class="ms"><i style="flex:195;background:#5b5bf0"></i><i style="flex:15;background:#a66cf0"></i><i style="flex:90;background:#f08a3c"></i><i style="flex:190;background:#d97706"></i></span>9件のアクティビティ · 6個のアプリ · 離席 45m<span style="color:var(--accent)">詳細は下に ›</span></div></div>
+</div>
+<div class="m-panel reveal"><div class="m-h"><b>未仕分け</b><span>4件 · AI準備完了</span></div><div class="qrow"><i style="width:8px;height:8px;border-radius:50%;background:#f24e1e;flex:none"></i><span class="an">Figma</span><span class="w">オンボーディング v3 — 画面</span><span class="d num">45m</span></div><div class="qrow"><i style="width:8px;height:8px;border-radius:50%;background:#2eb67d;flex:none"></i><span class="an">Slack</span><span class="w">#incident-billing · Grafana</span><span class="d num">45m</span></div><div class="qrow"><i style="width:8px;height:8px;border-radius:50%;background:#1868db;flex:none"></i><span class="an">Confluence</span><span class="w">リリース4.2 — ノート下書き</span><span class="d num">1h 25m</span></div><div class="qrow"><i style="width:8px;height:8px;border-radius:50%;background:#2eb67d;flex:none"></i><span class="an">Slack</span><span class="w">DM · Chromeのタブ</span><span class="d num">15m</span></div></div>
+<div class="m-kpis reveal"><div class="card kpi"><div class="kl">自動割り当て</div><div class="kv num">5h 00m</div><div class="ks">gitブランチ · タイトル · カレンダー</div></div><div class="card kpi"><div class="kl">未割り当て</div><div class="kv num" style="color:var(--warn)">3h 10m</div><div class="ks">4件</div></div><div class="card kpi"><div class="kl">Jiraと照合</div><div class="kv num">61%</div><div class="kbar"><i style="width:61%"></i></div></div><div class="card kpi"><div class="kl">今週</div><div class="kv num">30h 45m</div><div class="ks">/ 40時間 · 順調</div></div></div>
+<div class="m-panel reveal"><div class="m-h"><b>1日の詳細</b><span class="pill-ok"><i></i>このPCに保存</span></div><div class="m-tl">
+<div class="m-hours"><span style="left:0.00%">9:00</span><span style="left:21.05%">11:00</span><span style="left:42.11%">13:00</span><span style="left:63.16%">15:00</span><span style="left:84.21%">17:00</span></div>
+<div class="m-lane"><b>アクティビティ</b><div class="m-trk"><i style="left:0.00%;width:calc(15.79% - 2px);background:#2f80ed"></i><i style="left:15.79%;width:calc(2.63% - 2px);background:#6264a7"></i><i style="left:18.42%;width:calc(15.79% - 2px);background:#e7a400"></i><i style="left:34.21%;width:calc(7.90% - 2px);background:#f24e1e"></i><i style="left:50.00%;width:calc(18.42% - 2px);background:#2f80ed"></i><i style="left:68.42%;width:calc(3.47% - 2px);background:#2eb67d"></i><i style="left:71.89%;width:calc(4.43% - 2px);background:#f46800"></i><i style="left:76.32%;width:calc(14.94% - 2px);background:#1868db"></i><i style="left:91.26%;width:calc(1.69% - 2px);background:#2eb67d"></i><i style="left:92.95%;width:calc(0.94% - 2px);background:#e7a400"></i></div></div>
+<div class="m-lane"><b>作業</b><div class="m-trk tall"><i class="away" style="left:42.11%;width:calc(7.89% - 2px)"></i><i class="" style="left:0.00%;width:calc(15.79% - 3px);background:#e3e4ff;box-shadow:inset 3px 0 0 #4f46e5"></i><i class="" style="left:15.79%;width:calc(2.63% - 3px);background:#ede4ff;box-shadow:inset 3px 0 0 #7c3aed"></i><i class="" style="left:18.42%;width:calc(15.79% - 3px);background:#fde8cf;box-shadow:inset 3px 0 0 #c2410c"></i><i class="un" style="left:34.21%;width:calc(7.90% - 3px);"></i><i class="" style="left:50.00%;width:calc(18.42% - 3px);background:#e3e4ff;box-shadow:inset 3px 0 0 #4f46e5"></i><i class="un" style="left:68.42%;width:calc(7.90% - 3px);"></i><i class="un" style="left:76.32%;width:calc(14.94% - 3px);"></i><i class="un" style="left:91.26%;width:calc(2.63% - 3px);"></i><span class="m-now" style="left:93.89%"></span></div></div>
+<div class="m-legend"><span><i style="background:#5b5bf0"></i>CASE-1423</span><span><i style="background:#f08a3c"></i>CASE-1388</span><span><i class="un"></i>未割り当て · 3h 10m</span></div></div></div>
+<div class="m-panel m-feed reveal"><div class="sep"></div>
+<div class="feedh">アクティビティ <span>ウィンドウ · タイトル · ドメイン · アイドル — スクリーンショットなし</span><span style="margin-left:auto;color:var(--accent);font-weight:600">ルール · 3</span></div>
+<div style="margin-top:4px"><div class="fr"><span class="tm num">17:40</span><span class="dot" style="background:#2eb67d"></span><span class="an">Slack</span><span class="w">DM · Chromeのタブ — 混在</span><span class="ar">→</span><span class="to" style=""><span class="unchip">? 未割り当て</span></span></div><div class="fr"><span class="tm num">16:15</span><span class="dot" style="background:#1868db"></span><span class="an">Confluence</span><span class="w">リリース4.2 — ノート下書き</span><span class="ar">→</span><span class="to" style=""><span class="unchip">? 未割り当て</span></span></div><div class="fr"><span class="tm num">15:30</span><span class="dot" style="background:#2eb67d"></span><span class="an">Slack</span><span class="w">#incident-billing · Grafanaアラート</span><span class="ar">→</span><span class="to" style=""><span class="unchip">? 未割り当て</span></span></div><div class="fr"><span class="tm num">13:45</span><span class="dot" style="background:#2f80ed"></span><span class="an">VS Code</span><span class="w">auth-service · feature/CASE-1423-token-refresh</span><span class="ar">→</span><span class="to" style=""><span class="chip" style="background:#e3e4ff;color:#4f46e5">CASE-1423</span><span class="via">gitブランチ</span></span></div><div class="fr"><span class="tm num">13:00</span><span class="dot" style="background:#9ca3af"></span><span class="an">離席</span><span class="w">画面ロック · 45分</span><span class="ar">→</span><span class="to" style=""><span class="via">昼休み · 記録対象外</span></span></div><div class="fr"><span class="tm num">12:15</span><span class="dot" style="background:#f24e1e"></span><span class="an">Figma</span><span class="w">オンボーディング v3 — 画面</span><span class="ar">→</span><span class="to" style=""><span class="unchip">? 未割り当て</span></span></div></div></div>
+<!-- /H4:today-mob -->
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============ FRIDAY ============ -->
+		<section class="friday" aria-labelledby="friday-h">
+			<div class="wrap">
+				<h2 id="friday-h" class="clock reveal" data-px="0.08">金曜日、17<span class="colon">:</span>42。</h2>
+				<p class="empty reveal" style="--rd:.1s">工数は、まだ1行も入っていません。</p>
+				<div class="pains">
+					<div class="pain reveal" style="--rd:.05s"><b>火曜日のことは、もう思い出せない。</b>チケット、レビュー、打ち合わせ、「ちょっといいですか」。5日分の作業を、記憶とチャットの履歴とブラウザーのタブから組み立て直すことになります。</div>
+					<div class="pain reveal" style="--rd:.15s"><b>Jiraはタスクごとに作業ログを求めます。</b>課題を開き、作業を記録し、説明を書き、日付を選ぶ。これをタスクの数だけ、1週間の毎日くり返します。</div>
+					<div class="pain reveal" style="--rd:.25s"><b>タイマーは実際の仕事についてこられない。</b>押し忘れ、止め忘れ。しかも昼までに20回はタスクを切り替えています。</div>
+				</div>
+				<p class="whatif reveal"><span class="grad">工数が、自動で埋まったら？</span></p>
+			</div>
+		</section>
+
+		<!-- ============ HOW ============ -->
+		<section class="section" id="how" aria-labelledby="how-h">
+			<div class="wrap">
+				<div class="section-head reveal" data-px="0.05">
+					<span class="kicker">使い方</span>
+					<h2 id="how-h">記録して、仕分けて、確定する。</h2>
+					<p>タイマーの操作も、チケット番号の暗記も不要です。3つのステップのうち、あなたの出番は最後の1つだけです。</p>
+				</div>
+				<div class="steps">
+					<article class="step reveal">
+						<span class="num">1</span>
+						<h3>1日の作業を、静かに記録</h3>
+						<p>Windowsの通知領域から、アクティブなプログラム、ウィンドウタイトル、ブラウザーのタブのドメイン、離席や画面ロックの時間を記録します。データはすべてあなたのPCに保存されます。</p>
+						<div class="viz" aria-hidden="true">
+							<div class="viz-row" style="--c:#2f80ed"><span class="dot"></span><b>VS Code</b><span class="m">feature/CASE-1423-token-refresh</span><span class="chip p-auth">CASE-1423</span></div>
+							<div class="viz-row" style="--c:#e7a400"><span class="dot"></span><b>Chrome</b><span class="m">pull/412 · CASE-1388</span><span class="chip p-review">CASE-1388</span></div>
+							<div class="viz-row" style="--c:#9ca3af"><span class="dot"></span><b>離席</b><span class="m">画面ロック · 45分</span><span class="chip grey">記録対象外</span></div>
+							<div class="viz-row" style="--c:#f24e1e"><span class="dot"></span><b>Figma</b><span class="m">オンボーディング v3 — 画面</span><span class="chip grey">?</span></div>
+						</div>
+					</article>
+					<article class="step reveal" style="--rd:.1s">
+						<span class="num">2</span>
+						<h3>ボタンは1つ：「この日を仕分け」</h3>
+						<p>タイトル、URL、gitブランチにあるJiraキーは、AIを使わずPC上で照合されます。残りはAIがタスクを選び、タスクごとに作業ログのテキストを1つ下書きします。</p>
+						<div class="viz" aria-hidden="true">
+							<div class="viz-ai">
+								<span class="sort-btn"><span><svg><use href="#spark"/></svg>この日を仕分け</span></span>
+								<div class="chips"><span class="chip p-onboard" style="--i:0">CASE-1501 · 88%</span><span class="chip p-ops" style="--i:1">OPS-77 · 81%</span><span class="chip p-notes" style="--i:2">CASE-1510 · 76%</span></div>
+							</div>
+						</div>
+					</article>
+					<article class="step reveal" style="--rd:.2s">
+						<span class="num">3</span>
+						<h3>確認して、ワンクリックでJiraへ</h3>
+						<p>必要に応じてタスクを変更したり、ブロックを「業務外」にしたりしてから確定します。作業ログは重複なしで Jira Cloud または Server / Data Center へ。CSVファイルへの書き出しもできます。</p>
+						<div class="viz" aria-hidden="true">
+							<div class="viz-jira">
+								<div class="flow"><span class="chip p-auth" style="--i:0">CASE-1423</span><span class="chip p-review" style="--i:1">CASE-1388</span><span class="chip p-ops" style="--i:2">OPS-77</span></div>
+								<span class="tile j"><svg width="34" height="34"><use href="#jira"/></svg></span>
+								<span class="tile ok"><svg width="30" height="30" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><use href="#chk"/></svg></span>
+							</div>
+						</div>
+					</article>
+				</div>
+			</div>
+		</section>
+
+
+		<!-- ============ WEEK ============ -->
+		<section class="section week-sec" id="review" aria-labelledby="review-h">
+			<div class="wrap">
+				<div class="section-head reveal" data-px="0.05">
+					<span class="kicker">金曜日</span>
+					<h2 id="review-h">思い出すのではなく、確認するだけ。</h2>
+					<p>金曜日には、1週間分の工数がすでに仕分けられています。ざっと目を通し、アプリが迷った質問に1つ答えて、38時間分をワンクリックでJiraへ送信します。</p>
+				</div>
+			</div>
+			<div class="stage" data-stage="week">
+				<div class="stage-track">
+					<div class="stage-sticky">
+						<div class="stage-cap">
+							<p class="cap" aria-live="polite"><span class="cap-a"><b>1週間を、短い文で。</b> 5日分のリングと、簡単な質問が1つ。</span><span class="cap-b"><b>すべての作業ログを、送信できる状態に。</b> 下書き、確信度、プロジェクト別の内訳。</span></p>
+							<div class="modes" role="group" aria-label="週の表示"><button type="button" data-mode="0" aria-pressed="true">シンプル</button><button type="button" data-mode="1" aria-pressed="false">詳細</button><span class="modes-thumb" aria-hidden="true"></span></div>
+						</div>
+						<div class="stage-win">
+							<div class="tt-frame" role="img" aria-label="「週」画面。シンプル表示：今週の準備ができました。6件のタスクで38時間20分を短い文で表示し、簡単な質問が1つ。詳細表示：Jiraのタスクごとの作業ログの下書きとAIの確信度、プロジェクト別のドーナツグラフ、「38h 20mを確定 → Jira」ボタン。">
+								<div class="tt tt-desk" aria-hidden="true">
+<!-- H4:week-desk -->
+<div class="win" data-scene="week"><div class="tint"></div>
+<div class="layer L-s"><div class="d-col" style="top:96px"><div class="w-h" data-out="recede" data-at="0" data-dur=".3" style="">今週の準備ができました</div>
+<div class="w-sub" style="margin-top:8px"><span class="w-tot num" data-share="wtotal">38h 20m</span> <span data-out="fade" data-at="0" data-dur=".2">6件のタスク · 10月12日～16日 · 1件の簡単な質問</span></div>
+<div class="drow" style="margin-top:22px;gap:30px"><div class="dd"><div data-share="day0" style="width:76px;height:76px"><svg width="76" height="76" viewBox="0 0 76 76"><circle cx="38" cy="38" r="33" fill="none" stroke="rgba(22,24,40,.07)" stroke-width="8"/><path d="M 41.59 5.20 A 33 33 0 0 1 48.19 69.39" fill="none" stroke="#5b5bf0" stroke-width="8" stroke-linecap="round"/><path d="M 41.16 70.85 A 33 33 0 0 1 11.84 58.11" fill="none" stroke="#f08a3c" stroke-width="8" stroke-linecap="round"/><path d="M 8.10 51.97 A 33 33 0 0 1 5.44 32.61" fill="none" stroke="#a66cf0" stroke-width="8" stroke-linecap="round"/><path d="M 7.38 25.69 A 33 33 0 0 1 34.41 5.20" fill="none" stroke="#f0609e" stroke-width="8" stroke-linecap="round"/></svg></div><span data-out="fade" data-at="0" data-dur=".2">月 · 7:40</span></div><div class="dd"><div data-share="day1" style="width:76px;height:76px"><svg width="76" height="76" viewBox="0 0 76 76"><circle cx="38" cy="38" r="33" fill="none" stroke="rgba(22,24,40,.07)" stroke-width="8"/><path d="M 41.59 5.20 A 33 33 0 0 1 53.03 67.38" fill="none" stroke="#5b5bf0" stroke-width="8" stroke-linecap="round"/><path d="M 46.31 69.94 A 33 33 0 0 1 27.59 69.32" fill="none" stroke="#f08a3c" stroke-width="8" stroke-linecap="round"/><path d="M 21.06 66.32 A 33 33 0 0 1 11.82 58.10" fill="none" stroke="#a66cf0" stroke-width="8" stroke-linecap="round"/><path d="M 8.09 51.95 A 33 33 0 0 1 5.26 42.13" fill="none" stroke="#f0609e" stroke-width="8" stroke-linecap="round"/><path d="M 5.14 34.95 A 33 33 0 0 1 34.41 5.20" fill="none" stroke="#23b39a" stroke-width="8" stroke-linecap="round"/></svg></div><span data-out="fade" data-at="0" data-dur=".2">火 · 7:55</span></div><div class="dd"><div data-share="day2" style="width:76px;height:76px"><svg width="76" height="76" viewBox="0 0 76 76"><circle cx="38" cy="38" r="33" fill="none" stroke="rgba(22,24,40,.07)" stroke-width="8"/><path d="M 41.59 5.20 A 33 33 0 0 1 60.19 62.43" fill="none" stroke="#5b5bf0" stroke-width="8" stroke-linecap="round"/><path d="M 54.37 66.65 A 33 33 0 0 1 27.94 69.43" fill="none" stroke="#f08a3c" stroke-width="8" stroke-linecap="round"/><path d="M 21.38 66.51 A 33 33 0 0 1 7.91 51.55" fill="none" stroke="#a66cf0" stroke-width="8" stroke-linecap="round"/><path d="M 5.69 44.72 A 33 33 0 0 1 34.41 5.20" fill="none" stroke="#f0609e" stroke-width="8" stroke-linecap="round"/></svg></div><span data-out="fade" data-at="0" data-dur=".2">水 · 7:30</span></div><div class="dd"><div data-share="day3" style="width:76px;height:76px"><svg width="76" height="76" viewBox="0 0 76 76"><circle cx="38" cy="38" r="33" fill="none" stroke="rgba(22,24,40,.07)" stroke-width="8"/><path d="M 41.59 5.20 A 33 33 0 0 1 43.82 70.48" fill="none" stroke="#5b5bf0" stroke-width="8" stroke-linecap="round"/><path d="M 36.65 70.97 A 33 33 0 0 1 13.27 59.85" fill="none" stroke="#f08a3c" stroke-width="8" stroke-linecap="round"/><path d="M 9.13 53.98 A 33 33 0 0 1 5.15 34.84" fill="none" stroke="#a66cf0" stroke-width="8" stroke-linecap="round"/><path d="M 6.61 27.81 A 33 33 0 0 1 7.22 26.10" fill="none" stroke="#f0609e" stroke-width="8" stroke-linecap="round"/><path d="M 10.53 19.72 A 33 33 0 0 1 12.98 16.48" fill="none" stroke="#23b39a" stroke-width="8" stroke-linecap="round"/><path d="M 18.24 11.57 A 33 33 0 0 1 34.41 5.20" fill="none" stroke="#3aa0e8" stroke-width="8" stroke-linecap="round"/></svg></div><span data-out="fade" data-at="0" data-dur=".2">木 · 7:40</span></div><div class="dd"><div data-share="day4" style="width:76px;height:76px"><svg width="76" height="76" viewBox="0 0 76 76"><circle cx="38" cy="38" r="33" fill="none" stroke="rgba(22,24,40,.07)" stroke-width="8"/><path d="M 41.59 5.20 A 33 33 0 0 1 68.50 50.59" fill="none" stroke="#5b5bf0" stroke-width="8" stroke-linecap="round"/><path d="M 65.05 56.90 A 33 33 0 0 1 49.34 68.99" fill="none" stroke="#f08a3c" stroke-width="8" stroke-linecap="round"/><path d="M 42.36 70.71 A 33 33 0 0 1 42.33 70.71" fill="none" stroke="#a66cf0" stroke-width="8" stroke-linecap="round"/><path d="M 35.54 70.91 A 33 33 0 0 1 22.83 67.30" fill="none" stroke="#f0609e" stroke-width="8" stroke-linecap="round"/><path d="M 16.84 63.33 A 33 33 0 0 1 8.60 52.99" fill="none" stroke="#23b39a" stroke-width="8" stroke-linecap="round"/><path d="M 6.05 46.27 A 33 33 0 0 1 17.73 11.96" fill="none" stroke="#3aa0e8" stroke-width="8" stroke-linecap="round"/><circle cx="23.85" cy="8.19" r="1.92" fill="#d97706"/><circle cx="34.41" cy="5.20" r="1.92" fill="#d97706"/></svg></div><span data-out="fade" data-at="0" data-dur=".2">金 · 7:35</span></div></div>
+<div class="stack" data-out="recede" data-at=".02" data-dur=".28" style="width:900px;margin-top:22px"><i style="flex:980;background:#5b5bf0"></i><i style="flex:360;background:#f08a3c"></i><i style="flex:335;background:#f0609e"></i><i style="flex:240;background:#a66cf0"></i><i style="flex:190;background:#23b39a"></i><i style="flex:155;background:#3aa0e8"></i><i style="flex:40;background:repeating-linear-gradient(90deg,#d97706 0 3px,transparent 3px 6px)"></i></div>
+<div class="sents" data-out="recede" data-at=".04" data-dur=".3" style="width:900px;margin-top:16px;"><div class="sn"><span class="h num">16h 20m</span><span style="min-width:0"><div class="t"><i style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#5b5bf0;flex:none"></i> <span style="margin-left:4px">認証APIリファクタ</span><em>CASE-1423</em></div><div class="w">トークン更新処理のリファクタリング、auth-serviceの結合テスト</div></span><span class="okc"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div><div class="sn"><span class="h num">6h 00m</span><span style="min-width:0"><div class="t"><i style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#f08a3c;flex:none"></i> <span style="margin-left:4px">コードレビュー</span><em>CASE-1388</em></div><div class="w">billingのPR #412・#418・#421をレビュー</div></span><span class="okc"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div><div class="sn"><span class="h num">5h 35m</span><span style="min-width:0"><div class="t"><i style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#f0609e;flex:none"></i> <span style="margin-left:4px">オンボーディング</span><em>CASE-1501</em></div><div class="w">デザインチームとオンボーディング画面を検討</div></span><span class="okc"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div><div class="sn"><span class="h num">4h 00m</span><span style="min-width:0"><div class="t"><i style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#a66cf0;flex:none"></i> <span style="margin-left:4px">ミーティング</span><em>TEAM-12</em></div><div class="w">朝会、スプリント計画、1on1</div></span><span class="okc"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div><div class="sn"><span class="h num">3h 10m</span><span style="min-width:0"><div class="t"><i style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#23b39a;flex:none"></i> <span style="margin-left:4px">障害対応</span><em>OPS-77</em></div><div class="w">billing障害のポストモーテム、アラート調整</div></span><span class="okc"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div><div class="sn"><span class="h num">2h 35m</span><span style="min-width:0"><div class="t"><i style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3aa0e8;flex:none"></i> <span style="margin-left:4px">リリースノート</span><em>CASE-1510</em></div><div class="w">Confluenceでリリース4.2のノートを作成</div></span><span class="okc"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+<div class="sn q"><span class="h num" style="color:var(--warn)">0h 40m</span><span><div class="t">金 17:40 — これは何でしたか？</div><div class="w">SlackのDMとChromeのタブ、混在</div></span><span style="margin-left:auto;display:flex;gap:8px"><span class="qb sel"><i style="background:#3aa0e8"></i>リリースノート</span><span class="qb"><i style="background:#23b39a"></i>障害</span><span class="qb">業務外</span></span></div></div>
+<div class="confirm" data-share="wcta" style="margin-top:20px;height:58px;font-size:17px;padding:0 34px;border-radius:18px">38h 20mを確定 → Jira<small>あと1問</small></div>
+<div class="d-hint" data-out="fade" data-at="0" data-dur=".2" style="margin-top:10px">またはCSVとして保存 · 送信先：acme.atlassian.net</div></div></div><div class="panebg"></div>
+<div class="layer L-d"><div style="position:absolute;left:0;top:52px;width:380px;bottom:0;padding:24px 32px">
+<div data-in="fade" data-at=".4"><div class="wk-s">第42週 · 10月12日～16日</div><div style="font-size:24px;font-weight:800;letter-spacing:-.8px;margin-top:2px">今週の準備ができました</div></div>
+<div class="w-tot num" data-share="wtotal" style="font-size:52px;letter-spacing:-2.4px;line-height:1.1;margin-top:4px">38h 20m</div>
+<div style="display:flex;justify-content:space-between;margin-top:20px"><div class="dd" style="gap:6px;font-size:11.5px"><div data-share="day0" style="width:54px;height:54px"><svg width="54" height="54" viewBox="0 0 54 54"><circle cx="27" cy="27" r="23" fill="none" stroke="rgba(22,24,40,.07)" stroke-width="6"/><path d="M 29.69 4.16 A 23 23 0 0 1 34.28 48.82" fill="none" stroke="#5b5bf0" stroke-width="6" stroke-linecap="round"/><path d="M 29.01 49.91 A 23 23 0 0 1 8.88 41.17" fill="none" stroke="#f08a3c" stroke-width="6" stroke-linecap="round"/><path d="M 6.08 36.57 A 23 23 0 0 1 4.28 23.43" fill="none" stroke="#a66cf0" stroke-width="6" stroke-linecap="round"/><path d="M 5.73 18.24 A 23 23 0 0 1 24.31 4.16" fill="none" stroke="#f0609e" stroke-width="6" stroke-linecap="round"/></svg></div><span data-in="fade" data-at=".5">月</span></div><div class="dd" style="gap:6px;font-size:11.5px"><div data-share="day1" style="width:54px;height:54px"><svg width="54" height="54" viewBox="0 0 54 54"><circle cx="27" cy="27" r="23" fill="none" stroke="rgba(22,24,40,.07)" stroke-width="6"/><path d="M 29.69 4.16 A 23 23 0 0 1 37.64 47.39" fill="none" stroke="#5b5bf0" stroke-width="6" stroke-linecap="round"/><path d="M 32.61 49.31 A 23 23 0 0 1 19.93 48.89" fill="none" stroke="#f08a3c" stroke-width="6" stroke-linecap="round"/><path d="M 15.03 46.64 A 23 23 0 0 1 8.87 41.16" fill="none" stroke="#a66cf0" stroke-width="6" stroke-linecap="round"/><path d="M 6.08 36.55 A 23 23 0 0 1 4.21 30.07" fill="none" stroke="#f0609e" stroke-width="6" stroke-linecap="round"/><path d="M 4.12 24.68 A 23 23 0 0 1 24.31 4.16" fill="none" stroke="#23b39a" stroke-width="6" stroke-linecap="round"/></svg></div><span data-in="fade" data-at=".5">火</span></div><div class="dd" style="gap:6px;font-size:11.5px"><div data-share="day2" style="width:54px;height:54px"><svg width="54" height="54" viewBox="0 0 54 54"><circle cx="27" cy="27" r="23" fill="none" stroke="rgba(22,24,40,.07)" stroke-width="6"/><path d="M 29.69 4.16 A 23 23 0 0 1 42.61 43.90" fill="none" stroke="#5b5bf0" stroke-width="6" stroke-linecap="round"/><path d="M 38.25 47.06 A 23 23 0 0 1 20.17 48.96" fill="none" stroke="#f08a3c" stroke-width="6" stroke-linecap="round"/><path d="M 15.25 46.77 A 23 23 0 0 1 6.11 36.62" fill="none" stroke="#a66cf0" stroke-width="6" stroke-linecap="round"/><path d="M 4.44 31.50 A 23 23 0 0 1 24.31 4.16" fill="none" stroke="#f0609e" stroke-width="6" stroke-linecap="round"/></svg></div><span data-in="fade" data-at=".5">水</span></div><div class="dd" style="gap:6px;font-size:11.5px"><div data-share="day3" style="width:54px;height:54px"><svg width="54" height="54" viewBox="0 0 54 54"><circle cx="27" cy="27" r="23" fill="none" stroke="rgba(22,24,40,.07)" stroke-width="6"/><path d="M 29.69 4.16 A 23 23 0 0 1 31.25 49.60" fill="none" stroke="#5b5bf0" stroke-width="6" stroke-linecap="round"/><path d="M 25.87 49.97 A 23 23 0 0 1 9.89 42.37" fill="none" stroke="#f08a3c" stroke-width="6" stroke-linecap="round"/><path d="M 6.79 37.97 A 23 23 0 0 1 4.09 24.99" fill="none" stroke="#a66cf0" stroke-width="6" stroke-linecap="round"/><path d="M 5.18 19.72 A 23 23 0 0 1 5.48 18.88" fill="none" stroke="#f0609e" stroke-width="6" stroke-linecap="round"/><path d="M 7.96 14.10 A 23 23 0 0 1 9.44 12.15" fill="none" stroke="#23b39a" stroke-width="6" stroke-linecap="round"/><path d="M 13.38 8.47 A 23 23 0 0 1 24.31 4.16" fill="none" stroke="#3aa0e8" stroke-width="6" stroke-linecap="round"/></svg></div><span data-in="fade" data-at=".5">木</span></div><div class="dd" style="gap:6px;font-size:11.5px"><div data-share="day4" style="width:54px;height:54px"><svg width="54" height="54" viewBox="0 0 54 54"><circle cx="27" cy="27" r="23" fill="none" stroke="rgba(22,24,40,.07)" stroke-width="6"/><path d="M 29.69 4.16 A 23 23 0 0 1 48.33 35.60" fill="none" stroke="#5b5bf0" stroke-width="6" stroke-linecap="round"/><path d="M 45.75 40.33 A 23 23 0 0 1 35.08 48.53" fill="none" stroke="#f08a3c" stroke-width="6" stroke-linecap="round"/><path d="M 29.85 49.82 A 23 23 0 0 1 29.83 49.83" fill="none" stroke="#a66cf0" stroke-width="6" stroke-linecap="round"/><path d="M 25.10 49.92 A 23 23 0 0 1 16.59 47.51" fill="none" stroke="#f0609e" stroke-width="6" stroke-linecap="round"/><path d="M 12.11 44.53 A 23 23 0 0 1 6.60 37.62" fill="none" stroke="#23b39a" stroke-width="6" stroke-linecap="round"/><path d="M 4.69 32.58 A 23 23 0 0 1 12.72 8.97" fill="none" stroke="#3aa0e8" stroke-width="6" stroke-linecap="round"/><circle cx="17.31" cy="6.14" r="1.44" fill="#d97706"/><circle cx="24.31" cy="4.16" r="1.44" fill="#d97706"/></svg></div><span data-in="fade" data-at=".5">金</span></div></div>
+<div class="stack" data-in="fade" data-at=".45" style="margin-top:22px;height:12px;border-radius:6px"><i style="flex:980;background:#5b5bf0"></i><i style="flex:360;background:#f08a3c"></i><i style="flex:335;background:#f0609e"></i><i style="flex:240;background:#a66cf0"></i><i style="flex:190;background:#23b39a"></i><i style="flex:155;background:#3aa0e8"></i><i style="flex:40;background:repeating-linear-gradient(90deg,#d97706 0 3px,transparent 3px 6px)"></i></div>
+<div class="card" data-in="up" data-at=".42" style="margin-top:16px;padding:16px 18px;display:flex;align-items:center;gap:14px"><svg width="96" height="96" viewBox="0 0 96 96"><g transform="rotate(-90 48 48)"><circle cx="48" cy="48" r="38.400000000000006" fill="none" stroke="#5b5bf0" stroke-width="12.48" stroke-dasharray="100.30383890425314 241.27431579569614" stroke-dashoffset="0"/><circle cx="48" cy="48" r="38.400000000000006" fill="none" stroke="#f08a3c" stroke-width="12.48" stroke-dasharray="35.2646755158481 241.27431579569614" stroke-dashoffset="-102.80383890425314"/><circle cx="48" cy="48" r="38.400000000000006" fill="none" stroke="#f0609e" stroke-width="12.48" stroke-dasharray="32.642128605025306 241.27431579569614" stroke-dashoffset="-140.56851442010122"/><circle cx="48" cy="48" r="38.400000000000006" fill="none" stroke="#a66cf0" stroke-width="12.48" stroke-dasharray="22.676450343898725 241.27431579569614" stroke-dashoffset="-175.71064302512653"/><circle cx="48" cy="48" r="38.400000000000006" fill="none" stroke="#23b39a" stroke-width="12.48" stroke-dasharray="17.431356522253157 241.27431579569614" stroke-dashoffset="-200.88709336902525"/><circle cx="48" cy="48" r="38.400000000000006" fill="none" stroke="#3aa0e8" stroke-width="12.48" stroke-dasharray="13.75979084710126 241.27431579569614" stroke-dashoffset="-220.81844989127842"/><circle cx="48" cy="48" r="38.400000000000006" fill="none" stroke="#d97706" stroke-width="12.48" stroke-dasharray="1.6960750573164542 241.27431579569614" stroke-dashoffset="-237.0782407383797"/></g><text x="48" y="46" text-anchor="middle" font-size="17" font-weight="800" fill="#14161c" font-family="Inter">38h</text><text x="48" y="62" text-anchor="middle" font-size="10" fill="#767b89" font-family="Inter">7件</text></svg><div style="display:flex;flex-direction:column;gap:5px"><span style="display:flex;align-items:center;gap:7px;font-size:11.5px;font-weight:600;color:var(--ink2)"><i style="width:8px;height:8px;border-radius:3px;background:#5b5bf0"></i>CASE-1423</span><span style="display:flex;align-items:center;gap:7px;font-size:11.5px;font-weight:600;color:var(--ink2)"><i style="width:8px;height:8px;border-radius:3px;background:#f08a3c"></i>CASE-1388</span><span style="display:flex;align-items:center;gap:7px;font-size:11.5px;font-weight:600;color:var(--ink2)"><i style="width:8px;height:8px;border-radius:3px;background:#f0609e"></i>CASE-1501</span><span style="display:flex;align-items:center;gap:7px;font-size:11.5px;font-weight:600;color:var(--ink2)"><i style="width:8px;height:8px;border-radius:3px;background:#a66cf0"></i>TEAM-12</span><span style="display:flex;align-items:center;gap:7px;font-size:11.5px;font-weight:600;color:var(--ink2)"><i style="width:8px;height:8px;border-radius:3px;background:#23b39a"></i>OPS-77</span><span style="display:flex;align-items:center;gap:7px;font-size:11.5px;font-weight:600;color:var(--ink2)"><i style="width:8px;height:8px;border-radius:3px;background:#3aa0e8"></i>CASE-1510</span></div></div>
+<div class="cq" data-in="up" data-at=".48" style="margin-top:16px"><div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700"><span>金 17:40 — これは何でしたか？</span><span class="num" style="color:var(--warn)">0h 40m</span></div>
+<div style="display:flex;gap:6px;margin-top:9px"><span class="qb sel"><i style="background:#3aa0e8"></i>リリースノート</span><span class="qb"><i style="background:#23b39a"></i>障害</span><span class="qb">業務外</span></div></div>
+<div class="confirm" data-share="wcta" style="margin-top:18px;height:54px;border-radius:17px;font-size:15.5px">38h 20mを確定 → Jira<small>あと1問</small></div>
+<div class="d-hint" data-in="fade" data-at=".55" style="margin-top:10px">またはCSVをエクスポート · acme.atlassian.net</div></div>
+<div class="pane" style="position:absolute;left:380px;top:52px;right:0;bottom:0;padding:18px 24px 20px">
+<div class="a-hdr" data-in="right" data-at=".2" data-dur=".45"><span class="a-h1" style="font-size:24px">作業ログ</span><span style="margin-left:10px;font-size:14px;color:var(--muted);font-weight:500">14件の下書き · 6件のタスク · Jira Cloud</span><span class="pill-ok" style="margin-left:auto;background:rgba(147,51,234,.08);color:#9333ea"><i style="background:#9333ea;box-shadow:0 0 0 4px rgba(147,51,234,.14)"></i>AIが3件を照合 · 平均82%</span></div>
+<div style="margin-top:14px"><div class="rows" data-stg="in,up,0.26,.03,.32"><div class="card row"><span class="a" style="width:236px"><span class="chip" style="background:#e3e4ff;color:#4f46e5">CASE-1423</span><b>認証APIリファクタ</b></span><span class="txt">トークン更新処理のリファクタリング、auth-serviceの結合テスト</span><span class="h num">16h 20m</span><span class="st"><span class="tick"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span style="color:var(--muted)">自動</span></span></div><div class="card row"><span class="a" style="width:236px"><span class="chip" style="background:#fde8cf;color:#c2410c">CASE-1388</span><b>コードレビュー</b></span><span class="txt">billingのPR #412・#418・#421をレビュー</span><span class="h num">6h 00m</span><span class="st"><span class="tick"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span style="color:var(--muted)">自動</span></span></div><div class="card row"><span class="a" style="width:236px"><span class="chip" style="background:#fde2ee;color:#db2777">CASE-1501</span><b>オンボーディング</b></span><span class="txt">デザインチームとオンボーディング画面を検討</span><span class="h num">5h 35m</span><span class="st"><span class="tick"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span style="color:#9333ea">AI 88%</span></span></div><div class="card row"><span class="a" style="width:236px"><span class="chip" style="background:#ede4ff;color:#7c3aed">TEAM-12</span><b>ミーティング</b></span><span class="txt">朝会、スプリント計画、1on1</span><span class="h num">4h 00m</span><span class="st"><span class="tick"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span style="color:var(--muted)">自動</span></span></div><div class="card row"><span class="a" style="width:236px"><span class="chip" style="background:#d3f4ec;color:#0f766e">OPS-77</span><b>障害対応</b></span><span class="txt">billing障害のポストモーテム、アラート調整</span><span class="h num">3h 10m</span><span class="st"><span class="tick"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span style="color:#9333ea">AI 81%</span></span></div><div class="card row"><span class="a" style="width:236px"><span class="chip" style="background:#d9edfd;color:#0369a1">CASE-1510</span><b>リリースノート</b></span><span class="txt">Confluenceでリリース4.2のノートを作成</span><span class="h num">2h 35m</span><span class="st"><span class="tick"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span style="color:#9333ea">AI 76%</span></span></div>
+<div class="row pick"><span class="a" style="width:236px"><b style="color:var(--warn)">不明 · 金 17:40</b></span><span class="txt" style="display:flex;gap:6px"><span class="opt hi">CASE-1510 リリースノート</span><span class="opt">OPS-77</span><span class="opt">業務外</span></span><span class="h num">0h 40m</span><span class="st" style="color:var(--warn)">1つ選択</span></div></div></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px" data-stg="in,right,.4,.05,.45">
+<div class="card" style="padding:16px 18px;display:flex;align-items:center;justify-content:space-between;height:96px"><div><div style="font-size:12px;color:var(--muted);font-weight:600">編集なしで確定</div><div style="font-size:32px;font-weight:800;letter-spacing:-1px;color:var(--ok)">92%</div></div><svg width="110" height="40" viewBox="0 0 110 40"><polyline points="0,32 22,27 44,29 66,16 88,11 110,6" fill="none" stroke="#16a34a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="110" cy="6" r="3" fill="#16a34a"/></svg></div>
+<div class="card" style="padding:16px 18px;font-size:12.5px;color:var(--ink2);line-height:1.5;height:96px"><b style="color:var(--ink)">設計段階からプライバシーを保護</b><br>AIに送られたのはタイトルと時間だけです。スクリーンショットは一切撮りません。元のイベントはこのPCに残ります。</div></div>
+</div></div>
+<div class="chrome"><div class="tb"><div class="logo"><img src="/img/mark.svg" width="22" height="22" alt=""></div><span class="appname">工数管理・タイムトラッカー</span><span class="rec"><i></i>記録中</span><div class="seg" data-anim="seg"><span class="" data-go="today">今日</span><span class="on" data-go="week">週</span></div><div class="tbr"><div class="tg" data-toggle><span class="thumb"></span><span data-opt="0">シンプル</span><span data-opt="1"><svg class="i" viewBox="0 0 24 24" style="width:14px;height:14px;"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>詳細 <kbd>D</kbd></span></div><div class="caps"><span>&#x2014;</span><span>&#x2610;</span><span>&#x2715;</span></div></div></div></div><div class="fx"></div><div class="sheen"></div><div class="rim"></div></div>
+<!-- /H4:week-desk -->
+								</div>
+							</div>
+							<div class="logged" aria-hidden="true">
+								<div class="ring"><svg viewBox="0 0 104 104" width="104" height="104"><circle cx="52" cy="52" r="46" fill="none" stroke="#eceef6" stroke-width="6"/><circle class="p" cx="52" cy="52" r="46" fill="none" stroke="#16a34a" stroke-width="6" stroke-linecap="round"/></svg><span class="sq"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><use href="#chk"/></svg></span></div>
+								<div><b>38h 20mを記録しました</b><span>14件の作業ログ · Jira Cloud · 重複なし</span></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tt tt-mob" role="img" aria-label="「週」画面：今週の準備ができました。6件のJiraタスクで38時間20分、簡単な質問が1つ、プロジェクト別のドーナツグラフ、「38h 20mを確定 → Jira」ボタン。">
+					<div class="tt-mob-in" aria-hidden="true">
+<!-- H4:week-mob -->
+<div class="m-app">
+<div class="m-bar"><div class="logo"><img src="/img/mark.svg" width="22" height="22" alt=""></div><span class="appname">第42週 · 10月12日～16日</span><span class="rec"><i></i>準備完了</span></div>
+<div class="m-wk">
+<div class="w-h">今週の準備ができました</div>
+<div class="m-wtot num">38h 20m</div>
+<div class="w-sub">6件のタスク · 1件の簡単な質問</div>
+<div class="m-drow"><div class="dd"><svg width="52" height="52" viewBox="0 0 52 52"><circle cx="26" cy="26" r="22" fill="none" stroke="rgba(22,24,40,.07)" stroke-width="6"/><path d="M 28.69 4.17 A 22 22 0 0 1 33.08 46.83" fill="none" stroke="#5b5bf0" stroke-width="6" stroke-linecap="round"/><path d="M 27.81 47.93 A 22 22 0 0 1 8.74 39.65" fill="none" stroke="#f08a3c" stroke-width="6" stroke-linecap="round"/><path d="M 5.94 35.04 A 22 22 0 0 1 4.25 22.70" fill="none" stroke="#a66cf0" stroke-width="6" stroke-linecap="round"/><path d="M 5.70 17.52 A 22 22 0 0 1 23.31 4.17" fill="none" stroke="#f0609e" stroke-width="6" stroke-linecap="round"/></svg><span>月</span></div><div class="dd"><svg width="52" height="52" viewBox="0 0 52 52"><circle cx="26" cy="26" r="22" fill="none" stroke="rgba(22,24,40,.07)" stroke-width="6"/><path d="M 28.69 4.17 A 22 22 0 0 1 36.29 45.45" fill="none" stroke="#5b5bf0" stroke-width="6" stroke-linecap="round"/><path d="M 31.25 47.36 A 22 22 0 0 1 19.35 46.97" fill="none" stroke="#f08a3c" stroke-width="6" stroke-linecap="round"/><path d="M 14.45 44.73 A 22 22 0 0 1 8.73 39.63" fill="none" stroke="#a66cf0" stroke-width="6" stroke-linecap="round"/><path d="M 5.94 35.03 A 22 22 0 0 1 4.21 29.05" fill="none" stroke="#f0609e" stroke-width="6" stroke-linecap="round"/><path d="M 4.12 23.67 A 22 22 0 0 1 23.31 4.17" fill="none" stroke="#23b39a" stroke-width="6" stroke-linecap="round"/></svg><span>火</span></div><div class="dd"><svg width="52" height="52" viewBox="0 0 52 52"><circle cx="26" cy="26" r="22" fill="none" stroke="rgba(22,24,40,.07)" stroke-width="6"/><path d="M 28.69 4.17 A 22 22 0 0 1 41.01 42.08" fill="none" stroke="#5b5bf0" stroke-width="6" stroke-linecap="round"/><path d="M 36.66 45.25 A 22 22 0 0 1 19.58 47.04" fill="none" stroke="#f08a3c" stroke-width="6" stroke-linecap="round"/><path d="M 14.66 44.85 A 22 22 0 0 1 6.07 35.31" fill="none" stroke="#a66cf0" stroke-width="6" stroke-linecap="round"/><path d="M 4.40 30.19 A 22 22 0 0 1 23.31 4.17" fill="none" stroke="#f0609e" stroke-width="6" stroke-linecap="round"/></svg><span>水</span></div><div class="dd"><svg width="52" height="52" viewBox="0 0 52 52"><circle cx="26" cy="26" r="22" fill="none" stroke="rgba(22,24,40,.07)" stroke-width="6"/><path d="M 28.69 4.17 A 22 22 0 0 1 30.18 47.60" fill="none" stroke="#5b5bf0" stroke-width="6" stroke-linecap="round"/><path d="M 24.80 47.97 A 22 22 0 0 1 9.71 40.79" fill="none" stroke="#f08a3c" stroke-width="6" stroke-linecap="round"/><path d="M 6.61 36.39 A 22 22 0 0 1 4.07 24.19" fill="none" stroke="#a66cf0" stroke-width="6" stroke-linecap="round"/><path d="M 5.17 18.92 A 22 22 0 0 1 5.37 18.35" fill="none" stroke="#f0609e" stroke-width="6" stroke-linecap="round"/><path d="M 7.85 13.56 A 22 22 0 0 1 9.13 11.88" fill="none" stroke="#23b39a" stroke-width="6" stroke-linecap="round"/><path d="M 13.07 8.20 A 22 22 0 0 1 23.31 4.17" fill="none" stroke="#3aa0e8" stroke-width="6" stroke-linecap="round"/></svg><span>木</span></div><div class="dd"><svg width="52" height="52" viewBox="0 0 52 52"><circle cx="26" cy="26" r="22" fill="none" stroke="rgba(22,24,40,.07)" stroke-width="6"/><path d="M 28.69 4.17 A 22 22 0 0 1 46.45 34.12" fill="none" stroke="#5b5bf0" stroke-width="6" stroke-linecap="round"/><path d="M 43.86 38.84 A 22 22 0 0 1 33.84 46.56" fill="none" stroke="#f08a3c" stroke-width="6" stroke-linecap="round"/><path d="M 28.61 47.84 A 22 22 0 0 1 28.59 47.85" fill="none" stroke="#a66cf0" stroke-width="6" stroke-linecap="round"/><path d="M 24.06 47.91 A 22 22 0 0 1 16.15 45.67" fill="none" stroke="#f0609e" stroke-width="6" stroke-linecap="round"/><path d="M 11.67 42.69 A 22 22 0 0 1 6.54 36.26" fill="none" stroke="#23b39a" stroke-width="6" stroke-linecap="round"/><path d="M 4.63 31.22 A 22 22 0 0 1 12.25 8.83" fill="none" stroke="#3aa0e8" stroke-width="6" stroke-linecap="round"/><circle cx="16.84" cy="6.00" r="1.44" fill="#d97706"/><circle cx="23.31" cy="4.17" r="1.44" fill="#d97706"/></svg><span>金</span></div></div>
+<div class="stack"><i style="flex:980;background:#5b5bf0"></i><i style="flex:360;background:#f08a3c"></i><i style="flex:335;background:#f0609e"></i><i style="flex:240;background:#a66cf0"></i><i style="flex:190;background:#23b39a"></i><i style="flex:155;background:#3aa0e8"></i><i style="flex:40;background:repeating-linear-gradient(90deg,#d97706 0 3px,transparent 3px 6px)"></i></div>
+</div>
+</div>
+<div class="m-sents reveal"><div class="sn"><span class="h num">16h 20m</span><span style="min-width:0"><div class="t"><i style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#5b5bf0;flex:none"></i> <span style="margin-left:4px">認証APIリファクタ</span><em>CASE-1423</em></div><div class="w">トークン更新処理のリファクタリング、auth-serviceの結合テスト</div></span><span class="okc"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div><div class="sn"><span class="h num">6h 00m</span><span style="min-width:0"><div class="t"><i style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#f08a3c;flex:none"></i> <span style="margin-left:4px">コードレビュー</span><em>CASE-1388</em></div><div class="w">billingのPR #412・#418・#421をレビュー</div></span><span class="okc"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div><div class="sn"><span class="h num">5h 35m</span><span style="min-width:0"><div class="t"><i style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#f0609e;flex:none"></i> <span style="margin-left:4px">オンボーディング</span><em>CASE-1501</em></div><div class="w">デザインチームとオンボーディング画面を検討</div></span><span class="okc"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div><div class="sn"><span class="h num">4h 00m</span><span style="min-width:0"><div class="t"><i style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#a66cf0;flex:none"></i> <span style="margin-left:4px">ミーティング</span><em>TEAM-12</em></div><div class="w">朝会、スプリント計画、1on1</div></span><span class="okc"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div><div class="sn"><span class="h num">3h 10m</span><span style="min-width:0"><div class="t"><i style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#23b39a;flex:none"></i> <span style="margin-left:4px">障害対応</span><em>OPS-77</em></div><div class="w">billing障害のポストモーテム、アラート調整</div></span><span class="okc"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div><div class="sn"><span class="h num">2h 35m</span><span style="min-width:0"><div class="t"><i style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3aa0e8;flex:none"></i> <span style="margin-left:4px">リリースノート</span><em>CASE-1510</em></div><div class="w">Confluenceでリリース4.2のノートを作成</div></span><span class="okc"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></div>
+<div class="m-panel m-q reveal"><div class="m-h"><b>金 17:40 — これは何でしたか？</b><span class="num" style="color:var(--warn)">0h 40m</span></div><div class="m-qb"><span class="qb sel"><i style="background:#3aa0e8"></i>リリースノート</span><span class="qb"><i style="background:#23b39a"></i>障害</span><span class="qb">業務外</span></div></div>
+<div class="m-panel m-donut reveal"><svg width="120" height="120" viewBox="0 0 120 120"><g transform="rotate(-90 60 60)"><circle cx="60" cy="60" r="48" fill="none" stroke="#5b5bf0" stroke-width="15.600000000000001" stroke-dasharray="126.0047986303164 301.59289474462014" stroke-dashoffset="0"/><circle cx="60" cy="60" r="48" fill="none" stroke="#f08a3c" stroke-width="15.600000000000001" stroke-dasharray="44.705844394810114 301.59289474462014" stroke-dashoffset="-128.5047986303164"/><circle cx="60" cy="60" r="48" fill="none" stroke="#f0609e" stroke-width="15.600000000000001" stroke-dasharray="41.427660756281625 301.59289474462014" stroke-dashoffset="-175.7106430251265"/><circle cx="60" cy="60" r="48" fill="none" stroke="#a66cf0" stroke-width="15.600000000000001" stroke-dasharray="28.970562929873402 301.59289474462014" stroke-dashoffset="-219.63830378140813"/><circle cx="60" cy="60" r="48" fill="none" stroke="#23b39a" stroke-width="15.600000000000001" stroke-dasharray="22.414195652816446 301.59289474462014" stroke-dashoffset="-251.10886671128154"/><circle cx="60" cy="60" r="48" fill="none" stroke="#3aa0e8" stroke-width="15.600000000000001" stroke-dasharray="17.824738558876575 301.59289474462014" stroke-dashoffset="-276.023062364098"/><circle cx="60" cy="60" r="48" fill="none" stroke="#d97706" stroke-width="15.600000000000001" stroke-dasharray="2.7450938216455674 301.59289474462014" stroke-dashoffset="-296.34780092297456"/></g><text x="60" y="58" text-anchor="middle" font-size="17" font-weight="800" fill="#14161c" font-family="Inter">38h</text><text x="60" y="74" text-anchor="middle" font-size="10" fill="#767b89" font-family="Inter">7件</text></svg><div class="m-leg"><span><i style="background:#5b5bf0"></i>CASE-1423<b class="num">16h 20m</b></span><span><i style="background:#f08a3c"></i>CASE-1388<b class="num">6h 00m</b></span><span><i style="background:#f0609e"></i>CASE-1501<b class="num">5h 35m</b></span><span><i style="background:#a66cf0"></i>TEAM-12<b class="num">4h 00m</b></span><span><i style="background:#23b39a"></i>OPS-77<b class="num">3h 10m</b></span><span><i style="background:#3aa0e8"></i>CASE-1510<b class="num">2h 35m</b></span></div></div>
+<div class="m-confirm reveal"><div class="confirm">38h 20mを確定 → Jira</div><div class="d-hint">またはCSVをエクスポート · acme.atlassian.net</div></div>
+<!-- /H4:week-mob -->
+						<div class="logged m-logged reveal">
+							<div class="ring"><svg viewBox="0 0 104 104" width="104" height="104"><circle cx="52" cy="52" r="46" fill="none" stroke="#eceef6" stroke-width="6"/><circle class="p" cx="52" cy="52" r="46" fill="none" stroke="#16a34a" stroke-width="6" stroke-linecap="round"/></svg><span class="sq"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><use href="#chk"/></svg></span></div>
+							<div><b>38h 20mを記録しました</b><span>14件の作業ログ · Jira Cloud</span></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="wrap">
+				<div class="points">
+					<div class="point reveal"><h3><span class="ic-s"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h7"/></svg></span>タスクごとに作業ログは1つ</h3><p>各タスクに1日1行のわかりやすい説明を。「開発作業」のような決まり文句ではなく、実際にやった作業から書きます。</p></div>
+					<div class="point reveal" style="--rd:.1s"><h3><span class="ic-s"><svg viewBox="0 0 24 24"><path d="M12 8v5M12 16.5v.5M10.3 3.9L2.6 17.5A2 2 0 004.3 20.5h15.4a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/></svg></span>本当に迷う箇所だけを確認</h3><p>アプリが判断できないブロックには、可能性の高い候補が2～3個表示されます。それ以外はすべて入力済みです。</p></div>
+					<div class="point reveal" style="--rd:.2s"><h3><span class="ic-s"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0114-5.3M20 12a8 8 0 01-14 5.3M18 3v4h-4M6 21v-4h4"/></svg></span>2回送っても安全</h3><p>登録済みの日は自動で認識されるので、再送してもJiraの工数が二重に計上されることはありません。</p></div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============ FEATURES ============ -->
+		<section class="section" id="features" aria-labelledby="features-h" style="padding-top:40px">
+			<div class="wrap">
+				<div class="section-head reveal" data-px="0.05">
+					<span class="kicker">機能</span>
+					<h2 id="features-h">Jiraに強い、自動の工数管理ツール</h2>
+					<p>Jiraで工数を入力する開発者、アナリスト、コンサルタント、制作会社の方へ。工数入力のことは、もう考えなくて大丈夫です。</p>
+				</div>
+				<div class="features">
+					<article class="feature reveal" data-px="0.02"><span class="ic-s"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.5.5l3-3a5 5 0 00-7-7l-1.7 1.7M14 11a5 5 0 00-7.5-.5l-3 3a5 5 0 007 7l1.7-1.7"/></svg></span><h3>JiraキーはPC上で検出、AI不要</h3><p>課題キーはウィンドウタイトル、ブラウザーのタブ、プルリクエスト、gitブランチ名から即座に拾われます。処理はすべてあなたのPC上で行われます。</p><div class="ex"><code>feature/CASE-1423-token</code><code>/browse/OPS-77</code><code>[CASE-1388] レビュー</code></div></article>
+					<article class="feature reveal" style="--rd:.06s" data-px="0.06"><span class="ic-s ic-ai"><svg viewBox="0 0 24 24" style="fill:currentColor;stroke:none"><use href="#spark"/></svg></span><h3>AIで「この日を仕分け」</h3><p>ルールで割り当てられなかったブロック（Figmaのファイル、Slackのスレッド、Confluenceのページなど）を、ワンクリックで確信度つきで割り当てます。</p></article>
+					<article class="feature reveal" style="--rd:.12s" data-px="0.1"><span class="ic-s"><svg viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V9zM14 3v6h6M8 13h8M8 17h5"/></svg></span><h3>作業ログの文面も下書き</h3><p>実際に触ったものをもとに、タスクごとに短く具体的な説明を1つ作ります。例：「billingのPR #412・#418をレビュー」。</p></article>
+					<article class="feature reveal" data-px="0.02"><span class="ic-s"><svg viewBox="0 0 24 24"><path d="M9 11l3 3 8-8M20 12v7a2 2 0 01-2 2H6a2 2 0 01-2-2V5a2 2 0 012-2h9"/></svg></span><h3>主導権はあなたに</h3><p>確定するまで何も記録されません。確認画面でタスクを変更したり、ブロックを分割したり、「業務外」にしたりできます。</p></article>
+					<article class="feature reveal" style="--rd:.06s" data-px="0.06"><span class="ic-s"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></svg></span><h3>Jira Cloud と Data Center</h3><p>作業ログはあなた自身のアカウントで Jira Cloud または Jira Server / Data Center に書き込まれます。再送しても重複しません。</p></article>
+					<article class="feature reveal" style="--rd:.12s" data-px="0.1"><span class="ic-s"><svg viewBox="0 0 24 24"><path d="M12 7v5l3 2M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></span><h3>離席と画面ロックを検出</h3><p>昼休み、画面ロック、席を外した時間は「離席」として扱われ、工数に紛れ込むことはありません。</p></article>
+					<article class="feature reveal" data-px="0.02"><span class="ic-s"><svg viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></span><h3>CSVエクスポート <span class="soon-tag">Excel・Tempo対応予定</span></h3><p>Excelの工数管理表や別のシステムで使いたいときは、確定した1週間分をCSVで書き出せます。XLSXとTempoへの直接対応も予定しています。</p></article>
+					<article class="feature reveal" style="--rd:.06s" data-px="0.06"><span class="ic-s"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg></span><h3>「AIなしで使用」モード</h3><p>PCの外に何も出したくないなら、AIをオフに。キーとルールによる照合はPC上で続き、残りは手動で割り当てます。</p></article>
+					<article class="feature reveal" style="--rd:.12s" data-px="0.1"><span class="ic-s"><svg viewBox="0 0 24 24"><path d="M3 5h18v11H3zM8 20h8M12 16v4"/></svg></span><h3>通知領域に常駐</h3><p>PCと一緒に起動し、作業の邪魔をしないネイティブのWindowsアプリです。開いておくブラウザーのタブも、覚えておくタイマーもありません。</p></article>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============ PRIVACY ============ -->
+		<section class="section privacy-sec" id="privacy" aria-labelledby="privacy-h">
+			<div class="wrap">
+				<div class="section-head reveal" data-px="0.05">
+					<span class="kicker">設計段階からプライバシーを保護</span>
+					<h2 id="privacy-h">スクリーンショットなし。<span class="grad">監視もなし。</span></h2>
+					<p>アクティビティの記録はあなたのものです。データはPCに残り、AIが見るのはマスク済みの要約だけ。それも、ボタンを押したときだけです。</p>
+				</div>
+				<div class="priv-grid">
+					<div class="priv-col reveal" data-px="0.03">
+						<h3><span class="ic-s ic-ok"><svg viewBox="0 0 24 24"><path d="M3 5h18v11H3zM8 20h8M12 16v4"/></svg></span>PCに残るもの</h3>
+						<p class="sub">PC上で記録され、アップロードされません。</p>
+						<ul><li>アクティブなプログラムとウィンドウタイトル</li><li>ブラウザーのタブのドメイン</li><li>離席と画面ロックの時間</li><li>ルール、履歴、確認画面での修正</li><li>Jiraの接続設定</li></ul>
+					</div>
+					<div class="priv-col ai-col reveal" style="--rd:.08s" data-px="0.07">
+						<h3><span class="ic-s ic-ai"><svg viewBox="0 0 24 24" style="fill:currentColor;stroke:none"><use href="#spark"/></svg></span>「この日を仕分け」のときだけ送信</h3>
+						<p class="sub">ルールで照合できなかったブロックについてのみ。</p>
+						<ul><li>ウィンドウタイトル（メールアドレスや数字はマスク）</li><li>プログラム名</li><li>ドメイン（完全なアドレスではありません）</li><li>各ブロックの長さ</li></ul>
+					</div>
+					<div class="priv-col never reveal" style="--rd:.16s" data-px="0.11">
+						<h3><span class="ic-s ic-no"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7zM9 9l6 6M15 9l-6 6"/></svg></span>送信も取得もしないもの</h3>
+						<p class="sub">そもそも収集しないので、漏れることもありません。</p>
+						<ul><li>完全なURLとページの内容</li><li>スクリーンショットや画面録画</li><li>キー入力</li><li>Jiraのトークン</li></ul>
+					</div>
+				</div>
+				<p class="not-for reveal"><span><b>工数を入力する本人のためのツールです。</b></span><span>上司向けダッシュボードなし</span><span>従業員の監視なし</span><span>チームレポートなし</span></p>
+			</div>
+		</section>
+
+		<!-- ============ COMPARE ============ -->
+		<section class="section" id="compare" aria-labelledby="compare-h">
+			<div class="wrap">
+				<div class="section-head reveal" data-px="0.05">
+					<span class="kicker">比較</span>
+					<h2 id="compare-h">ほかの工数管理ツールとの比較</h2>
+					<p>多くのタイムトラッカーは、タイマーの操作を求めるか、すべてをクラウドに集めます。Timesheet Trackerは「思い出す」作業をPC上で引き受け、Jiraに直接書き込みます。</p>
+				</div>
+				<div class="table-wrap reveal">
+					<table class="cmp">
+						<thead>
+							<tr>
+								<th scope="col"><span class="sr-only">機能</span></th>
+								<th scope="col" class="us">Timesheet Tracker</th>
+								<th scope="col">Memtime</th>
+								<th scope="col">Timely</th>
+								<th scope="col">Tempo Timesheets<small>Jiraアドオン</small></th>
+								<th scope="col">Toggl Track</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row">1日の作業を自動で記録</th>
+								<td class="us" data-label="Timesheet Tracker"><span class="cy">あり</span><small>アプリ、タイトル、ドメイン、離席</small></td>
+								<td data-label="Memtime"><span class="cy">あり</span></td>
+								<td data-label="Timely"><span class="cy">あり</span></td>
+								<td data-label="Tempo Timesheets"><span class="cp">一部</span><small>Jiraとカレンダーの活動から提案</small></td>
+								<td data-label="Toggl Track"><span class="cp">一部</span><small>タイマーが基本。デスクトップのタイムラインは任意</small></td>
+							</tr>
+							<tr>
+								<th scope="row">Jiraタスクへの割り当てを代行</th>
+								<td class="us" data-label="Timesheet Tracker"><span class="cy">あり</span><small>PC上のキー照合＋AI、確定は本人</small></td>
+								<td data-label="Memtime"><span class="cp">手動</span><small>ブロックを自分でタスクに割り当て</small></td>
+								<td data-label="Timely"><span class="cy">あり</span><small>AIによる提案</small></td>
+								<td data-label="Tempo Timesheets"><span class="cp">一部</span><small>提案を承認する方式</small></td>
+								<td data-label="Toggl Track"><span class="cn">なし</span><small>タスクごとにタイマーを開始</small></td>
+							</tr>
+							<tr>
+								<th scope="row">作業ログの文面を下書き</th>
+								<td class="us" data-label="Timesheet Tracker"><span class="cy">あり</span><small>1日・1タスクにつき1行</small></td>
+								<td data-label="Memtime"><span class="cn">—</span></td>
+								<td data-label="Timely"><span class="cp">一部</span></td>
+								<td data-label="Tempo Timesheets"><span class="cn">—</span></td>
+								<td data-label="Toggl Track"><span class="cn">—</span></td>
+							</tr>
+							<tr>
+								<th scope="row">Jiraネイティブの作業ログ</th>
+								<td class="us" data-label="Timesheet Tracker"><span class="cy">あり</span><small>Cloud + Server / Data Center</small></td>
+								<td data-label="Memtime"><span class="cy">あり</span><small>コネクター経由</small></td>
+								<td data-label="Timely"><span class="cp">連携</span><small>プランによる</small></td>
+								<td data-label="Tempo Timesheets"><span class="cy">あり</span><small>Jira内で動作</small></td>
+								<td data-label="Toggl Track"><span class="cp">連携</span><small>拡張機能・連携経由</small></td>
+							</tr>
+							<tr>
+								<th scope="row">アクティビティデータの保存場所</th>
+								<td class="us" data-label="Timesheet Tracker"><b>あなたのPC</b><small>AIが見るのはクリック時のマスク済み要約のみ</small></td>
+								<td data-label="Memtime">PC上</td>
+								<td data-label="Timely">ベンダーのクラウド</td>
+								<td data-label="Tempo Timesheets">Jira / Tempoのクラウド</td>
+								<td data-label="Toggl Track">ベンダーのクラウド</td>
+							</tr>
+							<tr>
+								<th scope="row">対象ユーザー</th>
+								<td class="us" data-label="Timesheet Tracker">Jiraに工数を入力する個人</td>
+								<td data-label="Memtime">個人とチーム</td>
+								<td data-label="Timely">チームと制作会社</td>
+								<td data-label="Tempo Timesheets">Jiraのチームと管理者</td>
+								<td data-label="Toggl Track">フリーランスとチーム</td>
+							</tr>
+							<tr>
+								<th scope="row">価格</th>
+								<td class="us" data-label="Timesheet Tracker"><b>月額$9.99 · 年額$79、14日間無料</b></td>
+								<td data-label="Memtime">≈ 1ユーザーあたり月$14～30</td>
+								<td data-label="Timely">≈ 1ユーザーあたり月$11～28</td>
+								<td data-label="Tempo Timesheets">ユーザー単位、Atlassian Marketplace</td>
+								<td data-label="Toggl Track">無料プラン＋有料プラン</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<p class="footnote">競合製品の情報は2026年10月時点の各社の公開情報に基づくもので、変更される場合があります。最新の機能と価格は各社のサイトでご確認ください。Jiraでの工数管理の進め方は<a href="/ja/articles/kousu-kanri-jira.html">工数管理を自動化する方法（Jira）</a>で解説しています。英語のガイド：<a href="/articles/tempo-timesheets-alternatives.html">Tempo Timesheets alternatives</a>、<a href="/articles/automatic-time-tracking-software-windows.html">Automatic time tracking software for Windows</a>。</p>
+			</div>
+		</section>
+
+		<!-- ============ FAQ ============ -->
+		<section class="section" id="faq" aria-labelledby="faq-h" style="padding-top:40px">
+			<div class="wrap">
+				<div class="section-head reveal" data-px="0.05">
+					<span class="kicker">よくある質問</span>
+					<h2 id="faq-h">よくある質問</h2>
+				</div>
+				<div class="faq">
+					<details><summary>Timesheet Trackerは従業員監視ツールですか？</summary><div class="a"><p>いいえ。工数を入力する本人のためのツールです。スクリーンショット、キー入力の記録、上司向けダッシュボード、チームレポートはありません。アクティビティはあなたのPCに残り、Jiraに送られるのはあなたが確定した作業ログだけです。</p></div></details>
+					<details><summary>勤怠管理システムの代わりになりますか？</summary><div class="a"><p>いいえ。Jiraへの工数入力（作業ログ）のための個人用ツールで、会社の勤怠管理システムや、出退勤・労働時間の記録を置き換えるものではありません。</p></div></details>
+					<details><summary>PCの外に出るデータは何ですか？</summary><div class="a"><p>あなたが操作するまでは何も出ません。<b>「この日を仕分け」</b>を押すと、未割り当てブロックのマスク済みウィンドウタイトル、プログラム名、ドメイン、時間がAIに送られます。完全なURL、ページの内容、スクリーンショット、キー入力、Jiraのトークンは送信されません。1日を確定すると、承認した作業ログがあなたのJiraに送られます。詳しくは<a href="/privacy.html">プライバシーポリシー</a>（英語）をご覧ください。</p></div></details>
+					<details><summary>AIなしでも使えますか？</summary><div class="a"><p>はい。「AIなしで使用」モードでは、AIプロバイダーには何も送られません。ウィンドウタイトル、URL、gitブランチにあるJiraキーは引き続きPC上で照合され、残りのブロックは確認画面で自分で割り当てます。</p></div></details>
+					<details><summary>対応しているJiraは？</summary><div class="a"><p>Jira Cloud と Jira Server / Data Center です。作業ログはあなた自身のアカウントで書き込まれ、同じ日を再送しても重複しません。Jiraでの工数管理の基本は<a href="/ja/articles/kousu-kanri-jira.html">工数管理を自動化する方法（Jira）</a>で解説しています。</p></div></details>
+					<details><summary>どのJiraタスクで作業したか、どうやって判断するのですか？</summary><div class="a"><p>1日の大部分はAIを使わずに照合されます。<code>ABC-123</code>のようなJiraキーは、ウィンドウタイトル、ブラウザーのタブ、プルリクエスト名、<code>feature/ABC-123-login</code>のようなgitブランチ名に現れるからです。AIが扱うのは残りの部分だけで、記録される前にすべての割り当てをあなたが確定します。</p></div></details>
+					<details><summary>TempoやExcelには対応していますか？</summary><div class="a"><p>現在は、Jiraネイティブの作業ログの書き込みとCSVエクスポートに対応しています。Tempoへの直接対応とExcel（XLSX）への書き出しは予定しています。</p></div></details>
+					<details><summary>料金はいくらですか？</summary><div class="a"><p>Microsoft Storeから無料でダウンロードでき、まずProを14日間無料で試用できます（カード不要）。その後Proは月額$9.99、または年額$79（月あたり約$6.58、34%お得）で、既定は年額プランです。サブスクリプションがなくても記録は続き、1日の画面、7日分の履歴、当日のCSVエクスポートを利用できます。Jiraへの作業ログの送信とAIによる仕分けにはProが必要です。</p></div></details>
+					<details><summary>どこからダウンロードできますか？</summary><div class="a"><p>Microsoft Storeから。「<a href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=ja-jp&amp;cid=site-ja-faq" rel="noopener">工数管理・タイムトラッカー - Jira用AI</a>」という名前で公開しています（英語名：Time Tracker &amp; Timesheet - AI for Jira）。ダウンロードは無料で、Proを14日間無料で試用できます（カード不要）。</p></div></details>
+					<details><summary>Mac版やLinux版はありますか？</summary><div class="a"><p>まだありません。Timesheet TrackerはWindowsアプリです。ほかのプラットフォームが必要な場合は、<a href="mailto:help@timesheet-tracker.com">help@timesheet-tracker.com</a> までお知らせください。</p></div></details>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============ GUIDES ============ -->
+		<section class="section" aria-labelledby="guides-h" style="padding-top:20px">
+			<div class="wrap">
+				<div class="section-head reveal" data-px="0.05">
+					<span class="kicker">ガイド</span>
+					<h2 id="guides-h">金曜日の夕方を取り戻す</h2>
+				</div>
+				<div class="guides">
+					<a class="guide-card reveal" href="/ja/articles/kousu-kanri-jira.html"><small>工数管理</small><b>工数管理を自動化する方法（Jira）</b><span>工数入力が負担になる理由、Jiraの作業ログの基本、手入力・Excel・自動化の比較。</span><span class="more">ガイドを読む →</span></a>
+					<a class="guide-card reveal" style="--rd:.08s" href="/articles/how-to-log-time-in-jira.html"><small>Jira · 英語</small><b>Jiraで作業時間を記録する方法</b><span>Cloud と Data Center での作業ログ、時間の書式、スマートコミット、REST API。</span><span class="more">ガイドを読む（英語） →</span></a>
+					<a class="guide-card reveal" style="--rd:.16s" href="/articles/ai-timesheet.html"><small>AI · 英語</small><b>AIはタイムシートを埋められるか</b><span>AIタイムシートのしくみ、本当に必要なデータ、失敗しやすいポイント。</span><span class="more">ガイドを読む（英語） →</span></a>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============ FINAL CTA ============ -->
+		<section class="cta-final" id="join" aria-labelledby="join-h">
+			<div class="aurora" aria-hidden="true"></div>
+			<div class="wrap inner">
+				<img class="app-ico reveal" src="/img/mark-256.webp" width="76" height="76" alt="Timesheet Trackerのアイコン">
+				<h2 id="join-h" class="big reveal">金曜日の1時間を<br><span class="grad">→ 10秒に。</span></h2>
+				<p class="sub reveal">Timesheet TrackerはMicrosoft Storeで公開中です。ダウンロードは無料、Proを14日間無料で試用でき、カードは不要です。</p>
+				<div class="get-app reveal">
+					<a class="btn btn-primary btn-store" href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=ja-jp&amp;cid=site-ja-cta" rel="noopener"><span class="ms" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>Microsoft Store から入手</span></a>
+				</div>
+				<ul class="trust reveal">
+					<li>ローカルファースト</li>
+					<li>スクリーンショットなし</li>
+					<li>AIを使うかどうかは、あなたが決める</li>
+				</ul>
+			</div>
+		</section>
+	</main>
+
+	<footer class="site-footer">
+		<div class="wrap">
+			<div class="foot-grid">
+				<div class="foot-about">
+					<a class="brand" href="/ja/"><img src="/img/mark.svg" width="30" height="30" alt="">Timesheet Tracker</a>
+					<p>Windows用、Jiraのための自動タイムトラッキングとAIタイムシート。ローカルファースト、スクリーンショットなし。Microsoft Storeでは「<a href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=ja-jp&amp;cid=site-ja-footer" rel="noopener">工数管理・タイムトラッカー - Jira用AI</a>」として公開しています。</p>
+				</div>
+				<div>
+					<h4>製品</h4>
+					<ul>
+						<li><a href="#how">使い方</a></li>
+						<li><a href="#privacy">プライバシー保護</a></li>
+						<li><a href="#compare">比較</a></li>
+						<li><a href="#faq">よくある質問</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4>ガイド</h4>
+					<ul>
+						<li><a href="/ja/articles/kousu-kanri-jira.html">Jiraの工数管理を自動化</a></li>
+						<li><a href="/articles/how-to-log-time-in-jira.html">Jiraで作業時間を記録（英語）</a></li>
+						<li><a href="/articles/automatic-time-tracking-software-windows.html">自動タイムトラッキング（英語）</a></li>
+						<li><a href="/articles/tempo-timesheets-alternatives.html">Tempoの代替ツール（英語）</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4>運営</h4>
+					<ul>
+						<li><a href="mailto:help@timesheet-tracker.com">help@timesheet-tracker.com</a></li>
+						<li><a href="/privacy.html">プライバシーポリシー（英語）</a></li>
+						<li><a href="/terms.html">利用規約（英語）</a></li>
+					</ul>
+				</div>
+			</div>
+			<nav class="foot-langs" aria-label="Language"><a href="/" hreflang="en" lang="en">English</a><a href="/de/" hreflang="de" lang="de">Deutsch</a><a href="/fr/" hreflang="fr" lang="fr">Français</a><a href="/es/" hreflang="es" lang="es">Español</a><a href="/pt-br/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a><a href="/it/" hreflang="it" lang="it">Italiano</a><a href="/pl/" hreflang="pl" lang="pl">Polski</a><a href="/nl/" hreflang="nl" lang="nl">Nederlands</a><a href="/ja/" hreflang="ja" lang="ja" aria-current="true">日本語</a><a href="/uk/" hreflang="uk" lang="uk">Українська</a><a href="/ru/" hreflang="ru" lang="ru">Русский</a></nav>
+			<div class="foot-bottom">
+				<span>© <span data-year>2026</span> Timesheet Tracker. JiraはAtlassianの商標です。AtlassianおよびMicrosoftとは提携していません。</span>
+				<span>自分の工数を、自分で入力するすべての人へ。</span>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>

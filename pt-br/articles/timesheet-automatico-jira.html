@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Timesheet automático para Jira: apontamento de horas</title>
+	<meta name="description" content="Apontamento de horas no Jira sem reconstruir a semana de memória: registros de trabalho, boas práticas para PJ e consultorias e timesheet automático.">
+	<link rel="canonical" href="https://timesheet-tracker.com/pt-br/articles/timesheet-automatico-jira.html">
+	<meta name="robots" content="index, follow, max-image-preview:large">
+	<meta name="author" content="Equipe AI Timesheet">
+	<meta name="theme-color" content="#f5f6fb">
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+	<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+	<meta property="og:type" content="article">
+	<meta property="og:site_name" content="Timesheet Tracker">
+	<meta property="og:title" content="Timesheet automático para Jira: apontamento de horas">
+	<meta property="og:description" content="Apontamento de horas no Jira sem reconstruir a semana de memória: registros de trabalho, boas práticas para PJ e consultorias e timesheet automático.">
+	<meta property="og:url" content="https://timesheet-tracker.com/pt-br/articles/timesheet-automatico-jira.html">
+	<meta property="og:image" content="https://timesheet-tracker.com/og-image.png">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="og:locale" content="pt_BR">
+	<meta property="article:published_time" content="2026-10-29">
+	<meta name="twitter:card" content="summary_large_image">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap">
+	<link rel="stylesheet" href="/css/landing.css">
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Article",
+		"headline": "Timesheet automático para Jira: apontamento de horas sem reconstruir a semana",
+		"description": "Apontamento de horas no Jira sem reconstruir a semana de memória: registros de trabalho, boas práticas para PJ e consultorias e timesheet automático.",
+		"datePublished": "2026-10-29",
+		"dateModified": "2026-10-29",
+		"inLanguage": "pt-BR",
+		"mainEntityOfPage": "https://timesheet-tracker.com/pt-br/articles/timesheet-automatico-jira.html",
+		"image": "https://timesheet-tracker.com/og-image.png",
+		"keywords": "timesheet, timesheet automático, apontamento de horas, horas trabalhadas, Jira, registro de trabalho, planilha de horas",
+		"author": {"@type": "Organization", "name": "Equipe AI Timesheet", "url": "https://timesheet-tracker.com/pt-br/"},
+		"publisher": {"@type": "Organization", "name": "Timesheet Tracker", "url": "https://timesheet-tracker.com/", "logo": {"@type": "ImageObject", "url": "https://timesheet-tracker.com/apple-touch-icon.png"}}
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		"itemListElement": [
+			{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://timesheet-tracker.com/pt-br/"},
+			{"@type": "ListItem", "position": 2, "name": "Timesheet automático para Jira", "item": "https://timesheet-tracker.com/pt-br/articles/timesheet-automatico-jira.html"}
+		]
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		"inLanguage": "pt-BR",
+		"mainEntity": [
+			{"@type": "Question", "name": "Um timesheet automático substitui o controle de ponto?", "acceptedAnswer": {"@type": "Answer", "text": "Não. O timesheet registra em quais tarefas você trabalhou; o controle de ponto registra a jornada e é responsabilidade do empregador, com regras próprias. O Timesheet Tracker é um time tracker pessoal para o apontamento de horas no Jira e não serve como registro de ponto."}},
+			{"@type": "Question", "name": "Meu gestor ou meu cliente vai ver tudo o que eu fiz no computador?", "acceptedAnswer": {"@type": "Answer", "text": "Não. A atividade gravada fica no seu PC. Para o Jira vão apenas os registros de trabalho que você revisou e confirmou: tarefa, duração, data e descrição. Não há capturas de tela, keylogger nem painéis para o gestor."}},
+			{"@type": "Question", "name": "Funciona com o Jira Server ou Data Center da empresa?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. O Timesheet Tracker envia registros de trabalho ao Jira Cloud (com token de API) e ao Jira Server / Data Center (com Personal Access Token), usando a sua própria conta e sem criar duplicatas ao reenviar um dia."}},
+			{"@type": "Question", "name": "E se o cliente não usa Jira e pede uma planilha de horas?", "acceptedAnswer": {"@type": "Answer", "text": "Você pode exportar os dias confirmados em CSV e abrir no Excel ou no Google Planilhas como planilha de horas por tarefa. A exportação direta para Excel (XLSX) e a integração com o Tempo estão nos planos."}},
+			{"@type": "Question", "name": "Quanto custa o Timesheet Tracker?", "acceptedAnswer": {"@type": "Answer", "text": "O download na Microsoft Store é gratuito e inclui 14 dias de teste grátis do Pro, sem cartão. Depois, o Pro custa US$ 9,99 por mês ou US$ 79 por ano. Sem assinatura, o app continua gravando e mostrando seu dia, com 7 dias de histórico e CSV do dia de hoje."}}
+		]
+	}
+	</script>
+	<script src="/js/landing.js" defer></script>
+	<!-- Yandex.Metrika counter -->
+	<script>
+		(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();
+		for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+		k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+		(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+		ym(113838536, "init", {clickmap: true, trackLinks: true, accurateTrackBounce: true});
+	</script>
+</head>
+<body>
+	<noscript><div><img src="https://mc.yandex.ru/watch/113838536" width="1" height="1" style="position:absolute;left:-9999px" alt=""></div></noscript>
+	<a class="skip" href="#main">Pular para o conteúdo</a>
+	<header class="site-header">
+		<nav class="wrap nav" aria-label="Principal">
+			<a class="brand" href="/pt-br/"><img src="/img/mark.svg" width="30" height="30" alt=""><span>Timesheet Tracker</span></a>
+			<ul class="nav-links">
+				<li><a href="/pt-br/#how">Como funciona</a></li>
+				<li><a href="/pt-br/#features">Recursos</a></li>
+				<li><a href="/pt-br/#privacy">Privacidade</a></li>
+				<li><a href="/pt-br/#compare">Comparação</a></li>
+				<li><a href="/pt-br/#faq">Dúvidas</a></li>
+				<li><a href="/pt-br/articles/timesheet-automatico-jira.html">Guias</a></li>
+			</ul>
+			<div class="nav-cta">
+				<a class="btn btn-primary btn-sm" href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=pt-br&amp;cid=site-ptbr-nav-timesheet-automatico-jira" rel="noopener">Baixar o app</a>
+				<button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false"><span></span></button>
+			</div>
+		</nav>
+	</header>
+
+	<main id="main">
+		<section class="page-hero">
+			<div class="aurora" aria-hidden="true"></div>
+			<div class="wrap">
+				<ol class="crumbs">
+					<li><a href="/pt-br/">Início</a></li>
+					<li>Timesheet automático para Jira</li>
+				</ol>
+				<h1>Timesheet automático para Jira: apontamento de horas sem reconstruir a semana</h1>
+				<p class="dek">Como lançar suas horas trabalhadas nas tarefas do Jira de um jeito que o gestor e o cliente aprovam de primeira — e como deixar o timesheet se preencher quase sozinho.</p>
+				<div class="byline">
+					<img src="/img/mark.svg" width="28" height="28" alt="">
+					<span>Por <b>Equipe AI Timesheet</b></span>
+					<span>·</span>
+					<time datetime="2026-10-29">29 de outubro de 2026</time>
+					<span>·</span>
+					<span>8 min de leitura</span>
+				</div>
+			</div>
+		</section>
+
+		<div class="article-layout">
+			<article class="prose">
+				<div class="tldr">
+					<b>Resposta curta</b>
+					<ul>
+						<li>No Jira, o timesheet é a soma dos <b>registros de trabalho</b> (worklogs) nas issues. Fazer o apontamento de horas é lançar o tempo na tarefa certa, no dia certo, com uma descrição que se explica sozinha.</li>
+						<li>Manualmente: abra a issue, use <b>Registrar trabalho</b>, informe o tempo (<code>2h 30m</code>), a data de início e uma linha sobre o que foi feito. Uma vez por tarefa, por dia.</li>
+						<li>Um timesheet automático grava sua atividade no PC, reconhece chaves do Jira como <code>ABC-123</code> e prepara os registros. Você só revisa e confirma.</li>
+						<li>Para PJ e consultorias: aponte (ou revise) todo dia, uma linha por tarefa por dia, arredonde para os 15 minutos mais próximos e confira tudo antes do fechamento do mês.</li>
+					</ul>
+				</div>
+
+				<h2 id="o-que-e">O que é timesheet no Jira e o que é apontamento de horas</h2>
+				<p><strong>Timesheet</strong> é o registro de quanto tempo você dedicou a cada atividade em um período: um dia, uma semana, um mês. Em empresas que usam o Jira, ele raramente é uma planilha separada. O timesheet é montado a partir dos registros de trabalho que cada pessoa lança nas issues: quem trabalhou, em qual tarefa, quando, por quanto tempo e fazendo o quê.</p>
+				<p><strong>Apontamento de horas</strong> é o jargão brasileiro para esse lançamento. “Apontar horas no Jira” significa abrir a tarefa e registrar o tempo gasto nela. Relatórios, painéis, add-ons como o Tempo e qualquer planilha de horas que o financeiro gere depois leem exatamente esses dados. Se o apontamento está errado na issue, está errado em todo lugar.</p>
+
+				<h2 id="quem-aponta">Quem precisa apontar horas no Jira no Brasil</h2>
+				<p>Quase todo mundo que trabalha com software acaba apontando horas em algum momento, mas o peso disso varia muito:</p>
+				<ul>
+					<li><strong>Profissionais PJ alocados em clientes.</strong> É comum o contrato ser por hora. No fim do mês, o relatório de horas trabalhadas vai para a consultoria ou para o cliente aprovar, e só depois sai a nota fiscal. Hora não apontada costuma ser hora não faturada.</li>
+					<li><strong>Consultorias, fábricas de software e empresas de outsourcing.</strong> Muitas fazem a medição dos contratos pelas horas lançadas no Jira e usam os mesmos dados para acompanhar a margem de cada projeto.</li>
+					<li><strong>Times de produto internos.</strong> Mesmo sem cobrança por hora, várias empresas pedem o apontamento para saber quanto custa cada iniciativa ou para calibrar estimativas da sprint.</li>
+				</ul>
+				<div class="callout">
+					<p><strong>Timesheet não é ponto.</strong> O controle de jornada de quem é CLT é obrigação do empregador e segue regras próprias. O timesheet responde a outra pergunta: <em>em que</em> você trabalhou. Uma ferramenta de apontamento de horas não substitui o registro de ponto, e vice-versa.</p>
+				</div>
+
+				<h2 id="manual">Como fazer o apontamento de horas no Jira manualmente</h2>
+				<p>Antes de tudo, o controle de tempo (Time tracking) precisa estar ativado no Jira, o campo tem de estar nas telas do projeto e você precisa da permissão de registrar trabalho (Work on issues). Se nada disso aparece para você, fale com o administrador do Jira.</p>
+				<h3>No Jira Cloud</h3>
+				<ol>
+					<li>Abra a issue.</li>
+					<li>Clique no campo de controle de tempo no painel de detalhes ou abra o menu <b>&hellip;</b> e escolha <b>Registrar trabalho</b>. Os nomes exatos variam um pouco conforme o layout e o idioma da sua instância.</li>
+					<li>Preencha o tempo gasto, a data e a hora de início e a descrição do trabalho.</li>
+				</ol>
+				<h3>No Jira Server / Data Center</h3>
+				<p>Na issue, use <b>Mais &rarr; Registrar trabalho</b>. Além dos mesmos campos, o Data Center pergunta o que fazer com a estimativa restante: ajustar automaticamente costuma ser a escolha certa.</p>
+				<h3>Três detalhes que fazem diferença</h3>
+				<ul>
+					<li><strong>Formato do tempo.</strong> O Jira aceita durações como <code>45m</code>, <code>2h 30m</code> ou <code>1d</code>. Com a configuração padrão, 1 dia equivale a 8 horas e 1 semana a 5 dias. Se a empresa trabalha com outra carga diária, confirme como o Jira está configurado.</li>
+					<li><strong>Data de início.</strong> Ela vem preenchida com o momento atual. Se você está lançando a terça-feira na sexta, corrija a data, ou o timesheet semanal vai mostrar tudo no dia errado.</li>
+					<li><strong>Smart commits.</strong> Com o repositório integrado ao Jira, dá para registrar tempo pelo commit: <code>git commit -m "CASE-1423 #time 2h Corrige refresh de token"</code>. Funciona para quem programa, mas não cobre reuniões, code review, suporte nem documentação.</li>
+				</ul>
+				<p>Quer o passo a passo completo, com a API de worklogs? Veja o guia <a href="/articles/how-to-log-time-in-jira.html">How to log time in Jira</a> (em inglês).</p>
+
+				<h2 id="por-que-falha">Por que o apontamento manual falha na sexta-feira</h2>
+				<p>O processo em si é simples. O problema é quando ele acontece. Quem deixa para apontar no fim da semana enfrenta sempre os mesmos obstáculos:</p>
+				<ul>
+					<li><strong>Memória.</strong> Na sexta às 17h ninguém lembra que passou 40 minutos ajudando um colega com um deploy na terça. As tarefas pequenas somem, e o timesheet sai menor do que o trabalho real.</li>
+					<li><strong>Cronômetro.</strong> Timers funcionam até a primeira interrupção. Você esquece de dar play, esquece de parar e troca de contexto dezenas de vezes por dia.</li>
+					<li><strong>Trabalho sem rastro no Jira.</strong> Reuniões, calls com o cliente, revisão de PR e respostas no Slack não geram commit nem mudam o status de nenhuma issue.</li>
+					<li><strong>Arredondamento.</strong> Arredondar cada entrada para cima transforma um dia real de 6h30 em 8h, e um dia corrido em números que não fecham.</li>
+					<li><strong>Descrições genéricas.</strong> “Desenvolvimento” ou “ajustes” são justamente os registros que o cliente questiona na hora de aprovar as horas.</li>
+				</ul>
+
+				<h2 id="automatico">Como funciona um timesheet automático</h2>
+				<p>Um timesheet automático inverte a lógica: em vez de você lembrar do que fez, o computador grava e você só confere. Um bom fluxo tem quatro etapas:</p>
+				<ol>
+					<li><strong>Captura passiva.</strong> O app registra em segundo plano o programa ativo, o título da janela, o domínio do site e os períodos de inatividade. Nada de play e stop.</li>
+					<li><strong>Associação pelas chaves do Jira.</strong> A maior parte do dia já carrega a tarefa no título: a aba <code>[CASE-1423] Erro no refresh de token</code>, a branch <code>feature/CASE-1423-token-refresh</code> no editor, o PR com a chave no nome. Isso dá para associar localmente, sem IA.</li>
+					<li><strong>IA para o que sobra.</strong> Um arquivo do Figma, uma thread do Slack, uma página do Confluence: aqui a IA sugere a tarefa mais provável e redige o texto do registro.</li>
+					<li><strong>Revisão humana.</strong> Nada vai para o Jira sem a sua confirmação. Você corrige o que estiver errado e envia.</li>
+				</ol>
+				<table>
+					<thead>
+						<tr><th>Critério</th><th>Manual</th><th>Cronômetro</th><th>Timesheet automático</th></tr>
+					</thead>
+					<tbody>
+						<tr><td>Esforço diário</td><td>Alto, e cresce se você atrasa</td><td>Médio: lembrar de iniciar e parar</td><td>Baixo: só revisar e confirmar</td></tr>
+						<tr><td>Tarefas pequenas e interrupções</td><td>Costumam se perder</td><td>Se perdem quando o timer fica ligado</td><td>Aparecem na linha do tempo do dia</td></tr>
+						<tr><td>Reuniões e trabalho fora do código</td><td>Depende da memória</td><td>Depende da disciplina</td><td>Gravados como qualquer outra atividade</td></tr>
+						<tr><td>Texto do registro</td><td>Você escreve tudo</td><td>Você escreve tudo</td><td>Rascunho pronto para editar</td></tr>
+						<tr><td>Privacidade</td><td>Total</td><td>Total</td><td>Depende da ferramenta: prefira dados locais e sem capturas de tela</td></tr>
+					</tbody>
+				</table>
+
+				<h2 id="boas-praticas">Boas práticas de apontamento para PJ e consultorias</h2>
+				<p>Com ou sem automação, estas regras evitam retrabalho no fechamento do mês:</p>
+				<ol>
+					<li><strong>Feche o dia, não a semana.</strong> Revisar o apontamento todo fim de tarde leva poucos minutos. Reconstruir cinco dias na sexta leva uma hora e sai pior.</li>
+					<li><strong>Uma linha por tarefa, por dia.</strong> Junte a manhã e a tarde na mesma issue em um único registro. Cinco fragmentos de 20 minutos dificultam a leitura de quem aprova.</li>
+					<li><strong>Comece com um verbo e cite algo concreto.</strong> Um PR, um componente, um ambiente, um cliente.</li>
+					<li><strong>Lance na issue certa.</strong> Na história ou na subtarefa onde o trabalho aconteceu, não no épico.</li>
+					<li><strong>Combine o que é faturável.</strong> Reuniões, onboarding e suporte entram no contrato? Peça uma issue específica para cada tipo e aponte nela, em vez de esconder esse tempo em outras tarefas.</li>
+					<li><strong>Escolha uma granularidade e seja consistente.</strong> Quinze minutos funciona bem. Arredonde para o mais próximo, não sempre para cima.</li>
+					<li><strong>Confira antes da nota fiscal.</strong> Exporte o mês para uma planilha de horas e compare com o que o cliente vai aprovar. Divergência descoberta depois da nota vira dor de cabeça.</li>
+				</ol>
+				<p>Exemplos de registros que passam na aprovação sem perguntas:</p>
+				<ul>
+					<li><code>CASE-1423 · 2h 30m · Corrigido o refresh de token em sessões SSO expiradas, teste de regressão adicionado</code></li>
+					<li><code>OPS-77 · 1h 30m · Post-mortem do incidente de billing, ajuste dos alertas no Grafana</code></li>
+					<li><code>CASE-1501 · 45m · Revisão do PR #312 (exportação de faturas), alterações solicitadas</code></li>
+				</ul>
+
+				<h2 id="timesheet-tracker">Timesheet automático para Jira com o Timesheet Tracker</h2>
+				<p>Foi para esse problema que criamos o <a href="/pt-br/">Timesheet Tracker</a>, que na Microsoft Store aparece como “Controle de horas e timesheet - IA para Jira”. É um app para Windows com interface em português, e o fluxo é o descrito acima:</p>
+				<ol>
+					<li><strong>Você trabalha normalmente.</strong> O app fica na área de notificação e grava o programa ativo, o título da janela, o domínio do navegador e o tempo ocioso ou de tela bloqueada. Tudo fica no seu PC.</li>
+					<li><strong>As chaves do Jira são reconhecidas sozinhas</strong> em títulos de janelas, URLs e branches git, localmente e sem IA.</li>
+					<li><strong>No fim do dia, clique em “Organizar meu dia”.</strong> A IA distribui os blocos restantes entre suas tarefas do Jira e escreve um texto de registro por tarefa.</li>
+					<li><strong>Revise.</strong> Use “Trocar tarefa” para corrigir uma atribuição, marque um bloco como “Não é trabalho”, edite o texto e clique em “Confirmar dia”.</li>
+					<li><strong>Envie.</strong> “Enviar ao Jira” grava os registros no Jira Cloud ou no Jira Server / Data Center, sem duplicatas se você reenviar. Se preferir, use “Exportar CSV” e tenha a sua planilha de horas.</li>
+				</ol>
+				<p>A IA só entra quando você clica no botão, e mesmo assim recebe títulos de janelas mascarados (e-mails, números, tokens e caminhos ficam ocultos), nomes de programas, domínios e durações. URLs completas, conteúdo de páginas, capturas de tela, o que você digita e o seu token do Jira nunca saem do computador. Se a política da empresa não permite IA, o modo “Sem IA” associa só pelas chaves do Jira e deixa o resto para você distribuir à mão. Não há painéis para o gestor nem relatórios de equipe: é uma ferramenta para quem aponta as próprias horas.</p>
+
+				<h2 id="perguntas">Perguntas frequentes</h2>
+				<h3>Um timesheet automático substitui o controle de ponto?</h3>
+				<p>Não. O timesheet registra em quais tarefas você trabalhou; o controle de ponto registra a jornada e é responsabilidade do empregador, com regras próprias. O Timesheet Tracker é um time tracker pessoal para o apontamento de horas no Jira e não serve como registro de ponto.</p>
+				<h3>Meu gestor ou meu cliente vai ver tudo o que eu fiz no computador?</h3>
+				<p>Não. A atividade gravada fica no seu PC. Para o Jira vão apenas os registros de trabalho que você revisou e confirmou: tarefa, duração, data e descrição. Não há capturas de tela, keylogger nem painéis para o gestor.</p>
+				<h3>Funciona com o Jira Server ou Data Center da empresa?</h3>
+				<p>Sim. O Timesheet Tracker envia registros de trabalho ao Jira Cloud (com token de API) e ao Jira Server / Data Center (com Personal Access Token), usando a sua própria conta e sem criar duplicatas ao reenviar um dia.</p>
+				<h3>E se o cliente não usa Jira e pede uma planilha de horas?</h3>
+				<p>Você pode exportar os dias confirmados em CSV e abrir no Excel ou no Google Planilhas como planilha de horas por tarefa. A exportação direta para Excel (XLSX) e a integração com o Tempo estão nos planos.</p>
+				<h3>Quanto custa o Timesheet Tracker?</h3>
+				<p>O download na Microsoft Store é gratuito e inclui 14 dias de teste grátis do Pro, sem cartão. Depois, o Pro custa US$ 9,99 por mês ou US$ 79 por ano. Sem assinatura, o app continua gravando e mostrando seu dia, com 7 dias de histórico e CSV do dia de hoje.</p>
+
+				<section class="article-cta" id="get-app">
+					<h2>Pare de reconstruir a semana de memória</h2>
+					<p>O Timesheet Tracker prepara seus registros de trabalho a partir do seu dia real, e você aprova em poucos minutos. Baixe grátis na Microsoft Store, com 14 dias de teste do Pro.</p>
+					<div class="get-app">
+						<a class="btn btn-primary btn-store" href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=pt-br&amp;cid=site-ptbr-article-timesheet-automatico-jira" rel="noopener"><span class="ms" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>Baixe na Microsoft Store</span></a>
+					</div>
+				</section>
+
+				<aside class="related">
+					<h2>Leia também</h2>
+					<ul>
+						<li><a href="/pt-br/">Timesheet Tracker: controle de horas e timesheet para Jira</a></li>
+						<li><a href="/articles/how-to-log-time-in-jira.html">How to log time in Jira (em inglês)</a></li>
+						<li><a href="/articles/fill-timesheet-in-10-minutes.html">How to fill your weekly timesheet in 10 minutes (em inglês)</a></li>
+						<li><a href="/articles/automatic-time-tracking-software-windows.html">Automatic time tracking software for Windows (em inglês)</a></li>
+					</ul>
+				</aside>
+			</article>
+
+			<aside class="toc" aria-label="Nesta página">
+				<b>Nesta página</b>
+				<ol>
+					<li><a href="#o-que-e">O que é timesheet no Jira</a></li>
+					<li><a href="#quem-aponta">Quem precisa apontar horas</a></li>
+					<li><a href="#manual">Apontamento manual</a></li>
+					<li><a href="#por-que-falha">Por que falha na sexta</a></li>
+					<li><a href="#automatico">Timesheet automático</a></li>
+					<li><a href="#boas-praticas">Boas práticas</a></li>
+					<li><a href="#timesheet-tracker">Com o Timesheet Tracker</a></li>
+					<li><a href="#perguntas">Perguntas frequentes</a></li>
+				</ol>
+				<div class="toc-cta">
+					<b style="margin:0;color:var(--ink);font-size:15px;letter-spacing:-.01em;text-transform:none">Timesheet Tracker</b>
+					<p>O timesheet do Jira que se preenche sozinho. Grátis na Microsoft Store.</p>
+					<a class="btn btn-primary btn-sm" href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=pt-br&amp;cid=site-ptbr-nav-timesheet-automatico-jira" rel="noopener">Baixar o app</a>
+				</div>
+			</aside>
+		</div>
+	</main>
+
+	<footer class="site-footer">
+		<div class="wrap">
+			<div class="foot-grid">
+				<div class="foot-about">
+					<a class="brand" href="/pt-br/"><img src="/img/mark.svg" width="30" height="30" alt=""><span>Timesheet Tracker</span></a>
+					<p>Controle de horas automático e timesheet com IA para Jira, no Windows. Dados locais. Sem capturas de tela.</p>
+				</div>
+				<div>
+					<h4>Produto</h4>
+					<ul>
+						<li><a href="/pt-br/#how">Como funciona</a></li>
+						<li><a href="/pt-br/#privacy">Privacidade por design</a></li>
+						<li><a href="/pt-br/#compare">Comparação</a></li>
+						<li><a href="/pt-br/#faq">Dúvidas</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4>Guias</h4>
+					<ul>
+						<li><a href="/pt-br/articles/timesheet-automatico-jira.html">Timesheet automático para Jira</a></li>
+						<li><a href="/articles/how-to-log-time-in-jira.html">Registrar horas no Jira (EN)</a></li>
+						<li><a href="/articles/automatic-time-tracking-software-windows.html">Controle de horas automático (EN)</a></li>
+						<li><a href="/articles/tempo-timesheets-alternatives.html">Alternativas ao Tempo (EN)</a></li>
+						<li><a href="/articles/fill-timesheet-in-10-minutes.html">Timesheet em 10 minutos (EN)</a></li>
+						<li><a href="/articles/ai-timesheet.html">Timesheet com IA (EN)</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4>Empresa</h4>
+					<ul>
+						<li><a href="mailto:help@timesheet-tracker.com">help@timesheet-tracker.com</a></li>
+						<li><a href="/privacy.html">Política de privacidade</a></li>
+						<li><a href="/terms.html">Termos de uso</a></li>
+					</ul>
+				</div>
+			</div>
+			<nav class="foot-langs" aria-label="Language"><a href="/" hreflang="en" lang="en">English</a><a href="/de/" hreflang="de" lang="de">Deutsch</a><a href="/fr/" hreflang="fr" lang="fr">Français</a><a href="/es/" hreflang="es" lang="es">Español</a><a href="/pt-br/" hreflang="pt-BR" lang="pt-BR" aria-current="true">Português (Brasil)</a><a href="/it/" hreflang="it" lang="it">Italiano</a><a href="/pl/" hreflang="pl" lang="pl">Polski</a><a href="/nl/" hreflang="nl" lang="nl">Nederlands</a><a href="/ja/" hreflang="ja" lang="ja">日本語</a><a href="/uk/" hreflang="uk" lang="uk">Українська</a><a href="/ru/" hreflang="ru" lang="ru">Русский</a></nav>
+			<div class="foot-bottom">
+				<span>© <span data-year>2026</span> Timesheet Tracker. Jira é uma marca registrada da Atlassian. Sem afiliação com a Atlassian ou a Microsoft.</span>
+				<span>Feito para quem aponta as próprias horas.</span>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>

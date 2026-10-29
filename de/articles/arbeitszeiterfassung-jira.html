@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Arbeitszeiterfassung für Entwickler mit Jira: Praxisguide</title>
+	<meta name="description" content="Arbeitszeit erfassen als Entwickler: was die Pflicht zur Arbeitszeiterfassung bedeutet, wie Jira-Worklogs funktionieren und welche Zeiterfassung-App passt.">
+	<link rel="canonical" href="https://timesheet-tracker.com/de/articles/arbeitszeiterfassung-jira.html">
+	<meta name="robots" content="index, follow, max-image-preview:large">
+	<meta name="author" content="AI Timesheet team">
+	<meta name="theme-color" content="#f5f6fb">
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+	<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+	<meta property="og:type" content="article">
+	<meta property="og:site_name" content="Timesheet Tracker">
+	<meta property="og:title" content="Arbeitszeiterfassung für Entwickler mit Jira: Praxisguide">
+	<meta property="og:description" content="Arbeitszeit erfassen als Entwickler: was die Pflicht zur Arbeitszeiterfassung bedeutet, wie Jira-Worklogs funktionieren und welche Zeiterfassung-App passt.">
+	<meta property="og:url" content="https://timesheet-tracker.com/de/articles/arbeitszeiterfassung-jira.html">
+	<meta property="og:image" content="https://timesheet-tracker.com/og-image.png">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="og:locale" content="de_DE">
+	<meta property="article:published_time" content="2026-10-29">
+	<meta name="twitter:card" content="summary_large_image">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap">
+	<link rel="stylesheet" href="/css/landing.css">
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Article",
+		"headline": "Arbeitszeiterfassung für Entwickler mit Jira",
+		"description": "Arbeitszeit erfassen als Entwickler: was die Pflicht zur Arbeitszeiterfassung bedeutet, wie Jira-Worklogs funktionieren und welche Zeiterfassung-App passt.",
+		"datePublished": "2026-10-29",
+		"dateModified": "2026-10-29",
+		"inLanguage": "de",
+		"mainEntityOfPage": "https://timesheet-tracker.com/de/articles/arbeitszeiterfassung-jira.html",
+		"image": "https://timesheet-tracker.com/og-image.png",
+		"author": {
+			"@type": "Organization",
+			"name": "AI Timesheet team",
+			"url": "https://timesheet-tracker.com/"
+		},
+		"publisher": {
+			"@type": "Organization",
+			"name": "Timesheet Tracker",
+			"url": "https://timesheet-tracker.com/",
+			"logo": {
+				"@type": "ImageObject",
+				"url": "https://timesheet-tracker.com/apple-touch-icon.png"
+			}
+		}
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		"itemListElement": [
+			{
+				"@type": "ListItem",
+				"position": 1,
+				"name": "Startseite",
+				"item": "https://timesheet-tracker.com/de/"
+			},
+			{
+				"@type": "ListItem",
+				"position": 2,
+				"name": "Arbeitszeiterfassung mit Jira",
+				"item": "https://timesheet-tracker.com/de/articles/arbeitszeiterfassung-jira.html"
+			}
+		]
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		"inLanguage": "de",
+		"mainEntity": [
+			{
+				"@type": "Question",
+				"name": "Muss ich als Entwickler meine Arbeitszeit erfassen?",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "In Deutschland sind Arbeitgeber seit dem Beschluss des Bundesarbeitsgerichts vom September 2022 verpflichtet, Beginn, Ende und Dauer der Arbeitszeit zu erfassen. Wie das geschieht, legt der Arbeitgeber fest; oft wird die Erfassung an die Beschäftigten delegiert, etwa über eine App oder ein Webportal. Ob Sie zusätzlich Zeit auf Jira-Vorgänge buchen müssen, hängt von Projekt und Unternehmen ab."
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "Zählen Jira-Worklogs als Arbeitszeiterfassung?",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "In der Regel nicht. Worklogs zeigen, wie viel Zeit auf welchem Vorgang lag, aber nicht zuverlässig Arbeitsbeginn, Arbeitsende und Pausen. Die meisten Unternehmen nutzen dafür ein eigenes Zeiterfassungssystem. Ob Jira-Daten ausreichen, entscheidet Ihr Arbeitgeber."
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "Welche Zeiterfassung-App eignet sich für Jira?",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "Das hängt davon ab, wie Sie arbeiten. Für wenige lange Aufgaben genügt eine Stoppuhr. Bei vielen Kontextwechseln ist eine automatische Zeiterfassung sinnvoller, die Jira-Schlüssel aus Fenstertiteln und Git-Branches liest und native Worklogs schreibt. Achten Sie auf lokale Datenspeicherung, keine Screenshots und darauf, dass nichts ohne Ihre Bestätigung gebucht wird."
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "Darf eine Zeiterfassung-App Screenshots machen?",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "Ob das zulässig ist, hängt unter anderem von Zweck, Verhältnismäßigkeit, Datenschutzrecht und gegebenenfalls einer Betriebsvereinbarung ab; in vielen Unternehmen ist das kaum durchsetzbar. Timesheet Tracker macht grundsätzlich keine Screenshots und zeichnet keine Tastatureingaben auf."
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "Was kostet Timesheet Tracker?",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "Der Download aus dem Microsoft Store ist kostenlos und startet mit 14 Tagen Pro gratis, ohne Kreditkarte. Danach kostet Pro $9.99 pro Monat oder $79 pro Jahr. Ohne Abo zeichnet die App weiter auf und zeigt Ihren Tag, mit 7 Tagen Verlauf und CSV-Export für heute."
+				}
+			}
+		]
+	}
+	</script>
+	<script src="/js/landing.js" defer></script>
+	<!-- Yandex.Metrika counter -->
+	<script>
+		(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();
+		for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+		k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+		(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+		ym(113838536, "init", {clickmap: true, trackLinks: true, accurateTrackBounce: true});
+	</script>
+</head>
+<body>
+	<noscript><div><img src="https://mc.yandex.ru/watch/113838536" width="1" height="1" style="position:absolute;left:-9999px" alt=""></div></noscript>
+	<a class="skip" href="#main">Zum Inhalt springen</a>
+	<header class="site-header">
+		<nav class="wrap nav" aria-label="Hauptnavigation">
+			<a class="brand" href="/de/"><img src="/img/mark.svg" width="30" height="30" alt=""><span>Timesheet Tracker</span></a>
+			<ul class="nav-links">
+				<li><a href="/de/#how">So funktioniert's</a></li>
+				<li><a href="/de/#features">Funktionen</a></li>
+				<li><a href="/de/#privacy">Datenschutz</a></li>
+				<li><a href="/de/#compare">Vergleich</a></li>
+				<li><a href="/de/articles/arbeitszeiterfassung-jira.html">Ratgeber</a></li>
+			</ul>
+			<div class="nav-cta">
+				<a class="btn btn-primary btn-sm" href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=de-de&amp;cid=site-de-nav-arbeitszeiterfassung-jira" rel="noopener">App laden</a>
+				<button class="nav-toggle" type="button" aria-label="Menü" aria-expanded="false"><span></span></button>
+			</div>
+		</nav>
+	</header>
+
+	<main id="main">
+		<section class="page-hero">
+			<div class="aurora" aria-hidden="true"></div>
+			<div class="wrap">
+				<ol class="crumbs">
+					<li><a href="/de/">Startseite</a></li>
+					<li>Arbeitszeiterfassung mit Jira</li>
+				</ol>
+				<h1>Arbeitszeiterfassung für Entwickler mit Jira</h1>
+				<p class="dek">Stempeluhr, Jira-Worklogs, Projektzeiten: was rechtlich gilt, wie Sie Ihre Arbeitszeit in Jira sauber erfassen und wie eine Zeiterfassung-App Ihnen die Rekonstruktion am Freitag erspart.</p>
+				<div class="byline">
+					<img src="/img/mark.svg" width="28" height="28" alt="">
+					<span>Von <b>AI Timesheet team</b></span>
+					<span>·</span>
+					<time datetime="2026-10-29">29. Oktober 2026</time>
+					<span>·</span>
+					<span>9 Min. Lesezeit</span>
+				</div>
+			</div>
+		</section>
+
+		<div class="article-layout">
+			<article class="prose">
+				<div class="tldr">
+					<b>Kurz zusammengefasst</b>
+					<ul>
+						<li><b>Arbeitszeiterfassung</b> (Beginn, Ende, Dauer – Pflicht des Arbeitgebers) und <b>Projektzeiterfassung</b> (Zeit auf Jira-Vorgänge buchen) sind zwei verschiedene Dinge und landen oft in zwei Systemen.</li>
+						<li>In Jira erfassen Sie Projektzeit über <b>Arbeit protokollieren</b>: ein Worklog pro Vorgang mit Dauer (z. B. <code>2h 30m</code>), Startdatum und kurzer Beschreibung.</li>
+						<li>Nachtragen am Freitag ist ungenau, Stoppuhren werden vergessen. Am zuverlässigsten ist eine automatische Zeiterfassung, die Jira-Schlüssel aus Fenstertiteln und Git-Branches liest.</li>
+						<li>Achten Sie bei einer Zeiterfassung-App auf lokale Datenspeicherung, keine Screenshots, Prüfen vor dem Senden und Unterstützung für Ihre Jira-Variante (Cloud oder Data Center).</li>
+					</ul>
+				</div>
+
+				<h2 id="zwei-arten">Arbeitszeiterfassung und Projektzeiterfassung: nicht dasselbe</h2>
+				<p>Wer in einem Softwareteam arbeitet, erfasst seine Zeit oft doppelt: einmal im Zeiterfassungssystem des Arbeitgebers, wo Arbeitsbeginn, Pausen und Feierabend stehen, und einmal in Jira, wo die Stunden auf Vorgänge gebucht werden. Beides heißt umgangssprachlich „Zeiterfassung“, verfolgt aber unterschiedliche Ziele.</p>
+				<table>
+					<thead>
+						<tr><th></th><th>Arbeitszeiterfassung</th><th>Projektzeiterfassung in Jira</th></tr>
+					</thead>
+					<tbody>
+						<tr><td><b>Leitfrage</b></td><td>Wann und wie lange haben Sie gearbeitet?</td><td>Woran haben Sie gearbeitet?</td></tr>
+						<tr><td><b>Typische Daten</b></td><td>Beginn, Ende, Pausen, Überstunden</td><td>Vorgang, Dauer, Tätigkeitsbeschreibung</td></tr>
+						<tr><td><b>Zweck</b></td><td>Arbeitsschutz: Höchstarbeitszeit, Ruhezeiten, Überstunden</td><td>Kundenabrechnung, Controlling, Sprint-Auswertung, Förderanträge</td></tr>
+						<tr><td><b>Werkzeug</b></td><td>Zeiterfassungssystem, Terminal, App des Arbeitgebers</td><td>Jira-Worklogs, Tempo, Desktop-Zeiterfassung</td></tr>
+						<tr><td><b>Grundlage</b></td><td>Gesetzliche Pflicht des Arbeitgebers</td><td>Vorgabe von Arbeitgeber, Kunde oder Projekt</td></tr>
+					</tbody>
+				</table>
+				<p>Die Projektzeit ist für Unternehmen oft genauso wichtig wie die Arbeitszeit: Agenturen und IT-Dienstleister rechnen Aufwände nach Stunden ab, Produktfirmen werten aus, wie viel Zeit in Features, Bugs und Betrieb fließt, und für Förderprogramme wie die steuerliche Forschungszulage muss der Personalaufwand für Entwicklungsprojekte nachvollziehbar belegt werden. Spätestens im Controlling fällt auf, wenn das HR-System 40 Stunden pro Woche zeigt, in Jira aber nur 22 gebucht sind.</p>
+
+				<h2 id="rechtslage">Was rechtlich gilt: die Pflicht zur Arbeitszeiterfassung</h2>
+				<p>Seit 2019 ist das Thema in Bewegung. Der Europäische Gerichtshof hat am 14. Mai 2019 (Rechtssache C-55/18) entschieden, dass die Mitgliedstaaten Arbeitgeber verpflichten müssen, ein objektives, verlässliches und zugängliches System einzurichten, mit dem die tägliche Arbeitszeit jedes Beschäftigten gemessen werden kann.</p>
+				<p>In Deutschland hat das Bundesarbeitsgericht mit Beschluss vom 13. September 2022 (1 ABR 22/21) klargestellt, dass Arbeitgeber schon nach § 3 Abs. 2 Nr. 1 Arbeitsschutzgesetz verpflichtet sind, Beginn und Ende und damit die Dauer der Arbeitszeit einschließlich Überstunden zu erfassen. Diese Pflicht gilt seitdem – unabhängig davon, wann das Arbeitszeitgesetz angepasst wird. Wie erfasst wird, ist bislang weitgehend offen; die Aufzeichnung darf auch an die Beschäftigten delegiert werden, die Verantwortung bleibt aber beim Arbeitgeber. Eine gesetzliche Neuregelung, die Form und Ausnahmen genauer festlegt, wird seit Längerem diskutiert. Prüfen Sie den aktuellen Stand, bevor Sie sich auf konkrete Detailvorgaben verlassen.</p>
+				<p>Für Entwickler sind vor allem diese Grenzen aus dem Arbeitszeitgesetz relevant:</p>
+				<ul>
+					<li><strong>Höchstarbeitszeit:</strong> werktäglich grundsätzlich acht Stunden, verlängerbar auf zehn, wenn im Durchschnitt von sechs Kalendermonaten oder 24 Wochen acht Stunden werktäglich nicht überschritten werden (§ 3 ArbZG).</li>
+					<li><strong>Pausen:</strong> mindestens 30 Minuten bei mehr als sechs bis zu neun Stunden, 45 Minuten bei mehr als neun Stunden (§ 4 ArbZG).</li>
+					<li><strong>Ruhezeit:</strong> mindestens elf Stunden ununterbrochen nach Ende der täglichen Arbeitszeit (§ 5 ArbZG) – relevant, wenn Sie nachts einen Incident bearbeiten und am nächsten Morgen zum Daily erscheinen.</li>
+				</ul>
+				<p>In Österreich und der Schweiz gelten eigene Aufzeichnungspflichten, etwa nach dem österreichischen Arbeitszeitgesetz und den Verordnungen zum Schweizer Arbeitsgesetz. Die Grundidee ist überall ähnlich: Der Arbeitgeber muss nachvollziehen können, wie lange gearbeitet wurde.</p>
+				<p>Und Jira? Worklogs dokumentieren, wie viel Zeit auf welchem Vorgang lag – nicht, wann Ihr Arbeitstag begann und endete, wie lange Sie Pause gemacht haben oder wie viel Zeit in Arbeit ohne Ticket floss. Ob Ihr Arbeitgeber Jira-Daten als Arbeitszeitnachweis akzeptiert, entscheidet er selbst; in den meisten Unternehmen ist das nicht der Fall, und es gibt ein separates System.</p>
+				<div class="callout">
+					<p>Dieser Abschnitt ist eine Orientierung, keine Rechtsberatung. Verbindlich sind die Regelungen Ihres Arbeitgebers, geltende Betriebsvereinbarungen und der aktuelle Gesetzesstand in Ihrem Land.</p>
+				</div>
+
+				<h2 id="betriebsrat">Betriebsrat und Datenschutz: warum das bei der Tool-Wahl zählt</h2>
+				<p>Software, die Aktivität am Rechner aufzeichnet, berührt zwei sensible Bereiche. Erstens den Datenschutz: Programmnamen, Fenstertitel und besuchte Domains sind personenbezogene Daten, für die die DSGVO unter anderem den Grundsatz der Datenminimierung vorsieht. Zweitens die Mitbestimmung: Nach § 87 Abs. 1 Nr. 6 BetrVG hat der Betriebsrat bei technischen Einrichtungen mitzubestimmen, die dazu geeignet sind, Verhalten oder Leistung der Beschäftigten zu überwachen.</p>
+				<p>Werkzeuge mit Screenshots, Keylogging oder Team-Dashboards für Vorgesetzte sind deshalb in vielen deutschen Unternehmen schwer einzuführen – und das aus gutem Grund. Ein persönliches Werkzeug, das Daten nur lokal speichert, nichts an Vorgesetzte meldet und erst nach Ihrer Bestätigung Worklogs schreibt, ist ein anderer Fall. Klären Sie im Zweifel trotzdem mit IT und Datenschutz, ob Sie Desktop-Software installieren dürfen.</p>
+
+				<h2 id="jira-worklogs">So erfassen Sie Arbeitszeit in Jira: Arbeit protokollieren</h2>
+				<p>Damit Sie in Jira überhaupt Zeit buchen können, muss die Zeiterfassung in der Instanz aktiviert sein, das Zeiterfassungsfeld auf den Masken des Projekts liegen und Ihnen die Berechtigung zum Protokollieren von Arbeit zustehen. Danach läuft es so:</p>
+				<ol>
+					<li><strong>Vorgang öffnen</strong> und auf das Zeiterfassungsfeld klicken oder im Menü <b>Arbeit protokollieren</b> wählen. In Jira Server und Data Center finden Sie den Eintrag unter <b>Weitere</b>.</li>
+					<li><strong>Aufgewendete Zeit eintragen</strong> – in Jira-Notation mit <code>w</code>, <code>d</code>, <code>h</code> und <code>m</code>, etwa <code>45m</code> oder <code>2h 15m</code>. Standardmäßig entspricht ein Tag acht Stunden und eine Woche fünf Tagen; Administratoren können das ändern.</li>
+					<li><strong>Startdatum prüfen.</strong> Voreingestellt ist „jetzt“. Wer am Montag den Freitag nachträgt und das Datum nicht anpasst, bucht auf den falschen Tag.</li>
+					<li><strong>Beschreibung schreiben:</strong> eine Zeile, was konkret erledigt wurde – „Token-Refresh überarbeitet, Integrationstests ergänzt“ statt „Entwicklung“.</li>
+				</ol>
+				<p>Daneben gibt es zwei technische Wege. <strong>Smart Commits</strong> buchen Zeit direkt aus der Commit-Nachricht, etwa <code>CASE-1423 #time 2h Token-Refresh gefixt</code>; das setzt eine verbundene Bitbucket-, GitHub- oder GitLab-Integration voraus und funktioniert nur, wenn die Commit-E-Mail zu Ihrem Jira-Konto passt. Für Automatisierung steht die REST-API bereit (<code>POST /rest/api/3/issue/{key}/worklog</code> in Jira Cloud). Setzt Ihr Unternehmen Tempo ein, buchen Sie dort; Tempo verwaltet seine Worklogs selbst. Eine ausführliche Anleitung mit allen Varianten finden Sie in unserem englischsprachigen Ratgeber <a href="/articles/how-to-log-time-in-jira.html">How to log time in Jira</a>.</p>
+
+				<h2 id="warum-schwer">Warum Entwickler ihre Arbeitszeit so ungern erfassen</h2>
+				<p>Mit Faulheit hat das wenig zu tun. Der Arbeitstag in der Entwicklung ist zerstückelt: eine Stunde Code, zwanzig Minuten Review, ein Slack-Thread zum Release, ein Incident, das Daily, ein Refinement. Am Abend sind es zwölf Kontextwechsel, an die sich niemand im Detail erinnert. Typische Lücken:</p>
+				<ul>
+					<li><strong>Arbeit ohne Ticket:</strong> Meetings, Support-Anfragen, Code-Reviews für andere Teams.</li>
+					<li><strong>Rundung:</strong> „Ungefähr vier Stunden auf dem großen Ticket“ – der Rest verschwindet.</li>
+					<li><strong>Nachtragen aus dem Gedächtnis:</strong> Am Freitag ist der Dienstag weg; der Chatverlauf und die Browser-Historie werden zur Detektivarbeit.</li>
+					<li><strong>Vergessene Stoppuhren:</strong> Der Timer läuft durch die Mittagspause oder wird gar nicht erst gestartet.</li>
+				</ul>
+				<p>Das Ergebnis sind Worklogs, die niemandem helfen: acht Stunden „Entwicklung“ auf einem Vorgang, während die tatsächliche Arbeit über fünf Vorgänge verteilt war.</p>
+
+				<h2 id="drei-wege">Drei Wege, Ihre Arbeitszeit in Jira zu erfassen</h2>
+				<table>
+					<thead>
+						<tr><th>Methode</th><th>Aufwand</th><th>Genauigkeit</th><th>Typische Falle</th></tr>
+					</thead>
+					<tbody>
+						<tr><td>Manuell nachtragen (Jira, Excel, Notizen)</td><td>Oft eine Stunde am Freitag</td><td>Gering bis mittel</td><td>Erinnerungslücken, falsches Datum</td></tr>
+						<tr><td>Stoppuhr pro Vorgang (Timer-Apps, Jira-Add-ons)</td><td>Laufend, viele Klicks</td><td>Hoch, wenn konsequent genutzt</td><td>Timer vergessen oder nicht gestoppt</td></tr>
+						<tr><td>Automatische Zeiterfassung aus der Desktop-Aktivität</td><td>Wenige Minuten Prüfung</td><td>Hoch</td><td>Datenschutz: Wo liegen die Daten?</td></tr>
+					</tbody>
+				</table>
+				<p>Die automatische Variante nutzt Spuren, die Sie ohnehin erzeugen. Ein Branch namens <code>feature/CASE-1423-token-refresh</code> steht im Titel Ihrer IDE, ein Jira-Tab heißt „[CASE-1388] Review billing“, ein Pull Request trägt den Schlüssel im Titel. Diese Zeit lässt sich eindeutig zuordnen. Nur für den Rest – Figma, Slack, Confluence – braucht es eine Regel, einen Vorschlag oder Ihre Entscheidung.</p>
+
+				<h2 id="checkliste">Checkliste: die passende Zeiterfassung-App für Jira</h2>
+				<ul>
+					<li><strong>Jira-Variante:</strong> Unterstützt die App Jira Cloud (API-Token) und, falls nötig, Jira Server / Data Center (Personal Access Token)?</li>
+					<li><strong>Worklogs:</strong> Schreibt sie native Jira-Worklogs mit Ihrem eigenen Konto oder führt sie ein eigenes Zeitkonto?</li>
+					<li><strong>Datenhaltung:</strong> Bleiben die Aktivitätsdaten auf Ihrem PC oder gehen sie in die Cloud des Anbieters?</li>
+					<li><strong>Überwachung:</strong> Gibt es Screenshots, Keylogging oder Berichte an Vorgesetzte? Für Betriebsrat und Vertrauen entscheidend.</li>
+					<li><strong>Kontrolle:</strong> Wird nichts gebucht, bevor Sie bestätigt haben?</li>
+					<li><strong>Duplikate:</strong> Was passiert, wenn die Verbindung beim Senden abbricht oder Sie einen Tag erneut senden?</li>
+					<li><strong>Export:</strong> Können Sie Ihre Zeiten als CSV ablegen, etwa als persönlichen Stundennachweis?</li>
+					<li><strong>KI optional:</strong> Funktioniert die App auch ohne Cloud-KI?</li>
+				</ul>
+
+				<h2 id="timesheet-tracker">So funktioniert es mit Timesheet Tracker</h2>
+				<p>Genau für diesen Fall haben wir <a href="/de/">Timesheet Tracker</a> gebaut, im Microsoft Store als „Zeiterfassung &amp; Stundenzettel - KI für Jira“. Die Windows-App läuft im Infobereich der Taskleiste und zeichnet lokal auf, welches Programm aktiv ist, den Fenstertitel, die Domain im Browser sowie Leerlauf und Bildschirmsperre. Jira-Schlüssel in Fenstertiteln, URLs und Git-Branches ordnet sie direkt auf Ihrem PC zu, ganz ohne KI.</p>
+				<p>Am Ende des Tages klicken Sie auf <b>„Meinen Tag sortieren“</b>. Die KI ordnet die übrigen Blöcke Ihren Jira-Vorgängen zu und formuliert pro Vorgang einen Worklog-Text, auf Wunsch auf Deutsch. Dafür gehen nur maskierte Fenstertitel, Programmnamen, Domains und Dauern an den Server – nie vollständige URLs, Seiteninhalte, Screenshots, Tastatureingaben oder Ihr Jira-Token. Mit <b>„Aufgabe ändern“</b> korrigieren Sie eine Zuordnung, mit <b>„Keine Arbeit“</b> nehmen Sie private Blöcke heraus, dann <b>„Tag bestätigen“</b> und <b>„An Jira senden“</b> – an Jira Cloud oder Jira Server / Data Center, ohne doppelte Worklogs. Alternativ wählen Sie <b>„CSV exportieren“</b>.</p>
+				<p>Wer gar nichts an eine KI schicken möchte, nutzt den Modus <b>„Ohne KI“</b>: Schlüssel werden weiter automatisch zugeordnet, den Rest ordnen Sie selbst zu. Es gibt keine Screenshots, kein Keylogging und keine Berichte an Vorgesetzte. Die App ist ein kostenloser Download mit 14 Tagen Pro gratis, ohne Kreditkarte; danach kostet Pro $9.99 pro Monat oder $79 pro Jahr. Die gesetzliche Arbeitszeiterfassung Ihres Arbeitgebers ersetzt sie nicht – sie sorgt dafür, dass Ihre Projektzeit in Jira stimmt.</p>
+
+				<h2 id="faq">Häufige Fragen</h2>
+				<div class="faq">
+					<details><summary>Muss ich als Entwickler meine Arbeitszeit erfassen?</summary><div class="a"><p>In Deutschland sind Arbeitgeber seit dem Beschluss des Bundesarbeitsgerichts vom September 2022 verpflichtet, Beginn, Ende und Dauer der Arbeitszeit zu erfassen. Wie das geschieht, legt der Arbeitgeber fest; oft wird die Erfassung an die Beschäftigten delegiert, etwa über eine App oder ein Webportal. Ob Sie zusätzlich Zeit auf Jira-Vorgänge buchen müssen, hängt von Projekt und Unternehmen ab.</p></div></details>
+					<details><summary>Zählen Jira-Worklogs als Arbeitszeiterfassung?</summary><div class="a"><p>In der Regel nicht. Worklogs zeigen, wie viel Zeit auf welchem Vorgang lag, aber nicht zuverlässig Arbeitsbeginn, Arbeitsende und Pausen. Die meisten Unternehmen nutzen dafür ein eigenes Zeiterfassungssystem. Ob Jira-Daten ausreichen, entscheidet Ihr Arbeitgeber.</p></div></details>
+					<details><summary>Welche Zeiterfassung-App eignet sich für Jira?</summary><div class="a"><p>Das hängt davon ab, wie Sie arbeiten. Für wenige lange Aufgaben genügt eine Stoppuhr. Bei vielen Kontextwechseln ist eine automatische Zeiterfassung sinnvoller, die Jira-Schlüssel aus Fenstertiteln und Git-Branches liest und native Worklogs schreibt. Achten Sie auf lokale Datenspeicherung, keine Screenshots und darauf, dass nichts ohne Ihre Bestätigung gebucht wird.</p></div></details>
+					<details><summary>Darf eine Zeiterfassung-App Screenshots machen?</summary><div class="a"><p>Ob das zulässig ist, hängt unter anderem von Zweck, Verhältnismäßigkeit, Datenschutzrecht und gegebenenfalls einer Betriebsvereinbarung ab; in vielen Unternehmen ist das kaum durchsetzbar. Timesheet Tracker macht grundsätzlich keine Screenshots und zeichnet keine Tastatureingaben auf.</p></div></details>
+					<details><summary>Was kostet Timesheet Tracker?</summary><div class="a"><p>Der Download aus dem Microsoft Store ist kostenlos und startet mit 14 Tagen Pro gratis, ohne Kreditkarte. Danach kostet Pro $9.99 pro Monat oder $79 pro Jahr. Ohne Abo zeichnet die App weiter auf und zeigt Ihren Tag, mit 7 Tagen Verlauf und CSV-Export für heute.</p></div></details>
+				</div>
+
+				<section class="article-cta" id="get-app">
+					<h2>Schluss mit der Rekonstruktion am Freitag</h2>
+					<p>Timesheet Tracker erfasst Ihren Arbeitstag lokal, ordnet ihn Ihren Jira-Vorgängen zu und formuliert die Worklogs vor – Sie prüfen nur noch. Kostenlos im Microsoft Store, mit 14 Tagen Pro gratis.</p>
+					<div class="get-app">
+						<a class="btn btn-primary btn-store" href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=de-de&amp;cid=site-de-article-arbeitszeiterfassung-jira" rel="noopener"><span class="ms" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>Im Microsoft Store herunterladen</span></a>
+					</div>
+				</section>
+
+				<aside class="related">
+					<h2>Weitere Ratgeber</h2>
+					<ul>
+						<li><a href="/de/articles/stundenzettel-automatisch-ausfuellen.html">Stundenzettel automatisch ausfüllen</a></li>
+						<li><a href="/articles/how-to-log-time-in-jira.html">How to log time in Jira (Englisch)</a></li>
+						<li><a href="/articles/automatic-time-tracking-software-windows.html">Automatic time tracking software for Windows (Englisch)</a></li>
+					</ul>
+				</aside>
+			</article>
+
+			<aside class="toc" aria-label="Auf dieser Seite">
+				<b>Auf dieser Seite</b>
+				<ol>
+					<li><a href="#zwei-arten">Arbeitszeit vs. Projektzeit</a></li>
+					<li><a href="#rechtslage">Was rechtlich gilt</a></li>
+					<li><a href="#betriebsrat">Betriebsrat und Datenschutz</a></li>
+					<li><a href="#jira-worklogs">Arbeit protokollieren in Jira</a></li>
+					<li><a href="#warum-schwer">Warum es so mühsam ist</a></li>
+					<li><a href="#drei-wege">Drei Wege im Vergleich</a></li>
+					<li><a href="#checkliste">Checkliste Zeiterfassung-App</a></li>
+					<li><a href="#timesheet-tracker">Mit Timesheet Tracker</a></li>
+					<li><a href="#faq">Häufige Fragen</a></li>
+				</ol>
+				<div class="toc-cta">
+					<b style="margin:0;color:var(--ink);font-size:15px;letter-spacing:-.01em;text-transform:none">Timesheet Tracker</b>
+					<p>Der Stundenzettel, der sich selbst ausfüllt. Kostenlos im Microsoft Store.</p>
+					<a class="btn btn-primary btn-sm" href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=de-de&amp;cid=site-de-nav-arbeitszeiterfassung-jira" rel="noopener">App laden</a>
+				</div>
+			</aside>
+		</div>
+	</main>
+
+	<footer class="site-footer">
+		<div class="wrap">
+			<div class="foot-grid">
+				<div class="foot-about">
+					<a class="brand" href="/de/"><img src="/img/mark.svg" width="30" height="30" alt=""><span>Timesheet Tracker</span></a>
+					<p>Automatische Zeiterfassung und KI-Stundenzettel für Jira unter Windows. Daten bleiben lokal. Keine Screenshots.</p>
+				</div>
+				<div>
+					<h4>Produkt</h4>
+					<ul>
+						<li><a href="/de/#how">So funktioniert's</a></li>
+						<li><a href="/de/#privacy">Datenschutz von Grund auf</a></li>
+						<li><a href="/de/#compare">Vergleich</a></li>
+						<li><a href="/de/#faq">FAQ</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4>Ratgeber</h4>
+					<ul>
+						<li><a href="/de/articles/arbeitszeiterfassung-jira.html">Arbeitszeiterfassung mit Jira</a></li>
+						<li><a href="/de/articles/stundenzettel-automatisch-ausfuellen.html">Stundenzettel automatisch ausfüllen</a></li>
+						<li><a href="/articles/how-to-log-time-in-jira.html" hreflang="en">Log time in Jira (EN)</a></li>
+						<li><a href="/articles/tempo-timesheets-alternatives.html" hreflang="en">Tempo alternatives (EN)</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4>Unternehmen</h4>
+					<ul>
+						<li><a href="mailto:help@timesheet-tracker.com">help@timesheet-tracker.com</a></li>
+						<li><a href="/privacy.html" hreflang="en">Datenschutzerklärung (EN)</a></li>
+						<li><a href="/terms.html" hreflang="en">Nutzungsbedingungen (EN)</a></li>
+					</ul>
+				</div>
+			</div>
+			<nav class="foot-langs" aria-label="Language"><a href="/" hreflang="en" lang="en">English</a><a href="/de/" hreflang="de" lang="de" aria-current="true">Deutsch</a><a href="/fr/" hreflang="fr" lang="fr">Français</a><a href="/es/" hreflang="es" lang="es">Español</a><a href="/pt-br/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a><a href="/it/" hreflang="it" lang="it">Italiano</a><a href="/pl/" hreflang="pl" lang="pl">Polski</a><a href="/nl/" hreflang="nl" lang="nl">Nederlands</a><a href="/ja/" hreflang="ja" lang="ja">日本語</a><a href="/uk/" hreflang="uk" lang="uk">Українська</a><a href="/ru/" hreflang="ru" lang="ru">Русский</a></nav>
+			<div class="foot-bottom">
+				<span>© <span data-year>2026</span> Timesheet Tracker. Jira ist eine Marke von Atlassian. Keine Verbindung zu Atlassian oder Microsoft.</span>
+				<span>Gemacht für alle, die ihre Zeit selbst erfassen.</span>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>

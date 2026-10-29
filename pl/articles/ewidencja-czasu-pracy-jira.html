@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Ewidencja czasu pracy programisty w Jira: poradnik</title>
+	<meta name="description" content="Etat, zlecenie czy B2B: kto prowadzi ewidencję czasu pracy, jak rejestrować godziny w Jira przez worklogi i jak zamknąć miesiąc bez zgadywania.">
+	<link rel="canonical" href="https://timesheet-tracker.com/pl/articles/ewidencja-czasu-pracy-jira.html">
+	<meta name="robots" content="index, follow, max-image-preview:large">
+	<meta name="author" content="AI Timesheet team">
+	<meta name="theme-color" content="#f5f6fb">
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+	<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+	<meta property="og:type" content="article">
+	<meta property="og:site_name" content="Timesheet Tracker">
+	<meta property="og:title" content="Ewidencja czasu pracy programisty w Jira">
+	<meta property="og:description" content="Etat, zlecenie czy B2B: kto prowadzi ewidencję czasu pracy, jak rejestrować godziny w Jira przez worklogi i jak zamknąć miesiąc bez zgadywania.">
+	<meta property="og:url" content="https://timesheet-tracker.com/pl/articles/ewidencja-czasu-pracy-jira.html">
+	<meta property="og:image" content="https://timesheet-tracker.com/og-image.png">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="og:locale" content="pl_PL">
+	<meta property="article:published_time" content="2026-10-29">
+	<meta name="twitter:card" content="summary_large_image">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap">
+	<link rel="stylesheet" href="/css/landing.css">
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Article",
+		"headline": "Ewidencja czasu pracy programisty w Jira",
+		"description": "Etat, zlecenie czy B2B: kto prowadzi ewidencję czasu pracy, jak rejestrować godziny w Jira przez worklogi i jak zamknąć miesiąc bez zgadywania.",
+		"datePublished": "2026-10-29",
+		"dateModified": "2026-10-29",
+		"inLanguage": "pl",
+		"mainEntityOfPage": "https://timesheet-tracker.com/pl/articles/ewidencja-czasu-pracy-jira.html",
+		"image": "https://timesheet-tracker.com/og-image.png",
+		"author": {"@type": "Organization", "name": "AI Timesheet team", "url": "https://timesheet-tracker.com/pl/"},
+		"publisher": {"@type": "Organization", "name": "Timesheet Tracker", "url": "https://timesheet-tracker.com/", "logo": {"@type": "ImageObject", "url": "https://timesheet-tracker.com/apple-touch-icon.png"}}
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		"itemListElement": [
+			{"@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://timesheet-tracker.com/pl/"},
+			{"@type": "ListItem", "position": 2, "name": "Ewidencja czasu pracy w Jira", "item": "https://timesheet-tracker.com/pl/articles/ewidencja-czasu-pracy-jira.html"}
+		]
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		"inLanguage": "pl",
+		"mainEntity": [
+			{"@type": "Question", "name": "Czy worklogi w Jira to ewidencja czasu pracy w rozumieniu Kodeksu pracy?", "acceptedAnswer": {"@type": "Answer", "text": "Nie. Ewidencję czasu pracy pracownika prowadzi pracodawca (art. 149 Kodeksu pracy) i obejmuje ona m.in. godziny pracy w poszczególnych dobach, nadgodziny i nieobecności. Worklogi w Jira pokazują, nad którymi zadaniami spędzono czas. Firma może z nich korzystać przy rozliczaniu projektów, ale same w sobie nie zastępują ewidencji prowadzonej przez pracodawcę."}},
+			{"@type": "Question", "name": "Czy na B2B muszę prowadzić ewidencję godzin?", "acceptedAnswer": {"@type": "Answer", "text": "Przepisy Kodeksu pracy o ewidencji czasu pracy nie dotyczą osoby prowadzącej działalność gospodarczą. Obowiązek raportowania godzin wynika zwykle z umowy z klientem: jeśli rozliczasz się stawką godzinową, klient najczęściej oczekuje miesięcznego zestawienia godzin, a w wielu firmach źródłem tego zestawienia są worklogi w Jira."}},
+			{"@type": "Question", "name": "Jak wyciągnąć z Jira swoje godziny za cały miesiąc?", "acceptedAnswer": {"@type": "Answer", "text": "Zapytanie JQL worklogAuthor = currentUser() AND worklogDate >= startOfMonth() pokaże zgłoszenia, w których w tym miesiącu zarejestrowałeś pracę. Sumy godzin na dzień i zadanie da raport z dodatku, np. Tempo, eksport przez REST API albo aplikacja, która eksportuje worklogi do CSV."}},
+			{"@type": "Question", "name": "Czy umowa zlecenia wymaga ewidencji godzin?", "acceptedAnswer": {"@type": "Answer", "text": "Przy zleceniu objętym minimalną stawką godzinową strony ustalają w umowie sposób potwierdzania liczby godzin wykonania zlecenia, a zleceniobiorca przedstawia tę informację. To nie jest ewidencja czasu pracy z Kodeksu pracy, ale w praktyce wymaga rzetelnego zapisu godzin. Szczegóły warto potwierdzić w umowie lub u księgowej."}}
+		]
+	}
+	</script>
+	<script src="/js/landing.js" defer></script>
+	<!-- Yandex.Metrika counter -->
+	<script>
+		(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();
+		for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+		k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+		(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+		ym(113838536, "init", {clickmap: true, trackLinks: true, accurateTrackBounce: true});
+	</script>
+</head>
+<body>
+	<noscript><div><img src="https://mc.yandex.ru/watch/113838536" width="1" height="1" style="position:absolute;left:-9999px" alt=""></div></noscript>
+	<a class="skip" href="#main">Przejdź do treści</a>
+	<header class="site-header">
+		<nav class="wrap nav" aria-label="Menu główne">
+			<a class="brand" href="/pl/"><img src="/img/mark.svg" width="30" height="30" alt=""><span>Timesheet Tracker</span></a>
+			<ul class="nav-links">
+				<li><a href="/pl/#how">Jak to działa</a></li>
+				<li><a href="/pl/#features">Funkcje</a></li>
+				<li><a href="/pl/#privacy">Prywatność</a></li>
+				<li><a href="/pl/#compare">Porównanie</a></li>
+				<li><a href="/pl/#faq">FAQ</a></li>
+				<li><a href="/pl/articles/ewidencja-czasu-pracy-jira.html" aria-current="page">Poradnik</a></li>
+			</ul>
+			<div class="nav-cta">
+				<a class="btn btn-primary btn-sm" href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=pl-pl&amp;cid=site-pl-nav-article" rel="noopener">Pobierz aplikację</a>
+				<button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false"><span></span></button>
+			</div>
+		</nav>
+	</header>
+
+	<main id="main">
+		<section class="page-hero">
+			<div class="aurora" aria-hidden="true"></div>
+			<div class="wrap">
+				<ol class="crumbs">
+					<li><a href="/pl/">Strona główna</a></li>
+					<li>Ewidencja czasu pracy w Jira</li>
+				</ol>
+				<h1>Ewidencja czasu pracy programisty w Jira</h1>
+				<p class="dek">Etat, zlecenie czy B2B — kto naprawdę prowadzi ewidencję godzin, co z tego da się oprzeć na worklogach w Jira i jak zamknąć miesiąc w kwadrans zamiast w piątkowy wieczór.</p>
+				<div class="byline">
+					<img src="/img/mark.svg" width="28" height="28" alt="">
+					<span>Autor: <b>AI Timesheet team</b></span>
+					<span>·</span>
+					<time datetime="2026-10-29">29 października 2026</time>
+					<span>·</span>
+					<span>8 min czytania</span>
+				</div>
+			</div>
+		</section>
+
+		<div class="article-layout">
+			<article class="prose">
+				<div class="tldr">
+					<b>W skrócie</b>
+					<ul>
+						<li><b>Ewidencja czasu pracy</b> w sensie Kodeksu pracy (art. 149) to obowiązek pracodawcy wobec pracowników na etacie. Worklogi w Jira jej nie zastępują — pokazują, <em>na co</em> poszedł czas, a nie ile godzin przepracowałeś w danej dobie.</li>
+						<li>Na <b>B2B</b> ewidencji z Kodeksu pracy nie ma, ale przy stawce godzinowej klient i tak oczekuje miesięcznego zestawienia godzin. Najczęściej to suma Twoich worklogów w Jira.</li>
+						<li>Dobra ewidencja godzin w Jira to: jeden worklog na zadanie dziennie, właściwa data, konkretny opis i sprawdzenie sumy z dniem pracy.</li>
+						<li>Najwięcej błędów bierze się z odtwarzania tygodnia z pamięci. Rozwiązanie: rejestrować czas w tle i tylko zatwierdzać gotowe worklogi.</li>
+					</ul>
+				</div>
+
+				<h2 id="czym-jest-ewidencja">Ewidencja czasu pracy a worklog w Jira — to nie to samo</h2>
+				<p>W Polsce „ewidencja czasu pracy” ma konkretne znaczenie prawne. Zgodnie z art. 149 Kodeksu pracy pracodawca prowadzi ewidencję czasu pracy pracownika, żeby prawidłowo ustalić jego wynagrodzenie i inne świadczenia. Ewidencja obejmuje m.in. pracę w poszczególnych dobach (z godzinami rozpoczęcia i zakończenia), pracę w godzinach nadliczbowych, w nocy i w dni wolne, a także urlopy, zwolnienia i inne nieobecności. To dokument kadrowy — prowadzi go firma, nie Ty.</p>
+				<p>Worklog w Jira odpowiada na inne pytanie: ile czasu poszło na konkretne zgłoszenie. W polskim interfejsie Jira tworzysz go akcją <b>„Rejestruj pracę”</b>, w zespołach mówi się po prostu „zalogować czas” albo „wbić godziny”. Worklogi służą do rozliczania projektów, wyceny zmian, fakturowania klienta i porównywania estymat z rzeczywistością.</p>
+				<div class="callout">
+					<p>W praktyce obie rzeczy się spotykają: dział kadr potrzebuje liczby godzin, a kierownik projektu — podziału tych godzin na zadania. Jeśli worklogi są rzetelne, suma z Jira powinna mniej więcej zgadzać się z czasem pracy. Jeśli nie są, rozjazd wychodzi przy pierwszym rozliczeniu miesiąca.</p>
+				</div>
+
+				<h2 id="kto-potrzebuje">Kto w IT prowadzi ewidencję godzin: etat, zlecenie, B2B</h2>
+				<p>Programiści w Polsce pracują na kilku rodzajach umów, a od formy współpracy zależy, kto i po co liczy godziny.</p>
+				<table>
+					<thead>
+						<tr><th>Forma współpracy</th><th>Kto prowadzi ewidencję</th><th>Co zwykle trzeba oddać</th><th>Rola Jira</th></tr>
+					</thead>
+					<tbody>
+						<tr><td>Umowa o pracę</td><td>Pracodawca (ewidencja czasu pracy z Kodeksu pracy)</td><td>Często dodatkowo worklogi na zadaniach; w firmach stosujących 50% koszty autorskie — raport z pracy twórczej</td><td>Podział czasu na projekty i zadania</td></tr>
+						<tr><td>Umowa zlecenia</td><td>Strony ustalają w umowie sposób potwierdzania godzin</td><td>Informacja o liczbie godzin wykonania zlecenia</td><td>Źródło danych do zestawienia godzin</td></tr>
+						<tr><td>B2B (działalność gospodarcza)</td><td>Ty — na potrzeby klienta i własnych rozliczeń</td><td>Miesięczne zestawienie godzin do faktury, jeśli stawka jest godzinowa</td><td>Najczęściej główne źródło zestawienia</td></tr>
+					</tbody>
+				</table>
+				<p><strong>Umowa o pracę.</strong> Formalną ewidencję czasu pracy prowadzi pracodawca, często w systemie kadrowym albo przez rejestrator czasu pracy. Od Ciebie firma może dodatkowo oczekiwać worklogów w Jira, bo dopiero one mówią, ile kosztował dany projekt. Jeśli pracodawca stosuje podwyższone (50%) koszty uzyskania przychodu dla twórczej pracy programisty, zwykle prosi też o okresowy raport z wykonanych utworów — i tu worklogi z opisami bardzo ułatwiają życie.</p>
+				<p><strong>Umowa zlecenia.</strong> Przy zleceniu objętym minimalną stawką godzinową umowa powinna określać sposób potwierdzania liczby godzin wykonania zlecenia. Nie jest to ewidencja czasu pracy w rozumieniu Kodeksu pracy, ale godziny trzeba policzyć rzetelnie, a zestawienie z Jira jest do tego wygodnym źródłem.</p>
+				<p><strong>B2B.</strong> Kodeks pracy Cię nie obejmuje, więc formalnej ewidencji nie ma. Jest za to umowa z klientem. Przy rozliczeniu godzinowym faktura to po prostu liczba godzin razy stawka, a klient chce zobaczyć, skąd te godziny się wzięły. Dlatego w wielu software house’ach i u klientów korporacyjnych miesięczne rozliczanie czasu pracy kontraktora opiera się na worklogach. Jeśli korzystasz z ulgi IP Box, pamiętaj, że przepisy wymagają odrębnej ewidencji dla kwalifikowanych praw własności intelektualnej. W praktyce wielu programistów prowadzi też szczegółową ewidencję godzin na zadaniach, bo ułatwia ona przypisanie przychodów i kosztów — szczegóły warto omówić z doradcą podatkowym.</p>
+
+				<h2 id="jak-jira-liczy-czas">Jak Jira rejestruje czas pracy</h2>
+				<p>Rejestracja czasu pracy w Jira opiera się na worklogach. Każdy ma autora, datę i godzinę rozpoczęcia, czas trwania i opcjonalny opis. Kilka rzeczy, które warto wiedzieć, zanim zaczniesz traktować Jira jak swoją kartę czasu pracy:</p>
+				<ul>
+					<li><strong>Śledzenie czasu musi być włączone.</strong> Administrator włącza je dla całej instancji, a pole śledzenia czasu musi być na ekranach projektu. Potrzebujesz też uprawnienia do pracy nad zgłoszeniami. Jeśli nie widzisz „Rejestruj pracę”, problem leży niemal zawsze w konfiguracji.</li>
+					<li><strong>Format czasu.</strong> Czas wpisujesz w zapisie typu <code>2h 30m</code> albo <code>45m</code>. Domyślnie 1 dzień w Jira to 8 godzin, a tydzień — 5 dni, co pokrywa się z polską normą 8 godzin na dobę i przeciętnie 40 godzin tygodniowo. Jeśli Twoja firma liczy inaczej, przelicznik zmienia administrator.</li>
+					<li><strong>Data rozpoczęcia.</strong> Domyślnie to „teraz”. Gdy w poniedziałek rano uzupełniasz piątek, zmień datę — inaczej cały piątek wyląduje w poniedziałkowym raporcie.</li>
+					<li><strong>Jira Cloud i Jira Server / Data Center</strong> działają podobnie, różnią się układem okna i API. W Data Center akcja jest w menu <b>Więcej</b>, w Cloud — w polu śledzenia czasu albo w menu <b>…</b> zgłoszenia.</li>
+					<li><strong>Tempo.</strong> Jeśli Twoja firma używa Tempo Timesheets, logujesz czas w interfejsie Tempo, a wpisy są synchronizowane z worklogami w Jira. Zasady poniżej działają tak samo.</li>
+				</ul>
+				<p>Sama Jira nie pokaże wygodnej tabeli „moje godziny w tym miesiącu dzień po dniu”. Zgłoszenia z Twoimi worklogami znajdziesz zapytaniem JQL:</p>
+				<pre><code>worklogAuthor = currentUser() AND worklogDate &gt;= startOfMonth()</code></pre>
+				<p>To jednak lista zgłoszeń, nie suma godzin. Do miesięcznego zestawienia potrzebny jest raport z dodatku, eksport przez REST API albo narzędzie, które eksportuje worklogi do CSV.</p>
+
+				<h2 id="bledy">Najczęstsze błędy w ewidencji godzin w Jira</h2>
+				<ul>
+					<li><strong>Odtwarzanie tygodnia z pamięci.</strong> W piątek o 17:40 pamiętasz duże zadania, ale nie dwadzieścia minut code review, szybki hotfix ani call, który przeciągnął się do godziny. Godziny „giną” albo są dopisywane na oko do największego zadania.</li>
+					<li><strong>Logowanie na epik zamiast na story lub sub-task.</strong> Czas na epiku trudno potem przypisać, a w raportach nie zawsze sumuje się tak, jak się spodziewasz.</li>
+					<li><strong>Zła data.</strong> Uzupełnianie kilku dni naraz bez zmiany daty rozpoczęcia to najczęstsza przyczyna dni z 0 godzinami obok dni z 16 godzinami.</li>
+					<li><strong>Duplikaty.</strong> Ten sam worklog za spotkanie dodany z laptopa i z telefonu, ponownie uruchomiony skrypt, powtórzone smart commits. Przy rozliczeniu B2B to dosłownie nadpłata, którą klient prędzej czy później zauważy.</li>
+					<li><strong>Opisy w stylu „praca nad zadaniem”.</strong> Takie wpisy są pierwsze do zakwestionowania przy rozliczeniu miesiąca. Opis zaczynaj od czasownika i nazwij konkret: „Poprawiono odświeżanie tokenu po wygaśnięciu sesji SSO, dodano test regresyjny”.</li>
+					<li><strong>Zaokrąglanie zawsze w górę.</strong> Każdy wpis podbity do pół godziny zamienia realne 6,5 godziny w 8. Wybierz krok (np. 15 minut) i zaokrąglaj do najbliższej wartości.</li>
+				</ul>
+
+				<h2 id="miesieczna-ewidencja">Miesięczna ewidencja czasu pracy z worklogów: praktyczna rutyna</h2>
+				<p>Rutyna, która działa niezależnie od formy umowy:</p>
+				<ol>
+					<li><strong>Codziennie, 2 minuty.</strong> Na koniec dnia sprawdź, czy suma worklogów zgadza się z tym, ile faktycznie pracowałeś. Jedno zadanie — jeden worklog dziennie; poranną i popołudniową sesję nad tym samym zgłoszeniem połącz w jeden wpis.</li>
+					<li><strong>Raz w tygodniu, 10 minut.</strong> Przejrzyj tydzień i uzupełnij luki: spotkania, przeglądy kodu, wsparcie dla innych zespołów. Takie rzeczy najczęściej nie mają własnego zgłoszenia — umów się z zespołem, na jakie zadania je logować (np. osobne zgłoszenie na spotkania sprintu).</li>
+					<li><strong>Na koniec miesiąca, 15 minut.</strong> Wyeksportuj worklogi, porównaj sumę z miesięcznym wymiarem czasu pracy (zmienia się w zależności od liczby dni roboczych w miesiącu) i z tym, co trafi na fakturę albo do raportu dla firmy. Rozjazd na tym etapie to sygnał, że któryś tydzień był uzupełniany na szybko.</li>
+				</ol>
+				<p>Ta rutyna ma jedną słabość: codzienny krok wymaga pamiętania, co się robiło. I właśnie ten krok najłatwiej zautomatyzować.</p>
+
+				<h2 id="automatyzacja">Jak zautomatyzować rejestrację czasu pracy</h2>
+				<p>Stoper nie rozwiązuje problemu: trzeba go włączyć, wyłączyć i przełączać przy każdej zmianie zadania, a programista zmienia kontekst kilkanaście razy dziennie. Lepiej odtwarzać dzień z aktywności, którą i tak generujesz:</p>
+				<ul>
+					<li><strong>Gałęzie git.</strong> Gałąź <code>feature/BILL-142-eksport-faktur</code> w tytule okna IDE jednoznacznie wskazuje zadanie.</li>
+					<li><strong>Tytuły okien.</strong> Karty Jira i pull requesty niosą klucz zgłoszenia w tytule.</li>
+					<li><strong>Programy i domeny.</strong> Czas w komunikatorze czy na dashboardzie monitoringu można przypisać do zadania od spotkań albo utrzymania.</li>
+				</ul>
+				<p>Na tym pomyśle opiera się <a href="/pl/">Timesheet Tracker</a> — w Microsoft Store jako „Ewidencja czasu pracy i timesheet - AI dla Jira”. Aplikacja działa w zasobniku Windows i lokalnie zapisuje aktywny program, tytuł okna, domenę w przeglądarce oraz bezczynność i blokadę ekranu. Klucze Jira z tytułów, adresów i gałęzi git przypisuje na Twoim komputerze, bez AI. Resztę dnia porządkuje przycisk <b>„Sortuj mój dzień”</b>: AI dopasowuje pozostałe bloki do Twoich zadań w Jira i pisze jeden tekst worklogu na zadanie. Ty przeglądasz wynik, poprawiasz przyciskiem „Zmień zadanie” albo „Nie praca”, klikasz „Zatwierdź dzień” i „Wyślij do Jira” — do Jira Cloud lub Jira Server / Data Center, bez duplikatów. Jeśli potrzebujesz zestawienia dla klienta, „Eksportuj CSV” daje kartę czasu pracy według zadań.</p>
+				<p>Nie ma tu zrzutów ekranu, keyloggera ani raportów dla przełożonego — to osobiste narzędzie dla osoby, która loguje swój czas, a nie system RCP. Jeśli nie chcesz, żeby cokolwiek trafiało do AI, włącz tryb „Bez AI”. Interfejs i treść worklogów są po polsku.</p>
+
+				<h2 id="faq">Najczęstsze pytania</h2>
+				<div class="faq">
+					<details><summary>Czy worklogi w Jira to ewidencja czasu pracy w rozumieniu Kodeksu pracy?</summary><div class="a"><p>Nie. Ewidencję czasu pracy pracownika prowadzi pracodawca (art. 149 Kodeksu pracy) i obejmuje ona m.in. godziny pracy w poszczególnych dobach, nadgodziny i nieobecności. Worklogi w Jira pokazują, nad którymi zadaniami spędzono czas. Firma może z nich korzystać przy rozliczaniu projektów, ale same w sobie nie zastępują ewidencji prowadzonej przez pracodawcę.</p></div></details>
+					<details><summary>Czy na B2B muszę prowadzić ewidencję godzin?</summary><div class="a"><p>Przepisy Kodeksu pracy o ewidencji czasu pracy nie dotyczą osoby prowadzącej działalność gospodarczą. Obowiązek raportowania godzin wynika zwykle z umowy z klientem: jeśli rozliczasz się stawką godzinową, klient najczęściej oczekuje miesięcznego zestawienia godzin, a w wielu firmach źródłem tego zestawienia są worklogi w Jira.</p></div></details>
+					<details><summary>Jak wyciągnąć z Jira swoje godziny za cały miesiąc?</summary><div class="a"><p>Zapytanie JQL <code>worklogAuthor = currentUser() AND worklogDate &gt;= startOfMonth()</code> pokaże zgłoszenia, w których w tym miesiącu zarejestrowałeś pracę. Sumy godzin na dzień i zadanie da raport z dodatku, np. Tempo, eksport przez REST API albo aplikacja, która eksportuje worklogi do CSV.</p></div></details>
+					<details><summary>Czy umowa zlecenia wymaga ewidencji godzin?</summary><div class="a"><p>Przy zleceniu objętym minimalną stawką godzinową strony ustalają w umowie sposób potwierdzania liczby godzin wykonania zlecenia, a zleceniobiorca przedstawia tę informację. To nie jest ewidencja czasu pracy z Kodeksu pracy, ale w praktyce wymaga rzetelnego zapisu godzin. Szczegóły warto potwierdzić w umowie lub u księgowej.</p></div></details>
+				</div>
+				<p><em>Ten poradnik ma charakter informacyjny i nie stanowi porady prawnej ani podatkowej.</em></p>
+
+				<section class="article-cta" id="get-app">
+					<h2>Przestań odtwarzać tydzień z pamięci</h2>
+					<p>Timesheet Tracker przygotowuje worklogi w Jira na podstawie Twojego prawdziwego dnia, a Ty zatwierdzasz je w kilka minut. Pobierz bezpłatnie z Microsoft Store — 14 dni Pro za darmo, bez karty.</p>
+					<div class="get-app">
+						<a class="btn btn-primary btn-store" href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=pl-pl&amp;cid=site-pl-article-ewidencja-czasu-pracy-jira" rel="noopener"><span class="ms" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>Pobierz z Microsoft Store</span></a>
+					</div>
+				</section>
+
+				<aside class="related">
+					<h2>Powiązane poradniki</h2>
+					<ul>
+						<li><a href="/pl/">Timesheet Tracker: ewidencja czasu pracy i timesheet z AI dla Jira</a></li>
+						<li><a href="/articles/how-to-log-time-in-jira.html">How to log time in Jira</a> (po angielsku)</li>
+						<li><a href="/articles/fill-timesheet-in-10-minutes.html">How to fill your timesheet in 10 minutes</a> (po angielsku)</li>
+						<li><a href="/articles/tempo-timesheets-alternatives.html">Tempo Timesheets alternatives</a> (po angielsku)</li>
+					</ul>
+				</aside>
+			</article>
+
+			<aside class="toc" aria-label="Na tej stronie">
+				<b>Na tej stronie</b>
+				<ol>
+					<li><a href="#czym-jest-ewidencja">Ewidencja a worklog</a></li>
+					<li><a href="#kto-potrzebuje">Etat, zlecenie, B2B</a></li>
+					<li><a href="#jak-jira-liczy-czas">Jak Jira rejestruje czas</a></li>
+					<li><a href="#bledy">Najczęstsze błędy</a></li>
+					<li><a href="#miesieczna-ewidencja">Miesięczna rutyna</a></li>
+					<li><a href="#automatyzacja">Automatyzacja</a></li>
+					<li><a href="#faq">Pytania</a></li>
+				</ol>
+				<div class="toc-cta">
+					<b style="margin:0;color:var(--ink);font-size:15px;letter-spacing:-.01em;text-transform:none">Timesheet Tracker</b>
+					<p>Timesheet, który wypełnia się sam. Bezpłatnie w Microsoft Store.</p>
+					<a class="btn btn-primary btn-sm" href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=pl-pl&amp;cid=site-pl-nav-ewidencja-czasu-pracy-jira" rel="noopener">Pobierz aplikację</a>
+				</div>
+			</aside>
+		</div>
+	</main>
+
+	<footer class="site-footer">
+		<div class="wrap">
+			<div class="foot-grid">
+				<div class="foot-about">
+					<a class="brand" href="/pl/"><img src="/img/mark.svg" width="30" height="30" alt=""><span>Timesheet Tracker</span></a>
+					<p>Automatyczna ewidencja czasu pracy i timesheet z AI dla Jira, na Windows. Dane przede wszystkim lokalnie. Bez zrzutów ekranu.</p>
+				</div>
+				<div>
+					<h4>Produkt</h4>
+					<ul>
+						<li><a href="/pl/#how">Jak to działa</a></li>
+						<li><a href="/pl/#privacy">Prywatność z założenia</a></li>
+						<li><a href="/pl/#compare">Porównanie</a></li>
+						<li><a href="/pl/#faq">FAQ</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4>Poradniki</h4>
+					<ul>
+						<li><a href="/pl/articles/ewidencja-czasu-pracy-jira.html">Ewidencja czasu pracy w Jira</a></li>
+						<li><a href="/articles/how-to-log-time-in-jira.html">Log time in Jira (EN)</a></li>
+						<li><a href="/articles/automatic-time-tracking-software-windows.html">Automatic time tracking (EN)</a></li>
+						<li><a href="/articles/tempo-timesheets-alternatives.html">Tempo alternatives (EN)</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4>Firma</h4>
+					<ul>
+						<li><a href="mailto:help@timesheet-tracker.com">help@timesheet-tracker.com</a></li>
+						<li><a href="/privacy.html">Polityka prywatności</a></li>
+						<li><a href="/terms.html">Regulamin</a></li>
+						<li><a href="/">English</a></li>
+					</ul>
+				</div>
+			</div>
+			<nav class="foot-langs" aria-label="Language"><a href="/" hreflang="en" lang="en">English</a><a href="/de/" hreflang="de" lang="de">Deutsch</a><a href="/fr/" hreflang="fr" lang="fr">Français</a><a href="/es/" hreflang="es" lang="es">Español</a><a href="/pt-br/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a><a href="/it/" hreflang="it" lang="it">Italiano</a><a href="/pl/" hreflang="pl" lang="pl" aria-current="true">Polski</a><a href="/nl/" hreflang="nl" lang="nl">Nederlands</a><a href="/ja/" hreflang="ja" lang="ja">日本語</a><a href="/uk/" hreflang="uk" lang="uk">Українська</a><a href="/ru/" hreflang="ru" lang="ru">Русский</a></nav>
+			<div class="foot-bottom">
+				<span>© <span data-year>2026</span> Timesheet Tracker. Jira jest znakiem towarowym firmy Atlassian. Nie jesteśmy powiązani z Atlassian ani Microsoft.</span>
+				<span>Dla tych, którzy sami logują swój czas.</span>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>

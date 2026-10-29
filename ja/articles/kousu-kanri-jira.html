@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>工数管理を自動化する方法（Jira）｜工数入力をラクにするコツ</title>
+	<meta name="description" content="Jiraで工数管理を自動化する方法を解説。工数の数え方、勤怠管理との違い、作業ログの基本、Excelや工数管理ツールとの比較、PCの作業記録から工数入力を自動化する5つのステップまで。">
+	<link rel="canonical" href="https://timesheet-tracker.com/ja/articles/kousu-kanri-jira.html">
+	<meta name="robots" content="index, follow, max-image-preview:large">
+	<meta name="author" content="AI Timesheet team">
+	<meta name="theme-color" content="#f5f6fb">
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+	<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+	<meta property="og:type" content="article">
+	<meta property="og:site_name" content="Timesheet Tracker">
+	<meta property="og:title" content="工数管理を自動化する方法（Jira）">
+	<meta property="og:description" content="工数の数え方、作業ログの基本、Excelや工数管理ツールとの比較、Jiraの工数入力を自動化する5つのステップ。">
+	<meta property="og:url" content="https://timesheet-tracker.com/ja/articles/kousu-kanri-jira.html">
+	<meta property="og:image" content="https://timesheet-tracker.com/og-image.png">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="og:locale" content="ja_JP">
+	<meta property="article:published_time" content="2026-10-29">
+	<meta name="twitter:card" content="summary_large_image">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap">
+	<link rel="stylesheet" href="/css/landing.css">
+	<style>
+		:root{--font:"Inter","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Yu Gothic","Meiryo",ui-sans-serif,system-ui,sans-serif}
+		html[lang="ja"] body{line-break:strict;overflow-wrap:anywhere}
+		html[lang="ja"] h1,html[lang="ja"] h2,html[lang="ja"] h3{word-break:auto-phrase;letter-spacing:-0.01em}
+		html[lang="ja"] .prose p,html[lang="ja"] .prose li{line-height:1.85}
+	</style>
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Article",
+		"headline": "工数管理を自動化する方法（Jira）",
+		"description": "Jiraで工数管理を自動化する方法を解説。工数の数え方、勤怠管理との違い、作業ログの基本、Excelや工数管理ツールとの比較、PCの作業記録から工数入力を自動化する5つのステップまで。",
+		"datePublished": "2026-10-29",
+		"dateModified": "2026-10-29",
+		"inLanguage": "ja",
+		"keywords": "工数, 工数管理, 工数管理ツール, 工数入力, Jira, 作業ログ, タイムトラッカー",
+		"mainEntityOfPage": "https://timesheet-tracker.com/ja/articles/kousu-kanri-jira.html",
+		"image": "https://timesheet-tracker.com/og-image.png",
+		"author": {"@type": "Organization", "name": "AI Timesheet team", "url": "https://timesheet-tracker.com/"},
+		"publisher": {"@type": "Organization", "name": "Timesheet Tracker", "url": "https://timesheet-tracker.com/", "logo": {"@type": "ImageObject", "url": "https://timesheet-tracker.com/apple-touch-icon.png"}}
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		"itemListElement": [
+			{"@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://timesheet-tracker.com/ja/"},
+			{"@type": "ListItem", "position": 2, "name": "工数管理を自動化する方法（Jira）", "item": "https://timesheet-tracker.com/ja/articles/kousu-kanri-jira.html"}
+		]
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		"inLanguage": "ja",
+		"mainEntity": [
+			{"@type": "Question", "name": "工数と作業時間は何が違いますか？", "acceptedAnswer": {"@type": "Answer", "text": "作業時間は1人が実際に作業した時間、工数はその作業に必要な量を「人数×時間」で表したものです。1人で作業した場合は同じ値になりますが、工数は人日・人月のように複数人の作業量を合算して見積もりや原価計算に使います。"}},
+			{"@type": "Question", "name": "Jiraの作業ログは何分単位で入力すべきですか？", "acceptedAnswer": {"@type": "Answer", "text": "Jira自体は分単位で入力できます。15分単位や30分単位などの丸めはチームのルールで決めるのが一般的です。細かすぎると入力の負担が増え、粗すぎると予実管理に使えないので、見積もりの粒度に合わせるのがおすすめです。"}},
+			{"@type": "Question", "name": "工数管理ツールを入れると、会社に作業を監視されますか？", "acceptedAnswer": {"@type": "Answer", "text": "ツールによります。スクリーンショットやキー入力を管理者に送る監視型のツールもあります。Timesheet Trackerは個人用で、記録はPCに保存され、スクリーンショット、キー入力の記録、上司へのレポートはありません。Jiraに送られるのは本人が確定した作業ログだけです。"}},
+			{"@type": "Question", "name": "Excelの工数管理表と併用できますか？", "acceptedAnswer": {"@type": "Answer", "text": "できます。Timesheet Trackerは確定した工数をCSVで書き出せるので、既存のExcelの工数管理表や社内システムに取り込めます。Excel（XLSX）形式への直接の書き出しは今後対応予定です。"}},
+			{"@type": "Question", "name": "工数入力を自動化すると、勤怠の記録も不要になりますか？", "acceptedAnswer": {"@type": "Answer", "text": "なりません。工数管理はタスクごとの作業時間の配分を記録するもので、出退勤や労働時間の記録は会社の勤怠管理システムで行います。両者は目的も根拠も異なるため、別々に運用してください。"}}
+		]
+	}
+	</script>
+	<script src="/js/landing.js" defer></script>
+	<!-- Yandex.Metrika counter -->
+	<script>
+		(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();
+		for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+		k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+		(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+		ym(113838536, "init", {clickmap: true, trackLinks: true, accurateTrackBounce: true});
+	</script>
+</head>
+<body>
+	<noscript><div><img src="https://mc.yandex.ru/watch/113838536" width="1" height="1" style="position:absolute;left:-9999px" alt=""></div></noscript>
+	<a class="skip" href="#main">本文へスキップ</a>
+	<header class="site-header">
+		<nav class="wrap nav" aria-label="メイン">
+			<a class="brand" href="/ja/"><img src="/img/mark.svg" width="30" height="30" alt=""><span>Timesheet Tracker</span></a>
+			<ul class="nav-links">
+				<li><a href="/ja/#how">使い方</a></li>
+				<li><a href="/ja/#features">機能</a></li>
+				<li><a href="/ja/#privacy">プライバシー</a></li>
+				<li><a href="/ja/#compare">比較</a></li>
+				<li><a href="/ja/#faq">よくある質問</a></li>
+				<li><a href="/ja/articles/kousu-kanri-jira.html" aria-current="page">ガイド</a></li>
+			</ul>
+			<div class="nav-cta">
+				<a class="btn btn-primary btn-sm" href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=ja-jp&amp;cid=site-ja-nav-kousu-kanri-jira" rel="noopener">アプリを入手</a>
+				<button class="nav-toggle" type="button" aria-label="メニュー" aria-expanded="false"><span></span></button>
+			</div>
+		</nav>
+	</header>
+
+	<main id="main">
+		<section class="page-hero">
+			<div class="aurora" aria-hidden="true"></div>
+			<div class="wrap">
+				<ol class="crumbs">
+					<li><a href="/ja/">ホーム</a></li>
+					<li>工数管理の自動化</li>
+				</ol>
+				<h1>工数管理を自動化する方法（Jira）</h1>
+				<p class="dek">工数の数え方とJiraの作業ログの基本を押さえたうえで、「記録」と「割り当て」を切り分けて、毎週の工数入力を確認だけの作業に変える方法を解説します。</p>
+				<div class="byline">
+					<img src="/img/mark.svg" width="28" height="28" alt="">
+					<span>著者：<b>AI Timesheet team</b></span>
+					<span>·</span>
+					<time datetime="2026-10-29">2026年10月29日</time>
+					<span>·</span>
+					<span>約12分で読めます</span>
+				</div>
+			</div>
+		</section>
+
+		<div class="article-layout">
+			<article class="prose">
+				<div class="tldr">
+					<b>要点</b>
+					<ul>
+						<li><b>工数</b>は作業量を「人数×時間」で表したもの（人時・人日・人月）。IT現場の<b>工数管理</b>は、タスクごとの実績工数を記録し、見積もりと比べる予実管理が中心です。</li>
+						<li>Jiraでは<b>作業ログ</b>が実績工数の記録単位です。課題ごと・日ごとに入力するため、手作業だと週末にまとめて思い出すことになり、精度が落ちます。</li>
+						<li>自動化のコツは「記録」と「割り当て」を分けること。PCでの作業を自動で記録し、課題キーで照合し、迷う部分だけを人が確認します。</li>
+						<li>工数管理と<b>勤怠管理</b>は別物です。工数管理ツールは出退勤や労働時間の公式な記録の代わりにはなりません。</li>
+					</ul>
+				</div>
+
+				<h2 id="kousu-toha">工数とは？ 工数管理の基本</h2>
+				<p><b>工数</b>とは、ある作業を終えるのに必要な作業量を「人数×時間」で表した値です。単位には<b>人時</b>（にんじ）、<b>人日</b>（にんにち）、<b>人月</b>（にんげつ）が使われます。たとえば2人で3日かかる作業は6人日、1人で10時間かかる作業は10人時です。人日を時間に換算するときの「1人日＝何時間か」は会社や契約によって異なり、8時間とする現場が多いものの、7.5時間などで計算する組織もあります。</p>
+				<p>システム開発の<b>工数管理</b>では、主に次の2つの値を扱います。</p>
+				<ul>
+					<li><b>見積工数（予定工数）</b>：着手前に「この課題には何時間かかるか」を見積もった値</li>
+					<li><b>実績工数</b>：実際にかかった時間を記録した値</li>
+				</ul>
+				<p>この2つを比べるのが<b>予実管理</b>です。実績工数が正確に記録されていれば、見積もりの精度が上がり、プロジェクト別の原価や採算が見え、特定の人やチームへの負荷の偏りにも早く気づけます。準委任契約やSESでは、月ごとの稼働時間を報告し、契約で定めた精算幅（例：月140〜180時間）と照らし合わせることもあります。逆に言えば、実績工数が「だいたい」で入力されていると、これらはすべて意味を失います。</p>
+
+				<h2 id="kintai">工数管理と勤怠管理の違い</h2>
+				<p>「工数管理」で検索すると勤怠管理システムも多く出てきますが、両者は目的が違います。混同すると、どちらの記録も中途半端になりがちです。</p>
+				<table>
+					<thead>
+						<tr><th scope="col">観点</th><th scope="col">工数管理</th><th scope="col">勤怠管理</th></tr>
+					</thead>
+					<tbody>
+						<tr><td>記録するもの</td><td>どのタスク・プロジェクトに何時間使ったか</td><td>出勤・退勤・休憩・労働時間</td></tr>
+						<tr><td>主な目的</td><td>見積もり、原価管理、進捗・負荷の把握</td><td>労働時間の把握、給与計算、法令対応</td></tr>
+						<tr><td>主な利用者</td><td>本人、プロジェクトマネージャー</td><td>人事・労務、管理者</td></tr>
+						<tr><td>よく使う場所</td><td>Jira、Redmine、Backlog、Excelの工数管理表</td><td>勤怠管理システム、タイムカード</td></tr>
+					</tbody>
+				</table>
+				<p>労働時間の把握は会社の義務であり、勤怠管理システムなど会社が定めた方法で行うものです。一方、工数は1日の勤務時間をタスクにどう配分したかの記録です。会議、休憩、雑務などがあるため、勤怠の合計と工数の合計は通常一致しません。この差を「その他」で埋めるのではなく、後述する<b>間接作業用の課題</b>に記録するのが、正確な工数管理の第一歩です。</p>
+
+				<h2 id="jira-worklog">Jiraで工数を記録するしくみ（作業ログ）</h2>
+				<p>Jiraには標準でタイムトラッキング機能があり、課題ごとに次の値を持てます。</p>
+				<ul>
+					<li><b>初期見積もり</b>（Original estimate）：見積工数</li>
+					<li><b>残り時間の見積もり</b>（Remaining estimate）：あと何時間かかるか</li>
+					<li><b>作業ログ</b>（Worklog）：誰が、いつ、何時間、何をしたかの記録。合計が実績工数になります</li>
+				</ul>
+				<p>作業ログは課題画面から入力します（英語UIでは <b>Log work</b>）。時間は <code>1w 2d 3h 30m</code> のような書式で入力でき、初期設定では1日＝8時間、1週＝5日として換算されます。この換算は管理者が変更できるので、自社の「1人日」に合わせて設定されているか一度確認しておきましょう。プロジェクトでタイムトラッキングが有効になっていないと入力欄が表示されないため、その場合は管理者に依頼します。</p>
+				<p>課題画面以外にも、作業ログを登録する方法があります。</p>
+				<ul>
+					<li><b>スマートコミット</b>：Bitbucket・GitHub・GitLabなどと連携していれば、コミットメッセージに <code>ABC-123 #time 1h 30m ログイン画面のバリデーション修正</code> と書くだけで作業ログが登録されます。</li>
+					<li><b>REST API</b>：Jira Cloud では <code>POST /rest/api/3/issue/{課題キー}/worklog</code>、Jira Server / Data Center では <code>/rest/api/2/</code> の同じエンドポイントで登録できます。自作スクリプトでの一括登録に使われます。</li>
+				</ul>
+				<p>自分の今週の工数を確認するには、JQLで <code>worklogAuthor = currentUser() AND worklogDate &gt;= startOfWeek()</code> と検索すると、今週作業ログを付けた課題の一覧が得られます。Jiraでの作業時間の記録方法をさらに詳しく知りたい方は、英語のガイド「<a href="/articles/how-to-log-time-in-jira.html">How to log time in Jira</a>」もご覧ください。</p>
+
+				<h2 id="pain">手作業の工数入力がつらい理由</h2>
+				<p>Jiraの作業ログは「課題×日」単位です。5つの課題を並行して進めた1週間なら、最大で25件近い入力が必要になります。しかも実際の1日は、計画どおりには進みません。</p>
+				<ul>
+					<li><b>割り込みが多い</b>：Slackでの質問、急ぎのコードレビュー、障害の一次対応。どれも短いけれど、積み重なると数時間になります。</li>
+					<li><b>思い出すのに時間がかかる</b>：金曜の夕方に火曜日の作業を再現するには、チャット履歴、ブラウザーの履歴、コミットログを見返す必要があります。</li>
+					<li><b>タイマーが続かない</b>：開始と停止の押し忘れ、切り替えのたびの操作が負担になり、結局あとから手で直すことになります。</li>
+					<li><b>丸めて精度が落ちる</b>：面倒なので「開発作業 8h」とまとめて入力すると、見積もりとの比較ができなくなります。</li>
+				</ul>
+				<p>つまり問題は入力の手間そのものより、<b>「何に何時間使ったか」を後から復元する作業</b>にあります。ここを自動化できれば、工数入力は確認だけの作業になります。</p>
+
+				<h2 id="compare">工数管理の方法を比較：Excel・タイマー・工数管理ツール・自動記録</h2>
+				<table>
+					<thead>
+						<tr><th scope="col">方法</th><th scope="col">入力の手間</th><th scope="col">精度</th><th scope="col">Jiraとの関係</th><th scope="col">向いているケース</th></tr>
+					</thead>
+					<tbody>
+						<tr><td>Excelの工数管理表</td><td>大きい（すべて手入力）</td><td>記憶に依存</td><td>二重管理になりやすい</td><td>Jiraを使わない小規模チーム</td></tr>
+						<tr><td>タイマー型タイムトラッカー</td><td>中（開始・停止の操作）</td><td>押し忘れで欠ける</td><td>連携機能による</td><td>作業の切り替えが少ない人</td></tr>
+						<tr><td>Jiraアドオン（Tempo Timesheets など）</td><td>中（入力は基本的に手動、提案機能あり）</td><td>記憶に依存</td><td>Jira内で完結</td><td>チーム全体の工数を管理者が集計したい場合</td></tr>
+						<tr><td>デスクトップの自動記録型ツール</td><td>小（確認と修正のみ）</td><td>実際の作業記録にもとづく</td><td>作業ログとして送信</td><td>割り込みが多く、Jiraに工数を入力する個人</td></tr>
+					</tbody>
+				</table>
+				<p>どれか1つが常に正解というわけではありません。チームとして集計・承認のワークフローが必要ならJiraアドオン、個人の入力負担を減らしたいなら自動記録型、というように目的で選ぶのが現実的です。両方を組み合わせることもできます。</p>
+
+				<h2 id="steps">Jiraの工数入力を自動化する5つのステップ</h2>
+				<h3>1. 課題キーを作業の「痕跡」に残す</h3>
+				<p>自動化の精度は、作業の痕跡に課題キーがどれだけ含まれているかで決まります。ブランチ名を <code>feature/ABC-123-login</code> のように付ける、コミットメッセージやプルリクエストのタイトルの先頭に <code>ABC-123</code> を入れる、会議の予定やConfluenceのページ名にも課題キーを書く。これだけで、ウィンドウタイトルから課題を特定できる時間が大きく増えます。</p>
+				<h3>2. 間接作業用の課題を用意する</h3>
+				<p>「定例・会議」「問い合わせ対応」「障害対応」「レビュー」など、特定の開発課題に属さない作業の受け皿を、プロジェクトごとに課題として作っておきます。受け皿がないと、こうした時間は「その他」に丸められるか、記録されずに消えてしまいます。</p>
+				<h3>3. PCでの作業を自動で記録する</h3>
+				<p>アクティブなアプリ、ウィンドウタイトル、ブラウザーのドメイン、離席時間をバックグラウンドで記録するツールを使えば、タイマーの操作は不要になります。記録の段階では「どの課題か」を決めなくてかまいません。後で振り返るための材料をそろえておくことが目的です。</p>
+				<h3>4. 1日の終わりに確認して確定する</h3>
+				<p>課題キーが含まれる時間は自動で課題に割り当て、残りだけを確認します。毎日5分の確認なら記憶が新しいうちに判断でき、金曜日にまとめて1時間かけるよりずっと正確です。迷う部分だけを判断すれば済むようにしておくのがポイントです。</p>
+				<h3>5. Jiraに送信し、週単位で見直す</h3>
+				<p>確定した工数を作業ログとしてJiraに送信します。週に一度、前述のJQLや集計画面で見積もりと実績を見比べると、見積もりのずれに早く気づけます。送信をやり直したときに作業ログが二重に登録されないかも、ツール選びの重要なポイントです。</p>
+				<div class="callout">
+					<p><b>丸めのルールはチームで決める：</b>Jiraは分単位で入力できますが、15分単位や30分単位に丸めるかどうかはチームの運用次第です。自動記録を使う場合も、最終的な値はチームのルールに合わせて確認してから送信しましょう。</p>
+				</div>
+
+				<h2 id="example">Timesheet Trackerでの自動化の例</h2>
+				<p><a href="/ja/">Timesheet Tracker</a>は、上の3〜5のステップをまとめて引き受けるWindowsアプリです。Microsoft Storeでは「工数管理・タイムトラッカー - Jira用AI」として公開しています。</p>
+				<ol>
+					<li>通知領域に常駐し、アクティブなプログラム、ウィンドウタイトル、Webサイトのドメイン、離席や画面ロックの時間を記録します。データはPCに保存されます。</li>
+					<li>ウィンドウタイトルに <code>BILL-142</code> のような課題キーがあれば、その時間はAIを使わずにPC上でその課題に割り当てられます。</li>
+					<li>1日の終わりに<b>「この日を仕分け」</b>を押すと、残りの時間をAIがJiraのタスクに割り当て、タスクごとに作業ログのテキストを1つ下書きします。</li>
+					<li>タイムラインを確認し、必要なら<b>「タスクを変更」</b>や<b>「業務外」</b>で直して、<b>「この日を確定」</b>します。</li>
+					<li><b>「Jiraに送信」</b>で Jira Cloud または Jira Server / Data Center に作業ログを送信します。再送しても重複しません。<b>「CSVをエクスポート」</b>でExcelの工数管理表に取り込むこともできます。</li>
+				</ol>
+				<p>AIに送られるのは「この日を仕分け」を押したときだけで、内容はマスク済みのウィンドウタイトル、プログラム名、ドメイン、時間、Jiraのタスクです。スクリーンショット、キー入力、ページの内容は記録も送信もしません。AIを使いたくない場合は<b>「AIなしで使用」</b>を選べば、課題キーによる照合と手動の割り当てだけで使えます。</p>
+
+				<h2 id="checklist">工数管理ツールを選ぶときのチェックリスト</h2>
+				<ul>
+					<li><b>Jiraとの連携</b>：Jira Cloud と Jira Server / Data Center のどちらに対応しているか。作業ログとして直接書き込めるか。</li>
+					<li><b>重複の防止</b>：送信に失敗して再送したとき、作業ログが二重に登録されないか。</li>
+					<li><b>記録する範囲</b>：スクリーンショットやキー入力を記録するか。何がPCの外に送られるか。</li>
+					<li><b>誰のためのツールか</b>：個人の工数入力を助けるものか、管理者が従業員を監視するものか。業務PCに導入する前に、社内規程や情報システム部門の方針も確認しましょう。</li>
+					<li><b>エクスポート</b>：CSVやExcelで書き出して、既存の工数管理表や社内システムに取り込めるか。</li>
+					<li><b>料金体系</b>：ユーザー単位の課金か、個人で契約できるか。無料で試せる期間があるか。</li>
+				</ul>
+
+				<h2 id="faq">よくある質問</h2>
+				<div class="faq">
+					<details><summary>工数と作業時間は何が違いますか？</summary><div class="a"><p>作業時間は1人が実際に作業した時間、工数はその作業に必要な量を「人数×時間」で表したものです。1人で作業した場合は同じ値になりますが、工数は人日・人月のように複数人の作業量を合算して見積もりや原価計算に使います。</p></div></details>
+					<details><summary>Jiraの作業ログは何分単位で入力すべきですか？</summary><div class="a"><p>Jira自体は分単位で入力できます。15分単位や30分単位などの丸めはチームのルールで決めるのが一般的です。細かすぎると入力の負担が増え、粗すぎると予実管理に使えないので、見積もりの粒度に合わせるのがおすすめです。</p></div></details>
+					<details><summary>工数管理ツールを入れると、会社に作業を監視されますか？</summary><div class="a"><p>ツールによります。スクリーンショットやキー入力を管理者に送る監視型のツールもあります。Timesheet Trackerは個人用で、記録はPCに保存され、スクリーンショット、キー入力の記録、上司へのレポートはありません。Jiraに送られるのは本人が確定した作業ログだけです。</p></div></details>
+					<details><summary>Excelの工数管理表と併用できますか？</summary><div class="a"><p>できます。Timesheet Trackerは確定した工数をCSVで書き出せるので、既存のExcelの工数管理表や社内システムに取り込めます。Excel（XLSX）形式への直接の書き出しは今後対応予定です。</p></div></details>
+					<details><summary>工数入力を自動化すると、勤怠の記録も不要になりますか？</summary><div class="a"><p>なりません。工数管理はタスクごとの作業時間の配分を記録するもので、出退勤や労働時間の記録は会社の勤怠管理システムで行います。両者は目的も根拠も異なるため、別々に運用してください。</p></div></details>
+				</div>
+
+				<section class="article-cta" id="get-app">
+					<h2>金曜日の工数入力を、確認だけの5分に</h2>
+					<p>Timesheet Trackerは実際の1日の作業からJiraの作業ログを下書きし、あなたは確認して確定するだけです。Microsoft Storeから無料でダウンロードでき、Proを14日間無料で試用できます（カード不要）。その後は月額$9.99または年額$79です。</p>
+					<div class="get-app">
+						<a class="btn btn-primary btn-store" href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=ja-jp&amp;cid=site-ja-article-kousu-kanri-jira" rel="noopener"><span class="ms" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>Microsoft Store から入手</span></a>
+					</div>
+				</section>
+
+				<aside class="related">
+					<h2>関連ガイド</h2>
+					<ul>
+						<li><a href="/ja/">Timesheet Tracker：Jiraの工数管理を自動化するタイムトラッカー</a></li>
+						<li><a href="/articles/how-to-log-time-in-jira.html">How to log time in Jira（英語）</a></li>
+						<li><a href="/articles/automatic-time-tracking-software-windows.html">Automatic time tracking software for Windows（英語）</a></li>
+						<li><a href="/articles/tempo-timesheets-alternatives.html">Tempo Timesheets alternatives（英語）</a></li>
+					</ul>
+				</aside>
+			</article>
+
+			<aside class="toc" aria-label="このページの内容">
+				<b>このページの内容</b>
+				<ol>
+					<li><a href="#kousu-toha">工数とは</a></li>
+					<li><a href="#kintai">勤怠管理との違い</a></li>
+					<li><a href="#jira-worklog">Jiraの作業ログ</a></li>
+					<li><a href="#pain">手入力がつらい理由</a></li>
+					<li><a href="#compare">方法の比較</a></li>
+					<li><a href="#steps">自動化の5ステップ</a></li>
+					<li><a href="#example">自動化の例</a></li>
+					<li><a href="#checklist">ツール選びのチェックリスト</a></li>
+					<li><a href="#faq">よくある質問</a></li>
+				</ol>
+				<div class="toc-cta">
+					<b style="margin:0;color:var(--ink);font-size:15px;letter-spacing:-.01em;text-transform:none">Timesheet Tracker</b>
+					<p>工数が自動で埋まるタイムシート。Microsoft Storeで無料ダウンロード。</p>
+					<a class="btn btn-primary btn-sm" href="https://apps.microsoft.com/detail/9n1vml91q1lx?hl=ja-jp&amp;cid=site-ja-nav-kousu-kanri-jira" rel="noopener">アプリを入手</a>
+				</div>
+			</aside>
+		</div>
+	</main>
+
+	<footer class="site-footer">
+		<div class="wrap">
+			<div class="foot-grid">
+				<div class="foot-about">
+					<a class="brand" href="/ja/"><img src="/img/mark.svg" width="30" height="30" alt=""><span>Timesheet Tracker</span></a>
+					<p>Windows用、Jiraのための自動タイムトラッキングとAIタイムシート。ローカルファースト、スクリーンショットなし。</p>
+				</div>
+				<div>
+					<h4>製品</h4>
+					<ul>
+						<li><a href="/ja/#how">使い方</a></li>
+						<li><a href="/ja/#privacy">プライバシー保護</a></li>
+						<li><a href="/ja/#compare">比較</a></li>
+						<li><a href="/ja/#faq">よくある質問</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4>ガイド</h4>
+					<ul>
+						<li><a href="/ja/articles/kousu-kanri-jira.html">Jiraの工数管理を自動化</a></li>
+						<li><a href="/articles/how-to-log-time-in-jira.html">Jiraで作業時間を記録（英語）</a></li>
+						<li><a href="/articles/automatic-time-tracking-software-windows.html">自動タイムトラッキング（英語）</a></li>
+						<li><a href="/articles/tempo-timesheets-alternatives.html">Tempoの代替ツール（英語）</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4>運営</h4>
+					<ul>
+						<li><a href="mailto:help@timesheet-tracker.com">help@timesheet-tracker.com</a></li>
+						<li><a href="/privacy.html">プライバシーポリシー（英語）</a></li>
+						<li><a href="/terms.html">利用規約（英語）</a></li>
+					</ul>
+				</div>
+			</div>
+			<nav class="foot-langs" aria-label="Language"><a href="/" hreflang="en" lang="en">English</a><a href="/de/" hreflang="de" lang="de">Deutsch</a><a href="/fr/" hreflang="fr" lang="fr">Français</a><a href="/es/" hreflang="es" lang="es">Español</a><a href="/pt-br/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a><a href="/it/" hreflang="it" lang="it">Italiano</a><a href="/pl/" hreflang="pl" lang="pl">Polski</a><a href="/nl/" hreflang="nl" lang="nl">Nederlands</a><a href="/ja/" hreflang="ja" lang="ja" aria-current="true">日本語</a><a href="/uk/" hreflang="uk" lang="uk">Українська</a><a href="/ru/" hreflang="ru" lang="ru">Русский</a></nav>
+			<div class="foot-bottom">
+				<span>© <span data-year>2026</span> Timesheet Tracker. JiraはAtlassianの商標です。AtlassianおよびMicrosoftとは提携していません。</span>
+				<span>自分の工数を、自分で入力するすべての人へ。</span>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>

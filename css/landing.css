@@ -2753,6 +2753,29 @@ a.store-badge:hover {
 	color: var(--muted);
 }
 
+.foot-langs {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px 16px;
+	margin-top: 36px;
+	font-size: 13.5px;
+}
+
+.foot-langs a {
+	color: var(--muted);
+	text-decoration: none;
+}
+
+.foot-langs a:hover,
+.foot-langs a[aria-current] {
+	color: var(--ink);
+	text-decoration: underline;
+}
+
+.foot-langs + .foot-bottom {
+	margin-top: 18px;
+}
+
 /* ---------- Reveal on scroll ---------- */
 
 .js .reveal {
